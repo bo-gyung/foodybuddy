@@ -50,16 +50,22 @@
           </a>
           <div class="" id="">
             <div class="User_option">
+              <a href="/user/create">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>join</span>
+              </a>
               <a href="/user/login">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <span>Login</span>
               </a>
-              <form class="form-inline">
-                <input type="search" placeholder="Search" />
-                <button class="btn nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
+              <a href="/user/userpage">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>my page</span>
+              </a>
+              <a href="/user/adminpage">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>admin page</span>
+              </a>
             </div>
             <div class="custom_menu-btn">
               <button onclick="openNav()">
@@ -69,8 +75,8 @@
             <div id="myNav" class="overlay">
               <div class="overlay-content">
                 <a href="index.jsp">Home</a>
-                <a href="">NOTICE(공지사항)</a>
-                <a href="">FOODY(맛집정보)</a>
+                <a href="/board/notice">NOTICE(공지사항)</a>
+                <a href="/board/foody">FOODY(맛집정보)</a>
                 <a href="/board/buddy">BUDDY(같이가기)</a>
               </div>
             </div>
@@ -186,7 +192,7 @@
               <h4>
                 공지사항
               </h4>
-              <a href="">
+              <a href="/board/notice">
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
               </a>
             </div>
@@ -201,7 +207,7 @@
               <h4>
                 맛집
               </h4>
-              <a href="">
+              <a href="/board/foody">
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
               </a>
             </div>
@@ -216,7 +222,7 @@
               <h4>
                 모임
               </h4>
-              <a href="">
+              <a href="/board/buddy">
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
               </a>
             </div>
@@ -250,23 +256,23 @@
         <div class="info_links">
           <ul>
             <li class="active">
-              <a href="index.jsp">
+              <a href="/">
                 Home
               </a>
             </li>
             <li>
-              <a href="about.jsp">
-                About
+              <a href="/board/notice">
+                공지사항
               </a>
             </li>
             <li>
-              <a class="" href="blog.jsp">
-                Blog
+              <a class="" href="/board/foody">
+                 맛집정보
               </a>
             </li>
             <li>
-              <a class="" href="testimonial.jsp">
-                Testimonial
+              <a class="" href="/board/buddy">
+                모임
               </a>
             </li>
           </ul>
