@@ -131,11 +131,11 @@
                                         <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span><%=list.get(i).getBuddy_title() %></span>
+                                                <span><a href="/board/buddy/post"><%=list.get(i).getBuddy_title() %></a></span>
                                                 <span class="text-primary">모집상태</span>
                                             </h5>
                                             <small class="fst-italic">
-                                            작성자 : <%=list.get(i).getBuddy_no() %> / 
+                                            <a href="">작성자 : <%=list.get(i).getBuddy_no() %></a> / 
                                             모임일 : <%=list.get(i).getMeet_date() %> / 
                                             댓글 : 댓글수 / 
                                             조회수 : <%=list.get(i).getBuddy_view() %> / 
