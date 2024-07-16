@@ -3,18 +3,48 @@ package com.foodybuddy.user.service;
 import  static com.foodybuddy.common.sql.JDBCTemplate.close;
 import  static com.foodybuddy.common.sql.JDBCTemplate.getConnection;
 
+
 import java.sql.Connection;
 
 import com.foodybuddy.user.dao.UserDao;
 import com.foodybuddy.user.vo.User;
 
 public class UserService {
-	// 회원가입
-	public int createUser(User u) {		
+	
+	public int createUser(User u) {
 		Connection conn = getConnection();
-		int result = new UserDao().createUser(u, conn);
+		int result = new UserDao().createUser(u,conn);
 		close(conn);
 		return result;
+		
+	}
+	
+	public User selectById(String userId) {
+		Connection conn = getConnection();
+		User u = new UserDao().selectById(userId,conn);
+		close(conn);
+		return u;
+	}
+	
+	public User selectByName(String userName) {
+		Connection conn = getConnection();
+		User u = new UserDao().selectByName(userName,conn);
+		close(conn);
+		return u;
+	}
+	
+	public User selectByPhone(String userPhone) {
+		Connection conn = getConnection();
+		User u = new UserDao().selectByPhone(userPhone,conn);
+		close(conn);
+		return u;
+	}
+	
+	public User selectByEmail(String userEmail) {
+		Connection conn = getConnection();
+		User u = new UserDao().selectByEmail(userEmail,conn);
+		close(conn);
+		return u;
 	}
 	
 	// 로그인
