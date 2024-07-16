@@ -210,7 +210,6 @@ public class UserDao {
 						,rs.getString("user_answer")
 						,rs.getInt("user_warn")
 						,rs.getTimestamp("reg_date").toLocalDateTime()); 
-			
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

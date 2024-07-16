@@ -5,7 +5,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>BUDDY POST</title>
+    <title>BUDDY(같이가기)</title>
+    <!-- BUDDY(같이가기) 글쓰기? 보기? 하여튼 둘다 만들어야함 -->
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
