@@ -16,9 +16,9 @@
 			<table>
 				<colgroup>
 					<col width = "10%">
-					<col width="50%">
-					<col width="20%">
-					<col width="20%">
+					<col width = "50%">
+					<col width = "20%">
+					<col width = "20%">
 				</colgroup>
 				<thead>
 					<tr>

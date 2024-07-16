@@ -14,7 +14,7 @@ import com.foodybuddy.userpage.service.QnAService;
 import com.foodybuddy.userpage.vo.QnA;
 
 
-@WebServlet("/qna")
+@WebServlet("/qnalist/list")
 public class QnAListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
