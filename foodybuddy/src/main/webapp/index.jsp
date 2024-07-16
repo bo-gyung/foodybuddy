@@ -32,7 +32,7 @@
 
     <!-- Template Stylesheet -->
     <link href="../resources/template/css/style.css" rel="stylesheet">
-</head>
+</head>	
 
 <body>
 	<!-- Navbar Link -->
