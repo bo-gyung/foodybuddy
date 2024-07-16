@@ -154,7 +154,9 @@
                                         <label for="name">질문답변</label>
                                   	</div>
                               	</div>
-                                        <button onclick="createUserForm();">회원가입</button>
+                              	<div class="col-12">
+                                     <button  class="btn btn-primary w-100 py-3" onclick="createUserForm();">회원가입</button>
+                                </div>
                                 </div>
 							</form>
                         </div>
