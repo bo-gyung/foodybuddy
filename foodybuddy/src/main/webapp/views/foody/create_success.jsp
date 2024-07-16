@@ -11,7 +11,7 @@
 		<div>
 			<h3>등록 완료</h3>
 			<br>
-			<a href="/foody/foodlist">메뉴</a>
+			<a href="/board/foody">메뉴</a>
 		</div>
 	</section>
 </body>

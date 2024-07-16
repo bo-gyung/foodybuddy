@@ -60,7 +60,7 @@ public class FoodyCreateEndServlet extends HttpServlet {
 			String delivery = mr.getParameter("foody_delivery");
 			
 //			상세설명
-			String content = mr.getParameter("foody_content");
+			String main = mr.getParameter("foody_main");
 			String address = mr.getParameter("foody_address");
 			
 			Foody f = new Foody();
@@ -71,7 +71,7 @@ public class FoodyCreateEndServlet extends HttpServlet {
 			f.setReg_date(submitTime);
 			f.setFoody_parking(parking);
 			f.setFoody_delivery(delivery);
-			f.setFoody_content(content);
+			f.setFoody_main(main);
 			f.setFoody_address(address);
 
 			

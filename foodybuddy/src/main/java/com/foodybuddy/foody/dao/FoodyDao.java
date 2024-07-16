@@ -47,9 +47,9 @@ public class FoodyDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT COUNT(*) AS cnt FROM board ";
+			String sql = "SELECT COUNT(*) AS cnt FROM foody_create ";
 			if(option.getFoody_title() != null) {
-				sql += " WHERE board_title LIKE CONCAT('%',"+option.getFoody_title()+",'%')";
+				sql += " WHERE foody_title LIKE CONCAT('%',"+option.getFoody_title()+",'%')";
 			}
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -72,26 +72,37 @@ public class FoodyDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-//			// 검색 조건
-//			// X : SELECT * FROM board
-//			// O : SELECT * FROM board WHERE board_title LIKE CONCAT('%',board_title,'%')
-//			String sql = "SELECT * FROM board";
-//			if(option.getFoody_title() != null) {
-//				sql += " WHERE board_title LIKE CONCAT('%',"+option.getFoody_title()+",'%')";
-//			}
-//			sql += " LIMIT "+option.getLimitPageNo()+", "+option.getNumPerPage();
-//			pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			while(rs.next()) {
-//				Foody resultVo = new Foody(rs.getInt("foody_no"),
-//						rs.getString("foody_title"),
-//						rs.getInt("board_writer"),
-//						rs.getTimestamp("reg_date").toLocalDateTime(),
-//						rs.getInt("foody_click"),
-//						rs.getInt("foody_good"));
-//				
-//				list.add(resultVo);
-//			}
+			// 검색 조건
+			// X : SELECT * FROM board
+			// O : SELECT * FROM board WHERE board_title LIKE CONCAT('%',board_title,'%')
+			String sql = "SELECT * FROM foody_create";
+			if(option.getFoody_title() != null) {
+				sql += " WHERE foody_title LIKE CONCAT('%',"+option.getFoody_title()+",'%')";
+			}
+			sql += " LIMIT "+option.getLimitPageNo()+", "+option.getNumPerPage();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Foody resultVo = new Foody(rs.getInt("foody_no"),
+						rs.getInt("user_no"),
+						rs.getInt("report_no"),
+						rs.getString("foody_title"),
+						rs.getString("foody_name"),
+						rs.getInt("foody_taste"),
+						rs.getInt("foody_clean"),
+						rs.getString("foody_parking"),
+						rs.getString("foody_delivery"),
+						rs.getString("foody_main"),
+						rs.getTimestamp("reg_date").toLocalDateTime(),
+						rs.getTimestamp("mod_date").toLocalDateTime(),
+						rs.getString("foody_address"),
+						rs.getInt("foody_click"),
+						rs.getInt("foody_good"),
+						rs.getString("ori_picture"),
+						rs.getString("new_picture"));
+				
+				list.add(resultVo);
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

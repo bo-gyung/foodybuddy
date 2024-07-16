@@ -2,7 +2,9 @@ package com.foodybuddy.foody.vo;
 
 import java.time.LocalDateTime;
 
-public class Foody {
+import com.foodybuddy.common.sql.Paging;
+
+public class Foody extends Paging{
 	private int foody_no;
 	private int user_no;
 	private int report_no;
@@ -12,7 +14,7 @@ public class Foody {
 	private int foody_clean;
 	private String foody_parking;
 	private String foody_delivery;
-	private String foody_content;
+	private String foody_main;
 	private LocalDateTime reg_date;
 	private LocalDateTime mod_date;
 	private String foody_address;
@@ -27,7 +29,7 @@ public class Foody {
 	}
 
 	public Foody(int foody_no, int user_no, int report_no, String foody_title, String foody_name, int foody_taste,
-			int foody_clean, String foody_parking, String foody_delivery, String foody_content, LocalDateTime reg_date,
+			int foody_clean, String foody_parking, String foody_delivery, String foody_main, LocalDateTime reg_date,
 			LocalDateTime mod_date, String foody_address, int foody_click, int foody_good, String ori_picture,
 			String new_picture) {
 		super();
@@ -40,7 +42,7 @@ public class Foody {
 		this.foody_clean = foody_clean;
 		this.foody_parking = foody_parking;
 		this.foody_delivery = foody_delivery;
-		this.foody_content = foody_content;
+		this.foody_main = foody_main;
 		this.reg_date = reg_date;
 		this.mod_date = mod_date;
 		this.foody_address = foody_address;
@@ -122,12 +124,12 @@ public class Foody {
 		this.foody_delivery = foody_delivery;
 	}
 
-	public String getFoody_content() {
-		return foody_content;
+	public String getFoody_main() {
+		return foody_main;
 	}
 
-	public void setFoody_content(String foody_content) {
-		this.foody_content = foody_content;
+	public void setFoody_main(String foody_main) {
+		this.foody_main = foody_main;
 	}
 
 	public LocalDateTime getReg_date() {
@@ -191,7 +193,7 @@ public class Foody {
 		return "Foody [foody_no=" + foody_no + ", user_no=" + user_no + ", report_no=" + report_no + ", foody_title="
 				+ foody_title + ", foody_name=" + foody_name + ", foody_taste=" + foody_taste + ", foody_clean="
 				+ foody_clean + ", foody_parking=" + foody_parking + ", foody_delivery=" + foody_delivery
-				+ ", foody_content=" + foody_content + ", reg_date=" + reg_date + ", mod_date=" + mod_date
+				+ ", foody_main=" + foody_main + ", reg_date=" + reg_date + ", mod_date=" + mod_date
 				+ ", foody_address=" + foody_address + ", foody_click=" + foody_click + ", foody_good=" + foody_good
 				+ ", ori_picture=" + ori_picture + ", new_picture=" + new_picture + "]";
 	}
