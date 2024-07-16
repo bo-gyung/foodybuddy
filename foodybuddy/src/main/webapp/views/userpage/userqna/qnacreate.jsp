@@ -10,7 +10,7 @@
 	<section>
 		<div>
 			<div>
-			<form action ='' name = qnacreate_form method = "post">
+			<form action ='/qnalist/qnacreateEnd' name = qnacreate_form method = "post">
 			<label>제목</label>
 				<input type = "text" name = "qna_title" placeholder = "제목을 입력하세요." maxlength = "50"><br>
 				<label>작성란</label>

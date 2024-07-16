@@ -64,5 +64,26 @@
 					</tfoot> --%>
 			</table>
 	</section>
+	<section>
+		<div>
+			<div>
+				<h2>QnA받은 목록</h2>
+			</div><br>
+		</div>
+			<table>
+				<colgroup>
+					<col width = "10%">
+					<col width = "50%">
+					<col width = "20%">
+					<col width = "20%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성날짜</th>
+					</tr>
+				</thead>
 </body>
 </html>

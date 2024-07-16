@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/UserPageMain")
+@WebServlet("/userpage/userpagemain")
 public class UserPageMain extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -26,7 +26,7 @@ public class UserPageMain extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

@@ -32,7 +32,7 @@
                         <a href="/" class="nav-item nav-link">HOME</a>
                         <a href="/user/create" class="nav-item nav-link">SINGUP</a>
                         <a href="/user/login" class="nav-item nav-link">LOGIN</a>
-                        <a href="/user/userpage" class="nav-item nav-link">MY PAGE</a>
+                        <a href="/userpage/userpagemain" class="nav-item nav-link">MY PAGE</a>
                         <a href="/user/adminpage" class="nav-item nav-link">ADMIN PAGE</a>
                         <a href="/user/message" class="nav-item nav-link">MESSAGE</a>
                         <div class="nav-item dropdown">
