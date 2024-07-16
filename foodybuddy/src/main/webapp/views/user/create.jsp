@@ -320,7 +320,7 @@
                     
                         function isValidName(name) {
 
-                            const regex3 = /^([ㄱ-ㅎ]){2,10}$/;
+                            const regex3 = /^([가-힣]){2,10}$/;
                             return regex3.test(name);
                         }
                         
