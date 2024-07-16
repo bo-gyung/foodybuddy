@@ -46,7 +46,7 @@
                             <li class="breadcrumb-item"><a href="#">맛집</a></li>
                             <li class="breadcrumb-item"><a href="#">모임</a></li>
                             <li class="breadcrumb-item"><a href="#">좋아요모음</a></li>
-                            <li class="breadcrumb-item"><a href="/userpage/userqna/qnalist.jsp">QnA</a></li>
+                            <li class="breadcrumb-item"><a href="/qna/list">QnA</a></li>
                         </ol>
                     </nav>
                 </div>

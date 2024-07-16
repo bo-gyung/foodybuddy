@@ -7,6 +7,9 @@
 <title>QnA 목록</title>
 </head>
 <body>
+	<header>
+		<a href = "/qna/create">qna작성</a>
+	</header>
 	<section>
 		<div>
 			<div>

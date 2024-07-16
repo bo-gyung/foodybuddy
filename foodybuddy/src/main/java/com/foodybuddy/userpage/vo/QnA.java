@@ -2,9 +2,9 @@ package com.foodybuddy.userpage.vo;
 
 import java.time.LocalDateTime;
 
-import com.foodybuddy.userpage.UserPaging;
+import com.foodybuddy.common.Paging;
 
-public class QnA extends UserPaging{
+public class QnA extends Paging{
 	private int qna_no;
 	private int user_no;
 	private String qna_title;
