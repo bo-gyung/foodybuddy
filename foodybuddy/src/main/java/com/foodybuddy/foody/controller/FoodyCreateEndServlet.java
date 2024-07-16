@@ -37,12 +37,12 @@ public class FoodyCreateEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		if(ServletFileUpload.isMultipartContent(request)) {
-
-			String dir = request.getServletContext().getRealPath("/upload");
+			String uploadPath = request.getServletContext().getRealPath("/upload");
+//			String dir = request.getServletContext().getRealPath("/upload");
 			int maxSize = 1024 * 1024 * 10;
 			String encoding = "UTF-8";
 			DefaultFileRenamePolicy dtf = new DefaultFileRenamePolicy();
-			MultipartRequest mr = new MultipartRequest(request,dir,maxSize,encoding,dtf);
+			MultipartRequest mr = new MultipartRequest(request,uploadPath,maxSize,encoding,dtf);
 			
 			String oriName = mr.getParameter("foddy_picture");
 			String reName = mr.getFilesystemName("foody_picture");

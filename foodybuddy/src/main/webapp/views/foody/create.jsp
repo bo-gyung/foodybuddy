@@ -57,7 +57,7 @@
 	<script type="text/javascript">
 		function createFoodyForm() {
 			let form = document.create_foody_form;	
-			/* document.getElementById('submit_time').value = new Date().toISOString(); */
+			
 			if(!form.foody_title.value){
 				alert("제목을 입력하세요.");
 				form.foody_title.focus();
