@@ -8,7 +8,7 @@
 </head>
 <body>
 	<header>
-		<a href = "/qna/create">qna작성</a>
+		<a href = "/qna/create">QnA작성</a>
 	</header>
 	<section>
 		<div>
@@ -32,20 +32,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%-- <%@page import = "com.foodybuddy.userpage.vo.QnA, java.util.*" %>
-					<%
-						List<QnA> list = (List<QnA>)request.getAtrribute("resultList");
+					 <%-- <%@page import = "com.foodybuddy.userpage.vo.QnA, java.util.*" %>
+					 <%
+						List<QnA> list = (List<QnA>)request.getAttribute("resultList");
 						for(int i = 0; i < list.size(); i++){ %>
 							<tr>
 								<td><%=list.get(i).getQna_no() %></td>
 								<td><%=list.get(i).getQna_title() %></td>
-								<td><%=list.get(i).getQna_writer() %></td>
+								<td><%=list.get(i).getUser_no() %></td>
 								<td><%=list.get(i).getReg_date() %></td> 
 							</tr>
 					<% }%> --%>
 				</tbody>
-					<%-- <tfoot>
-						<%QnA paging = (QnA)request.getAtrribute("paging"); %>
+					<%--  <tfoot>
+						<% QnA paging = (QnA)request.getAttribute("paging"); %>
 						<%if (paging != null) {%>
 							<div>
 								<div>
@@ -63,8 +63,8 @@
 										<%} %>
 								</div>
 							</div>
-							<%} %>
-					</tfoot> --%>
+							<%} %> --%>
+					</tfoot> 
 			</table>
 	</section>
 	<section>

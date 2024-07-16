@@ -12,6 +12,43 @@ import com.foodybuddy.userpage.vo.QnA;
 
 public class UserPageDao {
 	
+	//qna 게시글 삭제
+	public int deleteQnA(String qna_title, Connection conn) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			String sql = "DELETE FROM `user_qna` WHERE qna_title = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qna_title);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	//qna게시글 수정
+	public int updateQnA(String title, String content, int user, Connection conn) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			String sql = "UPDATE `user_qna` SET qna_title = ?, qna_content = ?"
+					+ "WHERE user_no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, user);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	// qna게시글 갯수 조회
 	public int selectQnACount(QnA option, Connection conn) {
 		int result = 0;
