@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>회원가입</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
@@ -23,13 +23,14 @@
 
     <!-- Libraries Stylesheet -->
     <link href="../../resources/template/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"  />
 
-   
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../resources/template/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../../resources/template/css/style.css" rel="stylesheet">
+    <link href="../resources/template/css/style.css" rel="stylesheet">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     </head>
 
@@ -46,7 +47,7 @@
                                 <table>
                                     <tr>
                                         <th><label>아이디</label></th>
-                                        <td><input type="text" name="user_id" placeholder="아이디" onblur="checkId(this.value)"></td>
+                                        <td><input type="text" name="user_id" placeholder="아이디" onkeyup="checkId(this.value)"></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -76,7 +77,7 @@
                                     </tr>
                                     <tr>
                                         <th><label>닉네임</label></th>
-                                        <td><input type="text" name="user_name" placeholder="닉네임" onblur="checkName(this.value)"></td>
+                                        <td><input type="text" name="user_name" placeholder="닉네임" onkeyup="checkName(this.value)"></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -86,7 +87,7 @@
                                     </tr>
                                     <tr>
                                         <th><label>전화번호</label></th>
-                                        <td><input type="text" name="user_phone" placeholder="전화번호"  onblur="checkPhone(this.value)"></td>
+                                        <td><input type="text" name="user_phone" placeholder="전화번호"  onkeyup="checkPhone(this.value)"></td>
                                     </tr>
                                      <tr>
                                         <td></td>
@@ -114,7 +115,7 @@
                                     </tr>
                                     <tr>
                                         <th><label>이메일</label></th>
-                                        <td><input type="text" name="user_email" placeholder="이메일" onblur="checkEmail(this.value)"></td>
+                                        <td><input type="text" name="user_email" placeholder="이메일" onkeyup="checkEmail(this.value)"></td>
                                     </tr>
                                     <tr>
                                         <td></td>
