@@ -7,6 +7,12 @@
 	<link rel="stylesheet" href="css/theme.css">
 <title>맛집</title>
 </head>
+<style type="text/css">
+	a, a:hover {
+		color : #000000;
+		text-decoration: none;
+	}
+</style>
 <body>
 	<section>
 	<h1>맛집</h1>
@@ -43,26 +49,25 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%--  <%@page import="com.foodybuddy.foody.vo.Foody, java.util.*" %>
-						<%
-							List<Foody> list = (List<Foody>)request.getAttribute("resultList");
-							for(int i = 0 ; i < list.size(); i++){ %>
-								<tr>
-									<td><%=list.get(i).getFoody_no()%></td>
-									<td><%=list.get(i).getFoody_title()%><%=list.get(i).getFoody_title()%><%=list.get(i).getFoody_title()%></td>
-									<td><%=list.get(i).getFoody_name()%></td>
-									<td><%=list.get(i).getReg_date()%></td>
-								</tr>
-						<%}%> --%>
+						<%@ page import="java.time.LocalDateTime, java.time.format.DateTimeFormatter" %>
 						<%@page import="com.foodybuddy.foody.vo.Foody, java.util.*" %>
 						<% List<Foody> list = (List<Foody>) request.getAttribute("resultList");
-               for (Foody foody : list) { %>
-                <tr>
-                    <td><%= foody.getFoody_no() %></td>
-                    <td><a href="${pageContext.request.contextPath}/board/detail?foody_no=<%= foody.getFoody_no() %>"><%= foody.getFoody_title() %></a></td>
-                    <td><%= foody.getFoody_name() %></td>
-                    <td><%= foody.getReg_date() %></td>
-                </tr>
+
+
+            for(int i = 0 ; i < list.size(); i++){ %>
+            	<tr>
+            		
+					<td><%= list.get(i).getFoody_no() %></td>            		
+            		<td><a href="/foody/view.jsp?foody_no=<%= list.get(i).getFoody_no() %>"><%= list.get(i).getFoody_title() %></a></td>
+            		<td><%= list.get(i).getFoody_name() %></td>
+						<%
+						    LocalDateTime regDateTime = list.get(i).getReg_date();
+						    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분");
+						    String formattedDate = regDateTime.format(formatter);
+						%>
+                    <td><%= formattedDate %></td>
+           		</tr>
+                    
             <% } %>
 						
 						
@@ -77,18 +82,18 @@
 			<div class="center">
 				<div class="pagination">
 					<% if(paging.isPrev()){ %>
-					<a href="/foody/list?nowPage=<%=(paging.getPageBarStart()-1)%>">
+					<a href="/board/foody?nowPage=<%=(paging.getPageBarStart()-1)%>">
 					&laquo;
 					</a>
 					<%} %>
 					<% for(int i = paging.getPageBarStart() ; i <= paging.getPageBarEnd() ; i++){ %>
-					<a href="/foody/list?nowPage=<%=i%>"
+					<a href="/board/foody?nowPage=<%=i%>"
 						<%=paging.getNowPage() == i ? "class='active'" : "" %>>
 						<%=i %>
 					</a>
 					<%} %>
 					<% if(paging.isNext()){ %>
-						<a href="/foody/list?nowPage=<%=(paging.getPageBarEnd()+1)%>">&raquo;</a>
+						<a href="/board/foody?nowPage=<%=(paging.getPageBarEnd()+1)%>">&raquo;</a>
 					<%} %>
 				</div>
 			</div>
