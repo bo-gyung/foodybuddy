@@ -10,13 +10,16 @@
 	<section>
 		<div>
 			<div>
-			<form action ="/qna/create" name = qnacreate_form method = "post">
+			<div>
+				<h3>QnA작성</h3>
+			</div>
+			<form action ="/qna/createEnd" name = qnacreate_form method = "post">
 			<label>제목</label>
 				<input type = "text" name = "qna_title" placeholder = "제목을 입력하세요." maxlength = "50"><br>
 				<label>작성란</label>
-				<textarea name = "qna_content"maxlength = "500" placeholder = "내용을 입력하세요." cols = "70" rows = "30"></textarea>
+				<textarea onkeypress = "content();" name = "qna_content"maxlength = "500" placeholder = "내용을 입력하세요." cols = "70" rows = "30"></textarea>
 				<button onclick = "qnacreateForm();">보내기</button>
-				<input type = "reset" value ="취소">
+				<input type = "reset" value ="초기화">
 			</form>
 			</div>
 		</div>
@@ -31,7 +34,15 @@
 				alert("내용을 입력하세요");
 				form.qna_content.focus();
 			}
+			let text = document.getElementsByName('qna_content')[0].value;
+		    if (text.length > 500) {
+		        alert("500자를 초과하였습니다.");
+		    } else {
+		        document.qnacreate_form.submit();
+		    }
+			
 		}
+		
 	</script>
 </body>
 </html>

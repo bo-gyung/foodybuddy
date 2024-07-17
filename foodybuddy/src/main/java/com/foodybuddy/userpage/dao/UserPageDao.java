@@ -102,7 +102,8 @@ public class UserPageDao {
 						rs.getTimestamp("reg_date").toLocalDateTime(),
 						rs.getString("qna_status"),
 						rs.getString("qna_answer"),
-						rs.getTimestamp("mod_date").toLocalDateTime());
+						rs.getTimestamp("mod_date").toLocalDateTime(),
+						rs.getTimestamp("complete_date").toLocalDateTime());
 				list.add(resultVo);
 			}
 		}catch(Exception e) {

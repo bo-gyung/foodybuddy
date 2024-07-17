@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+					  <%@page import = "com.foodybuddy.userpage.vo.QnA, java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,44 +33,48 @@
 					</tr>
 				</thead>
 				<tbody>
-					 <%-- <%@page import = "com.foodybuddy.userpage.vo.QnA, java.util.*" %>
 					 <%
 						List<QnA> list = (List<QnA>)request.getAttribute("resultList");
 						for(int i = 0; i < list.size(); i++){ %>
 							<tr>
 								<td><%=list.get(i).getQna_no() %></td>
-								<td><%=list.get(i).getQna_title() %></td>
+								<a href = "/qna/detail?qna_no=<%= list.get(i).getQna_no() %>"><td><%=list.get(i).getQna_title() %></td></a>
 								<td><%=list.get(i).getUser_no() %></td>
 								<td><%=list.get(i).getReg_date() %></td> 
 							</tr>
-					<% }%> --%>
+					<% }%> 
+					<!--작성자 기준 수정/ 삭제  -->
+					<a href = "/qna/update">수정</a><br>
+					<a href = "/qna/delete">삭제</a>
 				</tbody>
-					<%--  <tfoot>
+					  <tfoot>
 						<% QnA paging = (QnA)request.getAttribute("paging"); %>
 						<%if (paging != null) {%>
 							<div>
 								<div>
-									<%if(paging.isPrev()){ %>
-									<a href = "/ =<%=(paging.getPageBarStart()-1)%>">&laquo;</a>
+								<!--첫번째 트루면 작동, false면 작동X  -->
+								<%if(paging.isPrev()){ %>
+										<a href = "/qna/list?noPage=<%=(paging.getPageBarStart()-1)%>">&laquo;</a>
 									<%} %>
-									<%for(int i = paging.getPageBarStart(); i <=paging.getPageBarEnd(); i++){ %>
-									<a href = "=<%=i%>">
-									<%=paging.getNowPage() == i ? "class = 'active'" : "" %>>
-									<%=i %>
+								<%for(int i = paging.getPageBarStart(); i <=paging.getPageBarEnd(); i++){ %>
+									<a href = "/qna/list?nowPage=<%=i%>"
+									<%=paging.getNowPage() == i ? "class='active'" : "" %>>
+									<%=i%>
 									</a>
 									<%} %>
 									<%if (paging.isNext()){ %>
-										<a href = "/">&raquo;</a>
+										<a href = "/qna/list?nowPage=<%=(paging.getPageBarEnd()+1)%>">&raquo;</a>
 										<%} %>
 								</div>
 							</div>
-							<%} %> --%>
+				<%} %>
 					</tfoot> 
 			</table>
 	</section>
 	<section>
 		<div>
 			<div>
+			<!-- 회신받은 QnA -->
 				<h2>QnA받은 목록</h2>
 			</div><br>
 		</div>
@@ -85,8 +90,24 @@
 						<th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
-						<th>작성날짜</th>
+						<th>받은날짜</th>
 					</tr>
 				</thead>
+				<tbody>
+				<!-- 목록 -->
+					  
+					 <%
+						List<QnA> replyList = (List<QnA>)request.getAttribute("resultList");
+						for(int i = 0; i < replyList.size(); i++){ %>
+							<tr>
+								<td><%=replyList.get(i).getQna_no() %></td>
+								<a href = "/qna/detail?qna_no=<%= replyList.get(i).getQna_no() %>"><td><%=replyList.get(i).getQna_title() %></td></a>
+								<td><%=replyList.get(i).getUser_no() %></td>
+								<td><%=replyList.get(i).getComplete_date() %></td> <!--완료날짜 기준  -->
+							</tr>
+					<% }%> 
+					
+				</tbody>
+				
 </body>
 </html>

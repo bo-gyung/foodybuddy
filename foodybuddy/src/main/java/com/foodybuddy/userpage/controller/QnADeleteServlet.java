@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("qna/delete")
+@WebServlet("/qna/delete")
 public class QnADeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

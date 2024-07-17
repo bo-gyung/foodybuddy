@@ -9,26 +9,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/qna/create")
-public class QnACreateServlet extends HttpServlet {
+import com.foodybuddy.userpage.service.QnAService;
+import com.foodybuddy.userpage.vo.QnA;
+
+
+@WebServlet("/qna/detail")
+public class QnADetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public QnACreateServlet() {
+    
+    public QnADetail() {
         super();
        
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnacreate.jsp");
-		view.forward(request, response);
+		// 글번호로 정보가져온것 
+		int qnaNo = Integer.parseInt(request.getParameter("qna_no"));
 		
+//		QnAService qnaService = new QnAService();
+//		QnA qna = qnaService.getQnAByNo(qnaNo);
+		
+//		 request.setAttribute("qna", qna);
+	        RequestDispatcher view = request.getRequestDispatcher("/views/qna/qnaDetail.jsp");
+	        view.forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

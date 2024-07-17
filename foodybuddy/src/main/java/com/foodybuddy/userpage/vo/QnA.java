@@ -13,12 +13,13 @@ public class QnA extends Paging{
 	private String qna_status;
 	private String qna_answer;
 	private LocalDateTime mod_date;
+	private LocalDateTime complete_date;
 	public QnA() {
 		super();
 		
 	}
 	public QnA(int qna_no, int user_no, String qna_title, String qna_content, LocalDateTime reg_date, String qna_status,
-			String qna_answer, LocalDateTime mod_date) {
+			String qna_answer, LocalDateTime mod_date, LocalDateTime complete_date) {
 		super();
 		this.qna_no = qna_no;
 		this.user_no = user_no;
@@ -28,7 +29,7 @@ public class QnA extends Paging{
 		this.qna_status = qna_status;
 		this.qna_answer = qna_answer;
 		this.mod_date = mod_date;
-		
+		this.complete_date = complete_date;
 		
 	}
 	public int getQna_no() {
@@ -78,6 +79,12 @@ public class QnA extends Paging{
 	}
 	public void setMod_date(LocalDateTime mod_date) {
 		this.mod_date = mod_date;
+	}
+	public LocalDateTime getComplete_date() {
+		return complete_date;
+	}
+	public void setComplete_date(LocalDateTime complete_date) {
+		this.complete_date = complete_date;
 	}
 	
 	

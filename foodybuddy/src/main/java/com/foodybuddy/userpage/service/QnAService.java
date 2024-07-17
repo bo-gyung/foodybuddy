@@ -11,6 +11,9 @@ import com.foodybuddy.userpage.vo.QnA;
 
 
 public class QnAService {
+	//글제목 눌러서 링크이동
+	
+	
 	// 게시글 삭제 서비스
 	public int deleteQnA(String qna_title) {
 		Connection conn = getConnection();

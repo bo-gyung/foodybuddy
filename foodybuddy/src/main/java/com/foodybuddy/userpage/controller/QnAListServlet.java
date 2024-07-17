@@ -25,6 +25,8 @@ public class QnAListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// qna 제목 가져오기
 		String title = request.getParameter("qna_title");
 		// QnA 객체 생성
 		QnA option = new QnA();
@@ -32,7 +34,7 @@ public class QnAListServlet extends HttpServlet {
 		// 최종 마지막 페이지 구성 파트
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
-			option.setNowPage(Integer.parseInt("nowPage"));
+			option.setNowPage(Integer.parseInt(nowPage));
 		}
 		// 전체 목록 갯수 조회 --> 페이징바를 구성
 		
@@ -44,6 +46,8 @@ public class QnAListServlet extends HttpServlet {
 		request.setAttribute("resultList", list);
 		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnalist.jsp");
 		view.forward(request, response);
+	
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
