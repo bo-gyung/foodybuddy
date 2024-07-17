@@ -42,12 +42,19 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Buddy</h1>
-                    <!-- 검색창 설정 필요 -->
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="검색어를 입력하세요.">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">검색</button>
-                    </div>
+                    <h1 class="display-3 text-white mb-5 pb-5 animated slideInDown">Buddy</h1>
+                    <!-- 검색창 -->
+                    <div class="input-group mt-5">
+						<button class="btn btn-outline-secondary dropdown-toggle py-2 position-absolute mt-2 me-2"style="min-width : 10%; background-color : Lightgray;" type="button" data-bs-toggle="dropdown" aria-expanded="false">ㅇㅇ</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">검색조건</a></li>
+								<li><a class="dropdown-item" href="#">작성자</a></li>
+								<li><a class="dropdown-item" href="#">제목</a></li>
+								<li><a class="dropdown-item" href="#">위치</a></li>
+							</ul>
+						<input type="text" class="form-control border-primary w-100 py-3 ps-4 pe-5" style="max-width: 80%; margin-left : 12%">
+						<button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2 btn-lg">검색</button>
+					</div>
                 </div>
             </div>
         </div>

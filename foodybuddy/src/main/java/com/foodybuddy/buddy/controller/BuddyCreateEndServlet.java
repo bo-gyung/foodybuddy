@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/board/buddy/createEnd")
-public class BuddyCreateEnd extends HttpServlet {
+public class BuddyCreateEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public BuddyCreateEnd() {
+    public BuddyCreateEndServlet() {
         super();
     }
 

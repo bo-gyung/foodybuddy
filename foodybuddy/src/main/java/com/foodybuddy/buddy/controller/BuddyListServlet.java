@@ -41,12 +41,10 @@ public class BuddyListServlet extends HttpServlet {
 					// 준회원 열람불가
 					RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_unmath.jsp");
 					view.forward(request, response);
-					System.out.println(u.getGrade_no());
 				}else {
 					// 연결
 					RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_list.jsp");
 					view.forward(request, response);
-					System.out.println(u.getGrade_no());
 				}
 			}
 		} catch(NullPointerException e) {

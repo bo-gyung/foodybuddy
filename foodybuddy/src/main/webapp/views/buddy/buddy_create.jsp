@@ -82,6 +82,7 @@
                     </div>
 					<div style="display:flex; justify-content:center;">
 	                    <div class="col-md-9">
+	                     
 	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
 	                        	<!-- 입력폼 시작 -->
 	                            <form action="/board/buddy/createEnd" name="buddy_write">

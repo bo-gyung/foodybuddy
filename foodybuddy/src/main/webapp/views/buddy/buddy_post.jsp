@@ -63,6 +63,7 @@
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Buddy</h5>
                     <h1 class="mb-5">여기서 모이기</h1>
                 </div>
+                
                 <%@page import="com.foodybuddy.buddy.vo.Buddy, java.util.*" %>
                 <% Map<String,Object> post = (Map<String,Object>)request.getAttribute("post"); %>
                 
