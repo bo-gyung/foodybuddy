@@ -17,17 +17,14 @@
             <th>보낸 시간</th>
         </tr>
         
-        <%@ page import="java.util.List" %>
-        <%@ page import="your.package.Message" %>
-        <% List<Message> receivedMessages = (List<Message>) request.getAttribute("receivedMessages"); %>
-        <% for (Message message : receivedMessages) { %>
+        <c:forEach var="message" items="${messages}">
             <tr>
-                <td><%= message.getSenderNickname() %></td>
-                <td><%= message.getSubject() %></td>
-                <td><%= message.getMessageContent() %></td>
-                <td><%= message.getSentAt() %></td>
+                <td>${message.senderName}</td> <!-- 보낸 사람의 닉네임 출력 -->
+                <td>${message.message_title}</td> <!-- 메시지 제목 출력 -->
+                <td>${message.message_text}</td> <!-- 메시지 내용 출력 -->
+                <td>${message.sent_at}</td> <!-- 보낸 시간 출력 -->
             </tr>
-        <% } %>
+        </c:forEach>
     </table>
     
 </body>
