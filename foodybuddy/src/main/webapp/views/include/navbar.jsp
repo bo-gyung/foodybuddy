@@ -35,6 +35,7 @@
                         <a href="/userpage/userpagemain" class="nav-item nav-link">MY PAGE</a>
                         <a href="/user/adminpage" class="nav-item nav-link">ADMIN PAGE</a>
                         <a href="/user/message" class="nav-item nav-link">MESSAGE</a>
+                        <a href="/user/logout" class="nav-item nav-link">LOGOUT</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">MENU</a>
                             <div class="dropdown-menu m-0">

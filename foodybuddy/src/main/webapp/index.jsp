@@ -46,10 +46,12 @@
 	                    <h1 class="display-3 text-white animated slideInLeft">Eat<br>Together!</h1>
 	                    <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
 	                        <!-- 검색창 설정 조정필요 -->
-	                        <div class="position-relative mx-auto" style="max-width: 400px;">
-	                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-	                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-	                        </div>
+	                        <p class="mt-5">
+		                        <div class="position-relative mx-auto" style="max-width: 400px;">
+		                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="맛집을 검색하세요">
+		                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">검색</button>
+		                        </div>
+	                        </p>
 	                </div>
 	                <div class="col-lg-6 text-center text-lg-end overflow-hidden">
 	                    <img class="img-fluid" src="../resources/template/img/hero.png" alt="">

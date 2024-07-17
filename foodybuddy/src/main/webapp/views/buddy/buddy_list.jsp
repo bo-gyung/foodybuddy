@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>BUDDY(같이가기)</title>
+    <!-- BUDDY(같이가기) 글목록 -->
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -41,14 +42,19 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Booking</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
-                        </ol>
-                    </nav>
+                    <h1 class="display-3 text-white mb-5 pb-5 animated slideInDown">Buddy</h1>
+                    <!-- 검색창 -->
+                    <div class="input-group mt-5">
+						<button class="btn btn-outline-secondary dropdown-toggle py-2 position-absolute mt-2 me-2"style="min-width : 10%; background-color : Lightgray;" type="button" data-bs-toggle="dropdown" aria-expanded="false">ㅇㅇ</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">검색조건</a></li>
+								<li><a class="dropdown-item" href="#">작성자</a></li>
+								<li><a class="dropdown-item" href="#">제목</a></li>
+								<li><a class="dropdown-item" href="#">위치</a></li>
+							</ul>
+						<input type="text" class="form-control border-primary w-100 py-3 ps-4 pe-5" style="max-width: 80%; margin-left : 12%">
+						<button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2 btn-lg">검색</button>
+					</div>
                 </div>
             </div>
         </div>
@@ -91,6 +97,15 @@
                                 </div>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" href="/board/buddy/create">
+                                <i class="fa fa-star fa-2x text-primary"></i>
+                                <div class="ps-3">
+                                    <small class="text-body">임시	</small>
+                                    <h6 class="mt-n1 mb-0">글작성</h6>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                     	
@@ -104,14 +119,14 @@
                                         <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-1.jpg" alt="" style="width: 80px;">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span><a href="/board/buddy/post"><%=list.get(i).getBuddy_title() %></a></span>
+                                                <span><a href="/board/buddy/post?buddy_no=<%=list.get(i).getBuddy_no()%>"><%=list.get(i).getBuddy_title() %></a></span>
                                                 <span class="text-primary">모집상태</span>
                                             </h5>
                                             <small class="fst-italic">
-                                            <a href="">작성자 : <%=list.get(i).getBuddy_no() %></a> / 
+                                            <a href="">작성자 : <%=list.get(i).getUser_no() %></a> / 
                                             모임일 : <%=list.get(i).getMeet_date() %> / 
                                             댓글 : 댓글수 / 
-                                            조회수 : <%=list.get(i).getBuddy_view() %> / 
+                                            조회수 : <%=list.get(i).getBuddy_view() %>
                                             </small>
                                         </div>
                                     </div>
