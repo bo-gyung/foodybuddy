@@ -31,7 +31,6 @@
 
     <!-- Template Stylesheet -->
     <link href="../resources/template/css/style.css" rel="stylesheet">
-    <link href="../../resources/css/user/create.css" rel="stylesheet">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     </head>
 
@@ -60,7 +59,7 @@
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
                         <h3 class="text-white mb-4">회원가입</h3>
-                        <form name="create_account_form" action="/user/createEnd" method="post" style="justify-content: center;">
+                        <form name="create_account_form" action="/user/createEnd" method="post">
                         	<div class="row g-3">
                                <div class="col-md-6">
                                 	<div class="form-floating">
