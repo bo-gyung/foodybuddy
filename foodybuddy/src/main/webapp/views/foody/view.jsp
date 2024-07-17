@@ -3,10 +3,10 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.time.LocalDateTime, java.time.format.DateTimeFormatter" %>
 <%@ page import="com.foodybuddy.foody.vo.Foody" %>
-<%@ page import="com.foodybuddy.foody.dao.FoodyDao" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="com.foodybuddy.common.sql.JDBCTemplate" %>
+<%@page import="com.foodybuddy.foodycomment.vo.Comment, java.util.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,9 +16,6 @@
 </head>
 <body>
     <%
-        // 세션에서 사용자 ID 가져오기
-        String userId = (String) session.getAttribute("user_id");
-
         // foody_no 파라미터 확인
         int foody_no = 0;
         if(request.getParameter("foody_no") != null) {
@@ -27,18 +24,15 @@
 
         // foody_no가 0이면 유효하지 않은 게시물로 간주하여 처리
         if(foody_no == 0) {
-            PrintWriter script = response.getWriter();
-            script.println("<script>");
-            script.println("alert('유효하지 않은 글입니다.')");
-            script.println("location.href= 'foodlist.jsp'");
-            script.println("</script>");
+            out.println("<script>");
+            out.println("alert('유효하지 않은 글입니다.')");
+            out.println("location.href= 'foodlist.jsp'");
+            out.println("</script>");
         }
 
-        // JDBCTemplate을 사용하여 Connection 가져오기
-        Connection conn = JDBCTemplate.getConnection();
-
-        // FoodyDao를 사용하여 foody_no에 해당하는 게시물 정보 조회
-        Foody foody = new FoodyDao().getFoody(foody_no, conn);
+        // Foody 객체는 FoodyViewServlet에서 request에 설정한 이름과 동일하게 설정
+        List<Foody> foodyList = (List<Foody>) request.getAttribute("foodyList");
+        Foody foody = foodyList.get(0); // 리스트에서 첫 번째 Foody 객체 가져오기
 
         // 날짜 포맷팅을 위한 준비
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -52,13 +46,41 @@
             <p>작성일자: <%= formattedRegDate %></p>
             <p>내용: <%= foody.getFoody_main() %></p>
 
-            
-           <% if(userId != null && userId.equals(foody.getFoody_name())){ %>
-                <a href="update.jsp?foody_no=<%= foody_no %>">수정</a>
-                <a href="delete.jsp?foody_no=<%= foody_no %>">삭제</a>
+            <%-- 작성자와 로그인한 사용자가 같은 경우 수정 및 삭제 링크 표시 --%>
+            <% if(session.getAttribute("user_id") != null && session.getAttribute("user_id").equals(foody.getFoody_name())) { %>
+                <a href="update.jsp?foody_no=<%= foody.getFoody_no() %>">수정</a>
+                <a href="delete.jsp?foody_no=<%= foody.getFoody_no() %>">삭제</a>
             <% } %>
 
-            <a href="foodlist.jsp">메뉴</a>
+            <a href="/board/foody">메뉴</a>
+        </div>
+        
+        <div class="comment_section">
+            <h3>댓글</h3>
+            <form action="<%= request.getContextPath() %>/comment" method="post">
+                <input type="hidden" name="foody_no" value="<%= foody_no %>">
+                <textarea name="comment_text" required></textarea><br>
+                <input type="submit" value="댓글 작성">
+            </form>
+            
+            <!-- 댓글 리스트 -->
+            <div class="comment_list">
+                <%
+                    List<Comment> commentList = (List<Comment>) request.getAttribute("commentList");
+                    if (commentList != null) {
+                        for (Comment comment : commentList) {
+                            String formattedCommentDate = comment.getReg_date().format(formatter);
+                %>
+                            <div class="comment">
+                                <p><%= comment.getUser_name() %>:</p>
+                                <p><%= comment.getComment_text() %></p>
+                                <p><%= formattedCommentDate %></p>
+                            </div>
+                <%
+                        }
+                    }
+                %>
+            </div>
         </div>
     </section>
 </body>
