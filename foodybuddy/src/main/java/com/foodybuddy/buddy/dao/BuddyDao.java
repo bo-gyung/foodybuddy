@@ -40,7 +40,7 @@ public class BuddyDao {
 					 rs.getString("party_name"),
 					 rs.getTimestamp("meet_date").toLocalDateTime(),
 					 rs.getInt("party_number"),
-					 rs.getTimestamp("formation_date").toLocalDateTime()
+					 rs.getTimestamp("formation_date").toLocalDateTime()	 
 					 );
 			 list.add(rsBuddy);
 		 	 }

@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>BUDDY(같이가기)</title>
-    <!-- BUDDY(같이가기) 글 열람 -->
+<meta charset="UTF-8">
+<title>등급확인</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -42,126 +40,29 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">글 보기</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
-                        </ol>
-                    </nav>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">회원 등급 확인</h1>
                 </div>
             </div>
         </div>
         <!-- Hero End -->
 
+        <!-- login Start -->
+        <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="row g-0">
+                <div class="col-md-6 bg-dark d-flex align-items-center">
+                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
+                        <h3 class="text-white mb-4">이 게시판은 정회원 이상 접근이 가능합니다.</h3>
+                        <h3 class="text-white mb-4">회원 등급을 확인해주세요.</h3>
+                        
+						<a href="/user/login"><button class="btn btn-primary w-100 py-3" type="button">돌아가기</button></a>
 
-        <!-- Contact Start --> 
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Buddy</h5>
-                    <h1 class="mb-5">여기서 모이기</h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-12">
-                        <div class="row gy-4" style="text-align : center">
-                            <div class="col-md-4">
-                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>book@example.com</p>
-                            </div>
-                            <div class="col-md-4">
-                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
-                            </div>
-                            <div class="col-md-4">
-                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
-                            </div>
-                        </div>
                     </div>
-					<div style="display:flex; justify-content:center;">
-	                    <div class="col-md-9">
-	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-	                            <form action="#" name="buddy_write">
-	                                <div class="row g-3">
-	                                	
-	                                	<div class="col-12">
-	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="title" placeholder="Subject">
-	                                            <label for="subject">제목</label>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-6">
-	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="subject" placeholder="Subject" style="height: 370px">
-	                                            <label for="subject">사진</label>
-	                                        </div>
-                                        </div>
-	                                    <div class="col-6">
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">모임이름</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-		                                            <label for="name">모임날짜</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">모임인원</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">가게이름</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">가게주소</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">주차여부</label>
-		                                        </div>
-		                                    </div>
-	                                    </div>
-	                                    
-	                                    
-	                                    <div class="col-12">
-	                                        <div class="form-floating">
-	                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 500px"></textarea>
-	                                            <label for="message">모집내용</label>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-9">
-	                                        <input type="file">
-	                                    </div>
-	                                    <div class="col-3"><button class="btn btn-primary w-100 py-3" type="button">첨부</button></div>
-	                                    <div class="col-12">
-	                                        <button class="btn btn-primary w-100 py-3" type="submit">검토 신청</button>
-	                                    </div>
-	                                </div>
-	                            </form>
-	                        </div>
-	                    </div>
-					</div>
                 </div>
             </div>
         </div>
-        <!-- Contact End -->
-
-
+        <!-- login End -->
+        
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">

@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>BUDDY(같이가기)</title>
-    <!-- BUDDY(같이가기) 글 열람 -->
+<meta charset="UTF-8">
+<title>BUDDY(같이가기)</title>
+<!-- BUDDY(같이가기) 글쓰기 -->
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -25,7 +24,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="../../resources/template/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../resources/template/lib/owlcarousel/assets/owl.cWarousel.min.css" rel="stylesheet">
     <link href="../../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -42,12 +41,12 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">글 보기</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Buddy</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
+                            <li class="breadcrumb-item"><a href="#">foody로 돌아가기</a></li>
+                            <li class="breadcrumb-item"><a href="#">내가 보던 글로 돌아가기</a></li>
+                            <li class="breadcrumb-item"><a href="#">buddy 게시판 보기</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -56,7 +55,7 @@
         <!-- Hero End -->
 
 
-        <!-- Contact Start --> 
+        <!-- Contact Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -66,17 +65,18 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="row gy-4" style="text-align : center">
+                        <% %>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>book@example.com</p>
+                                <p><i class="fa fa-store text-primary me-2"></i>book@example.com</p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
+                                <p><i class="fa fa-map-marked text-primary me-2"></i>info@example.com</p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
+                                <p><i class="fa fa-car text-primary me-2"></i>tech@example.com</p>
                             </div>
                         </div>
                     </div>
@@ -100,39 +100,21 @@
                                         </div>
 	                                    <div class="col-6">
 		                                    <div>
-		                                        <div class="form-floating pb-1">
+		                                        <div class="form-floating pt-5 pb-3">
 		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
 		                                            <label for="email">모임이름</label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
-		                                        <div class="form-floating pb-1">
+		                                        <div class="form-floating pt-5 pb-3">
 		                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
 		                                            <label for="name">모임날짜</label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
-		                                        <div class="form-floating pb-1">
+		                                        <div class="form-floating pt-5 pb-5">
 		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
 		                                            <label for="email">모임인원</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">가게이름</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">가게주소</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">주차여부</label>
 		                                        </div>
 		                                    </div>
 	                                    </div>
@@ -158,7 +140,7 @@
 					</div>
                 </div>
             </div>
-        </div>
+        </div>  
         <!-- Contact End -->
 
 

@@ -42,14 +42,12 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Booking</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
-                        </ol>
-                    </nav>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Buddy</h1>
+                    <!-- 검색창 설정 필요 -->
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="검색어를 입력하세요.">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">검색</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,6 +90,15 @@
                                 </div>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" href="/board/buddy/write">
+                                <i class="fa fa-star fa-2x text-primary"></i>
+                                <div class="ps-3">
+                                    <small class="text-body">임시	</small>
+                                    <h6 class="mt-n1 mb-0">글작성</h6>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                     	
@@ -112,7 +119,7 @@
                                             <a href="">작성자 : <%=list.get(i).getBuddy_no() %></a> / 
                                             모임일 : <%=list.get(i).getMeet_date() %> / 
                                             댓글 : 댓글수 / 
-                                            조회수 : <%=list.get(i).getBuddy_view() %> / 
+                                            조회수 : <%=list.get(i).getBuddy_view() %>
                                             </small>
                                         </div>
                                     </div>
