@@ -83,51 +83,49 @@
 					<div style="display:flex; justify-content:center;">
 	                    <div class="col-md-9">
 	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-	                            <form action="#" name="buddy_write">
+	                        	<!-- 입력폼 시작 -->
+	                            <form action="/board/buddy/createEnd" name="buddy_write">
 	                                <div class="row g-3">
-	                                	
 	                                	<div class="col-12">
 	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="title" placeholder="Subject">
+	                                            <input type="text" class="form-control" id="title" name="buddy_title" placeholder="Subject">
 	                                            <label for="subject">제목</label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-6">
 	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="subject" placeholder="Subject" style="height: 370px">
+	                                            <input type="text" class="form-control" id="photo" name="buddy_photo" placeholder="Subject" style="height: 370px">
 	                                            <label for="subject">사진</label>
 	                                        </div>
                                         </div>
 	                                    <div class="col-6">
 		                                    <div>
 		                                        <div class="form-floating pt-5 pb-3">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+		                                            <input type="email" class="form-control" id="party_name" name="party_name" placeholder="Your Email">
 		                                            <label for="email">모임이름</label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
 		                                        <div class="form-floating pt-5 pb-3">
-		                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+		                                            <input type="text" class="form-control" id="meet_date" name="meet_date" placeholder="Your Name">
 		                                            <label for="name">모임날짜</label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
 		                                        <div class="form-floating pt-5 pb-5">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+		                                            <input type="email" class="form-control" id="party_number" name="party_number" placeholder="Your Email">
 		                                            <label for="email">모임인원</label>
 		                                        </div>
 		                                    </div>
 	                                    </div>
-	                                    
-	                                    
 	                                    <div class="col-12">
 	                                        <div class="form-floating">
-	                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 500px"></textarea>
+	                                            <textarea class="form-control" placeholder="Leave a message here" id="main" name="buddy_main" style="height: 500px"></textarea>
 	                                            <label for="message">모집내용</label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-9">
-	                                        <input type="file">
+	                                        <input type="file" id="buddy_photo" name="buddy_photo">
 	                                    </div>
 	                                    <div class="col-3"><button class="btn btn-primary w-100 py-3" type="button">첨부</button></div>
 	                                    <div class="col-12">
@@ -135,6 +133,7 @@
 	                                    </div>
 	                                </div>
 	                            </form>
+	                            <!-- 입력폼 종료 -->
 	                        </div>
 	                    </div>
 					</div>

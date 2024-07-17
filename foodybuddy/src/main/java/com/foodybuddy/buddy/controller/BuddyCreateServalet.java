@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/board/buddy/write")
-public class BuddyWriteServalet extends HttpServlet {
+@WebServlet("/board/buddy/create")
+public class BuddyCreateServalet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public BuddyWriteServalet() {
+    public BuddyCreateServalet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_write.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_create.jsp");
 		view.forward(request, response);
 	}
 

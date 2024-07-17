@@ -63,20 +63,23 @@
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Buddy</h5>
                     <h1 class="mb-5">여기서 모이기</h1>
                 </div>
+                <%@page import="com.foodybuddy.buddy.vo.Buddy, java.util.*" %>
+                <% Map<String,Object> post = (Map<String,Object>)request.getAttribute("post"); %>
+                
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="row gy-4" style="text-align : center">
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>book@example.com</p>
+                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게이름") %></p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
+                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게주소") %></p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
+                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("작성자") %></p>
                             </div>
                         </div>
                     </div>
@@ -89,7 +92,7 @@
 	                                	<div class="col-12">
 	                                        <div class="form-floating">
 	                                            <input type="text" class="form-control" id="title" placeholder="Subject">
-	                                            <label for="subject">제목</label>
+	                                            <label for="subject"><%=post.get("글제목") %></label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-6">
@@ -102,37 +105,37 @@
 		                                    <div>
 		                                        <div class="form-floating pb-1">
 		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">모임이름</label>
+		                                            <label for="email"><%=post.get("모임이름") %></label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
 		                                        <div class="form-floating pb-1">
 		                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-		                                            <label for="name">모임날짜</label>
+		                                            <label for="name"><%=post.get("모임날짜") %></label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
 		                                        <div class="form-floating pb-1">
 		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">모임인원</label>
+		                                            <label for="email"><%=post.get("모임인원") %></label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
 		                                        <div class="form-floating pb-1">
 		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">가게이름</label>
+		                                            <label for="email"><%=post.get("가게이름") %></label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
 		                                        <div class="form-floating pb-1">
 		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">가게주소</label>
+		                                            <label for="email"><%=post.get("가게주소") %></label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
 		                                        <div class="form-floating pb-1">
 		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email">주차여부</label>
+		                                            <label for="email"><%=post.get("주차여부") %></label>
 		                                        </div>
 		                                    </div>
 	                                    </div>
@@ -141,7 +144,7 @@
 	                                    <div class="col-12">
 	                                        <div class="form-floating">
 	                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 500px"></textarea>
-	                                            <label for="message">모집내용</label>
+	                                            <label for="message"><%=post.get("글내용") %></label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-9">

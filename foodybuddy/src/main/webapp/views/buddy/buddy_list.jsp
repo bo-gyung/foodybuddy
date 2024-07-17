@@ -91,7 +91,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" href="/board/buddy/write">
+                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" href="/board/buddy/create">
                                 <i class="fa fa-star fa-2x text-primary"></i>
                                 <div class="ps-3">
                                     <small class="text-body">임시	</small>
@@ -112,11 +112,11 @@
                                         <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-1.jpg" alt="" style="width: 80px;">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span><a href="/board/buddy/post"><%=list.get(i).getBuddy_title() %></a></span>
+                                                <span><a href="/board/buddy/post?buddy_no=<%=list.get(i).getBuddy_no()%>"><%=list.get(i).getBuddy_title() %></a></span>
                                                 <span class="text-primary">모집상태</span>
                                             </h5>
                                             <small class="fst-italic">
-                                            <a href="">작성자 : <%=list.get(i).getBuddy_no() %></a> / 
+                                            <a href="">작성자 : <%=list.get(i).getUser_no() %></a> / 
                                             모임일 : <%=list.get(i).getMeet_date() %> / 
                                             댓글 : 댓글수 / 
                                             조회수 : <%=list.get(i).getBuddy_view() %>

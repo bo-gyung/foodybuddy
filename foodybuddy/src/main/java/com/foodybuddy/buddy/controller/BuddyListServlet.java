@@ -34,22 +34,26 @@ public class BuddyListServlet extends HttpServlet {
 		request.setAttribute("resultList", list);
 		
 		HttpSession session = request.getSession(false);
-		if(session!=null) {
-			User u = (User)session.getAttribute("user");
-			if(u.getGrade_no()==1) {
-				// 게시판 열람 불가
-				RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_unmath.jsp");
-				view.forward(request, response);
-				System.out.println(u.getGrade_no());
-			} else {
-				// 연결
-				RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_list.jsp");
-				view.forward(request, response);
-				System.out.println(u.getGrade_no());
+		try {
+			if(session!=null) {
+				User u = (User)session.getAttribute("user");
+				if(u.getGrade_no() < 2) {
+					// 준회원 열람불가
+					RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_unmath.jsp");
+					view.forward(request, response);
+					System.out.println(u.getGrade_no());
+				}else {
+					// 연결
+					RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_list.jsp");
+					view.forward(request, response);
+					System.out.println(u.getGrade_no());
+				}
 			}
+		} catch(NullPointerException e) {
+			// 비회원 열람불가
+			RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_unmath.jsp");
+			view.forward(request, response);
 		}
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
