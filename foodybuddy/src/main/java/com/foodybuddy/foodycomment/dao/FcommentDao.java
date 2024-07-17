@@ -33,7 +33,7 @@ public class FcommentDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT * FROM foody_comment c JOIN user_info i ON c.user_no = i.user_no WHERE c.foody_no = ? ORDER BY c.reg_date DESC ";
+            String sql = "SELECT * FROM foody_comment c JOIN user u ON c.user_no = u.user_no WHERE c.foody_no = ? ORDER BY c.reg_date DESC ";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, foody_no);
             rs = pstmt.executeQuery();
