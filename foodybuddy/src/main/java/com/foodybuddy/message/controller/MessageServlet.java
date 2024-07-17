@@ -1,4 +1,4 @@
-package com.foodybuddy.message;
+package com.foodybuddy.message.controller;
 
 import java.io.IOException;
 
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/message/main")
-public class MessageSendServlet extends HttpServlet {
+public class MessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
-    public MessageSendServlet() {
+    public MessageServlet() {
         super();
       
     }

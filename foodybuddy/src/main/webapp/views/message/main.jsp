@@ -43,7 +43,7 @@
         <div class="sendMsg">
         <ul>
            
-            <li><button>쪽지쓰기</button></li>
+            <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
             <br><br>
             <li><a href="#search">받은쪽지</a></li>
             <li><a href="#save">보낸쪽지</a></li>
@@ -87,6 +87,23 @@
         </label>
     </main>
     </div>
+    <script>
+    function openNewWindow() {
+        // 새 창을 열기
+        var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
+        let temp = `<h1>쪽지 보내기</h1>
+            <form action="/message/send" method="post">
+           
+            받는 사람: <input type="text" name="receiver"><br>
+            제목: <input type="text" name="subject"><br>
+            내용: <textarea name="message" rows="5" cols="50"></textarea><br>
+            <input type="submit" value="쪽지 보내기">
+        </form>`
+
+    newWindow.document.write(temp);
+
+}
+    </script>
         
         
         
