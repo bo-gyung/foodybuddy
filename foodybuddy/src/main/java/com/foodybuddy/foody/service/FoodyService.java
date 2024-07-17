@@ -36,6 +36,12 @@ public class FoodyService {
 		return list;
 	}
 	
+	public List<Foody> viewFoody(int no) {
+		Connection conn = getConnection();
+		List<Foody> result = new FoodyDao().viewFoody(no,conn);
+		close(conn);
+		return result ;
+	}
 	
 }
 

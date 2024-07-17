@@ -58,7 +58,7 @@
             	<tr>
             		
 					<td><%= list.get(i).getFoody_no() %></td>            		
-            		<td><a href="/foody/view.jsp?foody_no=<%= list.get(i).getFoody_no() %>"><%= list.get(i).getFoody_title() %></a></td>
+            		<td><a href="/foody/view?foody_no=<%= list.get(i).getFoody_no() %>"><%= list.get(i).getFoody_title() %></a></td>
             		<td><%= list.get(i).getFoody_name() %></td>
 						<%
 						    LocalDateTime regDateTime = list.get(i).getReg_date();

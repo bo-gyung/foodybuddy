@@ -115,47 +115,49 @@ public class FoodyDao {
 		return list;
 	}
 
-	public Foody getFoody(int foody_no , Connection conn) {
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    
-	    String sql = "SELECT * FROM foody_table WHERE foody_no = ?";
-	    try {
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, foody_no);
-	        rs = pstmt.executeQuery();
-	        if(rs.next()) {
-	            Foody resultVo = new Foody(
-	                rs.getInt("foody_no"),
-	                rs.getInt("user_no"),
-	                rs.getInt("report_no"),
-	                rs.getString("foody_title"),
-	                rs.getString("foody_name"),
-	                rs.getInt("foody_taste"),
-	                rs.getInt("foody_clean"),
-	                rs.getString("foody_parking"),
-	                rs.getString("foody_delivery"),
-	                rs.getString("foody_main"),
-	                rs.getTimestamp("reg_date").toLocalDateTime(),
-	                rs.getTimestamp("mod_date").toLocalDateTime(),
-	                rs.getString("foody_address"),
-	                rs.getInt("foody_click"),
-	                rs.getInt("foody_good"),
-	                rs.getString("ori_picture"),
-	                rs.getString("new_picture")
-	            );
-	            return resultVo;
-	        }
-	    } catch(Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        // close 메서드가 어디에서 정의되어 있는지에 따라 필요에 따라 추가해야 합니다.
-	         close(rs);
-	         close(pstmt);
-	    }
-	    return null;
-	}
+	public List<Foody> viewFoody(int no,Connection conn){
+		List<Foody> list = new ArrayList<Foody>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		try {
+			
+			String sql = "SELECT * FROM foody_create WHERE foody_no = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Foody resultVo = new Foody(rs.getInt("foody_no"),
+						rs.getInt("user_no"),
+						rs.getInt("report_no"),
+						rs.getString("foody_title"),
+						rs.getString("foody_name"),
+						rs.getInt("foody_taste"),
+						rs.getInt("foody_clean"),
+						rs.getString("foody_parking"),
+						rs.getString("foody_delivery"),
+						rs.getString("foody_main"),
+						rs.getTimestamp("reg_date").toLocalDateTime(),
+						rs.getTimestamp("mod_date").toLocalDateTime(),
+						rs.getString("foody_address"),
+						rs.getInt("foody_click"),
+						rs.getInt("foody_good"),
+						rs.getString("ori_picture"),
+						rs.getString("new_picture"));
+				
+				list.add(resultVo);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}	
 }
 
 
