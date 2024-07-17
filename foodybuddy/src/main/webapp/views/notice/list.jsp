@@ -17,7 +17,7 @@
                 <th>내용</th>
                 <th>작성날짜</th>
                 <th>조회수</th>
-                <th>Actions</th>
+                <th>상세</th>
             </tr>
         </thead>
         <tbody>    

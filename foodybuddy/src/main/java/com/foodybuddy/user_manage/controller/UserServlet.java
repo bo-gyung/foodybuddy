@@ -22,18 +22,12 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            listUsers(request, response);
+        String findKeyword = request.getParameter("findKeyword");
+
+        if (findKeyword != null && !findKeyword.isEmpty()) {
+            searchUsersByNickname(request, response, findKeyword);
         } else {
-            switch (action) {
-                case "view":
-                    viewUser(request, response);
-                    break;
-                default:
-                    listUsers(request, response);
-                    break;
-            }
+            listUsers(request, response);
         }
     }
 
@@ -44,16 +38,15 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void viewUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int userNo = Integer.parseInt(request.getParameter("userNo"));
-        User user = userService.getUserById(userNo);
-        request.setAttribute("user", user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/user_manage/view.jsp");
+    private void searchUsersByNickname(HttpServletRequest request, HttpServletResponse response, String nickname) throws ServletException, IOException {
+        List<User> users = userService.getUsersByNickname(nickname);
+        request.setAttribute("users", users);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/user_manage/list.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
-    }	
+    }
 }
