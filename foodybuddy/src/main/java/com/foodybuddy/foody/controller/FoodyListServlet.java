@@ -25,7 +25,13 @@ public class FoodyListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("board_title");
 		
+		String searchOption = request.getParameter("searchOption");
+		String searchBar = request.getParameter("searchbar");
+		
+		
 		Foody option = new Foody();
+		option.setSearchOption(searchOption);
+		option.setSearchBar(searchBar);
 		option.setFoody_title(title);
 
 		String nowPage = request.getParameter("nowPage");
@@ -34,7 +40,6 @@ public class FoodyListServlet extends HttpServlet {
 		}
 		// 전체 목록 개수 -> 페이징바 구성
 		option.setTotalData(new FoodyService().selectBoardCount(option));
-		
 		List<Foody> list = new FoodyService().selectBoardList(option);
 
 		request.setAttribute("paging", option);

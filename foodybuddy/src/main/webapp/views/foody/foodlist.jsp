@@ -17,17 +17,20 @@
 	<section>
 	<h1>맛집</h1>
 	<div style="flex-direction: row; display: flex;">
-		<div>조회수 순</div>&nbsp;&nbsp;&nbsp;<div>최신 순</div>&nbsp;&nbsp;&nbsp;<div>좋아요 순</div>
+		<div>최신 순</div>&nbsp;&nbsp;&nbsp;<div>좋아요 순</div>
 	</div>
 	<div>
-	<select>
+	<form action="/board/foody" method="get">
+	<select name="searchOption">
 		<option value="">선택하세요</option>
-		<option value="작성자">작성자</option>
-		<option value="제목">제목</option>
-		<option value="위치">위치</option>
+		<option value="1">작성자</option>
+		<option value="2">제목</option>
+		<option value="3">위치</option>
 	</select>
 	
-	<input type="text" name="searchbar"><button onclick="result();">검색</button>
+	<input type="text" name="searchbar" placeholder="검색어 입력">
+	<button type="submit">검색</button>
+	</form>
 	</div>
 	<a href="/foody/create">작성</a>
 	<br>
@@ -79,10 +82,14 @@
 					</thead>
 					<tbody>
 						<%@ page import="java.time.LocalDateTime, java.time.format.DateTimeFormatter" %>
-						<%@page import="com.foodybuddy.foody.vo.Foody, java.util.*" %>
+						<%@ page import="com.foodybuddy.foody.vo.Foody, java.util.*" %>
+						<%@ page import = "com.foodybuddy.user.vo.User" %>
 						<% List<Foody> list = (List<Foody>) request.getAttribute("resultList");
-
-
+							
+							User user = (User) session.getAttribute("loginUser");
+							
+						
+						
             for(int i = 0 ; i < list.size(); i++){ %>
             	<tr>
 						<%
@@ -93,7 +100,7 @@
             		
 					<td><%= list.get(i).getFoody_no() %></td>            		
             		<td><a href="/foody/view?foody_no=<%= list.get(i).getFoody_no() %>"><%= list.get(i).getFoody_title() %></a><br>
-            						작성자 : <%= list.get(i).getFoody_name() %> 조회수 : <%= list.get(i).getFoody_click() %> 작성 시간 :<%= formattedDate %></td>
+            						작성자 : <%= list.get(i).getUser_name() %> 조회수 : <%= list.get(i).getFoody_click() %> 작성 시간 :<%= formattedDate %></td>
             		<td><%= list.get(i).getFoody_good() %></td>
                     
            		</tr>

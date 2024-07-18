@@ -22,16 +22,21 @@ public class Foody extends Paging{
 	private int foody_good;
 	private String ori_picture;
 	private String new_picture;
+	private String user_name;
 	
-	public Foody() {
+	// 데이터 베이스에 X 검색 엔진을 위한 내용
+	private String searchOption;
+    private String searchBar;
+	
+    public Foody() {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
 
 	public Foody(int foody_no, int user_no, int report_no, String foody_title, String foody_name, int foody_taste,
 			int foody_clean, String foody_parking, String foody_delivery, String foody_main, LocalDateTime reg_date,
 			LocalDateTime mod_date, String foody_address, int foody_click, int foody_good, String ori_picture,
-			String new_picture) {
+			String new_picture, String user_name) {
 		super();
 		this.foody_no = foody_no;
 		this.user_no = user_no;
@@ -50,6 +55,7 @@ public class Foody extends Paging{
 		this.foody_good = foody_good;
 		this.ori_picture = ori_picture;
 		this.new_picture = new_picture;
+		this.user_name = user_name;
 	}
 
 	public int getFoody_no() {
@@ -188,6 +194,30 @@ public class Foody extends Paging{
 		this.new_picture = new_picture;
 	}
 
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public String getSearchOption() {
+		return searchOption;
+	}
+
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
+
+	public String getSearchBar() {
+		return searchBar;
+	}
+
+	public void setSearchBar(String searchBar) {
+		this.searchBar = searchBar;
+	}
+
 	@Override
 	public String toString() {
 		return "Foody [foody_no=" + foody_no + ", user_no=" + user_no + ", report_no=" + report_no + ", foody_title="
@@ -195,9 +225,9 @@ public class Foody extends Paging{
 				+ foody_clean + ", foody_parking=" + foody_parking + ", foody_delivery=" + foody_delivery
 				+ ", foody_main=" + foody_main + ", reg_date=" + reg_date + ", mod_date=" + mod_date
 				+ ", foody_address=" + foody_address + ", foody_click=" + foody_click + ", foody_good=" + foody_good
-				+ ", ori_picture=" + ori_picture + ", new_picture=" + new_picture + "]";
+				+ ", ori_picture=" + ori_picture + ", new_picture=" + new_picture + ", user_name=" + user_name
+				+ ", searchOption=" + searchOption + ", searchBar=" + searchBar + "]";
 	}
-	
 	
 	
 	

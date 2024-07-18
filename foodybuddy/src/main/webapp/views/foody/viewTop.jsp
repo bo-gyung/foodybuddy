@@ -41,7 +41,7 @@
 						%>
 					<td><%= list.get(i).getFoody_no() %></td>            		
             		<td><a href="/foody/view?foody_no=<%= list.get(i).getFoody_no() %>"><%= list.get(i).getFoody_title() %></a><br>
-            		작성자 : <%= list.get(i).getFoody_name() %> 조회수 : <%= list.get(i).getFoody_click() %> 작성 시간 :<%= formattedDate %></td>
+            		작성자 : <%= list.get(i).getUser_name() %> 조회수 : <%= list.get(i).getFoody_click() %> 작성 시간 :<%= formattedDate %></td>
             		<td><%= list.get(i).getFoody_good() %></td>
                     
            		</tr>

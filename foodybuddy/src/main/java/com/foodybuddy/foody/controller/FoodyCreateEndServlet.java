@@ -13,12 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.foodybuddy.foody.service.FoodyService;
 import com.foodybuddy.foody.vo.Foody;
+import com.foodybuddy.user.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -37,8 +39,11 @@ public class FoodyCreateEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		if(ServletFileUpload.isMultipartContent(request)) {
+			HttpSession session = request.getSession(false);
+			
+			
 			String uploadPath = request.getServletContext().getRealPath("/upload");
-//			String dir = request.getServletContext().getRealPath("/upload");
+//			
 			int maxSize = 1024 * 1024 * 10;
 			String encoding = "UTF-8";
 			DefaultFileRenamePolicy dtf = new DefaultFileRenamePolicy();
@@ -48,12 +53,12 @@ public class FoodyCreateEndServlet extends HttpServlet {
 			String reName = mr.getFilesystemName("foody_picture");
 			
 			String title = mr.getParameter("foody_title");
-			String store = mr.getParameter("foody_store");
+			String name = mr.getParameter("foody_name");
 			String taste = mr.getParameter("foody_taste");
 			int tasteInt = Integer.parseInt(taste);
 			String clean = mr.getParameter("foody_clean");
 			int cleanInt = Integer.parseInt(clean);
-			LocalDateTime submitTime = LocalDateTime.now();
+			//LocalDateTime submitTime = LocalDateTime.now();
 			
 //			선택사항
 			String parking = mr.getParameter("foody_parking");
@@ -65,10 +70,10 @@ public class FoodyCreateEndServlet extends HttpServlet {
 			
 			Foody f = new Foody();
 			f.setFoody_title(title);
-			f.setFoody_name(store);
+			f.setFoody_name(name);
 			f.setFoody_taste(tasteInt);
 			f.setFoody_clean(cleanInt);
-			f.setReg_date(submitTime);
+			//f.setReg_date(submitTime);
 			f.setFoody_parking(parking);
 			f.setFoody_delivery(delivery);
 			f.setFoody_main(main);
@@ -76,12 +81,11 @@ public class FoodyCreateEndServlet extends HttpServlet {
 
 			
 			//			계정 연동시 작성
-//			HttpSession session = request.getSession(false);
-//			if(session != null) {
-//				User u = (User)session.getAttribute("user");
-//				int user_No = u.getUser_no();
-//				b.set_writer(user_No);
-//			}
+			if(session != null) {
+				User u = (User)session.getAttribute("user");
+				int user_No = u.getUser_no();
+				f.setUser_no(user_No);
+			}
 			
 			f.setOri_picture(oriName);
 			f.setNew_picture(reName);
@@ -102,11 +106,7 @@ public class FoodyCreateEndServlet extends HttpServlet {
 		}
 		
 	}
-
 	
-
-
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		doGet(request, response);

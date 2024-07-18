@@ -20,9 +20,11 @@
 					
 					<label>제목작성</label>
 					<input type="text" name="foody_title">
+					
 					<input type="submit" value="게시" onclick="createFoodyForm();"><br>
+					
 					<label>가게이름</label>
-					<input type="text" name="foody_store"><br>
+					<input type="text" name="foody_name"><br>
 					<label>맛 평점</label>
 					<input type="number" name="foody_taste" min="1" max="5"><br>
 					<label>청결 평점</label>
@@ -43,7 +45,7 @@
 					
 					<!-- 상세설명 -->
 					<label>맛집 상세설명</label>
-					<input type="text" name="foody_content" placeholder="내용을 입력하세요."><br>
+					<input type="text" name="foody_main" placeholder="내용을 입력하세요."><br>
 					<label>주소검색</label>
 					<input type="text" name="foody_address"><br>
 					<label>사진첨부</label>
@@ -62,7 +64,7 @@
 				alert("제목을 입력하세요.");
 				form.foody_title.focus();
 				
-			} else if(!form.foody_store.value){
+			} else if(!form.foody_name.value){
 				alert("가게이름을 입력하세요.");
 				form.foody_store.focus();
 				reture false;
@@ -74,7 +76,7 @@
 				alert("청결 평점을 입력해주세요.")
 				form.foody_clean.focus();
 				reture false;
-			}else if(!form.foody_content.value){
+			}else if(!form.foody_main.value){
 				alert("상세 내용을 입력해주세요");
 				form.foody_content.focus();
 				reture false;
@@ -102,9 +104,9 @@
 							return;
 						}
 					}
-					form.submit();
 				}
 			}
+					form.submit();
 		}
 		
 		// 파일 입력 변경 이벤트 리스너 추가

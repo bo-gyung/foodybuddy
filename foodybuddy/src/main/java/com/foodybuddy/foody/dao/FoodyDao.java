@@ -23,7 +23,7 @@ public class FoodyDao {
       int result = 0;
       try {
           String sql = "INSERT INTO foody_create (foody_title, foody_name, foody_taste, foody_clean, "
-                  + "foody_parking, foody_main, foody_address, reg_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                  + "foody_parking, foody_delivery, foody_main, foody_address ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
           pstmt = conn.prepareStatement(sql);
           pstmt.setString(1, f.getFoody_title());
           pstmt.setString(2, f.getFoody_name());
@@ -31,15 +31,15 @@ public class FoodyDao {
           pstmt.setInt(4, f.getFoody_clean());
           pstmt.setString(5, f.getFoody_parking());
           pstmt.setString(6, f.getFoody_delivery());
-          pstmt.setString(7, f.getFoody_address());
-          pstmt.setTimestamp(8, Timestamp.valueOf(f.getReg_date()));
+          pstmt.setString(7, f.getFoody_main());
+          pstmt.setString(8, f.getFoody_address());
           
           result = pstmt.executeUpdate();
           
       } catch (Exception e) {
           e.printStackTrace();
       } finally {
-          close(pstmt); // Close statement
+          close(pstmt);
       }
       return result;
   }
@@ -50,7 +50,7 @@ public class FoodyDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT COUNT(*) AS cnt FROM foody_create ";
+			String sql = "SELECT COUNT(*) AS cnt FROM foody_create c LEFT JOIN user u ON c.user_no = u.user_no ";
 			if(option.getFoody_title() != null) {
 				sql += " WHERE foody_title LIKE CONCAT('%',"+option.getFoody_title()+",'%')";
 			}
@@ -77,7 +77,7 @@ public class FoodyDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT COUNT(*) AS cnt FROM foody_create ";
+			String sql = "SELECT COUNT(*) AS cnt FROM foody_create c LEFT JOIN user u ON u.user_no = c.user_no ";
 			if(option.getFoody_title() != null) {
 				sql += " WHERE foody_title LIKE CONCAT('%',"+option.getFoody_title()+",'%')";
 			}
@@ -105,7 +105,7 @@ public class FoodyDao {
 			// 검색 조건
 			// X : SELECT * FROM board
 			// O : SELECT * FROM board WHERE board_title LIKE CONCAT('%',board_title,'%')
-			String sql = "SELECT * FROM foody_create ORDER BY reg_date DESC";
+			String sql = "SELECT * FROM foody_create c LEFT JOIN user u ON u.user_no = c.user_no ORDER BY c.reg_date DESC";
 			if(option.getFoody_title() != null) {
 				sql = " SELECT * FROM foody_create WHERE foody_title LIKE CONCAT('%',"+option.getFoody_title()+",'%') "
 						+ " ORDER BY reg_date DESC ";
@@ -130,7 +130,8 @@ public class FoodyDao {
 						rs.getInt("foody_click"),
 						rs.getInt("foody_good"),
 						rs.getString("ori_picture"),
-						rs.getString("new_picture"));
+						rs.getString("new_picture"),
+						rs.getString("user_name"));
 				
 				list.add(resultVo);
 			}
@@ -150,7 +151,7 @@ public class FoodyDao {
 	    ResultSet rs = null;
 
 	    try {
-	        String sql = "SELECT * FROM foody_create WHERE MONTH(reg_date) = ? - 1 ORDER BY foody_good DESC LIMIT 3";
+	        String sql = "SELECT * FROM foody_create c LEFT JOIN user u ON u.user_no = c.user_no WHERE MONTH(c.reg_date) = ? - 1  ORDER BY foody_good DESC LIMIT 3";
 	        pstmt = conn.prepareStatement(sql);
 	        pstmt.setInt(1, LocalDateTime.now().getMonthValue()); // 현재 달의 값으로 설정
 
@@ -173,7 +174,8 @@ public class FoodyDao {
 	                rs.getInt("foody_click"),
 	                rs.getInt("foody_good"),
 	                rs.getString("ori_picture"),
-	                rs.getString("new_picture")
+	                rs.getString("new_picture"),
+	                rs.getString("user_name")
 	            );
 
 	            list.add(resultVo);
@@ -196,7 +198,7 @@ public class FoodyDao {
 
 		try {
 			
-			String sql = "SELECT * FROM foody_create WHERE foody_no = ? ";
+			String sql = "SELECT * FROM foody_create c LEFT JOIN user u ON u.user_no = c.user_no WHERE c.foody_no = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
@@ -219,7 +221,8 @@ public class FoodyDao {
 						rs.getInt("foody_click"),
 						rs.getInt("foody_good"),
 						rs.getString("ori_picture"),
-						rs.getString("new_picture"));
+						rs.getString("new_picture"),
+						rs.getString("user_name"));
 				
 				list.add(resultVo);
 			}
