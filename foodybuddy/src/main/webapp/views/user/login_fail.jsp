@@ -43,7 +43,6 @@
                     <h1 class="display-3 text-white mb-3 animated slideInDown">Login fail</h1>
                 </div>
             </div>
-        </div>
         <!-- Hero End -->
 
         <!-- login Start -->

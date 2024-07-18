@@ -25,14 +25,14 @@
 
     <!-- Libraries Stylesheet -->
     <link href="../../resources/template/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"  />
+    <link href="../../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"  />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../resources/template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../resources/template/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../resources/template/css/style.css" rel="stylesheet">
+    <link href="../../resources/template/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -57,7 +57,6 @@
 					</div>
                 </div>
             </div>
-        </div>
         <!-- Hero End -->
 
 
@@ -324,17 +323,17 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../resources/template/lib/wow/wow.min.js"></script>
-    <script src="../resources/template/lib/easing/easing.min.js"></script>
-    <script src="../resources/template/lib/waypoints/waypoints.min.js"></script>
-    <script src="../resources/template/lib/counterup/counterup.min.js"></script>
-    <script src="../resources/template/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../resources/template/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="../resources/template/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="../resources/template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="../../resources/template/lib/wow/wow.min.js"></script>
+    <script src="../../resources/template/lib/easing/easing.min.js"></script>
+    <script src="../../resources/template/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../resources/template/lib/counterup/counterup.min.js"></script>
+    <script src="../../resources/template/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../resources/template/js/main.js"></script>
+    <script src="../../resources/template/js/main.js"></script>
 </body>
 
 </html>
