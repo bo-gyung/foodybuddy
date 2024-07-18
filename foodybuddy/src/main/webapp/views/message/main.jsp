@@ -45,7 +45,7 @@
            
             <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
             <br><br>
-            <li><a href="#search">받은쪽지</a></li>
+            <li><a href="/received_messages.jsp">받은쪽지</a></li>
             <li><a href="#save">보낸쪽지</a></li>
             <li><a href="#draft">임시쪽지</a></li>
             <li><a href="#draft">휴지통</a></li>

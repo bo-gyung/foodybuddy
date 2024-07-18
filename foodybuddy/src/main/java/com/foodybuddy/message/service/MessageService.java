@@ -4,12 +4,11 @@ import  static com.foodybuddy.common.sql.JDBCTemplate.close;
 import static com.foodybuddy.common.sql.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import com.foodybuddy.message.dao.MessageDao;
 import com.foodybuddy.message.vo.Message;
-import com.foodybuddy.user.dao.UserDao;
-import com.foodybuddy.user.vo.User;
 
 public class MessageService {
 	
@@ -37,6 +36,14 @@ public class MessageService {
 	 
 	 public int selectByName(String msgReceiver ,Connection conn) {
 		 return new MessageDao().selectByName(msgReceiver, conn);
+	 }
+	 
+	 public List<Map<String,Object>> receivedMessage(int receiverId){
+		 Connection conn = getConnection();
+		 List<Map<String,Object>> messages = new MessageDao().receivedMessage(receiverId,conn);
+		 close(conn);
+		 return messages;
+		 
 	 }
 	 
 

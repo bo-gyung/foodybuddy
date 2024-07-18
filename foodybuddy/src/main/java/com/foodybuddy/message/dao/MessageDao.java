@@ -1,16 +1,14 @@
 package com.foodybuddy.message.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import static com.foodybuddy.common.sql.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import com.foodybuddy.user.vo.User;
-
-import com.foodybuddy.message.vo.Message;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MessageDao {
 	
@@ -57,6 +55,39 @@ public class MessageDao {
 		}
 		return result;
 		
+	}
+	
+	public List<Map<String,Object>> receivedMessage(int receiverId, Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Map<String,Object>> messages = new ArrayList();
+		try {
+			String sql = "SELECT m.message_id, m.sender_id, u.user_name AS senderName, m.receiver_id,"
+					+ "m.message_title, m.message_text, m.sent_at, m.is_deleted"
+					+ "FROM messages m JOIN user u ON m.sender_id = u.user_no"
+					+ "WHERE m.receiver_id = ? AND m.is_deleted = FALSE";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, receiverId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Map<String,Object> messageMap = new HashMap<>();
+				messageMap.put("message_id", rs.getInt("message_id"));
+				messageMap.put("sender_id", rs.getInt("sender_id"));
+				messageMap.put("senderName", rs.getString("senderName"));
+				messageMap.put("receiver_id", rs.getInt("receiver_id"));
+				messageMap.put("message_title", rs.getString("message_title"));
+				messageMap.put("message_text", rs.getString("message_text"));
+				messageMap.put("sent_at", rs.getTimestamp("sent_at").toLocalDateTime());
+				messageMap.put("is_deleted", rs.getBoolean("is_deleted"));
+				messages.add(messageMap);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return messages;
 	}
 
 }
