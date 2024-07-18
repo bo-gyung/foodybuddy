@@ -5,8 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>QnA상세보기</title>
+
+ 
 </head>
 <body>
-질문자/ 관리자 질문제목 / 내용 자세히 보고, 수정하기 -> 삭제하기 두 버튼 확인
+
+
+
+<%@page import="com.foodybuddy.userpage.vo.QnA, java.util.*" %>
+ <% Map<String,Object> resultM = (Map<String,Object>)request.getAttribute("resultM"); %>
+  
 </body>
 </html>

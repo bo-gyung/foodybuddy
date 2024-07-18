@@ -4,10 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>QnA 목록</title>
 </head>
 <body>
+
+	<div>
+			<form action ="/qna/list" name = "search_qna_form" method ="get">
+			<!--제목을 기준으로 검색할거야.  -->
+				<input type="text" name = "qna_title" placeholder="검색하고자 하는 게시글의 제목을 입력하세요.">
+				<input type="submit" value="검색">
+			</form>
+		</div>
 	<header>
 		<a href = "/qna/create">QnA작성</a>
 	</header>

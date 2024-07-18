@@ -42,7 +42,7 @@
                     <h1 class="display-3 text-white mb-3 animated slideInDown">MyPage</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="">정보변경</a></li>
+                            <li class="breadcrumb-item"><a href="/user/edit">정보변경</a></li>
                             <li class="breadcrumb-item"><a href="#">맛집</a></li>
                             <li class="breadcrumb-item"><a href="#">모임</a></li>
                             <li class="breadcrumb-item"><a href="#">좋아요모음</a></li>

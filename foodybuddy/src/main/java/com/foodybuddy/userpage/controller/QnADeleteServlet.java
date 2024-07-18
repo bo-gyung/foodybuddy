@@ -22,6 +22,8 @@ public class QnADeleteServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnadelete.jsp");
 		view.forward(request, response);
 	}

@@ -28,7 +28,7 @@ public class QnAListServlet extends HttpServlet {
 		
 		// qna 제목 가져오기
 		String title = request.getParameter("qna_title");
-		// QnA 객체 생성
+		// QnA 객체 생성.
 		QnA option = new QnA();
 		option.setQna_title(title);
 		// 최종 마지막 페이지 구성 파트
