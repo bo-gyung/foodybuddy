@@ -48,12 +48,12 @@ public class CommentServlet extends HttpServlet {
 		        request.setAttribute("foody_no", foody_no);
 		        request.getRequestDispatcher("/foody/view?foody_no=" + foody_no ).forward(request, response);
 		    } else {
-		        // 로그인되지 않은 경우 처리
-		        response.sendRedirect("login.jsp");
+		    	response.setContentType("text/html;charset=UTF-8");
+                response.getWriter().write("<script>alert('로그인이 필요합니다.'); history.back();</script>");
 		    }
 		} else {
-		    // 세션이 null인 경우, 로그인되지 않은 상태
-		    response.sendRedirect("/board/foody");
+			response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().write("<script>alert('오류가 발생했습니다 관리자에게 문의 해주세요.'); history.back();</script>");
 		}
 	    
 	}

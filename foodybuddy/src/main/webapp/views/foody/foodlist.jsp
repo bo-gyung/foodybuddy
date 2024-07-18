@@ -36,16 +36,14 @@
 				<table>
 					<colgroup>
 						<col width="10%">
-						<col width="50%">
-						<col width="20%">
+						<col width="70%">
 						<col width="20%">
 					</colgroup>
 					<thead>
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일자</th>
+							<th>좋아요</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,16 +54,17 @@
 
             for(int i = 0 ; i < list.size(); i++){ %>
             	<tr>
-            		
-					<td><%= list.get(i).getFoody_no() %></td>            		
-            		<td><a href="/foody/view?foody_no=<%= list.get(i).getFoody_no() %>"><%= list.get(i).getFoody_title() %></a></td>
-            		<td><%= list.get(i).getFoody_name() %></td>
 						<%
 						    LocalDateTime regDateTime = list.get(i).getReg_date();
 						    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분");
 						    String formattedDate = regDateTime.format(formatter);
 						%>
-                    <td><%= formattedDate %></td>
+            		
+					<td><%= list.get(i).getFoody_no() %></td>            		
+            		<td><a href="/foody/view?foody_no=<%= list.get(i).getFoody_no() %>"><%= list.get(i).getFoody_title() %></a><br>
+            						작성자 : <%= list.get(i).getFoody_name() %> 조회수 : <%= list.get(i).getFoody_click() %> 작성 시간 :<%= formattedDate %></td>
+            		<td><%= list.get(i).getFoody_good() %></td>
+                    
            		</tr>
                     
             <% } %>
