@@ -6,7 +6,9 @@ import static com.foodybuddy.common.sql.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,6 +117,52 @@ public class FoodyDao {
 		return list;
 	}
 
+	
+	public List<Foody> selectBoardTopList(Foody option, Connection conn) {
+	    List<Foody> list = new ArrayList<>();
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        String sql = "SELECT * FROM foody_create WHERE MONTH(reg_date) = ? - 1 ORDER BY foody_good DESC LIMIT 3";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, LocalDateTime.now().getMonthValue()); // 현재 달의 값으로 설정
+
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            Foody resultVo = new Foody(
+	                rs.getInt("foody_no"),
+	                rs.getInt("user_no"),
+	                rs.getInt("report_no"),
+	                rs.getString("foody_title"),
+	                rs.getString("foody_name"),
+	                rs.getInt("foody_taste"),
+	                rs.getInt("foody_clean"),
+	                rs.getString("foody_parking"),
+	                rs.getString("foody_delivery"),
+	                rs.getString("foody_main"),
+	                rs.getTimestamp("reg_date").toLocalDateTime(),
+	                rs.getTimestamp("mod_date").toLocalDateTime(),
+	                rs.getString("foody_address"),
+	                rs.getInt("foody_click"),
+	                rs.getInt("foody_good"),
+	                rs.getString("ori_picture"),
+	                rs.getString("new_picture")
+	            );
+
+	            list.add(resultVo);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(rs);
+	        close(pstmt);
+	    }
+	    return list;
+	}
+
+	
+	
 	public List<Foody> viewFoody(int no,Connection conn){
 		List<Foody> list = new ArrayList<Foody>();
 		PreparedStatement pstmt = null;

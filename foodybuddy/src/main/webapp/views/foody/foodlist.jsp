@@ -26,13 +26,44 @@
 		<option value="제목">제목</option>
 		<option value="위치">위치</option>
 	</select>
+	
 	<input type="text" name="searchbar"><button onclick="result();">검색</button>
 	</div>
 	<a href="/foody/create">작성</a>
 	<br>
 	<br>
+	<div class="high_list">
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="80%">
+			<col width="10%">
+		</colgroup>
+			<thead>
+				<tr>
+					<th></th>
+					<th>[이달의 좋아요 TOP 3]</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td><a href="/foody/viewTops">보러가기</a></td>
+					<td></td>
+				</tr>
+			
+			
+			
+			</tbody>
+	
+	
+	</table>
+	
+	</div>
 	<br>
-	<div class="book_list">
+	<br>
+	<div class="foody_list">
 				<table>
 					<colgroup>
 						<col width="10%">

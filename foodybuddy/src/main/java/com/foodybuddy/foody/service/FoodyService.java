@@ -36,6 +36,14 @@ public class FoodyService {
 		return list;
 	}
 	
+	public List<Foody> selectBoardTopList(Foody option){
+		Connection conn = getConnection();
+		List<Foody> list = new FoodyDao().selectBoardTopList(option,conn);
+		close(conn);
+		return list;
+	}	
+	
+	
 	public List<Foody> viewFoody(int no) {
 		Connection conn = getConnection();
 		List<Foody> result = new FoodyDao().viewFoody(no,conn);

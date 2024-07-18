@@ -28,12 +28,12 @@ public class CommentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String foody_no = request.getParameter("foody_no");
         String comment_text = request.getParameter("comment_text");
-		// doGet 메서드 내에서 세션을 통해 사용자 객체 가져오기
+		
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 		    User loggedInUser = (User) session.getAttribute("user");
 		    if (loggedInUser != null) {
-		        // 세션에서 사용자의 고유 번호를 가져와서 Comment 객체에 설정
+		
 		        int user_no = loggedInUser.getUser_no();
 		        Comment comment = new Comment();
 		        comment.setFoody_no(Integer.parseInt(foody_no));
