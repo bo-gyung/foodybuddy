@@ -12,7 +12,6 @@ import com.foodybuddy.message.vo.Message;
 
 public class MessageService {
 	
-	
 	 public boolean sendMessage(int senderNo,String msgReceiver,String msgTitle, String msgText ) { 
 	Connection conn = getConnection(); 
 	try {
@@ -44,6 +43,13 @@ public class MessageService {
 		 close(conn);
 		 return messages;
 		 
+	 }
+	 
+	 public List<Map<String,Object>> sentMessage(int senderId){
+		 Connection conn = getConnection();
+		 List<Map<String,Object>> messages = new MessageDao().sentMessage(senderId,conn);
+		 close(conn);
+		 return messages;
 	 }
 	 
 

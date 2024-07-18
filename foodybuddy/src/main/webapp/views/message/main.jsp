@@ -52,7 +52,7 @@
         </ul>
     </div>
     <main>
-        <select>
+        <select> 
             <option>전체쪽지</option>
             <option>받은쪽지</option>
             <option>보낸쪽지</option>
@@ -72,14 +72,18 @@
         <button>보관</button>
         <button>답장</button>
         <hr>
-        <label class="checkbox-container">
+        <table>
+        	<tr>
+        <td><label class="checkbox-container">
             <input type="checkbox">
             <span class="checkbox"></span> 
-        </label>
-        <span>글번호</span>
-        <span>보낸사람/받는사람</span>
-        <span>제목</span>
-        <span>날짜</span>
+        </label><td>
+        		<th>글번호</th>
+        		<th>보낸사람/받는사람</th>
+        		<th>제목</th>
+        		<th>날짜</th>
+        	</tr>
+        </table>
         <hr>
         <label class="checkbox-container">
             <input type="checkbox">

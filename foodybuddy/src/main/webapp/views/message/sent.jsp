@@ -23,7 +23,7 @@
 		
             <% for (Map<String, Object> message : messages) { %>
                 <tr>
-                    <td><%= message.get("senderName") %></td>
+                    <td><%= message.get("receiverName") %></td>
                     <td><%= message.get("message_title") %></td>
                     <td><%= message.get("message_text") %></td>
                     <td><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
