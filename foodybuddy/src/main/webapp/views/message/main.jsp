@@ -33,6 +33,30 @@
     <link href="../resources/css/message/main.css" rel="stylesheet">
     </head>
 <body>
+    <style>
+        table {
+            width: 100%; /* 테이블 전체 너비를 100%로 설정 */
+            border-collapse: collapse; /* 셀 테두리를 병합하여 단일 테두리로 만듦 */
+        }
+
+        th {
+            padding: 8px; /* 셀 내용과 테두리 사이 여백 설정 */
+            text-align: left; /* 텍스트 왼쪽 정렬 */
+           
+        }
+
+        th:nth-child(1) {
+            width: 5%; /* 첫 번째 th의 너비를 30%로 지정 */
+        }
+
+        th:nth-child(2) {
+            width: 10%; /* 두 번째 th의 너비를 40%로 지정 */
+        }
+
+        th:nth-child(3) {
+            width: 30%; /* 세 번째 th의 너비를 30%로 지정 */
+        }
+    </style>
     <%@ include file="../include/navbar.jsp" %>
                <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">

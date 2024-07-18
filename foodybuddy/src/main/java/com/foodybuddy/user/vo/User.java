@@ -19,6 +19,7 @@ public class User {
     private String user_answer;
     private int user_warn;
     private LocalDateTime reg_date;
+    private LocalDateTime warn_date;
     
 	public User() {
 		super();
@@ -26,7 +27,7 @@ public class User {
 
 	public User(int user_no, int grade_no, String user_id, String user_pw, String user_name, String user_phone,
 			String user_postcode, String user_addr, String user_detailAddr, String user_extraAddr, String user_email,
-			String user_question, String user_answer, int user_warn, LocalDateTime reg_date) {
+			String user_question, String user_answer, int user_warn, LocalDateTime reg_date, LocalDateTime warn_date) {
 		super();
 		this.user_no = user_no;
 		this.grade_no = grade_no;
@@ -43,6 +44,7 @@ public class User {
 		this.user_answer = user_answer;
 		this.user_warn = user_warn;
 		this.reg_date = reg_date;
+		this.warn_date = warn_date;
 	}
 
 	public int getUser_no() {
@@ -165,15 +167,23 @@ public class User {
 		this.reg_date = reg_date;
 	}
 
+	public LocalDateTime getWarn_date() {
+		return warn_date;
+	}
+
+	public void setWarn_date(LocalDateTime warn_date) {
+		this.warn_date = warn_date;
+	}
+
 	@Override
 	public String toString() {
 		return "User [user_no=" + user_no + ", grade_no=" + grade_no + ", user_id=" + user_id + ", user_pw=" + user_pw
 				+ ", user_name=" + user_name + ", user_phone=" + user_phone + ", user_postcode=" + user_postcode
 				+ ", user_addr=" + user_addr + ", user_detailAddr=" + user_detailAddr + ", user_extraAddr="
 				+ user_extraAddr + ", user_email=" + user_email + ", user_question=" + user_question + ", user_answer="
-				+ user_answer + ", user_warn=" + user_warn + ", reg_date=" + reg_date + "]";
+				+ user_answer + ", user_warn=" + user_warn + ", reg_date=" + reg_date + ", warn_date=" + warn_date
+				+ "]";
 	}
-	
-	
 
+	
 }
