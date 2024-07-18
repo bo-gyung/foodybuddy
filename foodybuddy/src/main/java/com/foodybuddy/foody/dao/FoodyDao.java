@@ -68,8 +68,34 @@ public class FoodyDao {
 		return result;
 		
 	}
+  
+  
 	
 	
+  public int selectBoardTopCount(Foody option , Connection conn) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT COUNT(*) AS cnt FROM foody_create ";
+			if(option.getFoody_title() != null) {
+				sql += " WHERE foody_title LIKE CONCAT('%',"+option.getFoody_title()+",'%')";
+			}
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+		
+	}
+  
 	public List<Foody> selectBoardList(Foody option,Connection conn){
 		List<Foody> list = new ArrayList<Foody>();
 		PreparedStatement pstmt = null;

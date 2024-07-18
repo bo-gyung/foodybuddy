@@ -36,7 +36,7 @@ public class FoodyTopListServlet extends HttpServlet {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}
 		// 전체 목록 개수 -> 페이징바 구성
-		option.setTotalData(new FoodyService().selectBoardCount(option));
+		option.setTotalData(new FoodyService().selectBoardTopCount(option));
 		
 		List<Foody> list = new FoodyService().selectBoardTopList(option);
 

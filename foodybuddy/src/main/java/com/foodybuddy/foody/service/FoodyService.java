@@ -28,6 +28,13 @@ public class FoodyService {
 		close(conn);
 		return result;
 	}
+	
+	public int selectBoardTopCount(Foody option) {
+		Connection conn = getConnection();
+		int result = new FoodyDao().selectBoardTopCount(option,conn);
+		close(conn);
+		return result;
+	}
 
 	public List<Foody> selectBoardList(Foody option){
 		Connection conn = getConnection();
