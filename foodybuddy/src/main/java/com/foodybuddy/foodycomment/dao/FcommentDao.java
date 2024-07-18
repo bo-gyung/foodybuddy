@@ -15,7 +15,7 @@ public class FcommentDao {
 	public void insertComment(Comment comment, Connection conn) {
         PreparedStatement pstmt = null;
         try {
-            String sql = "INSERT INTO foody_comment (foody_no, user_no, comment_text) VALUES (?, ?, ? ) ";
+            String sql = "INSERT INTO foody_comment (foody_no ,user_no, comment_text) VALUES (? ,?, ? ) ";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, comment.getFoody_no());
             pstmt.setInt(2, comment.getUser_no());
@@ -40,7 +40,7 @@ public class FcommentDao {
             while (rs.next()) {
                 Comment comment = new Comment();
                 comment.setComment_num(rs.getInt("comment_num"));
-//                comment.setFoody_no(rs.getInt("foody_no"));
+                comment.setFoody_no(rs.getInt("foody_no"));
                 comment.setUser_name(rs.getString("user_name"));
                 comment.setComment_text(rs.getString("comment_text"));
                 comment.setReg_date(rs.getTimestamp("reg_date").toLocalDateTime());

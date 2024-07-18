@@ -57,7 +57,6 @@
         
         <div class="comment_section">
             <h3>댓글</h3>
-            <%-- <form action="<%= request.getContextPath() %>/comment" method="post"> --%>
             <form action="/comment" method="post">
                 <input type="hidden" name="foody_no" value="<%= foody_no %>">
                 <textarea name="comment_text" required></textarea><br>
