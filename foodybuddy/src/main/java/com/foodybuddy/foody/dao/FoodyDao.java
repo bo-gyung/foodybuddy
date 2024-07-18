@@ -96,53 +96,64 @@ public class FoodyDao {
 		
 	}
   
-	public List<Foody> selectBoardList(Foody option,Connection conn){
-		List<Foody> list = new ArrayList<Foody>();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+  public List<Foody> selectBoardList(Foody option, Connection conn) {
+	    List<Foody> list = new ArrayList<Foody>();
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
 
-		try {
-			// 검색 조건
-			// X : SELECT * FROM board
-			// O : SELECT * FROM board WHERE board_title LIKE CONCAT('%',board_title,'%')
-			String sql = "SELECT * FROM foody_create c LEFT JOIN user u ON u.user_no = c.user_no ORDER BY c.reg_date DESC";
-			if(option.getFoody_title() != null) {
-				sql = " SELECT * FROM foody_create WHERE foody_title LIKE CONCAT('%',"+option.getFoody_title()+",'%') "
-						+ " ORDER BY reg_date DESC ";
-			}
-			sql += " LIMIT "+option.getLimitPageNo()+", "+option.getNumPerPage();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				Foody resultVo = new Foody(rs.getInt("foody_no"),
-						rs.getInt("user_no"),
-						rs.getInt("report_no"),
-						rs.getString("foody_title"),
-						rs.getString("foody_name"),
-						rs.getInt("foody_taste"),
-						rs.getInt("foody_clean"),
-						rs.getString("foody_parking"),
-						rs.getString("foody_delivery"),
-						rs.getString("foody_main"),
-						rs.getTimestamp("reg_date").toLocalDateTime(),
-						rs.getTimestamp("mod_date").toLocalDateTime(),
-						rs.getString("foody_address"),
-						rs.getInt("foody_click"),
-						rs.getInt("foody_good"),
-						rs.getString("ori_picture"),
-						rs.getString("new_picture"),
-						rs.getString("user_name"));
-				
-				list.add(resultVo);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
+	    try {
+	        
+	       String sql = "SELECT * FROM foody_create c LEFT JOIN user u ON u.user_no = c.user_no ";
+
+	        if (option.getSearchOption() != null && !option.getSearchOption().isEmpty()) {
+	            if (1==Integer.parseInt(option.getSearchOption()) && !option.getSearchBar().isEmpty()) {
+	                sql += " WHERE u.user_name LIKE CONCAT('%','"+option.getSearchBar()+"','%')";
+	            } else if (2==Integer.parseInt(option.getSearchOption()) && !option.getSearchBar().isEmpty() ) {
+	            	sql += " WHERE c.foody_name LIKE CONCAT('%','"+option.getSearchBar()+"','%')";
+	            } else if (3==Integer.parseInt(option.getSearchOption()) && !option.getSearchBar().isEmpty() ) {
+	            	sql += " WHERE c.foody_address LIKE CONCAT('%','"+option.getSearchBar()+"','%')";
+	            } 
+	        }
+
+	        sql += " ORDER BY c.reg_date DESC LIMIT " +option.getLimitPageNo()+", "+option.getNumPerPage() ;
+
+	        pstmt = conn.prepareStatement(sql);
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            Foody resultVo = new Foody(
+	                rs.getInt("foody_no"),
+	                rs.getInt("user_no"),
+	                rs.getInt("report_no"),
+	                rs.getString("foody_title"),
+	                rs.getString("foody_name"),
+	                rs.getInt("foody_taste"),
+	                rs.getInt("foody_clean"),
+	                rs.getString("foody_parking"),
+	                rs.getString("foody_delivery"),
+	                rs.getString("foody_main"),
+	                rs.getTimestamp("reg_date").toLocalDateTime(),
+	                rs.getTimestamp("mod_date").toLocalDateTime(),
+	                rs.getString("foody_address"),
+	                rs.getInt("foody_click"),
+	                rs.getInt("foody_good"),
+	                rs.getString("ori_picture"),
+	                rs.getString("new_picture"),
+	                rs.getString("user_name")
+	            );
+
+	            list.add(resultVo);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(rs);
+	        close(pstmt);
+	    }
+	    return list;
 	}
+
+
 
 	
 	public List<Foody> selectBoardTopList(Foody option, Connection conn) {

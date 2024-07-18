@@ -22,9 +22,9 @@ public class Foody extends Paging{
 	private int foody_good;
 	private String ori_picture;
 	private String new_picture;
-	private String user_name;
 	
 	// 데이터 베이스에 X 검색 엔진을 위한 내용
+	private String user_name;
 	private String searchOption;
     private String searchBar;
 	
