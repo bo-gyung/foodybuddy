@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-					  <%@page import = "com.foodybuddy.userpage.vo.QnA, java.util.*" %>
+<%@page import = "com.foodybuddy.userpage.vo.QnA, java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,16 +47,16 @@
 						for(int i = 0; i < list.size(); i++){ %>
 							<tr>
 								<td><%=list.get(i).getQna_no() %></td>
-								<a href = "/qna/detail?qna_no=<%= list.get(i).getQna_no() %>"><td><%=list.get(i).getQna_title() %></td></a>
+								<td><a href = "/qna/detail?qna_no=<%= list.get(i).getQna_no() %>"><%=list.get(i).getQna_title() %></a></td>
 								<td><%=list.get(i).getUser_no() %></td>
 								<td><%=list.get(i).getReg_date() %></td> 
 							</tr>
 					<% }%> 
-					<!--작성자 기준 수정/ 삭제  -->
-					<a href = "/qna/update">수정</a><br>
-					<a href = "/qna/delete">삭제</a>
+					
 				</tbody>
+				<!-- 페이징바 -->
 					  <tfoot>
+					  	
 						<% QnA paging = (QnA)request.getAttribute("paging"); %>
 						<%if (paging != null) {%>
 							<div>
@@ -110,7 +110,7 @@
 						for(int i = 0; i < replyList.size(); i++){ %>
 							<tr>
 								<td><%=replyList.get(i).getQna_no() %></td>
-								<a href = "/qna/detail?qna_no=<%= replyList.get(i).getQna_no() %>"><td><%=replyList.get(i).getQna_title() %></td></a>
+								<td><a href = "/qna/detail?qna_no=<%= replyList.get(i).getQna_no() %>">=<%=replyList.get(i).getQna_title() %></a></td>
 								<td><%=replyList.get(i).getUser_no() %></td>
 								<td><%=replyList.get(i).getComplete_date() %></td> <!--완료날짜 기준  -->
 							</tr>
