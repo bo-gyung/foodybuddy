@@ -216,7 +216,7 @@ public class UserDao {
 						,rs.getInt("user_warn")
 						,rs.getTimestamp("reg_date").toLocalDateTime()
 						,rs.getTimestamp("warn_date").toLocalDateTime()); 
-			System.out.println(resultUser);
+
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

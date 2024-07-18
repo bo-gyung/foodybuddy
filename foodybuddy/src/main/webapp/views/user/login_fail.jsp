@@ -43,13 +43,12 @@
                     <h1 class="display-3 text-white mb-3 animated slideInDown">Login fail</h1>
                 </div>
             </div>
-        </div>
         <!-- Hero End -->
 
         <!-- login Start -->
         <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
             <div class="row g-0">
-                <div class="col-md-6 bg-dark d-flex align-items-center">
+                <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
                         <h3 class="text-white mb-4">아이디와 비밀번호를 확인하세요.</h3>

@@ -49,27 +49,27 @@
 
         <!-- login Start -->
         <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="row g-0">
-                <div class="col-md-6 bg-dark d-flex align-items-center">
+            <div class="row g-0" >
+                <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
                         <h3 class="text-white mb-4">아이디와 비밀번호를 입력하세요.</h3>
                         <!-- 로그인 폼 -->
                         <form action='/user/loginEnd' name="login_form" method="post">
-                            <div class="row g-3">
-                                <div class="col-md-6">
+                            <div class="row g-3" style="margin-left:20%">
+                                <div class="col-md-9">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="user_id" name ="user_id" placeholder="Your ID">
                                         <label for="name">ID</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-9">
                                     <div class="form-floating">
-                                        <input type="password" class="form-control" id="user_pw" name="user_pw" placeholder="Your Password">
+                                        <input type="password" class="form-control" id="user_pw" name="user_pw" placeholder="Your Password" onkeyup="enterkey()">
                                         <label for="name">Password</label>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-9">
                                     <button class="btn btn-primary w-100 py-3" type="button" onclick="loginForm();">Login</button>
                                 </div>
                             </div>
@@ -153,7 +153,6 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    
 	<script type="text/javascript">
 		function loginForm() {
 			let form = document.login_form;
@@ -166,6 +165,13 @@
 			} else {
 				form.submit();
 			}
+		}
+		
+		function enterkey(){
+			if (window.event.keyCode == 13) {
+		    	// 엔터키가 눌렸을 때
+		    	loginForm();
+		    }
 		}
 	</script>
     

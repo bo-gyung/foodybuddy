@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>BUDDY(같이가기)</title>
-    <!-- BUDDY(같이가기) 글 열람 -->
+<meta charset="UTF-8">
+<title>BUDDY(같이가기)</title>
+<!-- BUDDY(같이가기) 글쓰기 -->
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -25,7 +24,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="../../resources/template/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../resources/template/lib/owlcarousel/assets/owl.cWarousel.min.css" rel="stylesheet">
     <link href="../../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -42,113 +41,92 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">글 보기</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Buddy</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
+                            <li class="breadcrumb-item"><a href="#">foody로 돌아가기</a></li>
+                            <li class="breadcrumb-item"><a href="#">내가 보던 글로 돌아가기</a></li>
+                            <li class="breadcrumb-item"><a href="#">buddy 게시판 보기</a></li>
                         </ol>
                     </nav>
                 </div>
             </div>
-        	<!-- Hero End -->
+        </div>
+        <!-- Hero End -->
 
 
-        <!-- Contact Start --> 
+        <!-- Contact Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Buddy</h5>
                     <h1 class="mb-5">여기서 모이기</h1>
                 </div>
-                
-                <%@page import="com.foodybuddy.buddy.vo.Buddy, java.util.*" %>
-                <% Map<String,Object> post = (Map<String,Object>)request.getAttribute("post"); %>
-                
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="row gy-4" style="text-align : center">
+                        <% %>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게이름") %></p>
+                                <p><i class="fa fa-store text-primary me-2"></i>book@example.com</p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게주소") %></p>
+                                <p><i class="fa fa-map-marked text-primary me-2"></i>info@example.com</p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("작성자") %></p>
+                                <p><i class="fa fa-car text-primary me-2"></i>tech@example.com</p>
                             </div>
                         </div>
                     </div>
 					<div style="display:flex; justify-content:center;">
 	                    <div class="col-md-9">
+	                     
 	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-	                            <form action="#" name="buddy_write">
+	                        	<!-- 입력폼 시작 -->
+	                            <form action="/board/buddy/createEnd" name="buddy_write">
 	                                <div class="row g-3">
-	                                	
 	                                	<div class="col-12">
 	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="title" placeholder="Subject">
-	                                            <label for="subject"><%=post.get("글제목") %></label>
+	                                            <input type="text" class="form-control" id="title" name="buddy_title" placeholder="Subject">
+	                                            <label for="subject">제목</label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-6">
 	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="subject" placeholder="Subject" style="height: 370px">
+	                                            <input type="text" class="form-control" id="photo" name="buddy_photo" placeholder="Subject" style="height: 370px">
 	                                            <label for="subject">사진</label>
 	                                        </div>
                                         </div>
 	                                    <div class="col-6">
 		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email"><%=post.get("모임이름") %></label>
+		                                        <div class="form-floating pt-5 pb-3">
+		                                            <input type="email" class="form-control" id="party_name" name="party_name" placeholder="Your Email">
+		                                            <label for="email">모임이름</label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-		                                            <label for="name"><%=post.get("모임날짜") %></label>
+		                                        <div class="form-floating pt-5 pb-3">
+		                                            <input type="text" class="form-control" id="meet_date" name="meet_date" placeholder="Your Name">
+		                                            <label for="name">모임날짜</label>
 		                                        </div>
 		                                    </div>
 		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email"><%=post.get("모임인원") %></label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email"><%=post.get("가게이름") %></label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email"><%=post.get("가게주소") %></label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pb-1">
-		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-		                                            <label for="email"><%=post.get("주차여부") %></label>
+		                                        <div class="form-floating pt-5 pb-5">
+		                                            <input type="email" class="form-control" id="party_number" name="party_number" placeholder="Your Email">
+		                                            <label for="email">모임인원</label>
 		                                        </div>
 		                                    </div>
 	                                    </div>
-	                                    
-	                                    
 	                                    <div class="col-12">
 	                                        <div class="form-floating">
-	                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 500px"></textarea>
-	                                            <label for="message"><%=post.get("글내용") %></label>
+	                                            <textarea class="form-control" placeholder="Leave a message here" id="main" name="buddy_main" style="height: 500px"></textarea>
+	                                            <label for="message">모집내용</label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-9">
-	                                        <input type="file">
+	                                        <input type="file" id="buddy_photo" name="buddy_photo">
 	                                    </div>
 	                                    <div class="col-3"><button class="btn btn-primary w-100 py-3" type="button">첨부</button></div>
 	                                    <div class="col-12">
@@ -156,12 +134,13 @@
 	                                    </div>
 	                                </div>
 	                            </form>
+	                            <!-- 입력폼 종료 -->
 	                        </div>
 	                    </div>
 					</div>
                 </div>
             </div>
-        </div>
+        </div>  
         <!-- Contact End -->
 
 
