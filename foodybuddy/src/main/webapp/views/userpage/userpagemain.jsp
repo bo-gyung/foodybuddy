@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Page-내정보 조회/변경</title>
+<title>My Page-내 정보 조회/변경</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -41,7 +41,7 @@
             <h1 class="display-3 text-white mb-3 animated slideInDown">MyPage</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center text-uppercase">
-                    <li class="breadcrumb-item"><a href="/user/pageList?menu=userpagemain">내 정보 조회/변경</a></li>
+                    <li class="breadcrumb-item" ><a href="/user/pageList?menu=userpagemain" style="color:white;">내 정보 조회/변경</a></li>
                     <li class="breadcrumb-item"><a href="/user/pageList?menu=user_create_views">내 작성글 조회</a></li>
                     <li class="breadcrumb-item"><a href="/user/pageList?menu=user_like_views">내 좋아요 조회</a></li>
                     <li class="breadcrumb-item"><a href="/user/pageList?menu=user_group_views">내 모임 조회</a></li>
@@ -51,359 +51,259 @@
         </div>
     </div>
 	<!-- Hero End -->
-        
-      <!--   
-	<label>아이디</label>
-	<input type = "text" disabled><br>
-	<label>등급</label>
-	<input type = "text" disabled><br>
-	<albel>경고</albel>
-	<input type = "text" disabled><br>
-	<label>닉네임</label>
-	<input type = "text"><br>
-	<label>주소</label>
-	<input type = "text"><br>
-	<label>전화번호</label>
-	<input type = "text"><br>
-	<label>이메일</label>
-	<input type = "text"><br>
- -->
         <!-- Menu Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">FoodyBuddy</h5>
-                    <h1 class="mb-5">Most Popular Items</h1>
+                    <h1 class="mb-5">내 정보 조회 / 변경</h1>
                 </div>
                 <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
                     <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                         <li class="nav-item">
                             <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                                <i class="fa fa-coffee fa-2x text-primary"></i>
                                 <div class="ps-3">
-                                    <small class="text-body">Popular</small>
-                                    <h6 class="mt-n1 mb-0">Breakfast</h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
-                                <i class="fa fa-hamburger fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Special</small>
-                                    <h6 class="mt-n1 mb-0">Launch</h6>
+                                    <h6 class="mt-n1 mb-0">내 정보 조회</h6>
                                 </div>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
-                                <i class="fa fa-utensils fa-2x text-primary"></i>
                                 <div class="ps-3">
-                                    <small class="text-body">Lovely</small>
-                                    <h6 class="mt-n1 mb-0">Dinner</h6>
+                                    <h6 class="mt-n1 mb-0">비밀번호 변경</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-4">
+                                <div class="ps-3">
+                                    <h6 class="mt-n1 mb-0">회원 탈퇴</h6>
                                 </div>
                             </a>
                         </li>
                     </ul>
                     <div class="tab-content">
+                    	<!-- 내정보 조회 -->
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="container-xxl py-5 px-0 fade show p-1">
+						            <div class="row g-0" >
+						                <div class="col-md-6 d-flex align-items-center" style="margin: auto;">
+						                    <div class="p-5 fade show p-1">
+						                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
+						                        <h3 class="mb-4">내 정보 조회</h3>
+						                        <%@page import="com.foodybuddy.user.vo.User, java.util.*" %>
+												<%
+													User u = (User)session.getAttribute("user");
+													
+												%>
+						                        <!-- 내 정보 폼 -->
+						                        <form action='/user/info' name="info_form" method="post">
+						                            <div class="row g-3" style="margin-left:20%">
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value=<%=u.getUser_id() %>>
+						                                        <label for="user_pw">아이디</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-4">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value=<%=u.getGrade_no()==1?"준회원":u.getGrade_no()==2?"정회원":"모임장(임시)" %>>
+						                                        <label for="user_pw">회원등급</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-4">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_warn() %>">
+						                                        <label for="user_pw">경고횟수</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_name()%>">
+						                                        <label for="user_pw">닉네임</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_phone()%>">
+						                                        <label for="user_pw">전화번호</label>
+						                                    </div>
+						                                </div>
+						                                
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_addr()%>">
+						                                        <label for="user_pw">주소</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled"  value="<%=u.getUser_detailAddr()%>">
+						                                        <label for="user_pw">상세 주소</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-4">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_extraAddr()%>">
+						                                        <label for="user_pw">참고항목</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-4">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_postcode()%>">
+						                                        <label for="user_pw">우편번호</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_email()%>">
+						                                        <label for="user_pw">이메일</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_question()%>">
+						                                        <label for="user_pw">아이디 찾기 질문</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
+						                                        disabled="disabled" value="<%=u.getUser_answer()%>">
+						                                        <label for="user_pw">답변</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-9">
+						                                    <button class="btn btn-primary w-100 py-3" type="button" onclick="">내 정보 변경</button>
+						                                </div>
+						                            </div>
+						                        </form>
+						                        <!-- 내 정보 폼 종료 -->
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
                             </div>
                         </div>
+                        <!-- 내정보 변경 -->
                         <div id="tab-2" class="tab-pane fade show p-0">
                             <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="container-xxl py-5 px-0 fade show p-1">
+						            <div class="row g-0" >
+						                <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
+						                    <div class="p-5 fade show p-1">
+						                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
+						                        <h3 class="text-white mb-4">내 정보 변경</h3>
+						                        <!-- 비밀번호 입력 폼 -->
+						                        <form action='/user/edit' name="edit_form" method="post">
+						                            <div class="row g-3" style="margin-left:20%">
+						                                <div class="col-md-9">
+						                                    <h4 class="text-white mb-4">회원 정보 보호를 위해 비밀번호를 한번 더 입력해주세요.</h4>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="password" class="form-control" id="user_pw" name="user_pw" placeholder="Your Password" onkeyup="enterkey()">
+						                                        <label for="user_pw">비밀번호</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-9">
+						                                    <button class="btn btn-primary w-100 py-3" type="button" onclick="">확인</button>
+						                                </div>
+						                            </div>
+						                        </form>
+						                        <!-- 비밀번호 입력 폼 종료 -->
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
                             </div>
                         </div>
+                        <!-- 비밀번호 변경 -->
                         <div id="tab-3" class="tab-pane fade show p-0">
                             <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="container-xxl py-5 px-0 fade show p-1">
+						            <div class="row g-0" >
+						                <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
+						                    <div class="p-5 fade show p-1">
+						                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
+						                        <h3 class="text-white mb-4">비밀변호 변경</h3>
+						                        <!-- 비밀번호 변경 폼 -->
+						                        <form action='/user/loginEnd' name="login_form" method="post">
+						                            <div class="row g-3" style="margin-left:20%">
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="password" class="form-control" id="prev_user_pw" name ="prev_user_pw" placeholder="Your ID">
+						                                        <label for="prev_user_pw">기존 비밀번호</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="password" class="form-control" id="new_user_pw" name ="new_user_pw" placeholder="Your ID">
+						                                        <label for="new_user_pw">새 비밀번호</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="password" class="form-control" id="new_user_pw_ck" name="new_user_pw_ck" placeholder="Your Password" onkeyup="enterkey()">
+						                                        <label for="new_user_pw_ck">새 비밀번호 확인</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-9">
+						                                    <button class="btn btn-primary w-100 py-3" type="button" onclick="">변경</button>
+						                                </div>
+						                            </div>
+						                        </form>
+						                        <!-- 비밀번호 변경 폼 종료 -->
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+                            </div>
+                        </div>
+                        <!-- 회원 탈퇴 -->
+                        <div id="tab-4" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="container-xxl py-5 px-0 fade show p-1">
+						            <div class="row g-0" >
+						                <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
+						                    <div class="p-5 fade show p-1">
+						                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
+						                        <h3 class="text-white mb-4">회원 탈퇴</h3>
+						                        <!-- 탈퇴 확인 폼 -->
+						                        <form action='/user/loginEnd' name="login_form" method="post">
+						                            <div class="row g-3" style="margin-left:20%">
+						                                <div class="col-md-9">
+						                                    <h4 class="text-white mb-4">정말 탈퇴하시겠습니까?</h4>
+						                                    <h5 class="text-white">비밀번호를 한번 더 입력해주세요.</h5>
+						                                </div>
+						                                <div class="col-md-9">
+						                                    <div class="form-floating">
+						                                        <input type="password" class="form-control" id="user_pw" name="user_pw" placeholder="Your Password" onkeyup="enterkey()">
+						                                        <label for="user_pw">비밀번호</label>
+						                                    </div>
+						                                </div>
+						                                <div class="col-9">
+						                                    <button class="btn btn-primary w-100 py-3" type="button" onclick="">변경</button>
+						                                </div>
+						                            </div>
+						                        </form>
+						                        <!-- 탈퇴 확인 폼 종료 -->
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
                             </div>
                         </div>
                     </div>

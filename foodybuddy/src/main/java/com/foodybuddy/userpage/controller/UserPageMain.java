@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.foodybuddy.user.vo.User;
 
 
 @WebServlet("/userpage/userpagemain")
@@ -20,6 +23,18 @@ public class UserPageMain extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession(false);
+		try {
+			if(session!=null) {
+				User u = (User)session.getAttribute("user");
+			}
+		} catch(NullPointerException e) {
+			// 비회원 열람불가
+			RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_unmath.jsp");
+			view.forward(request, response);
+		}
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userpagemain.jsp");
 		view.forward(request, response);
 	}

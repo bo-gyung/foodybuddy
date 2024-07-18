@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Page-내정보 조회/변경</title>
+<title>My Page-내 모임 조회</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -42,9 +42,9 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center text-uppercase">
                     <li class="breadcrumb-item"><a href="/user/pageList?menu=userpagemain">내 정보 조회/변경</a></li>
-                    <li class="breadcrumb-item"><a href="#">내 작성글 조회</a></li>
-                    <li class="breadcrumb-item"><a href="#">내 좋아요 조회</a></li>
-                    <li class="breadcrumb-item"><a href="#">내 모임 조회</a></li>
+                    <li class="breadcrumb-item"><a href="/user/pageList?menu=user_create_views">내 작성글 조회</a></li>
+                    <li class="breadcrumb-item"><a href="/user/pageList?menu=user_like_views">내 좋아요 조회</a></li>
+                    <li class="breadcrumb-item"><a href="/user/pageList?menu=user_group_views" style="color:white;">내 모임 조회</a></li>
                     <li class="breadcrumb-item"><a href="/qna/list">Q&A</a></li>
                 </ol>
             </nav>
