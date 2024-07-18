@@ -9,11 +9,11 @@
 <title>QnA 목록</title>
 </head>
 <body>
-
-	<div>
+			<!--목록 시작  -->
+		<div>
 			<form action ="/qna/list" name = "search_qna_form" method ="get">
 			<!--제목을 기준으로 검색할거야.  -->
-				<input type="text" name = "qna_title" placeholder="검색하고자 하는 게시글의 제목을 입력하세요.">
+				<input type="text" name = "qna_title" placeholder="검색하려는 질문의 제목을 입력하세요.">
 				<input type="submit" value="검색">
 			</form>
 		</div>
@@ -23,40 +23,49 @@
 	<section>
 		<div>
 			<div>
-				<h2>QnA보낸 목록</h2>
+				<h2>QnA 목록</h2>
 			</div><br>
 		</div>
 			<table>
 				<colgroup>
-					<col width = "10%">
+					<col width = "15%">
 					<col width = "50%">
-					<col width = "20%">
-					<col width = "20%">
+					<col width = "25%">
+					<col width = "25%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
-						<th>작성자</th>
 						<th>작성날짜</th>
+						<th>처리상태</th>
 					</tr>
 				</thead>
 				<tbody>
 					 <%
 						List<QnA> list = (List<QnA>)request.getAttribute("resultList");
-						for(int i = 0; i < list.size(); i++){ %>
+						for(int i = 0; i < list.size(); i++){
+							// 처리상태 대기/완료
+							QnA qna = list.get(i);
+							String status = qna.getQna_status();
+							String statusText = "대기";
+							if("완료".equals(status)){
+								statusText = "완료";
+							}else {
+								qna.getQna_status();
+							}
+						%>
 							<tr>
 								<td><%=list.get(i).getQna_no() %></td>
 								<td><a href = "/qna/detail?qna_no=<%= list.get(i).getQna_no() %>"><%=list.get(i).getQna_title() %></a></td>
-								<td><%=list.get(i).getUser_no() %></td>
-								<td><%=list.get(i).getReg_date() %></td> 
+								<td><%=list.get(i).getReg_date() %></td>
+								<td><%=statusText %></td> 
 							</tr>
 					<% }%> 
 					
 				</tbody>
 				<!-- 페이징바 -->
 					  <tfoot>
-					  	
 						<% QnA paging = (QnA)request.getAttribute("paging"); %>
 						<%if (paging != null) {%>
 							<div>
@@ -80,43 +89,7 @@
 					</tfoot> 
 			</table>
 	</section>
-	<section>
-		<div>
-			<div>
-			<!-- 회신받은 QnA -->
-				<h2>QnA받은 목록</h2>
-			</div><br>
-		</div>
-			<table>
-				<colgroup>
-					<col width = "10%">
-					<col width = "50%">
-					<col width = "20%">
-					<col width = "20%">
-				</colgroup>
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>받은날짜</th>
-					</tr>
-				</thead>
-				<tbody>
-				<!-- 목록 -->
-					  
-					 <%
-						List<QnA> replyList = (List<QnA>)request.getAttribute("resultList");
-						for(int i = 0; i < replyList.size(); i++){ %>
-							<tr>
-								<td><%=replyList.get(i).getQna_no() %></td>
-								<td><a href = "/qna/detail?qna_no=<%= replyList.get(i).getQna_no() %>">=<%=replyList.get(i).getQna_title() %></a></td>
-								<td><%=replyList.get(i).getUser_no() %></td>
-								<td><%=replyList.get(i).getComplete_date() %></td> <!--완료날짜 기준  -->
-							</tr>
-					<% }%> 
-					
-				</tbody>
-				
+
+				 
 </body>
 </html>

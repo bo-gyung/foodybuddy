@@ -31,8 +31,14 @@ public class QnADetailServlet extends HttpServlet {
 		int qnaNo = Integer.parseInt(request.getParameter("qna_no"));
 		// 글 번호로 내용을 가져오기
 		Map<String,Object> resultM = new QnAService().qnaDetail(qnaNo);
-		System.out.println(resultM);
+		
+		// 여기에 ansContent도 함께 포함되어 있음
 		request.setAttribute("detail" , resultM);
+		
+		// 수정해라
+//		String answer = request.setAttribute("ansContent", resultM);
+		
+		
 		//연결
 		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnadetail.jsp");
 	
@@ -43,12 +49,10 @@ public class QnADetailServlet extends HttpServlet {
 		// qna_no를 기준으로 답변을 받아온다.
 		// 1:1 관계니까, 상세페이지 답변 출력
 		// 답변 데이터를 추가로 넣어주면된다.
-//		String title = request.getParameter("qna_title");
-//		QnA option = new QnA();
-//		
-//		List<QnA> list = new QnAService().selectQnAList(option);
-//		request.setAttribute("resultList", option);
-	
+		
+		// 관리자 답변
+		 request.setAttribute("ansContent" , resultM);
+		
 		
 	}
 

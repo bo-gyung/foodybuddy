@@ -15,6 +15,9 @@ import com.foodybuddy.userpage.vo.QnA;
 
 public class UserPageDao {
 	
+	
+	
+	
 	//글 제목 클릭시 상세내용
 	public Map<String,Object> qnaDetail(int qna_no, Connection conn){
 		Map<String,Object> resultM = null;
@@ -25,6 +28,7 @@ public class UserPageDao {
 			// join한 쿼리문 그대로 써주면돼 쫄지마
 			String sql = "SELECT qna_title "
 					+ ", qna_content "
+					+ ", qna_answer "
 					+ "FROM user_qna "
 					+ "WHERE qna_no = ?;";
 			
@@ -37,6 +41,8 @@ public class UserPageDao {
 				resultM = new HashMap<String,Object>();
 				resultM.put("title", rs.getString("qna_title"));
 				resultM.put("content", rs.getString("qna_content"));
+				// 관리자 응답추가야
+				resultM.put("ansContent", rs.getString("qna_answer")); 
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

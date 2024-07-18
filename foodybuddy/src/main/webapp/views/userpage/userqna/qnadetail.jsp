@@ -33,9 +33,18 @@
 			<hr>
  <label> 관리자답변 </label> 
  </div>
+			
 			<form action ="/qna/createEnd" name = qnacreate_form method = "post">
 				
-				<textarea onkeyup = "content();" id = "qna_content"maxlength = "500" cols = "40" rows = "15"></textarea>
+			<% String answerContent = "";
+        	//값이 null이 아니라면
+        	// if문 자바 / 답변 
+        	if (resultM != null && resultM.get("ansContent") != null) {
+            	answerContent = (String) resultM.get("ansContent");%>
+				 <textarea onkeyup = "answer();" id = "qna_answer"maxlength = "500" cols = "40" rows = "15">
+					<%=answerContent %>
+				</textarea>
+           <%} %>
 				  <!--작성자 기준 수정/ 삭제  -->
 				<a href = "/qna/update">수정</a><br>
 				<a href = "/qna/delete">삭제</a>
@@ -54,7 +63,15 @@
  			/* 초과된 글자 제거 */
  			document.getElementById('qna_content').value = content.substring(0, 500);
  		}
- 		
+ 	}
+ 	function answer(){
+ 		let answer = document.getElementById('qna_answer').value;
+ 		if(answer.length > 500){
+ 			alert("500글자 초과되었습니다");
+ 			/* 초과된 글자 제거 */
+ 			document.getElementById('qna_answer').value = answer.substring(0, 500);
+ 			
+ 		}
  	}
  </script>
   
