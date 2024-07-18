@@ -7,6 +7,10 @@
 <title>QnA 문의 성공</title>
 </head>
 <body>
-
+	<section>
+		<div>
+			<a href = "/qna/list"></a>
+		</div>
+	</section>
 </body>
 </html>

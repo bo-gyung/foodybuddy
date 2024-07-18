@@ -12,6 +12,8 @@ import com.foodybuddy.userpage.vo.QnA;
 
 
 public class QnAService {
+	
+	
 	//글제목 눌러서 링크이동
 	public Map<String,Object> qnaDetail(int qna_no){
 		Connection conn = getConnection();
@@ -29,14 +31,15 @@ public class QnAService {
 		return result;
 	}
 	
+	
 	// 게시글 수정 서비스
-	public int updateQnA(String title, String content, int user) {
+	public int updateQnA(String title, String content, int qnaNo) {
 		Connection conn = getConnection();
-		int result = new UserPageDao().updateQnA(title,content,user, conn);
+		int result = new UserPageDao().updateQnA(title,content,qnaNo, conn);
 		close(conn);
 		return result;
 	}
-	
+	// QnA갯수 
 	public int selectQnACount(QnA option) {
 		Connection conn = getConnection();
 		int result = new UserPageDao().selectQnACount(option,conn);

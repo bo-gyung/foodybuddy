@@ -45,9 +45,7 @@
 					<%=answerContent %>
 				</textarea>
            <%} %>
-				  <!--작성자 기준 수정/ 삭제  -->
-				<a href = "/qna/update">수정</a><br>
-				<a href = "/qna/delete">삭제</a>
+				  
 				
 			</form>
 			</div>

@@ -70,8 +70,9 @@ public class UserPageDao {
 		return result;
 	}
 	
+	
 	//qna게시글 수정
-	public int updateQnA(String title, String content, int user, Connection conn) {
+	public int updateQnA(String title, String content, int qnaNo, Connection conn) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
@@ -80,7 +81,7 @@ public class UserPageDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
-			pstmt.setInt(3, user);
+			pstmt.setInt(3, qnaNo);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
