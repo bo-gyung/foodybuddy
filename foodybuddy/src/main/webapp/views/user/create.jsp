@@ -52,9 +52,9 @@
         </div>
         <!-- Hero End -->
             <section>
-                <div id="section_wrap">
+                <div id="section_wrap" style="margin-left:35%">
                    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="row g-0">
+            <div class="row g-0" >
                 <div class="col-md-6 bg-dark d-flex align-items-center">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>

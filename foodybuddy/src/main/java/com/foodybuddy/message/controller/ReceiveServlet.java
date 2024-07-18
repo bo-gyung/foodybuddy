@@ -42,7 +42,7 @@ public class ReceiveServlet extends HttpServlet {
 		request.setAttribute("messages", messages);
 		RequestDispatcher view = request.getRequestDispatcher("views/message/receive.jsp");
 		view.forward(request, response);
-
+		
 	}
 
 
