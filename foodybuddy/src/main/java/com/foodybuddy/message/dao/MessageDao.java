@@ -59,17 +59,28 @@ public class MessageDao {
 	
 	public List<Map<String,Object>> receivedMessage(int receiverId, Connection conn){
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		List<Map<String,Object>> messages = new ArrayList();
 		try {
 			String sql = "SELECT m.message_id, m.sender_id, u.user_name AS senderName, m.receiver_id, m.message_title, m.`message_text`, m.sent_at, m.is_deleted\r\n"
 					+ "FROM messages m JOIN `user` u ON m.sender_id = u.user_no\r\n"
 					+ "WHERE m.receiver_id = ?\r\n"
 					+ "AND m.is_deleted = FALSE";
+			String sql2 = "SELECT COUNT(*) AS cnt\r\n"
+					+ "FROM messages m\r\n"
+					+ "JOIN `user` u ON m.sender_id = u.user_no\r\n"
+					+ "WHERE m.receiver_id = ?\r\n"
+					+ "AND m.is_deleted = FALSE;";
+			
 			pstmt = conn.prepareStatement(sql);
+			pstmt2 = conn.prepareStatement(sql2);
 			pstmt.setInt(1, receiverId);
+			pstmt2.setInt(1, receiverId);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			rs2 = pstmt2.executeQuery();
+			while(rs.next() && rs2.next()) {
 				Map<String,Object> messageMap = new HashMap<>();
 				messageMap.put("message_id", rs.getInt("message_id"));
 				messageMap.put("sender_id", rs.getInt("sender_id"));
@@ -79,6 +90,7 @@ public class MessageDao {
 				messageMap.put("message_text", rs.getString("message_text"));
 				messageMap.put("sent_at", rs.getTimestamp("sent_at").toLocalDateTime());
 				messageMap.put("is_deleted", rs.getBoolean("is_deleted"));
+				messageMap.put("cnt", rs2.getInt("cnt"));
 				messages.add(messageMap);
 			}
 		}catch(Exception e) {
