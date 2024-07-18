@@ -62,10 +62,10 @@ public class MessageDao {
 		ResultSet rs = null;
 		List<Map<String,Object>> messages = new ArrayList();
 		try {
-			String sql = "SELECT m.message_id, m.sender_id, u.user_name AS senderName, m.receiver_id,"
-					+ "m.message_title, m.message_text, m.sent_at, m.is_deleted"
-					+ "FROM messages m JOIN user u ON m.sender_id = u.user_no"
-					+ "WHERE m.receiver_id = ? AND m.is_deleted = FALSE";
+			String sql = "SELECT m.message_id, m.sender_id, u.user_name AS senderName, m.receiver_id, m.message_title, m.`message_text`, m.sent_at, m.is_deleted\r\n"
+					+ "FROM messages m JOIN `user` u ON m.sender_id = u.user_no\r\n"
+					+ "WHERE m.receiver_id = ?\r\n"
+					+ "AND m.is_deleted = FALSE";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, receiverId);
 			rs = pstmt.executeQuery();

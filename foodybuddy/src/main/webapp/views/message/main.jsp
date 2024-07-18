@@ -45,8 +45,8 @@
            
             <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
             <br><br>
-            <li><a href="/received_messages.jsp">받은쪽지</a></li>
-            <li><a href="#save">보낸쪽지</a></li>
+            <li><a href="/msgReceive">받은쪽지</a></li>
+            <li><a href="/msgSent">보낸쪽지</a></li>
             <li><a href="#draft">임시쪽지</a></li>
             <li><a href="#draft">휴지통</a></li>
         </ul>
@@ -104,6 +104,13 @@
 
 }
     </script>
+         <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../resources/template/lib/wow/wow.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="../resources/template/js/main.js"></script>
+</body>
+</html>
         
         
         
@@ -123,11 +130,3 @@
    
     
     
-
-         <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../resources/template/lib/wow/wow.min.js"></script>
-    <!-- Template Javascript -->
-    <script src="../resources/template/js/main.js"></script>
-</body>
-</html>
