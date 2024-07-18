@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>회원가입</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
@@ -23,18 +23,34 @@
 
     <!-- Libraries Stylesheet -->
     <link href="../../resources/template/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"  />
 
-   
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../resources/template/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../../resources/template/css/style.css" rel="stylesheet">
+    <link href="../resources/template/css/style.css" rel="stylesheet">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     </head>
 
     <body>
        <%@ include file="../include/navbar.jsp" %>
+               <!-- Hero Start -->
+            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Sign Up</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
             <section>
                 <div id="section_wrap">
                     <div class="word">
@@ -42,11 +58,11 @@
                         
                      </div><br>
                         <div class="create_account_form">
-                            <form name="create_account_form" action="/user/createEnd" method="post">
+                            <form name="create_account_form" action="/user/createEnd" method="post" style="justify-content: center;">
                                 <table>
                                     <tr>
                                         <th><label>아이디</label></th>
-                                        <td><input type="text" name="user_id" placeholder="아이디" onblur="checkId(this.value)"></td>
+                                        <td><input type="text" name="user_id" placeholder="아이디" onkeyup="checkId(this.value)"></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -76,7 +92,7 @@
                                     </tr>
                                     <tr>
                                         <th><label>닉네임</label></th>
-                                        <td><input type="text" name="user_name" placeholder="닉네임" onblur="checkName(this.value)"></td>
+                                        <td><input type="text" name="user_name" placeholder="닉네임" onkeyup="checkName(this.value)"></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -86,7 +102,7 @@
                                     </tr>
                                     <tr>
                                         <th><label>전화번호</label></th>
-                                        <td><input type="text" name="user_phone" placeholder="전화번호"  onblur="checkPhone(this.value)"></td>
+                                        <td><input type="text" name="user_phone" placeholder="전화번호"  onkeyup="checkPhone(this.value)"></td>
                                     </tr>
                                      <tr>
                                         <td></td>
@@ -114,7 +130,7 @@
                                     </tr>
                                     <tr>
                                         <th><label>이메일</label></th>
-                                        <td><input type="text" name="user_email" placeholder="이메일" onblur="checkEmail(this.value)"></td>
+                                        <td><input type="text" name="user_email" placeholder="이메일" onkeyup="checkEmail(this.value)"></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -142,9 +158,7 @@
 
 
                         </div>
-                        <div class="login">
-                            <a href="/user/login">로그인</a>
-                        </div>
+                      
                     </div>
                 </section>
 
@@ -410,7 +424,20 @@
                 			
                 		}
                 </script>
+  <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../resources/template/lib/wow/wow.min.js"></script>
+    <script src="../resources/template/lib/easing/easing.min.js"></script>
+    <script src="../resources/template/lib/waypoints/waypoints.min.js"></script>
+    <script src="../resources/template/lib/counterup/counterup.min.js"></script>
+    <script src="../resources/template/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../resources/template/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../resources/template/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../resources/template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <!-- Template Javascript -->
+    <script src="../resources/template/js/main.js"></script>
 
     </body>
 
