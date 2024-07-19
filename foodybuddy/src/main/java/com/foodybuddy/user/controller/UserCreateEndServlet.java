@@ -1,6 +1,7 @@
 package com.foodybuddy.user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,12 +48,18 @@ public class UserCreateEndServlet extends HttpServlet {
 		u.setUser_question(question);
 		u.setUser_answer(answer);
 		
+		PrintWriter out = response.getWriter();
 		int result = new UserService().createUser(u); 
 		//RequestDispatcher view = request.getRequestDispatcher(email)
 		if(result > 0) {
-			System.out.println("성공");
+			out.println("<html><body>");
+ 
+			response.sendRedirect("/");
 		}else {
-			System.out.println("실패");
+			out.println("<html><body>");
+            out.println("alert(회원가입에 실패하였습니다.<br>메인으로 돌아갑니다.)");
+            out.println("</body></html>");
+			response.sendRedirect("/");
 		}
 	}
 
