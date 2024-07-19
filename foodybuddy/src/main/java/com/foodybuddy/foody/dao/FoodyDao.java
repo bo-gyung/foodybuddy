@@ -108,18 +108,35 @@ public class FoodyDao {
 	        if (option.getSearchOption() != null && !option.getSearchOption().isEmpty()) {
 	            if (1==Integer.parseInt(option.getSearchOption()) && !option.getSearchBar().isEmpty()) {
 	                sql += " WHERE u.user_name LIKE CONCAT('%','"+option.getSearchBar()+"','%')";
+	                if("foody_good".equals(option.getSort())) {
+	    	        	sql += " WHERE u.user_name LIKE CONCAT('%','"+option.getSearchBar()+"','%') ORDER BY c.foody_good DESC ";
+	    	        }else {
+	    	        	sql += " ORDER BY c.reg_date DESC " ;
+	    	        }
 	            } else if (2==Integer.parseInt(option.getSearchOption()) && !option.getSearchBar().isEmpty() ) {
 	            	sql += " WHERE c.foody_name LIKE CONCAT('%','"+option.getSearchBar()+"','%')";
+	            	if("foody_good".equals(option.getSort())) {
+	    	        	sql += " WHERE u.user_name LIKE CONCAT('%','"+option.getSearchBar()+"','%') ORDER BY c.foody_good DESC ";
+	    	        }else {
+	    	        	sql += " ORDER BY c.reg_date DESC " ;
+	    	        }
 	            } else if (3==Integer.parseInt(option.getSearchOption()) && !option.getSearchBar().isEmpty() ) {
 	            	sql += " WHERE c.foody_address LIKE CONCAT('%','"+option.getSearchBar()+"','%')";
+	            	if("foody_good".equals(option.getSort())) {
+	    	        	sql += " WHERE u.user_name LIKE CONCAT('%','"+option.getSearchBar()+"','%') ORDER BY c.foody_good DESC ";
+	    	        }else {
+	    	        	sql += " ORDER BY c.reg_date DESC " ;
+	    	        }
 	            } 
+	        }else {
+	        	
+	        	if("foody_good".equals(option.getSort())) {
+	        		sql += " ORDER BY c.foody_good DESC ";
+	        	}else {
+	        		sql += " ORDER BY c.reg_date DESC " ;
+	        	}
 	        }
 
-	        if("foody_good".equals(option.getSort())) {
-	        	sql += " ORDER BY c.foody_good DESC ";
-	        }else {
-	        	sql += " ORDER BY c.reg_date DESC " ;
-	        }
 	        
 	        sql += " LIMIT " + option.getLimitPageNo() + " , " + option.getNumPerPage();
 
