@@ -35,11 +35,21 @@
 		<option value="3">위치</option>
 	</select>
 	
-	<input type="text" name="searchbar" placeholder="검색어 입력" value="<%= request.getParameter("searchbar") %>">
+	<input type="text" name="searchbar" placeholder="검색어 입력">
 	<button type="submit">검색</button>
 	</form>
 	</div>
-	<a href="/foody/create">작성</a>
+	
+	<%
+        User user1 = (User) session.getAttribute("user");
+        if (user1 != null) {
+    %>
+        <a href="/foody/create">작성</a>
+    <% } else { %>
+        <a href="/user/login">로그인 후 작성 가능합니다</a>
+    <% } %>
+	
+	
 	<br>
 	<br>
 	<div class="high_list">
@@ -86,7 +96,7 @@
 						<%@ page import="java.time.LocalDateTime, java.time.format.DateTimeFormatter" %>
 						<%@ page import="com.foodybuddy.foody.vo.Foody, java.util.*" %>
 						<%@ page import = "com.foodybuddy.user.vo.User" %>
-						<% List<Foody> list = (List<Foody>) request.getAttribute("resultList");
+						<% List<Foody> list = (List<Foody>) request.getAttribute("resultList"); 
 							
 							User user = (User) session.getAttribute("loginUser");
 							

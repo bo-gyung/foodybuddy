@@ -85,6 +85,8 @@ public class FoodyCreateEndServlet extends HttpServlet {
 				User u = (User)session.getAttribute("user");
 				int user_No = u.getUser_no();
 				f.setUser_no(user_No);
+			} else {
+				System.out.println("사용자 세션 문제발생");
 			}
 			
 			f.setOri_picture(oriName);

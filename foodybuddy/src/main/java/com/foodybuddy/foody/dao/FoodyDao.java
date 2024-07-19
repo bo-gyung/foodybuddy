@@ -23,7 +23,7 @@ public class FoodyDao {
       int result = 0;
       try {
           String sql = "INSERT INTO foody_create (foody_title, foody_name, foody_taste, foody_clean, "
-                  + "foody_parking, foody_delivery, foody_main, foody_address ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                  + "foody_parking, foody_delivery, foody_main, foody_address ,user_no) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?)";
           pstmt = conn.prepareStatement(sql);
           pstmt.setString(1, f.getFoody_title());
           pstmt.setString(2, f.getFoody_name());
@@ -33,6 +33,7 @@ public class FoodyDao {
           pstmt.setString(6, f.getFoody_delivery());
           pstmt.setString(7, f.getFoody_main());
           pstmt.setString(8, f.getFoody_address());
+          pstmt.setInt(9 , f.getUser_no());
           
           result = pstmt.executeUpdate();
           
