@@ -1,0 +1,121 @@
+
+		.message-table {
+    width: 100%;
+    border-collapse: collapse; /* 테이블 경계선을 합침 */
+}
+
+.message-table th, .message-table td {
+   
+    padding: 8px; /* 셀 안 여백 설정 */
+    text-align: center; /* 셀 안 텍스트 가운데 정렬 */
+}
+
+.message-table th {
+    background-color: #f2f2f2; /* 헤더 배경색 설정 */
+}
+
+.checkbox-container {
+    display: block; /* 라벨을 블록 요소로 설정 */
+    position: relative;
+    padding-left: 25px; /* 체크박스 왼쪽 여백 설정 */
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-container .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.checkbox-container:hover input ~ .checkbox,
+.checkbox-container input:checked ~ .checkbox {
+    background-color: #2196F3;
+}
+
+.checkbox-container .checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkbox:after {
+    display: block;
+    width: 9px;
+    height: 5px;
+    top: 50%;
+    left: 50%;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.message-table {
+    width: 100%;
+    border-collapse: collapse; /* 테이블 경계선을 합침 */
+}
+
+.message-table th, .message-table td {
+    
+    padding: 8px; /* 셀 안 여백 설정 */
+    text-align: center; /* 셀 안 텍스트 가운데 정렬 */
+}
+
+.message-table th {
+    background-color: #f2f2f2; /* 헤더 배경색 설정 */
+}
+
+th:nth-child(1) {
+    width: 5%; /* 첫 번째 th의 너비를 30%로 지정 */
+}
+
+th:nth-child(2) {
+    width: 0%; /* 두 번째 th의 너비를 40%로 지정 */
+}
+
+th:nth-child(3) {
+    width: 9%; /* 세 번째 th의 너비를 30%로 지정 */
+}
+
+th:nth-child(4) {
+    width: 15%; /* 세 번째 th의 너비를 30%로 지정 */
+}
+
+th:nth-child(5) {
+    width: 40%; /* 세 번째 th의 너비를 30%로 지정 */
+}
+
+td:nth-child(1) {
+    width: 5%; /* 첫 번째 th의 너비를 30%로 지정 */
+}
+
+td:nth-child(2) {
+    width: 0%; /* 두 번째 th의 너비를 40%로 지정 */
+}
+
+td:nth-child(3) {
+    width: 9%; /* 세 번째 th의 너비를 30%로 지정 */
+}
+
+td:nth-child(4) {
+    width: 15%; /* 세 번째 th의 너비를 30%로 지정 */
+}
+
+td:nth-child(5) {
+    width: 40%; /* 세 번째 th의 너비를 30%로 지정 */
+}
+	
+

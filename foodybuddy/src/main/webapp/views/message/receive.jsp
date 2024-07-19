@@ -31,48 +31,31 @@
     <!-- Template Stylesheet -->
     <link href="../resources/template/css/style.css" rel="stylesheet">
     <link href="../resources/css/message/main.css" rel="stylesheet">
+    <link href="../resources/css/message/msgRoom.css" rel="stylesheet">
     </head>
 <body>
-    <style>
-        table {
-            width: 100%; /* 테이블 전체 너비를 100%로 설정 */
-            border-collapse: collapse; /* 셀 테두리를 병합하여 단일 테두리로 만듦 */
-        }
-
-        th {
-            padding: 8px; /* 셀 내용과 테두리 사이 여백 설정 */
-            text-align: left; /* 텍스트 왼쪽 정렬 */
-           
-        }
-
-        th:nth-child(1) {
-            width: 5%; /* 첫 번째 th의 너비를 30%로 지정 */
-        }
-
-        th:nth-child(2) {
-            width: 10%; /* 두 번째 th의 너비를 40%로 지정 */
-        }
-
-        th:nth-child(3) {
-            width: 30%; /* 세 번째 th의 너비를 30%로 지정 */
-        }
-    </style>
-    <%@ include file="../include/navbar.jsp" %>
+	    <%@ include file="../include/navbar.jsp" %>
                <!-- Hero Start -->
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+            <div class="container-xxl py-5 bg-dark hero-header" style="margin-bottom: 0%;">
+        	</div>
                
-        </div>
         <!-- Hero End -->
-        <div class="container">
-        <div class="sendMsg">
-        <ul>
+        <div class="container" style="padding-left: 0%; height:90%;">
+        <div class="sendMsg" style=" height:100% width:200px;">
+        <ul class="sideBar">
            
-            <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
+            <li><button onclick="openNewWindow();" >쪽지쓰기</button></li>
             <br><br>
-            <li><div style="background-color: aliceblue;"><a href="/msgReceive" style="color: black;">받은쪽지</a></div></li>
-            <li><a href="/msgSent">보낸쪽지</a></li>
-            <li><a href="#draft">임시쪽지</a></li>
-            <li><a href="#draft">휴지통</a></li>
+            <li>
+            	<div style="background-color: aliceblue ;">
+            		<a href="/msgReceive" style="color: black; font-weight : bold;">
+            			받은쪽지
+            		</a>
+            	</div>
+            </li>
+            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
+            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
+            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
         </ul>
     </div>
     <main>
@@ -96,58 +79,34 @@
         <button>보관</button>
         <button>답장</button>
         <hr>
-        <table>
+        <table class="message-table">
         	<tr>
-        		<td></td>
+        		<th><th>
         		<th>글번호</th>
-        		<th>보낸사람/받는사람</th>
+        		<th>보낸사람</th>
         		<th>제목</th>
         		<th>날짜</th>
         	</tr>
-        	<%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
-	  		<%@ page import="com.foodybuddy.message.vo.Message" %>
- 	  		 <% List<Map<String, Object>> messages = (List<Map<String, Object>>) request.getAttribute("messages"); %>
-    <% for (Map<String, Object> message : messages) { %>
-        <% int length = (int) message.get("cnt"); %>
-        <% for (int i = 1; i <= length; i++) { %>
-            <tr>
-                <td>
-                    <label class="checkbox-container">
-                        <input type="checkbox">
-                        <span class="checkbox"></span> 
-                    </label>
-                </td>
-                <td><%= i %></td>
-                <td><%= message.get("senderName") %></td>
-                <td><%= message.get("message_title") %></td>
-                <td><%= message.get("message_text") %></td>
-                <td><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
-            </tr>
-        <% } %>
-    <% } %>
-        	
+        
+      <%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
+	  <%@ page import="com.foodybuddy.message.vo.Message" %>
+ 	  <% List<Map<String, Object>> messages = (List<Map<String, Object>>) request.getAttribute("messages"); %>
+		 <% int index = 1; %>
+            <% for (Map<String, Object> message : messages) { %>
+                <tr>
+                	<td><%= index %></td>
+                    <td><%= message.get("senderName") %></td>
+                    <td><%= message.get("message_title") %></td>
+                    <td><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
+                </tr>
+                <% index++; %>
+            <% } %>
+
         </table>
         <hr>
-     
     </main>
     </div>
-    <script>
-    function openNewWindow() {
-        // 새 창을 열기
-        var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
-        let temp = `<h1>쪽지 보내기</h1>
-            <form action="/message/send" method="post">
-           
-            받는 사람: <input type="text" name="receiver"><br>
-            제목: <input type="text" name="subject"><br>
-            내용: <textarea name="message" rows="5" cols="50"></textarea><br>
-            <input type="submit" value="쪽지 보내기">
-        </form>`
-
-    newWindow.document.write(temp);
-
-}
-    </script>
+    
          <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../resources/template/lib/wow/wow.min.js"></script>

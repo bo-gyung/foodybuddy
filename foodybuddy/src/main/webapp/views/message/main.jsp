@@ -33,46 +33,23 @@
     <link href="../resources/css/message/main.css" rel="stylesheet">
     </head>
 <body>
-    <style>
-        table {
-            width: 100%; /* 테이블 전체 너비를 100%로 설정 */
-            border-collapse: collapse; /* 셀 테두리를 병합하여 단일 테두리로 만듦 */
-        }
-
-        th {
-            padding: 8px; /* 셀 내용과 테두리 사이 여백 설정 */
-            text-align: left; /* 텍스트 왼쪽 정렬 */
-           
-        }
-
-        th:nth-child(1) {
-            width: 5%; /* 첫 번째 th의 너비를 30%로 지정 */
-        }
-
-        th:nth-child(2) {
-            width: 10%; /* 두 번째 th의 너비를 40%로 지정 */
-        }
-
-        th:nth-child(3) {
-            width: 30%; /* 세 번째 th의 너비를 30%로 지정 */
-        }
-    </style>
+ 
     <%@ include file="../include/navbar.jsp" %>
                <!-- Hero Start -->
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+            <div class="container-xxl py-5 bg-dark hero-header" style="margin-bottom: 0%;">
+        	</div>
                
-        </div>
         <!-- Hero End -->
-        <div class="container">
-        <div class="sendMsg">
-        <ul>
+        <div class="container" style="padding-left: 0%; height:90%;">
+        <div class="sendMsg" style=" height:100%; width:200px;">
+        <ul class="sideBar">
            
-            <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
+            <li><button onclick="openNewWindow();" >쪽지쓰기</button></li>
             <br><br>
-            <li><a href="/msgReceive">받은쪽지</a></li>
-            <li><a href="/msgSent">보낸쪽지</a></li>
-            <li><a href="#draft">임시쪽지</a></li>
-            <li><a href="#draft">휴지통</a></li>
+            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgReceive">받은쪽지</a></li>
+            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
+            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
+            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
         </ul>
     </div>
     <main>
@@ -131,6 +108,18 @@
     newWindow.document.write(temp);
 
 }
+    
+    function handleMouseOver(li) {
+        li.style.backgroundColor = 'aliceblue';
+        li.querySelector('a').style.color = 'black';
+        li.querySelector('a').style.fontWeight = 'bold';
+    }
+
+    function handleMouseOut(li) {
+        li.style.backgroundColor = '#444';
+        li.querySelector('a').style.color = 'white';
+        li.querySelector('a').style.fontWeight = 'normal';
+    }
     </script>
          <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

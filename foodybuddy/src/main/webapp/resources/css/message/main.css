@@ -6,26 +6,24 @@ body {
     display: flex; /* Flexbox layout */
     min-height: 100vh; /* Minimum height to cover the viewport */
 }
-.container {
-    display: flex;
-    align-items: flex-start; /* Align items at the top */
-}
 
 
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
 
 
 .sendMsg {
     background-color: #444;
     color: white;
-    
-    flex: 0 0 auto; /* Do not grow or shrink, keep original width */
-    margin-right: 20px; /* Add some spacing between the two sections */
+    flex: 0 0 200px; /* 사이드바 너비 */
+  	margin-right: 20px; /* Add some spacing between the two sections */
     text-align: center;
-    width: 200px; /* Width of the sidebar */
-   
     top: 0;
     left: 0;
     bottom: 0;
+    
 }
 
 .sendMsg ul {
@@ -39,13 +37,14 @@ body {
 }
 
 .sendMsg ul li a {
+	diaplay:block;
     color: white;
     text-decoration: none;
+    padding:10px;
 }
 
 main {
    	margin-top: 0%;
-    
     width: calc(100% - 200px); /* Adjust main content width */
 }
 
@@ -58,6 +57,7 @@ footer {
     width: 100%;
     position: fixed;
     bottom: 0;
+    flex: 1;
 }
 
 @media (max-width: 768px) {
@@ -113,4 +113,27 @@ footer {
 .checkbox-container input:checked + .checkbox::before {
     opacity: 1;
 }
-}
+
+table {
+            width: 100%; /* 테이블 전체 너비를 100%로 설정 */
+            border-collapse: collapse; /* 셀 테두리를 병합하여 단일 테두리로 만듦 */
+        }
+
+        th {
+            padding: 8px; /* 셀 내용과 테두리 사이 여백 설정 */
+            text-align: left; /* 텍스트 왼쪽 정렬 */
+           
+        }
+
+        th:nth-child(1) {
+            width: 5%; /* 첫 번째 th의 너비를 30%로 지정 */
+        }
+
+        th:nth-child(2) {
+            width: 10%; /* 두 번째 th의 너비를 40%로 지정 */
+        }
+
+        th:nth-child(3) {
+            width: 30%; /* 세 번째 th의 너비를 30%로 지정 */
+        }
+	}
