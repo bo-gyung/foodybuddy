@@ -1,4 +1,4 @@
-package com.foodybuddy.buddy.dao;
+       package com.foodybuddy.buddy.dao;
 
 import static com.foodybuddy.common.sql.JDBCTemplate.close;
 

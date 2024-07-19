@@ -52,8 +52,7 @@
                     </nav>
                 </div>
             </div>
-        </div>
-        <!-- Hero End -->
+        	<!-- Hero End -->
 
 
         <!-- Contact Start --> 

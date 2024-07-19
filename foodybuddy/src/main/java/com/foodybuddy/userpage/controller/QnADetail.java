@@ -1,6 +1,7 @@
 package com.foodybuddy.userpage.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.foodybuddy.userpage.service.QnAService;
-import com.foodybuddy.userpage.vo.QnA;
 
 
 @WebServlet("/qna/detail")
@@ -25,14 +25,14 @@ public class QnADetail extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 글번호로 정보가져온것 
+		// 글제목클릭시 글 번호로 받아오기
 		int qnaNo = Integer.parseInt(request.getParameter("qna_no"));
+		// 글 번호로 내용을 가져오기
+		Map<String,Object> resultM = new QnAService().qnaDetail(qnaNo);
+		request.setAttribute("detail",resultM);
 		
-//		QnAService qnaService = new QnAService();
-//		QnA qna = qnaService.getQnAByNo(qnaNo);
-		
-//		 request.setAttribute("qna", qna);
-	        RequestDispatcher view = request.getRequestDispatcher("/views/qna/qnaDetail.jsp");
+				
+	        RequestDispatcher view = request.getRequestDispatcher("/views/qna/qnadetail.jsp");
 	        view.forward(request, response);
 	}
 

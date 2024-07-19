@@ -35,7 +35,7 @@
 		<option value="3">위치</option>
 	</select>
 	
-	<input type="text" name="searchbar" placeholder="검색어 입력">
+	<input type="text" name="searchbar" placeholder="검색어 입력" value="<%= request.getParameter("searchbar") %>">
 	<button type="submit">검색</button>
 	</form>
 	</div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등급확인</title>
+<title>등급 확인</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -52,7 +52,7 @@
                 <div class="col-md-6 bg-dark d-flex align-items-center">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
-                        <h3 class="text-white mb-4">이 게시판은 정회원 이상 접근이 가능합니다.</h3>
+                        <h3 class="text-white mb-4">이 페이지는 정회원 이상만 접속 가능합니다.</h3>
                         <h3 class="text-white mb-4">회원 등급을 확인해주세요.</h3>
                         
 						<a href="/user/login"><button class="btn btn-primary w-100 py-3" type="button">돌아가기</button></a>

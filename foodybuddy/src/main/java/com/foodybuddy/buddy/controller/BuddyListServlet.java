@@ -39,7 +39,7 @@ public class BuddyListServlet extends HttpServlet {
 				User u = (User)session.getAttribute("user");
 				if(u.getGrade_no() < 2) {
 					// 준회원 열람불가
-					RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_unmath.jsp");
+					RequestDispatcher view = request.getRequestDispatcher("/views/include/limit_regular.jsp");
 					view.forward(request, response);
 				}else {
 					// 연결
@@ -49,7 +49,7 @@ public class BuddyListServlet extends HttpServlet {
 			}
 		} catch(NullPointerException e) {
 			// 비회원 열람불가
-			RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_unmath.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/views/include/limit_user.jsp");
 			view.forward(request, response);
 		}
 	}
