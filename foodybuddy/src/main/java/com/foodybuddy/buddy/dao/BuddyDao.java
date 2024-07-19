@@ -22,15 +22,18 @@ public class BuddyDao {
 		try {
 			
 		String sql = "SELECT u.user_name, b.buddy_no, b.foody_no, b.user_no, b.report_no, "
-				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, COUNT(c.comment_no), "
+				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, IFNULL(COUNT(c.comment_no),0), "
 				+ "b.party_name, b.meet_date, b.party_number, b.formation_date FROM `buddy_board` b "
 				+ "JOIN `user` u ON b.user_no = u.user_no "
-				+ "JOIN `buddy_comment` c ON c.buddy_no = b.buddy_no "
+				+ "LEFT OUTER JOIN `buddy_comment` c ON c.buddy_no = b.buddy_no "
 				+ "WHERE b.buddy_approve = 'Y'";
 		// 검색 조건에 따른 sql문 추가
 		 if(keyword.getBuddy_title() != null) {
 			 sql += "AND `buddy_title` LIKE CONCAT('%','"+keyword.getBuddy_title()+"','%')";
 		 }
+		 
+		 // 조회수를 카운트하기 위한 구문 추가
+		 sql += " GROUP BY b.buddy_no";
 		 
 		 // 페이징 관련 구문 추가
 			sql += " LIMIT "+keyword.getLimitPageNo()+", "+keyword.getNumPerPage();
@@ -48,7 +51,7 @@ public class BuddyDao {
 					 rs.getTimestamp("reg_date").toLocalDateTime(),
 					 rs.getString("buddy_title"),
 					 rs.getString("buddy_main"),
-					 rs.getInt("COUNT(c.comment_no)"),
+					 rs.getInt("IFNULL(COUNT(c.comment_no),0)"),
 					 rs.getString("party_name"),
 					 rs.getTimestamp("meet_date").toLocalDateTime(),
 					 rs.getInt("party_number"),
@@ -56,6 +59,7 @@ public class BuddyDao {
 					 rs.getString("user_name")
 					 );
 			 list.add(rsBuddy);
+			 System.out.println(list);
 		 	 }
 		} catch(Exception e) {
 			e.printStackTrace();
