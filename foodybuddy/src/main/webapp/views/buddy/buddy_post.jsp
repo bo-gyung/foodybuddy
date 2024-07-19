@@ -122,8 +122,7 @@
 
 									<div class="col-6">
 					    				<div class="form-floating pt-5">
-					        				<input type="text" class="form-control" id="subject" 
-					        				disabled="disabled" style="background: white; height: 370px; ">
+					        				<div id="map" style="width:470px;height:380px;"></div>
 					        				<label for="subject">지도</label>
 					    				</div>
 					   				</div>
@@ -164,6 +163,7 @@
                                             <label for="message">모집내용</label>
                                         </div>
                                     </div>
+                                    
 		                        </form>
 		                    </div>
 		                </div>
@@ -244,7 +244,23 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-
+	<!-- 지도 API 스크립트 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae96fe5b21048be0c855431d0416eea1"></script>
+	<script>
+		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표. 지도를 생성하는데 반드시 필요
+			level: 3 //지도의 레벨(확대, 축소 정도)
+		};
+	
+		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		
+		// center 에 할당할 값은 LatLng 클래스를 사용하여 생성합니다. 
+		// 흔히 위경도 좌표라고 부르는 WGS84 좌표계의 좌표값을 넣어서 만드는데요, 
+		// 생성인자는 위도(latitude), 경도(longitude) 순으로 넣어주세요.
+		
+		
+	</script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
