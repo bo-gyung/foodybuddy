@@ -4,6 +4,7 @@ import static com.foodybuddy.common.sql.JDBCTemplate.close;
 import static com.foodybuddy.common.sql.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -19,23 +20,23 @@ public class QnAService {
 		Connection conn = getConnection();
 		Map<String,Object> resultM = new UserPageDao().qnaDetail(qna_no, conn);
 		close(conn);
-		
 		return resultM;
 	}
 	
 	// 게시글 삭제 서비스
-	public int deleteQnA(String qna_title) {
+	public int deleteQnA(int qna_no) throws SQLException {
 		Connection conn = getConnection();
-		int result = new UserPageDao().deleteQnA(qna_title,conn);
-		close(conn);
-		return result;
-	}
+		UserPageDao uDao = new UserPageDao();
+        int result = uDao.deleteQnA(qna_no, conn);
+        return result;
+ }
+	
 	
 	
 	// 게시글 수정 서비스
-	public int updateQnA(String title, String content, int qnaNo) {
+	public int updateQnA(String title, String content, int qna_no) {
 		Connection conn = getConnection();
-		int result = new UserPageDao().updateQnA(title,content,qnaNo, conn);
+		int result = new UserPageDao().updateQnA(title,content,qna_no, conn);
 		close(conn);
 		return result;
 	}

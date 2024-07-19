@@ -9,7 +9,7 @@
 <body>
 	<section>
 		<div>
-			<a href = "/qna/list"></a>
+			<a href = "/qna/list"> 목록으로</a>
 		</div>
 	</section>
 </body>

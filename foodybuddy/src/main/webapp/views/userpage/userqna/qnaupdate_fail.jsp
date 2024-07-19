@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QnA 삭제</title>
+<title>수정 중 오류발생</title>
 </head>
 <body>
-<script>
-	
-</script>
+
 </body>
 </html>

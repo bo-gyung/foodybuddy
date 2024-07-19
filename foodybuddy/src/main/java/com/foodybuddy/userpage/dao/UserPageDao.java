@@ -15,8 +15,7 @@ import com.foodybuddy.userpage.vo.QnA;
 
 public class UserPageDao {
 	
-	
-	
+		
 	
 	//글 제목 클릭시 상세내용
 	public Map<String,Object> qnaDetail(int qna_no, Connection conn){
@@ -25,10 +24,11 @@ public class UserPageDao {
 		ResultSet rs = null;
 		
 		try {
-			// join한 쿼리문 그대로 써주면돼 쫄지마
+			
 			String sql = "SELECT qna_title "
 					+ ", qna_content "
 					+ ", qna_answer "
+					+ ", qna_no "
 					+ "FROM user_qna "
 					+ "WHERE qna_no = ?;";
 			
@@ -39,6 +39,7 @@ public class UserPageDao {
 			// 안에 뭐가있을까~
 			if(rs.next()) {
 				resultM = new HashMap<String,Object>();
+				resultM.put("qnaNo", rs.getInt("qna_no"));
 				resultM.put("title", rs.getString("qna_title"));
 				resultM.put("content", rs.getString("qna_content"));
 				// 관리자 응답추가야
@@ -47,20 +48,21 @@ public class UserPageDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
+			close(conn);
 		}
 		return resultM;
 	}
 	
 	//qna 게시글 삭제
-	public int deleteQnA(String qna_title, Connection conn) {
+	public int deleteQnA(int qna_no, Connection conn) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
-			String sql = "DELETE FROM `user_qna` WHERE qna_title = ?";
+			String sql = "DELETE FROM `user_qna` WHERE qna_no = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, qna_title);
+			pstmt.setInt(1, qna_no);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -72,21 +74,21 @@ public class UserPageDao {
 	
 	
 	//qna게시글 수정
-	public int updateQnA(String title, String content, int qnaNo, Connection conn) {
+	public int updateQnA(String title, String content, int qna_no, Connection conn) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
-			String sql = "UPDATE `user_qna` SET qna_title = ?, qna_content = ?"
-					+ "WHERE user_no = ?";
+			String sql = "UPDATE user_qna SET qna_title = ?, qna_content = ? WHERE qna_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
-			pstmt.setInt(3, qnaNo);
+			pstmt.setInt(3, qna_no);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
+			
 		}
 		return result;
 	}
@@ -119,9 +121,13 @@ public class UserPageDao {
 	    } finally {
 	        close(rs);
 	        close(pstmt);
+	        
 	    }
 	    return result;
 	}
+	
+	
+	
 	//게시글 검색
 	public List<QnA> selectQnAList(QnA option, Connection conn){
 		List<QnA> list = new ArrayList<QnA>();
@@ -129,38 +135,50 @@ public class UserPageDao {
 		ResultSet rs = null;
 		
 		try {
-			// 검색 조건없으면 SELECT * FROM 테이블
-			// 검색조건 있으면 + WHERE qna_title LIKE CONCAT('%',qna_title,'%')
-			// 정렬 
-			String sql = "SELECT * FROM user_qna ";
-			if(option.getQna_title() != null) {
-				sql += "WHERE qna_title LIKE CONCAT('%', '"+option.getQna_title()+"', '%')";
-			}
-//			sql += " LIMIT " + option.getLimitPageNo()+", " + option.getNumPerPage();
-			
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
+	        // 기본 SQL 쿼리
+	        String sql = "SELECT * FROM user_qna ";
 
-				// 다적어줘야해
-				QnA resultVo = new QnA(rs.getInt("qna_no"),
-						rs.getInt("user_no"),
-						rs.getString("qna_title"),
-						rs.getString("qna_content"),
-						rs.getTimestamp("reg_date").toLocalDateTime(),
-						rs.getString("qna_status"),
-						rs.getString("qna_answer"),
-						rs.getTimestamp("mod_date").toLocalDateTime(),
-						rs.getTimestamp("complete_date").toLocalDateTime());
-				list.add(resultVo);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
+	        // 검색 조건이 있는 경우 추가
+	        if(option.getQna_title() != null && !option.getQna_title().isEmpty()) {
+	            sql += "WHERE qna_title LIKE CONCAT('%', ?, '%') ";
+	        }
+
+	        // 페이징 조건 추가
+	        sql += "LIMIT ?, ?";
+
+	        pstmt = conn.prepareStatement(sql);
+
+	        int paramIndex = 1;
+
+	        // 검색 조건이 있는 경우 파라미터 설정
+	        if(option.getQna_title() != null && !option.getQna_title().isEmpty()) {
+	            pstmt.setString(paramIndex++, option.getQna_title());
+	        }
+
+	        // 페이징 파라미터 설정
+	        pstmt.setInt(paramIndex++, option.getLimitPageNo());
+	        pstmt.setInt(paramIndex++, option.getNumPerPage());
+
+	        rs = pstmt.executeQuery();
+	        while(rs.next()) {
+	            QnA resultVo = new QnA(rs.getInt("qna_no"),
+	                                   rs.getInt("user_no"),
+	                                   rs.getString("qna_title"),
+	                                   rs.getString("qna_content"),
+	                                   rs.getTimestamp("reg_date").toLocalDateTime(),
+	                                   rs.getString("qna_status"),
+	                                   rs.getString("qna_answer"),
+	                                   rs.getTimestamp("mod_date").toLocalDateTime(),
+	                                   rs.getTimestamp("complete_date").toLocalDateTime());
+	            list.add(resultVo);
+	        }
+	    } catch(SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	    	close(rs);
+	        close(pstmt);
+	    }
+	    return list;
 	}
 
 	
@@ -183,7 +201,6 @@ public class UserPageDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			
 			close(pstmt);
 		}
 		return result;

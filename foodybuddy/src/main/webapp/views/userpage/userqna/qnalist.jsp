@@ -35,7 +35,7 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th>번호</th>
+						<th>글번호</th>
 						<th>제목</th>
 						<th>작성날짜</th>
 						<th>처리상태</th>
@@ -56,7 +56,8 @@
 							}
 						%>
 							<tr>
-								<td><%=list.get(i).getQna_no() %></td>
+								<%-- <td><%=list.get(i).getUser_no() %></td> --%>
+								<td><%=list.get(i).getQna_no() %></td> 
 								<td><a href = "/qna/detail?qna_no=<%= list.get(i).getQna_no() %>"><%=list.get(i).getQna_title() %></a></td>
 								<td><%=list.get(i).getReg_date() %></td>
 								<td><%=statusText %></td> 
@@ -65,7 +66,7 @@
 					
 				</tbody>
 				<!-- 페이징바 -->
-					  <tfoot>
+					  
 						<% QnA paging = (QnA)request.getAttribute("paging"); %>
 						<%if (paging != null) {%>
 							<div>
@@ -86,7 +87,7 @@
 								</div>
 							</div>
 				<%} %>
-					</tfoot> 
+					 
 			</table>
 	</section>
 
