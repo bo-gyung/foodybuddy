@@ -17,8 +17,8 @@
 			<label>제목</label>
 				<input type = "text" name = "qna_title" placeholder = "제목을 입력하세요." maxlength = "50"><br>
 				<label>작성란</label>
-				<textarea onkeypress = "content();" name = "qna_content"maxlength = "500" placeholder = "내용을 입력하세요." cols = "70" rows = "30"></textarea>
-				<button onclick = "qnacreateForm();">보내기</button>
+				<textarea name = "qna_content"maxlength = "500" placeholder = "내용을 입력하세요." cols = "70" rows = "30"></textarea>
+				<input type= "button" onclick = "qnacreateForm();" value="보내기">
 				<input type = "reset" value ="초기화">
 			</form>
 			</div>
@@ -33,13 +33,11 @@
 			}else if(!form.qna_content.value){
 				alert("내용을 입력하세요");
 				form.qna_content.focus();
+			} else {
+				document.qnacreate_form.submit();
 			}
-			let text = document.getElementsByName('qna_content')[0].value;
-		    if (text.length > 500) {
-		        alert("500자를 초과하였습니다.");
-		    } else {
-		        document.qnacreate_form.submit();
-		    }
+			
+			
 			
 		}
 		

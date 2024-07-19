@@ -19,6 +19,7 @@ public class UserPageDao {
 	
 	//글 제목 클릭시 상세내용
 	public Map<String,Object> qnaDetail(int qna_no, Connection conn){
+		
 		Map<String,Object> resultM = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -50,7 +51,7 @@ public class UserPageDao {
 		}finally {
 			close(rs);
 			close(pstmt);
-			close(conn);
+			
 		}
 		return resultM;
 	}

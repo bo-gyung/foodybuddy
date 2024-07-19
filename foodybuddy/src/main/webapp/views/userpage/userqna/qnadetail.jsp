@@ -17,19 +17,20 @@
 	Map<String, Object> resultM = (Map<String, Object>) request.getAttribute("detail");
 	%>
 	<h3>QnA 상세확인</h3>
-	<form action="/qna/updateEnd" name=qnacreate_form method="post">
-		<label>제목</label> <input type="text" id="qna_title" maxlength="50"
-			value="<%=resultM.get("title")%>"><br> <label>작성란</label>
+	
+		<label>제목</label> 
+		<input type="text" id="qna_title" maxlength="50" value="<%=resultM.get("title")%>"readonly> <br>
+		 <label>작성란</label>
 		<textarea onkeyup="content();" id="qna_content" maxlength="500"
-			cols="40" rows="15">
+			cols="40" rows="15" style ="resize:none;" >
 		<%=resultM.get("content")%>
 		</textarea>
 		<br>
 		<!--작성자 기준 수정/ 삭제  -->
-		<a href="/qna/update">수정</a> 
+		<a href = "/qna/update?qna_no=<%= resultM.get("qnaNo") %>"> 수정 </a>
 		<input type="button" value="삭제" onclick="deleteQnA('<%= resultM.get("qnaNo")%>');">
-		<button >폼 제출버튼</button>
-	</form>
+		
+	
 
 	</div>
 	<hr>
@@ -78,10 +79,7 @@
  			
  		}
  	}
- 	//수정버튼
- 	function submitForm(){
- 		
- 	}
+ 	
  	
  	//삭제버튼
  	function deleteQnA(qnaNo) {

@@ -17,12 +17,12 @@ public class QnAUpdateFailServlet extends HttpServlet {
     
     public QnAUpdateFailServlet() {
         super();
-        
+       
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnaupdate_fail.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnacreate_fail.jsp"); //일부러 실패페이지
 		view.forward(request, response);
 	}
 

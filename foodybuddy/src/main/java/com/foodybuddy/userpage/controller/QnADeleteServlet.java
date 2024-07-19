@@ -36,7 +36,7 @@ public class QnADeleteServlet extends HttpServlet {
 	        String qnaNoStr = request.getParameter("qna_no");
 	        // 유효성검사를 하는거야 , 전송되지 않았거나, 문자열이 비어있다면
 	        if (qnaNoStr == null || qnaNoStr.isEmpty()) {
-	            response.sendRedirect(request.getContextPath() + "/qna/updateFail");
+	            response.sendRedirect(request.getContextPath() + "/qna/deleteFail");
 	            return;
 	        }
 
@@ -44,7 +44,7 @@ public class QnADeleteServlet extends HttpServlet {
 	        try {
 	            qnaNo = Integer.parseInt(qnaNoStr);
 	        } catch (NumberFormatException e) {
-	            response.sendRedirect(request.getContextPath() + "/qna/updateFail");
+	            response.sendRedirect(request.getContextPath() + "/qna/deleteFail");
 	            return;
 	        }
 
@@ -55,11 +55,11 @@ public class QnADeleteServlet extends HttpServlet {
 	            if (result > 0) {
 	                response.sendRedirect(request.getContextPath() + "/qna/list");
 	            } else {
-	                response.sendRedirect(request.getContextPath() + "/qna/updateFail");
+	                response.sendRedirect(request.getContextPath() + "/qna/deleteFail");
 	            }
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            response.sendRedirect(request.getContextPath() + "/qna/updateFail");
+	            response.sendRedirect(request.getContextPath() + "/qna/deleteFail");
 	        }
 	    }
 		

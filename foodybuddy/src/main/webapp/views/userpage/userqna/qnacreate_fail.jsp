@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QnA 문의 실패</title>
+<title> 실패</title>
 </head>
 <body>
-
+<section>
+		<div>
+			<a href = "/qna/list"> 목록으로이동</a>
+		</div>
+	</section>
 </body>
 </html>

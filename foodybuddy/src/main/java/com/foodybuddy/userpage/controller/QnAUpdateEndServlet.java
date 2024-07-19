@@ -23,7 +23,7 @@ public class QnAUpdateEndServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		QnA q = new QnA();
+		
 		
 	}
 

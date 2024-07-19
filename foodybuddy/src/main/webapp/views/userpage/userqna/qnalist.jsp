@@ -56,7 +56,7 @@
 							}
 						%>
 							<tr>
-								<%-- <td><%=list.get(i).getUser_no() %></td> --%>
+								
 								<td><%=list.get(i).getQna_no() %></td> 
 								<td><a href = "/qna/detail?qna_no=<%= list.get(i).getQna_no() %>"><%=list.get(i).getQna_title() %></a></td>
 								<td><%=list.get(i).getReg_date() %></td>
