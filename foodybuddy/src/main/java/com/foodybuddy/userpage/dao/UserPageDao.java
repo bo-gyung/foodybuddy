@@ -261,7 +261,6 @@ public class UserPageDao {
 							 rs.getInt("party_number"),
 							 rs.getTimestamp("formation_date").toLocalDateTime()	 
 							 );
-					System.out.println("다오-버디 객체 : "+rsBuddy);
 					 list.add(rsBuddy);
 			}
 		} catch(Exception e) {
@@ -270,51 +269,48 @@ public class UserPageDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("다오-버디리스트 : "+list);
 		return list ;
 	}
 	
 	// 작성글 조회(푸디)
-		public List<Foody> selectFoodyList(int user_no, Connection conn) {
-			List<Foody> list = new ArrayList<Foody>();
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String sql = "SELECT * FROM `foody_create` WHERE user_no = ?";
-			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, user_no);	
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-						Foody rsFoody = new Foody(
-								rs.getInt("foody_no"),
-								rs.getInt("user_no"),
-								rs.getInt("report_no"),
-								rs.getString("foody_title"),
-								rs.getString("foody_name"),
-								rs.getInt("foody_taste"),
-								rs.getInt("foody_clean"),
-								rs.getString("foody_parking"),
-								rs.getString("foody_delivery"),
-								rs.getString("foody_main"), 
-								rs.getTimestamp("reg_date").toLocalDateTime(),
-								rs.getTimestamp("mod_date").toLocalDateTime(),
-								rs.getString("foody_address"),
-								rs.getInt("foody_click"),
-								rs.getInt("foody_good")
-								);
-						System.out.println("다오-푸디 객체 : "+rsFoody);
-						list.add(rsFoody);
-					
-				}
-			} catch(Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(rs);
-				close(pstmt);
+	public List<Foody> selectFoodyList(int user_no, Connection conn) {
+		List<Foody> list = new ArrayList<Foody>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM `foody_create` WHERE user_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_no);	
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+					Foody rsFoody = new Foody(
+							rs.getInt("foody_no"),
+							rs.getInt("user_no"),
+							rs.getInt("report_no"),
+							rs.getString("foody_title"),
+							rs.getString("foody_name"),
+							rs.getInt("foody_taste"),
+							rs.getInt("foody_clean"),
+							rs.getString("foody_parking"),
+							rs.getString("foody_delivery"),
+							rs.getString("foody_main"), 
+							rs.getTimestamp("reg_date").toLocalDateTime(),
+							rs.getTimestamp("mod_date").toLocalDateTime(),
+							rs.getString("foody_address"),
+							rs.getInt("foody_click"),
+							rs.getInt("foody_good")
+							);
+					list.add(rsFoody);
+				
 			}
-			System.out.println("다오-푸디리스트 : "+list);
-			return list ;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
+		return list ;
+	}
 
 }

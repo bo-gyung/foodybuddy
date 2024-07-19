@@ -48,19 +48,17 @@ public class UserpageListServlet extends HttpServlet {
 			List<Foody> my_foody_list = new UserPageService().selectFoodyList(user_no);
 			request.setAttribute("buddy_list", my_buddy_list);
 			request.setAttribute("foody_list", my_foody_list);
-			System.out.println("서블렛 : "+my_buddy_list);
-			System.out.println("서블렛 : "+my_foody_list);
 		} else if("user_like_views".equals(menu)) {
 			// like라면 내 좋아요 조회
 			
 			
 		} else if("user_group_views".equals(menu)) {
-			// group라면 내 모임 조회
+			// group라면 내 모임글? 모임 그룹? 조회
 			
 			
 		}else{
 			// 기타 다른 방법으로 접근
-			
+			// 비정상적인 접근이라고 페이지 하나 만들까?
 		}
 		
 		

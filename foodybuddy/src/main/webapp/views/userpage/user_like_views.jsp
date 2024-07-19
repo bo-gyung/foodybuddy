@@ -51,23 +51,7 @@
         </div>
     </div>
 	<!-- Hero End -->
-        
-      <!--   
-	<label>아이디</label>
-	<input type = "text" disabled><br>
-	<label>등급</label>
-	<input type = "text" disabled><br>
-	<albel>경고</albel>
-	<input type = "text" disabled><br>
-	<label>닉네임</label>
-	<input type = "text"><br>
-	<label>주소</label>
-	<input type = "text"><br>
-	<label>전화번호</label>
-	<input type = "text"><br>
-	<label>이메일</label>
-	<input type = "text"><br>
- -->
+
         <!-- Menu Start -->
         <div class="container-xxl py-5">
             <div class="container">

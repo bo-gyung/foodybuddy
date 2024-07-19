@@ -27,7 +27,6 @@ public class UserPageService {
 		Connection conn = getConnection();
 		List<Buddy> list = new UserPageDao().selectBuddyList(user_no, conn);
 		close(conn);
-		System.out.println("서비스-버디 : "+list);
 		return list;
 		
 	}
@@ -36,7 +35,6 @@ public class UserPageService {
 		Connection conn = getConnection();
 		List<Foody> list = new UserPageDao().selectFoodyList(user_no, conn);
 		close(conn);
-		System.out.println("서비스-푸디 : "+list);
 		return list;
 	}
 	
