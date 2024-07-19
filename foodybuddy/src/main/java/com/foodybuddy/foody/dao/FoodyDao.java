@@ -115,7 +115,13 @@ public class FoodyDao {
 	            } 
 	        }
 
-	        sql += " ORDER BY c.reg_date DESC LIMIT " +option.getLimitPageNo()+", "+option.getNumPerPage() ;
+	        if("foody_good".equals(option.getSort())) {
+	        	sql += " ORDER BY c.foody_good DESC ";
+	        }else {
+	        	sql += " ORDER BY c.reg_date DESC " ;
+	        }
+	        
+	        sql += " LIMIT " + option.getLimitPageNo() + " , " + option.getNumPerPage();
 
 	        pstmt = conn.prepareStatement(sql);
 	        rs = pstmt.executeQuery();

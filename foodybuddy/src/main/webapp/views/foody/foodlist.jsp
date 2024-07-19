@@ -17,7 +17,14 @@
 	<section>
 	<h1>맛집</h1>
 	<div style="flex-direction: row; display: flex;">
-		<div>최신 순</div>&nbsp;&nbsp;&nbsp;<div>좋아요 순</div>
+		<form action="/board/foody" method="get">
+			<input type="hidden" name="sort" value="reg_date">
+			<button type="submit">최신 순</button>
+		</form>
+		<form action="/board/foody" method="get">
+			<input type="hidden" name="sort" value="foody_good">
+			<button type="submit">좋아요 순</button>
+		</form>
 	</div>
 	<div>
 	<form action="/board/foody" method="get">
@@ -55,12 +62,7 @@
 					<td><a href="/foody/viewTops">보러가기</a></td>
 					<td></td>
 				</tr>
-			
-			
-			
 			</tbody>
-	
-	
 	</table>
 	
 	</div>

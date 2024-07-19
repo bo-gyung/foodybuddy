@@ -23,14 +23,24 @@ public class Foody extends Paging{
 	private String ori_picture;
 	private String new_picture;
 	
+	
 	// 데이터 베이스에 X 검색 엔진을 위한 내용
 	private String user_name;
 	private String searchOption;
     private String searchBar;
-	
-    public Foody() {
+	private String sort;
+    
+    public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public Foody() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Foody(int foody_no, int user_no, int report_no, String foody_title, String foody_name, int foody_taste,

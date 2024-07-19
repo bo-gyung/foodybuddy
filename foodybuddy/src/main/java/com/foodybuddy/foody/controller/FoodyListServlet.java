@@ -27,12 +27,13 @@ public class FoodyListServlet extends HttpServlet {
 		
 		String searchOption = request.getParameter("searchOption");
 		String searchBar = request.getParameter("searchbar");
-		
+		String sort = request.getParameter("sort");
 		
 		Foody option = new Foody();
 		option.setSearchOption(searchOption);
 		option.setSearchBar(searchBar);
 		option.setFoody_title(title);
+		option.setSort(sort);
 
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
@@ -41,7 +42,7 @@ public class FoodyListServlet extends HttpServlet {
 		// 전체 목록 개수 -> 페이징바 구성
 		option.setTotalData(new FoodyService().selectBoardCount(option));
 		List<Foody> list = new FoodyService().selectBoardList(option);
-
+		
 		request.setAttribute("paging", option);
 		request.setAttribute("resultList", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/views/foody/foodlist.jsp");
