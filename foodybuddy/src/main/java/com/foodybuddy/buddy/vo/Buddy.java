@@ -2,7 +2,9 @@ package com.foodybuddy.buddy.vo;
 
 import java.time.LocalDateTime;
 
-public class Buddy {
+import com.foodybuddy.common.Paging;
+
+public class Buddy extends Paging {
 	private int buddy_no;
 	private int foody_no;
 	private int user_no;

@@ -10,32 +10,32 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Favicon -->
+    <!-- 상단아이콘 : 우리는 아직 없음! -->
     <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
+    <!-- 구글 웹 폰트 : 일부 바꿔야함!(한글폰트 문제) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
+    <!-- 아이콘 폰트 스타일 시트 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
+    <!-- 라이브러리 스타일 시트 -->
     <link href="../resources/template/lib/animate/animate.min.css" rel="stylesheet">
     <link href="../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-    <!-- Customized Bootstrap Stylesheet -->
+    <!-- Customized Bootstrap Stylesheet : 탬플릿에 맞게 커스텀된 부트스트랩 스타일 시트인듯! -->
     <link href="../resources/template/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
+    <!-- 탬플릿 스타일 시트 -->
     <link href="../resources/template/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-	<!-- Navbar Link -->
+	<!-- 내비바 외부링크 -->
 	<%@ include file="views/include/navbar.jsp" %>
 	
 		<!-- Hero Start -->

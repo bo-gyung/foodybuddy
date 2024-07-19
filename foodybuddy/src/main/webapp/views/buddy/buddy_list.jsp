@@ -133,8 +133,30 @@
                                 </div>
                             	<%} %>
                             	
+	                        <!-- 페이징바 구성 -->
+							<% Buddy paging = (Buddy)request.getAttribute("paging"); %>
+							<% if(paging != null){ %>
+								<div class="center col-9 pt-5" style="margin:auto;">
+									<div class="pagination" style="display: flex; justify-content: center">
+										<%if(paging.isPrev()){%>
+											<a href="/board/buddy?nowPage=<%=(paging.getPageBarStart()-1)%>">&laquo;</a>
+										<%}%>
+										<%for(int i = paging.getPageBarStart() ; i <= paging.getPageBarEnd() ; i++){%>
+											<a href="/board/buddy?nowPage=<%=i%>" 
+											<%=paging.getNowPage() == i ? "class='active'" : ""%>>
+												<%=i%>
+											</a>
+										<%}%> 
+										<% if(paging.isNext()){%>
+											<a href="/board/buddy?nowPage=<%=(paging.getPageBarEnd()+1)%>">&raquo;</a>
+										<%}%>
+									</div>	
+								</div>
+							<%} %>
+                            	
                             </div>
                         </div>
+                        
 						<!-- 조회수순 -->
                         <div id="tab-2" class="tab-pane fade show p-0">
                             <div class="row g-4">
