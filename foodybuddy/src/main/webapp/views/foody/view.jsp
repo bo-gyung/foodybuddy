@@ -14,6 +14,39 @@
 <head>
 <meta charset="UTF-8">
 <title>푸디 상세 정보</title>
+<style>
+    
+     .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+</style>
 </head>
 <body>
     <%
@@ -48,12 +81,18 @@
             
             <!-- 작성자에게 보이는 버튼 -->
             <% if(loginUser != null && loginUser.getUser_no() == foody.getUser_no()) { %>
-                <a href="update.jsp?foody_no=<%= foody.getFoody_no() %>">수정</a>
-                <a href="delete.jsp?foody_no=<%= foody.getFoody_no() %>">삭제</a>
+                <button class="button" onclick="location.href='update.jsp?foody_no=<%= foody.getFoody_no() %>'">수정</button>
+                <button class="button" onclick="location.href='delete.jsp?foody_no=<%= foody.getFoody_no() %>'">삭제</button>
             <% } %>
-            
-            <p>작성일자: <%= formattedRegDate %></p>
-            <p>작성자: <%= foody.getUser_name() %></p>
+            <button class="button"> 모이기 </button>
+            <span>작성일 : <%= formattedRegDate %></span>
+            <div class="dropdown">
+                <button class="button dropbtn"><%= foody.getUser_name() %></button>
+                <div class="dropdown-content">
+                    <a href="/board/foody?searchOption=1&searchBar=<%= foody.getUser_name() %>">작성자의 다른 글</a>
+                    <a href="/report?foody_no=<%= foody.getFoody_no() %>">신고</a>
+                </div>
+            </div>
             <table>
             	<tr>
             		<td>가게 이름</td>
@@ -79,16 +118,12 @@
             		<td>배달 가능 여부</td>
             		<td><%= foody.getFoody_delivery() %></td>
             	</tr>
-            
             </table>
             <div>
             <%= foody.getFoody_main() %>
             </div>
-            <div>
-            
-            </div>
 
-            <a href="/board/foody">메뉴로 돌아가기</a>
+            <button class="button" onclick="location.href='/board/foody'">메뉴로 돌아가기</button>
         </div>
         
         <div class="comment_section">
