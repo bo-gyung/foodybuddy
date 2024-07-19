@@ -124,7 +124,7 @@
 	                                                <span class="text-primary">$115</span>
 	                                            </h5>
 	                                            <small class="fst-italic">
-	                                            <a href="">작성자 : <%=buddy_list.get(i).getUser_no() %></a> / 
+	                                            <a href="">작성자 : <%=buddy_list.get(i).getUser_name() %></a> / 
 	                                            모임일 : <%=buddy_list.get(i).getMeet_date() %> / 
 	                                            댓글 : 댓글수 / 
 	                                            조회수 : <%=buddy_list.get(i).getBuddy_view() %>

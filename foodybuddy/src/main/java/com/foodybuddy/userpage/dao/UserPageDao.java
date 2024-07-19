@@ -239,7 +239,12 @@ public class UserPageDao {
 		List<Buddy> list = new ArrayList<Buddy>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM `buddy_board` WHERE user_no = ?";
+		
+		String sql = "SELECT u.user_name, b.buddy_no, b.foody_no, b.user_no, b.report_no, "
+				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, b.buddy_view, "
+				+ "b.party_name, b.meet_date, b.party_number, b.formation_date FROM `buddy_board` b "
+				+ "JOIN `user` u ON b.user_no = u.user_no "
+				+ "WHERE b.user_no = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -259,7 +264,8 @@ public class UserPageDao {
 							 rs.getString("party_name"),
 							 rs.getTimestamp("meet_date").toLocalDateTime(),
 							 rs.getInt("party_number"),
-							 rs.getTimestamp("formation_date").toLocalDateTime()	 
+							 rs.getTimestamp("formation_date").toLocalDateTime(),
+							 rs.getString("user_name")
 							 );
 					 list.add(rsBuddy);
 			}

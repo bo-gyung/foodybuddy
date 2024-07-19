@@ -1,3 +1,4 @@
+
 package com.foodybuddy.user.dao;
 
 import static com.foodybuddy.common.sql.JDBCTemplate.close;

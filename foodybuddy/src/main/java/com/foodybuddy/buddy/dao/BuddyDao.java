@@ -21,9 +21,14 @@ public class BuddyDao {
 		
 		try {
 			
-		String sql = "SELECT * FROM `buddy_board`";
+		String sql = "SELECT u.user_name, b.buddy_no, b.foody_no, b.user_no, b.report_no, "
+				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, COUNT(c.comment_no), "
+				+ "b.party_name, b.meet_date, b.party_number, b.formation_date FROM `buddy_board` b "
+				+ "JOIN `user` u ON b.user_no = u.user_no "
+				+ "JOIN `buddy_comment` c ON c.buddy_no = b.buddy_no "
+				+ "WHERE b.buddy_approve = 'Y'";
 		 if(keyword.getBuddy_title() != null) {
-			 sql += "WHERE `buddy_title` LIKE CONCAT('%','"+keyword.getBuddy_title()+"','%')";
+			 sql += "AND `buddy_title` LIKE CONCAT('%','"+keyword.getBuddy_title()+"','%')";
 		 }
 		
 		 pstmt = conn.prepareStatement(sql);
@@ -39,11 +44,12 @@ public class BuddyDao {
 					 rs.getTimestamp("reg_date").toLocalDateTime(),
 					 rs.getString("buddy_title"),
 					 rs.getString("buddy_main"),
-					 rs.getInt("buddy_view"),
+					 rs.getInt("COUNT(c.comment_no)"),
 					 rs.getString("party_name"),
 					 rs.getTimestamp("meet_date").toLocalDateTime(),
 					 rs.getInt("party_number"),
-					 rs.getTimestamp("formation_date").toLocalDateTime()	 
+					 rs.getTimestamp("formation_date").toLocalDateTime(),
+					 rs.getString("user_name")
 					 );
 			 list.add(rsBuddy);
 		 	 }
