@@ -81,5 +81,12 @@ public class FoodyService {
 		return good;
 	}
 	
+	public int click(int click) {
+		Connection conn = getConnection();
+		int clickCount = new FoodyDao().click(click , conn);
+		close(conn);
+		return  clickCount;
+	}
+	
 }
 

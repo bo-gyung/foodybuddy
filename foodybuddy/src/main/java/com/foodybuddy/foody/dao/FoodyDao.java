@@ -373,6 +373,21 @@ public class FoodyDao {
         return success;
     }
 
+	public int click(int click , Connection conn) {
+		PreparedStatement pstmt = null;
+        int clickCount = 0;
+        try {
+            String sql = "UPDATE foody_create SET foody_click = foody_click + 1 WHERE foody_no = ? ";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, click);
+            clickCount = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+        return clickCount;
+    }
 	
 }
 
