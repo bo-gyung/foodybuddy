@@ -44,9 +44,9 @@
 	    <div class="container text-center my-5 pt-5 pb-4">
 	        <nav aria-label="breadcrumb">
 	            <ol class="breadcrumb justify-content-center text-uppercase">
-	                <li class="breadcrumb-item"><a href="#">Home</a></li>
-	                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-	                <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
+	                <li class="breadcrumb-item"><a href="/">Home</a></li>
+	                <li class="breadcrumb-item"><a href="/board/foody">Foody</a></li>
+	                <li class="breadcrumb-item"><a href="/board/buddy" style="color:white;">Buddy</a></li>
 	            </ol>
 	        </nav>
 	    </div>
@@ -55,7 +55,11 @@
 
 	<!-- Contact Start --> 
 	<%@page import="com.foodybuddy.buddy.vo.Buddy, java.util.*" %>
-	<% Map<String,Object> post = (Map<String,Object>)request.getAttribute("post"); %>
+	<% 
+	Map<String,Object> post = (Map<String,Object>)request.getAttribute("post"); 
+	
+	%>
+	
 	
 	<div class="container-xxl py-5">
 	    <div class="container">
@@ -83,9 +87,19 @@
 					<div style="display:flex; justify-content:center;">
 						<div class="col-md-9">
 						    <div class="wow fadeInUp" data-wow-delay="0.2s">
-						        <form action="#" name="buddy_write">
+						        <form action="/board/buddy/edit" name="buddy_edit">
+						        
 						            <div class="row g-3">
-					            	
+					            		<div class="col-12">
+	                                        <div class="form-floating">
+	                                            <input type="hidden" id="foody_no" name="foody_no" value="<%=post.get("원본글번호")%>">
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-12">
+	                                        <div class="form-floating">
+	                                            <input type="hidden" id="buddy_no" name="buddy_no" value="<%=post.get("글번호")%>">
+	                                        </div>
+	                                    </div>
 									<!-- Testimonial Start -->
 							        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
 							            <div class="container">
@@ -122,7 +136,7 @@
 
 									<div class="col-6">
 					    				<div class="form-floating pt-5">
-					        				<div id="map" style="width:470px;height:380px;"></div>
+					        				<div id="map" class="form-control" style="height:380px;"></div>
 					        				<label for="subject">지도</label>
 					    				</div>
 					   				</div>
@@ -163,13 +177,43 @@
                                             <label for="message">모집내용</label>
                                         </div>
                                     </div>
-                                    
+                                    <%@ page import="com.foodybuddy.user.vo.User" %>
+								    <%
+								    User u = (User)session.getAttribute("user");
+                                    String write_no = (String)post.get("작성자번호");
+									if(u.getUser_no() == Integer.parseInt(write_no)){%>
+						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 시작 -->
+						            <div div class="row g-3" style="margin-left:12%;">
+						            	<div class="col-3">
+											<button class="btn btn-primary w-100 py-3" type="button" 
+											onclick="editPost(<%=post.get("글번호")%>,<%=post.get("작성자번호")%>);">수정</button>
+										</div>
+										<div class="col-3">
+											<button class="btn btn-primary w-100 py-3" type="button" 
+											onclick="deletePost(<%=post.get("글번호")%>);">삭제</button>
+										</div>
+										<div class="col-3">
+											<button class="btn btn-primary w-100 py-3" type="button" 
+											onclick="createGroup(<%=post.get("글번호")%>);">모임 결성</button>
+										</div>
+						            </div>
+						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 종료 -->
+									<%} else {%>
+									<div class="col-12">
+	                                        <button class="btn btn-primary w-100 py-3" type="button" 
+	                                        onclick="foodyPost(<%=post.get("원본글번호")%>);">원본 글 보러가기</button>
+	                                    </div>
+									<%} %>
+									</div>
 		                        </form>
 		                    </div>
 		                </div>
 					</div>
 	            </div>
-	            <!-- 댓글창 붙이기 -->
+	            
+	            <!-- 댓글창 시작 -->
+	            
+	            <!-- 댓글창 종료 -->
 	       </div>
 	   </div>
 	   <!-- Contact End -->
@@ -258,9 +302,32 @@
 		// center 에 할당할 값은 LatLng 클래스를 사용하여 생성합니다. 
 		// 흔히 위경도 좌표라고 부르는 WGS84 좌표계의 좌표값을 넣어서 만드는데요, 
 		// 생성인자는 위도(latitude), 경도(longitude) 순으로 넣어주세요.
-		
-		
+
 	</script>
+
+	<script type="text/javascript">
+		
+		// 수정하기
+		function editPost(buddy_no, user_no){
+			window.location.href = '/board/buddy/edit?buddy_no='+buddy_no+'&user_no='+user_no;
+		}
+		
+		// 삭제하기
+		function deletePost(buddy_no){
+			window.location.href = '/board/buddy/delete?buddy_no='+buddy_no;
+		}
+		
+		// 그룹만들기
+		function createGroup(buddy_no){
+			window.location.href = '/create/group?buddy_no='+buddy_no;
+		}
+		
+		// 원본글 보러가기
+		function foodyPost(foody_no){
+			window.location.href = '/foody/view?foody_no='+foody_no;
+        }
+    </script>
+	
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

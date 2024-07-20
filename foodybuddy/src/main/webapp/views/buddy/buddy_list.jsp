@@ -125,7 +125,7 @@
                                             <small class="fst-italic">
                                             <a style="color:black;" href="">작성자 : <%=list.get(i).getUser_name() %></a> / 
                                             모임일 : <%=list.get(i).getMeet_date() %> / 
-                                            댓글 : <%=list.get(i).getBuddy_view() %> / 
+                                            댓글 : <%=list.get(i).getComment_cnt() %> / 
                                             조회수 : <%=list.get(i).getBuddy_view() %>
                                             </small>
                                         </div>

@@ -40,7 +40,7 @@ public class BuddyListServlet extends HttpServlet {
 		keyword.setTotalData(new BuddyService().selectBuddyCount(keyword));
 		
 		// 목록 구성(서비스 호출)
-		List<Buddy> list = new BuddyService().selectBoardList(keyword);
+		List<Buddy> list = new BuddyService().selectBuddyList(keyword);
 		
 		//페이징 값 추가
 		request.setAttribute("paging", keyword);

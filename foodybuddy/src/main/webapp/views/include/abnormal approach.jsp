@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등급 확인</title>
+<title>비정상적인 접근</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -40,7 +40,7 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">회원 등급 확인</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">비정상적인 접근</h1>
                 </div>
             </div>
         </div>
@@ -52,8 +52,8 @@
                 <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
-                        <h3 class="text-white mb-4">이 페이지는 정회원 이상만 접속 가능합니다.</h3>
-                        <h3 class="text-white mb-4">회원 등급을 확인해주세요.</h3>
+                        <h3 class="text-white mb-4">비정상적인 접근입니다</h3>
+                        <h3 class="text-white mb-4">관리자에게 문의해주세요</h3>
                         
 						<a href="/user/login"><button class="btn btn-primary w-100 py-3" type="button">돌아가기</button></a>
 

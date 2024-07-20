@@ -5,6 +5,8 @@ import static com.foodybuddy.common.sql.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +24,7 @@ public class BuddyDao {
 		try {
 			
 		String sql = "SELECT u.user_name, b.buddy_no, b.foody_no, b.user_no, b.report_no, "
-				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, IFNULL(COUNT(c.comment_no),0), "
+				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, b.buddy_view, IFNULL(COUNT(c.comment_no),0), "
 				+ "b.party_name, b.meet_date, b.party_number, b.formation_date FROM `buddy_board` b "
 				+ "JOIN `user` u ON b.user_no = u.user_no "
 				+ "LEFT OUTER JOIN `buddy_comment` c ON c.buddy_no = b.buddy_no "
@@ -51,15 +53,15 @@ public class BuddyDao {
 					 rs.getTimestamp("reg_date").toLocalDateTime(),
 					 rs.getString("buddy_title"),
 					 rs.getString("buddy_main"),
-					 rs.getInt("IFNULL(COUNT(c.comment_no),0)"),
+					 rs.getInt("buddy_view"),
 					 rs.getString("party_name"),
 					 rs.getTimestamp("meet_date").toLocalDateTime(),
 					 rs.getInt("party_number"),
 					 rs.getTimestamp("formation_date").toLocalDateTime(),
-					 rs.getString("user_name")
+					 rs.getString("user_name"),
+					 rs.getInt("IFNULL(COUNT(c.comment_no),0)")
 					 );
 			 list.add(rsBuddy);
-			 System.out.println(list);
 		 	 }
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -103,29 +105,43 @@ public class BuddyDao {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT u.user_name, b.buddy_no, b.buddy_title, b.buddy_main, "
-					+ "b.party_name, b.meet_date, b.party_number, "
-					+ "f.foody_parking, f.foody_name, f.foody_address "
-					+ "FROM `user` u JOIN `buddy_board` b ON u.user_no = b.user_no "
-					+ "JOIN `foody_create` f ON f.foody_no = b.foody_no WHERE b.buddy_no = ?";
+			// 조회수 +1
+			String sql = "UPDATE `buddy_board` SET `buddy_view` = (`buddy_view` + 1) WHERE buddy_no = ?";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, buddy_no);
-			rs = pstmt.executeQuery();
 			
-			 if(rs.next()) {
-				 resultMap = new HashMap<String,Object>();
-				 resultMap.put("작성자",rs.getString("u.user_name"));
-				 resultMap.put("글번호",rs.getInt("b.buddy_no"));
-				 resultMap.put("글제목",rs.getString("b.buddy_title"));
-				 resultMap.put("글내용",rs.getString("b.buddy_main"));
-				 resultMap.put("모임이름",rs.getString("b.party_name"));
-				 resultMap.put("모임날짜",rs.getTimestamp("b.meet_date").toLocalDateTime());
-				 resultMap.put("모임인원",rs.getInt("b.party_number"));
-				 resultMap.put("주차여부",rs.getString("f.foody_parking"));
-				 resultMap.put("가게이름",rs.getString("f.foody_name"));
-				 resultMap.put("가게주소",rs.getString("f.foody_address"));
-			 }
+			int result = pstmt.executeUpdate();
 			
+			if(result>0) {
+				// 글 조회
+				sql = "SELECT u.user_no, u.user_name, b.buddy_no, b.buddy_title, b.buddy_main, "
+						+ "b.party_name, b.meet_date, b.party_number, b.buddy_view, "
+						+ "f.foody_no, f.foody_parking, f.foody_name, f.foody_address "
+						+ "FROM `user` u JOIN `buddy_board` b ON u.user_no = b.user_no "
+						+ "JOIN `foody_create` f ON f.foody_no = b.foody_no WHERE b.buddy_no = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, buddy_no);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					resultMap = new HashMap<String,Object>();
+					resultMap.put("작성자번호",rs.getString("u.user_no"));
+					resultMap.put("작성자",rs.getString("u.user_name"));
+					resultMap.put("글번호",rs.getInt("b.buddy_no"));
+					resultMap.put("조회수",rs.getInt("b.buddy_view"));
+					resultMap.put("글제목",rs.getString("b.buddy_title"));
+					resultMap.put("글내용",rs.getString("b.buddy_main"));
+					resultMap.put("모임이름",rs.getString("b.party_name"));
+					resultMap.put("모임날짜",rs.getTimestamp("b.meet_date").toLocalDateTime());
+					resultMap.put("모임인원",rs.getInt("b.party_number"));
+					resultMap.put("원본글번호",rs.getString("f.foody_no"));
+					resultMap.put("주차여부",rs.getString("f.foody_parking"));
+					resultMap.put("가게이름",rs.getString("f.foody_name"));
+					resultMap.put("가게주소",rs.getString("f.foody_address"));
+				}
+			}
+
 		} catch(Exception e) {
 			
 		}finally {
@@ -133,6 +149,78 @@ public class BuddyDao {
 			close(pstmt);
 		}
 		return resultMap;
+	}
+	
+	// 버디 게시글 작성
+	public int createBuddy(Buddy b, Connection conn) {
+		int result = 0;		
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "INSERT INTO `buddy_board` "
+					+ "(foody_no, user_no, buddy_title, buddy_main, "
+					+ "party_name, meet_date, party_number) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, b.getFoody_no());
+			pstmt.setInt(2, b.getUser_no());
+			pstmt.setString(3, b.getBuddy_title());
+			pstmt.setString(4, b.getBuddy_main());
+			pstmt.setString(5, b.getParty_name());
+			pstmt.setTimestamp(6, Timestamp.valueOf(b.getMeet_date()));
+			pstmt.setInt(7, b.getParty_number());
+			
+			System.out.println("다오에서:"+Timestamp.valueOf(b.getMeet_date()));
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	// 버디 게시글 수정
+	public int editBuddy(Buddy b, Connection conn) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE `buddy_board` SET "
+					+ "buddy_title = ? , buddy_main = ? , "
+					+ "party_name = ? , meet_date = ? , party_number = ? "
+					+ "WHERE buddy_no = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, b.getBuddy_title());
+			pstmt.setString(2, b.getBuddy_main());
+			pstmt.setString(3, b.getParty_name());
+			pstmt.setTimestamp(4, Timestamp.valueOf(b.getMeet_date()));
+			pstmt.setInt(5, b.getParty_number());
+			pstmt.setInt(6, b.getBuddy_no());
+			
+			 result = pstmt.executeUpdate();
+			
+		    } catch (SQLException e) {
+		        System.err.println("SQL 예외 발생: " + e.getMessage());
+		        e.printStackTrace();
+		    } catch (Exception e) {
+		        System.err.println("예외 발생: " + e.getMessage());
+		        e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 	
 }
