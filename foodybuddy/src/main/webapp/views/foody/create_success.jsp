@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 등록 성공</title>
 </head>
 <body>
-test
+	<section>
+		<div>
+			<h3>등록 완료</h3>
+			<br>
+			<a href="/board/foody">메뉴</a>
+		</div>
+	</section>
 </body>
 </html>

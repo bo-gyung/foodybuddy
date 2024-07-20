@@ -52,116 +52,118 @@
         </div>
         <!-- Hero End -->
             <section>
-                <div id="section_wrap">
-                    <div class="word">
-                        <h3>회원가입</h3><br>
-                        
-                     </div><br>
-                        <div class="create_account_form">
-                            <form name="create_account_form" action="/user/createEnd" method="post" style="justify-content: center;">
-                                <table>
-                                    <tr>
-                                        <th><label>아이디</label></th>
-                                        <td><input type="text" name="user_id" placeholder="아이디" onkeyup="checkId(this.value)"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <span id="userId"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><label>비밀번호</label></th>
-                                        <td><input type="password" name="user_pw" placeholder="비밀번호"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <span id="userPw"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><label>비밀번호확인</label></th>
-                                        <td><input type="password" name="user_pw_check" placeholder="비밀번호 확인"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <span id="userPwCheck"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><label>닉네임</label></th>
-                                        <td><input type="text" name="user_name" placeholder="닉네임" onkeyup="checkName(this.value)"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <span id="userName"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><label>전화번호</label></th>
-                                        <td><input type="text" name="user_phone" placeholder="전화번호"  onkeyup="checkPhone(this.value)"></td>
-                                    </tr>
-                                     <tr>
-                                        <td></td>
-                                        <td>
-                                            <span id="userPhone"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><label>주소</label></th>
-                                        <td><input type="text" id="postcode" name="user_postcode" placeholder="우편번호">
-                                        </td>
-                                        <td><input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><input type="text" id="address" name="user_addr" placeholder="주소">
-                                        <td>
-                                        <td></td>
-                                    <tr>
-                                        <td></td>
-                                        <td><input type="text" id="detailAddress" name="user_detailAddr"
-                                                placeholder="상세주소"></td>
-                                        <td><input type="text" id="extraAddress" name="user_extraAddr"
-                                                placeholder="참고항목"></td>
-                                    </tr>
-                                    <tr>
-                                        <th><label>이메일</label></th>
-                                        <td><input type="text" name="user_email" placeholder="이메일" onkeyup="checkEmail(this.value)"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <span id="userEmail"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><label>질문</label></th>
-                                        <td><select name="user_question">
-                                                <option>질문선택하기</option>
+                <div id="section_wrap" style="margin-left:35%">
+                   <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="row g-0" >
+                <div class="col-md-6 bg-dark d-flex align-items-center">
+                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
+                        <h3 class="text-white mb-4">회원가입</h3>
+                        <form name="create_account_form" action="/user/createEnd" method="post">
+                        	<div class="row g-3">
+                               <div class="col-md-6">
+                                	<div class="form-floating">
+                                        <input type="text" class="form-control" name="user_id" placeholder="ID" onkeyup="checkId(this.value)">
+                                        <label for="name">ID</label>
+                                        <span id="userId"></span>
+                                 	</div>
+                              	</div>
+                              	<div class="col-md-6">
+                                	<div class="form-floating">
+                                	</div>
+                              	</div>
+                        		<div class="col-md-6">
+                                	<div class="form-floating">
+                                    	<input type="password" class="form-control" name="user_pw" placeholder="비밀번호">
+                                   		<label for="name">비밀번호</label>
+                                    	<span id="userPw"></span>
+                                  	</div>
+                              	</div> 
+                                <div class="col-md-6">
+                                	<div class="form-floating"> 
+                                        <input type="password"  class="form-control" name="user_pw_check" placeholder="비밀번호 확인">
+                                        <label for="name">비밀번호확인</label>
+                                        <span id="userPwCheck"></span>
+                                	</div>
+                              	</div>  
+                                <div class="col-md-6">
+                                	<div class="form-floating">     
+                                        <input type="text" class="form-control" name="user_name" placeholder="닉네임" onkeyup="checkName(this.value)">
+                                        <label for="name">닉네임</label>
+                                        <span id="userName"></span>
+                                    </div>
+                              	</div>
+                              	<div class="col-md-6">
+                                	<div class="form-floating">
+                                        <input type="text" class="form-control" name="user_phone" placeholder="전화번호"  onkeyup="checkPhone(this.value)">
+                                        <label for="name">전화번호</label>
+                                        <span id="userPhone"></span>
+                                  </div>
+                              	</div>  
+                                <div class="col-md-6">
+                                	<div class="form-floating">  
+                                        <input type="text" class="form-control" id="postcode" name="user_postcode" placeholder="우편번호">
+                                   		<label for="name">우편코드</label>
+                                   </div>
+                              	</div>
+                              	<div class="col-md-6">
+                                	<div class="form-floating">  
+                                        <input type="text" class="form-control" id="address" name="user_addr" placeholder="주소">
+                                        <label for="name">주소</label>
+                                   </div>
+                              	</div>          
+                                <div class="col-md-6">
+                                	<div class="form-floating">  
+                                        <input type="text" class="form-control" id="detailAddress" name="user_detailAddr" placeholder="상세주소">
+                                        <label for="name">상세주소</label>
+                                   </div>
+                              	</div>        
+                                <div class="col-md-6">
+                                	<div class="form-floating">  
+                                        <input type="text" class="form-control" id="extraAddress" name="user_extraAddr" placeholder="참고항목">
+                                        <label for="name">참고항목</label>
+                                   </div>
+                              	</div>      
+                                        <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
+                                <div class="col-md-6">
+                                	<div class="form-floating">  
+                                        <input type="text" class="form-control" name="user_email" placeholder="이메일" onkeyup="checkEmail(this.value)">
+                                        <label for="name">이메일</label>
+                                        <span id="userEmail"></span>
+                                   </div>
+                              	</div>
+                              	<div class="col-md-6">
+                                	<div class="form-floating">  
+                                       
+                                   </div>
+                              	</div>
+                              	<div class="col-md-6">
+                                	<div class="form-floating">         
+                                       <select class="form-control" name="user_question">
+                                                <option>선택하기</option>
                                                 <option value=1>최초로 방문한 국가는 어디였나요?</option>
                                                 <option value=2>가장 좋아하는 음식은 무엇인가요?</option>
-                                            </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th><label>질문답변</label></th>
-                                        <td><input type="text" name="user_answer" placeholder="질문답변"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><button onclick="createUserForm();">회원가입</button></td>
-                                    </tr>
-                                </table>
-
-
+                                        </select>
+                                       <label for="name">질문</label>
+                                     </div>
+                              	</div>
+                              	<div class="col-md-6">
+                                	<div class="form-floating">
+                                        <input type="text" class="form-control" name="user_answer" placeholder="질문답변">
+                                        <label for="name">질문답변</label>
+                                  	</div>
+                              	</div>
+                              	<div class="col-12">
+                                     <button  class="btn btn-primary w-100 py-3" onclick="createUserForm();">회원가입</button>
+                                </div>
+                                </div>
+							</form>
                         </div>
-                      
+                      </div>
                     </div>
-                </section>
-
+                 </div>
+               </div>
+            </section>
                 <script>
                     function execDaumPostcode() {
                         new daum.Postcode({
@@ -319,7 +321,7 @@
                     
                         function isValidName(name) {
 
-                            const regex3 = /^([ㄱ-ㅎ]){2,10}$/;
+                            const regex3 = /^([가-힣]){2,10}$/;
                             return regex3.test(name);
                         }
                         
@@ -421,7 +423,6 @@
                 				form.submit();
                 			}
                 			
-                			
                 		}
                 </script>
   <!-- JavaScript Libraries -->
@@ -442,3 +443,21 @@
     </body>
 
     </html>
+                                
+                                        
+                                        
+                                        
+                                        
+                      
+                                    
+                                    
+                                        
+                                    
+                                    
+                                      
+                                   
+                                   
+                        
+								
+
+                      

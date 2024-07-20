@@ -38,6 +38,10 @@
                         <a href="/" class="nav-item nav-link">HOME</a>
                         <a href="/user/create" class="nav-item nav-link">SINGUP</a>
                         <a href="/user/login" class="nav-item nav-link">LOGIN</a>
+                        <a href="/user/userpage" class="nav-item nav-link">MY PAGE</a>
+                        <a href="/user/adminpage" class="nav-item nav-link">ADMIN PAGE</a>
+                        <a href="/message/main" class="nav-item nav-link">MESSAGE</a>
+
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">MENU</a>
                             <div class="dropdown-menu m-0">
@@ -75,7 +79,7 @@
 	                <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="/" class="nav-item nav-link">HOME</a>
                         <a href="/userpage/userpagemain" class="nav-item nav-link">MY PAGE</a>
-                        <a href="/user/message" class="nav-item nav-link">MESSAGE</a>
+                        <a href="/message/main" class="nav-item nav-link">MESSAGE</a>
                         <a href="/user/logout" class="nav-item nav-link">LOGOUT</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">MENU</a>
