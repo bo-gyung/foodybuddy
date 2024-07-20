@@ -314,7 +314,10 @@
 		
 		// 삭제하기
 		function deletePost(buddy_no){
+			const result = confirm("정말 삭제하시겠습니까?");
+			if(result){
 			window.location.href = '/board/buddy/delete?buddy_no='+buddy_no;
+			}
 		}
 		
 		// 그룹만들기

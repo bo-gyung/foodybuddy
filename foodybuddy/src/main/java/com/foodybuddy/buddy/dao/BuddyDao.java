@@ -223,4 +223,24 @@ public class BuddyDao {
 		return result;
 	}
 	
+	public int deleteBuddy(int buddy_no, Connection conn) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "DELETE FROM `buddy_board` WHERE buddy_no = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, buddy_no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>작성 성공</title>
+<title>성공</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -40,7 +40,7 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">게시글 작성 완료</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">작업 성공</h1>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
                 <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
-                        <h3 class="text-white mb-4">성공적으로 게시글을 업로드 하였습니다.</h3>
+                        <h3 class="text-white mb-4">요청하신 작업이 성공적으로 수행되었습니다.</h3>
                         <%String url = (String)request.getAttribute("servletUrl"); %>
 						<a href=<%=url%>><button class="btn btn-primary w-100 py-3" type="button">돌아가기</button></a>
 

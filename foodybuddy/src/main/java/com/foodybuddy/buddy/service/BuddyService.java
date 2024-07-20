@@ -53,4 +53,13 @@ public class BuddyService {
 		
 		return result;
 	}
+	
+	// 버디 게시글 삭제
+	public int deleteBuddy(int buddy_no) {
+		Connection conn = getConnection();
+		int result = new BuddyDao().deleteBuddy(buddy_no, conn);
+		close(conn);
+		
+		return result;
+	}
 }	
