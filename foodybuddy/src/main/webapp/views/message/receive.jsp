@@ -30,53 +30,34 @@
 
     <!-- Template Stylesheet -->
     <link href="../resources/template/css/style.css" rel="stylesheet">
-    <link href="../resources/css/message/main.css" rel="stylesheet">
+   	<link href="../resources/css/message/main.css" rel="stylesheet">
+   	
     </head>
-<body>
-    <style>
-        table {
-            width: 100%; /* 테이블 전체 너비를 100%로 설정 */
-            border-collapse: collapse; /* 셀 테두리를 병합하여 단일 테두리로 만듦 */
-        }
+<body style="background-color: white;">
+ 
+<%@ include file="../include/navbar.jsp" %>
+<!-- Hero Start -->
+<div class="container-xxl py-5 bg-dark hero-header" style="margin-bottom: 0%;">
+</div>
+<!-- Hero End -->
 
-        th {
-            padding: 8px; /* 셀 내용과 테두리 사이 여백 설정 */
-            text-align: left; /* 텍스트 왼쪽 정렬 */
-           
-        }
+<div class="content-container">
+    <ul class="sideBar">
+    	<br><br>
+        <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
+        <br>
+        <li>
+        	<div style="background-color: aliceblue ;">
+        		<a href="/msgReceive" style="color: #FEA116; font-weight : bold;">받은쪽지</a>
+        	</div>
+        </li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
+    </ul>
 
-        th:nth-child(1) {
-            width: 5%; /* 첫 번째 th의 너비를 30%로 지정 */
-        }
-
-        th:nth-child(2) {
-            width: 10%; /* 두 번째 th의 너비를 40%로 지정 */
-        }
-
-        th:nth-child(3) {
-            width: 30%; /* 세 번째 th의 너비를 30%로 지정 */
-        }
-    </style>
-    <%@ include file="../include/navbar.jsp" %>
-               <!-- Hero Start -->
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
-               
-        </div>
-        <!-- Hero End -->
-        <div class="container">
-        <div class="sendMsg">
-        <ul>
-           
-            <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
-            <br><br>
-            <li><div style="background-color: aliceblue;"><a href="/msgReceive" style="color: black;">받은쪽지</a></div></li>
-            <li><a href="/msgSent">보낸쪽지</a></li>
-            <li><a href="#draft">임시쪽지</a></li>
-            <li><a href="#draft">휴지통</a></li>
-        </ul>
-    </div>
-    <main>
-        <select> 
+    <div class="main">
+        <select>
             <option>전체쪽지</option>
             <option>받은쪽지</option>
             <option>보낸쪽지</option>
@@ -92,46 +73,56 @@
         <span>1건</span>
         <span style="color: blue;">(쪽지검색키워드)</span>
         <hr>
-        <button>삭제</button>
-        <button>보관</button>
-        <button>답장</button>
+        <button class="delete">삭제</button>
+        <button class="save">보관</button>
+        <button class="reply">답장</button>
         <hr>
-        <table>
-        	<tr>
-        		<td></td>
-        		<th>글번호</th>
-        		<th>보낸사람/받는사람</th>
-        		<th>제목</th>
-        		<th>날짜</th>
-        	</tr>
-        	<%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
-	  		<%@ page import="com.foodybuddy.message.vo.Message" %>
- 	  		 <% List<Map<String, Object>> messages = (List<Map<String, Object>>) request.getAttribute("messages"); %>
-    <% for (Map<String, Object> message : messages) { %>
-        <% int length = (int) message.get("cnt"); %>
-        <% for (int i = 1; i <= length; i++) { %>
+        <table class="message-table">
             <tr>
-                <td>
+                <th></th>
+                <th>글번호</th>
+                <th>보낸사람</th>
+                <th>제목</th>
+                <th>날짜</th>
+            </tr>
+      <%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
+	  <%@ page import="com.foodybuddy.message.vo.Message" %>
+ 	  <% List<Map<String, Object>> messages = (List<Map<String, Object>>) request.getAttribute("messages"); %>
+		 <% int index = 1; %>
+            <% for (Map<String, Object> message : messages) { %>
+                <tr>
+                  <td>
                     <label class="checkbox-container">
-                        <input type="checkbox">
+                        <input type="checkbox" onchange="toggleRow(this)">
                         <span class="checkbox"></span> 
                     </label>
                 </td>
-                <td><%= i %></td>
-                <td><%= message.get("senderName") %></td>
-                <td><%= message.get("message_title") %></td>
-                <td><%= message.get("message_text") %></td>
-                <td><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
-            </tr>
-        <% } %>
-    <% } %>
-        	
+                	<td><%= index %></td>
+                    <td><%= message.get("senderName") %></td>
+                    <td onclick="showMessage('<%= message.get("senderName") %>', '<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
+            			<%= message.get("message_title") %>
+        			</td>
+                    <td><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
+                </tr>
+                <% index++; %>
+            <% } %>
         </table>
         <hr>
-     
-    </main>
+        
     </div>
+</div>
+    
     <script>
+    
+    function toggleRow(checkbox) {
+        const row = checkbox.closest('tr'); // 체크박스가 포함된 행을 찾음
+        if (checkbox.checked) {
+            row.classList.add('selected'); // 선택된 경우 배경색 추가
+        } else {
+            row.classList.remove('selected'); // 선택 해제된 경우 배경색 제거
+        }
+    }
+    
     function openNewWindow() {
         // 새 창을 열기
         var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
@@ -147,6 +138,69 @@
     newWindow.document.write(temp);
 
 }
+    function showMessage(receiverName, messageTitle, messageText, sentAt) {
+        var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
+
+        var styles = '<style>' +
+            'body {' +
+            '    font-family: Arial, sans-serif;' +
+            '    line-height: 1.6;' +
+            '    padding: 20px;' +
+            '    background-color: #f4f4f4;' +
+            '}' +
+            'h1 {' +
+            '    color: #333;' +
+            '    border-bottom: 2px solid #FEA116;' +
+            '    padding-bottom: 10px;' +
+            '}' +
+            '.message-container {' +
+            '    background: #fff;' +
+            '    padding: 20px;' +
+            '    border-radius: 8px;' +
+            '    box-shadow: 0 0 10px rgba(0,0,0,0.1);' +
+            '    margin-top: 20px;' +
+            '}' +
+            '.message-container div {' +
+            '    margin-bottom: 10px;' +
+            '}' +
+            '.message-title {' +
+            '    font-weight: bold;' +
+            '    font-size: 1.2em;' +
+            '    color: #007bff;' +
+            '}' +
+            '.message-content {' +
+            '    font-size: 1em;' +
+            '    color: #555;' +
+            '}' +
+            '.message-info {' +
+            '    color: #777;' +
+            '}' +
+            '</style>';
+
+        var temp = styles +
+            '<h1>받은 쪽지</h1>' +
+            '<div class="message-container">' +
+            '    <div class="message-info"><strong>보낸 사람:</strong> ' + receiverName + '</div>' +
+            '    <div class="message-title"><strong>제목:</strong> ' + messageTitle + '</div>' +
+            '    <div class="message-content"><strong>내용:</strong> ' + messageText + '</div>' +
+            '    <div class="message-info"><strong>보낸 시간:</strong> ' + sentAt + '</div>' +
+            '</div>';
+
+        newWindow.document.write(temp);
+    }
+
+    
+    function handleMouseOver(li) {
+        li.style.backgroundColor = 'aliceblue';
+        li.querySelector('a').style.color = '#FEA116';
+        li.querySelector('a').style.fontWeight = 'bold';
+    }
+
+    function handleMouseOut(li) {
+        li.style.backgroundColor = '#f8f9fa';
+        li.querySelector('a').style.color = 'black';
+        li.querySelector('a').style.fontWeight = 'normal';
+    }
     </script>
          <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

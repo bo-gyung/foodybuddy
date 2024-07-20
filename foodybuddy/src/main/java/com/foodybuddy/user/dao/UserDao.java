@@ -64,9 +64,8 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getString("user_question")
 							,rs.getString("user_answer")
-							,rs.getInt("user_warn")
-							,rs.getTimestamp("reg_date").toLocalDateTime()
-							,rs.getTimestamp("warn_date").toLocalDateTime());
+							,rs.getTimestamp("reg_date").toLocalDateTime());
+							
 			}
 			
 		}catch(Exception e) {
@@ -101,9 +100,8 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getString("user_question")
 							,rs.getString("user_answer")
-							,rs.getInt("user_warn")
-							,rs.getTimestamp("reg_date").toLocalDateTime()
-							,rs.getTimestamp("warn_date").toLocalDateTime()); 
+							,rs.getTimestamp("reg_date").toLocalDateTime());
+							
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -137,9 +135,8 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getString("user_question")
 							,rs.getString("user_answer")
-							,rs.getInt("user_warn")
-							,rs.getTimestamp("reg_date").toLocalDateTime()
-							,rs.getTimestamp("warn_date").toLocalDateTime()); 
+							,rs.getTimestamp("reg_date").toLocalDateTime());
+							
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -173,9 +170,8 @@ public class UserDao {
 						,rs.getString("user_email")
 						,rs.getString("user_question")
 						,rs.getString("user_answer")
-						,rs.getInt("user_warn")
-						,rs.getTimestamp("reg_date").toLocalDateTime()
-						,rs.getTimestamp("warn_date").toLocalDateTime()); 
+						,rs.getTimestamp("reg_date").toLocalDateTime());
+						
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -214,9 +210,8 @@ public class UserDao {
 						,rs.getString("user_email")
 						,rs.getString("user_question")
 						,rs.getString("user_answer")
-						,rs.getInt("user_warn")
-						,rs.getTimestamp("reg_date").toLocalDateTime()
-						,rs.getTimestamp("warn_date").toLocalDateTime()); 
+						,rs.getTimestamp("reg_date").toLocalDateTime());
+					
 
 			}
 		} catch(Exception e) {
