@@ -37,17 +37,16 @@ public class MessageService {
 		 return new MessageDao().selectByName(msgReceiver, conn);
 	 }
 	 
-	 public List<Map<String,Object>> receivedMessage(int receiverId){
-		 Connection conn = getConnection();
-		 List<Map<String,Object>> messages = new MessageDao().receivedMessage(receiverId,conn);
-		 close(conn);
-		 return messages;
-		 
-	 }
-	 
 	 public List<Map<String,Object>> sentMessage(int senderId){
 		 Connection conn = getConnection();
 		 List<Map<String,Object>> messages = new MessageDao().sentMessage(senderId,conn);
+		 close(conn);
+		 return messages;
+	 }
+	 
+	 public List<Map<String,Object>> receiveMessage(int receiverId){
+		 Connection conn = getConnection();
+		 List<Map<String,Object>> messages = new MessageDao().sentMessage(receiverId,conn);
 		 close(conn);
 		 return messages;
 	 }

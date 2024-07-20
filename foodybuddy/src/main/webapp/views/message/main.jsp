@@ -30,30 +30,30 @@
 
     <!-- Template Stylesheet -->
     <link href="../resources/template/css/style.css" rel="stylesheet">
-    <link href="../resources/css/message/main.css" rel="stylesheet">
+   	<link href="../resources/css/message/main.css" rel="stylesheet">
+   	
     </head>
-<body>
+<body style="background-color: white;">
  
-    <%@ include file="../include/navbar.jsp" %>
-               <!-- Hero Start -->
-            <div class="container-xxl py-5 bg-dark hero-header" style="margin-bottom: 0%;">
-        	</div>
-               
-        <!-- Hero End -->
-        <div class="container" style="padding-left: 0%; height:90%;">
-        <div class="sendMsg" style=" height:100%; width:200px;">
-        <ul class="sideBar">
-           
-            <li><button onclick="openNewWindow();" >쪽지쓰기</button></li>
-            <br><br>
-            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgReceive">받은쪽지</a></li>
-            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
-            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
-            <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
-        </ul>
-    </div>
-    <main>
-        <select> 
+<%@ include file="../include/navbar.jsp" %>
+<!-- Hero Start -->
+<div class="container-xxl py-5 bg-dark hero-header" style="margin-bottom: 0%;">
+</div>
+<!-- Hero End -->
+
+<div class="content-container">
+    <ul class="sideBar">
+    	<br><br>
+        <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
+        <br>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgReceive">받은쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
+    </ul>
+
+    <div class="main">
+        <select>
             <option>전체쪽지</option>
             <option>받은쪽지</option>
             <option>보낸쪽지</option>
@@ -69,29 +69,29 @@
         <span>1건</span>
         <span style="color: blue;">(쪽지검색키워드)</span>
         <hr>
-        <button>삭제</button>
-        <button>보관</button>
-        <button>답장</button>
+        <button class="delete">삭제</button>
+        <button class="save">보관</button>
+        <button class="reply">답장</button>
         <hr>
-        <table>
-        	<tr>
-        <td><label class="checkbox-container">
-            <input type="checkbox">
-            <span class="checkbox"></span> 
-        </label><td>
-        		<th>글번호</th>
-        		<th>보낸사람/받는사람</th>
-        		<th>제목</th>
-        		<th>날짜</th>
-        	</tr>
+        <table class="message-table">
+            <tr>
+                <th>
+                    <label class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkbox"></span>
+                    </label>
+                </th>
+                <th>글번호</th>
+                <th>보낸사람/받는사람</th>
+                <th>제목</th>
+                <th>날짜</th>
+            </tr>
         </table>
         <hr>
-        <label class="checkbox-container">
-            <input type="checkbox">
-            <span class="checkbox"></span> 
-        </label>
-    </main>
+        
     </div>
+</div>
+    
     <script>
     function openNewWindow() {
         // 새 창을 열기
@@ -111,13 +111,13 @@
     
     function handleMouseOver(li) {
         li.style.backgroundColor = 'aliceblue';
-        li.querySelector('a').style.color = 'black';
+        li.querySelector('a').style.color = '#FEA116';
         li.querySelector('a').style.fontWeight = 'bold';
     }
 
     function handleMouseOut(li) {
-        li.style.backgroundColor = '#444';
-        li.querySelector('a').style.color = 'white';
+        li.style.backgroundColor = '#f8f9fa';
+        li.querySelector('a').style.color = 'black';
         li.querySelector('a').style.fontWeight = 'normal';
     }
     </script>

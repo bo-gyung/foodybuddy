@@ -53,9 +53,10 @@ public class UserCreateEndServlet extends HttpServlet {
 		//RequestDispatcher view = request.getRequestDispatcher(email)
 		if(result > 0) {
 			out.println("<html><body>");
- 
+			System.out.println("성공");
 			response.sendRedirect("/");
 		}else {
+			System.out.println("실패");
 			out.println("<html><body>");
             out.println("alert(회원가입에 실패하였습니다.<br>메인으로 돌아갑니다.)");
             out.println("</body></html>");
