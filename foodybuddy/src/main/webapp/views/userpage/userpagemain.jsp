@@ -190,7 +190,7 @@
 						                                    </div>
 						                                </div>
 						                                <div class="col-9">
-						                                    <button class="btn btn-primary w-100 py-3" type="button" onclick="">내 정보 변경</button>
+						                                    <button class="btn btn-primary w-100 py-3" type="button" onclick="updateBtn();">내 정보 변경</button>
 						                                </div>
 						                            </div>
 						                        </form>
@@ -401,6 +401,12 @@
 
     <!-- Template Javascript -->
     <script src="../../resources/template/js/main.js"></script>
+    
+    <script>
+    	function updateBtn(){
+    		
+    	}
+    </script>
 </body>
 
 </html>

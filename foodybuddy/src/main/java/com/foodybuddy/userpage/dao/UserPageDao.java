@@ -132,7 +132,7 @@ public class UserPageDao {
 	
 	
 	
-	//게시글 검색
+	//qna게시글 검색
 	public List<QnA> selectQnAList(QnA option, Connection conn){
 		List<QnA> list = new ArrayList<QnA>();
 		PreparedStatement pstmt = null;
@@ -222,8 +222,8 @@ public class UserPageDao {
 					+ "u.user_addr, u.user_detailAddr, u.user_extraAddr, u.user_postcode, u.user_email, "
 					+ "q.question_str , u.user_answer "
 					+ "FROM `user`u JOIN `user_grade` g ON u.grade_no=g.grade_no "
-					+ "JOIN `question` q ON u.user_question=q.question_no "
-					+ "where user_no=?";
+					+ "JOIN `question` q ON u.user_question = q.question_no "
+					+ "where user_no = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,u.getUser_no());
