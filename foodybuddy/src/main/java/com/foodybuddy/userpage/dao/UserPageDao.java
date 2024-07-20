@@ -212,47 +212,48 @@ public class UserPageDao {
 	
 	
 	// 사용자 정보 조회
-	public Map<String,Object> selectMyInfo(User u, Connection conn) {
-		Map<String,Object> resultMap = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			String sql = "SELECT u.user_id, g.grade_name, u.user_warn, u.user_name, u.user_phone, "
-					+ "u.user_addr, u.user_detailAddr, u.user_extraAddr, u.user_postcode, u.user_email, "
-					+ "q.question_str , u.user_answer "
-					+ "FROM `user`u JOIN `user_grade` g ON u.grade_no=g.grade_no "
-					+ "JOIN `question` q ON u.user_question = q.question_no "
-					+ "where user_no = ?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,u.getUser_no());
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				resultMap = new HashMap<String,Object>();
-				resultMap.put("아이디",rs.getString("u.user_id"));
-				resultMap.put("회원등급",rs.getString("g.grade_name"));
-				resultMap.put("경고횟수",rs.getInt("u.user_warn"));
-				resultMap.put("닉네임",rs.getString("u.user_name"));
-				resultMap.put("전화번호",rs.getString("u.user_phone"));
-				resultMap.put("기본주소",rs.getString("u.user_addr"));
-				resultMap.put("상세주소",rs.getString("u.user_detailAddr"));
-				resultMap.put("참고항목",rs.getString("u.user_extraAddr"));
-				resultMap.put("우편번호",rs.getString("u.user_postcode"));
-				resultMap.put("이메일",rs.getString("u.user_email"));
-				resultMap.put("질문",rs.getString("q.question_str"));
-				resultMap.put("답변",rs.getString("u.user_answer"));
-			}
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return resultMap;
-	}
+	 public Map<String,Object> selectMyInfo(User u, Connection conn) {
+	      Map<String,Object> resultMap = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      
+	      try {
+	         String sql = "SELECT u.user_id, g.grade_name, u.user_warn, u.user_name, u.user_phone, "
+	               + "u.user_addr, u.user_detailAddr, u.user_extraAddr, u.user_postcode, u.user_email, "
+	               + "q.question_str , u.user_answer "
+	               + "FROM `user`u JOIN `user_grade` g ON u.grade_no=g.grade_no "
+	               + "JOIN `question` q ON u.user_question=q.question_no "
+	               + "where user_no=?";
+	         
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1,u.getUser_no());
+	         rs = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            resultMap = new HashMap<String,Object>();
+	            resultMap.put("아이디",rs.getString("u.user_id"));
+	            resultMap.put("회원등급",rs.getString("g.grade_name"));
+	            resultMap.put("경고횟수",rs.getInt("u.user_warn"));
+	            resultMap.put("닉네임",rs.getString("u.user_name"));
+	            resultMap.put("전화번호",rs.getString("u.user_phone"));
+	            resultMap.put("기본주소",rs.getString("u.user_addr"));
+	            resultMap.put("상세주소",rs.getString("u.user_detailAddr"));
+	            resultMap.put("참고항목",rs.getString("u.user_extraAddr"));
+	            resultMap.put("우편번호",rs.getString("u.user_postcode"));
+	            resultMap.put("이메일",rs.getString("u.user_email"));
+	            resultMap.put("질문",rs.getString("q.question_str"));
+	            resultMap.put("답변",rs.getString("u.user_answer"));
+	         }
+	         
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rs);
+	         close(pstmt);
+	      }
+	      return resultMap;
+	   }
+
 	
 	// 작성글 조회(버디)
 	public List<Buddy> selectBuddyList(int user_no, Connection conn) {

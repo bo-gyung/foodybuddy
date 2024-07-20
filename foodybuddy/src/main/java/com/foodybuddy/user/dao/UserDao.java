@@ -29,6 +29,7 @@ public class UserDao {
 			pstmt.setString(9, u.getUser_extraAddr());
 			pstmt.setString(10, u.getUser_question());
 			pstmt.setString(11, u.getUser_answer());
+			pstmt.setInt(12, u.getUser_warn());
 			
 			
 			
@@ -64,7 +65,9 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getString("user_question")
 							,rs.getString("user_answer")
-							,rs.getTimestamp("reg_date").toLocalDateTime());
+							,rs.getInt("user_warn")
+							,rs.getTimestamp("reg_date").toLocalDateTime()
+						 	,rs.getTimestamp("warn_date").toLocalDateTime());
 							
 			}
 			
@@ -100,7 +103,9 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getString("user_question")
 							,rs.getString("user_answer")
-							,rs.getTimestamp("reg_date").toLocalDateTime());
+							,rs.getInt("user_warn")
+							,rs.getTimestamp("reg_date").toLocalDateTime()
+							,rs.getTimestamp("warn_date").toLocalDateTime());
 							
 			}
 		}catch(Exception e) {
@@ -135,7 +140,9 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getString("user_question")
 							,rs.getString("user_answer")
-							,rs.getTimestamp("reg_date").toLocalDateTime());
+							,rs.getInt("user_warn")
+							,rs.getTimestamp("reg_date").toLocalDateTime()
+							,rs.getTimestamp("warn_date").toLocalDateTime());
 							
 			}
 		}catch(Exception e) {
@@ -170,7 +177,9 @@ public class UserDao {
 						,rs.getString("user_email")
 						,rs.getString("user_question")
 						,rs.getString("user_answer")
-						,rs.getTimestamp("reg_date").toLocalDateTime());
+						,rs.getInt("user_warn")
+						,rs.getTimestamp("reg_date").toLocalDateTime()
+						,rs.getTimestamp("warn_date").toLocalDateTime());
 						
 			}
 		}catch(Exception e) {
@@ -210,7 +219,9 @@ public class UserDao {
 						,rs.getString("user_email")
 						,rs.getString("user_question")
 						,rs.getString("user_answer")
-						,rs.getTimestamp("reg_date").toLocalDateTime());
+						,rs.getInt("user_warn")
+						,rs.getTimestamp("reg_date").toLocalDateTime()
+						,rs.getTimestamp("warn_date").toLocalDateTime());
 					
 
 			}
