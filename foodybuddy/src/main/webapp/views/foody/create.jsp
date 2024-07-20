@@ -8,14 +8,13 @@
 <title>맛집글 작성</title>
 </head>
 <body>
-
 	<section>
 		<div id="section_wrap">
 			<div class="word">
 				<h3>맛집 등록</h3>
 			</div><br>
 			<div class="register_book_form">
-				<form action='/board/createEnd' name="create_foody_form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">	
+				<form action='/board/createEnd' name="create_foody_form" method="post" enctype="multipart/form-data" accept-charset="UTF-8" onsubmit="return createFoodyForm();">		
 					<!-- 필수 입력항목 -->
 					
 					<label>제목작성</label>
@@ -48,8 +47,18 @@
 					<input type="text" name="foody_main" placeholder="내용을 입력하세요."><br>
 					<label>주소검색</label>
 					<input type="text" name="foody_address"><br>
-					<label>사진첨부</label>
-					<input type="file" name="foody_picture" accept=".png,.jpg,.jpeg" multiple required><br>
+					
+					<!-- 사진첨부 -->
+					<label>대표 이미지</label>
+					<input type="file" name="foody_picture1" accept=".png,.jpg,.jpeg"><br>
+					<label>추가 사진</label>
+					<input type="file" name="foody_picture2" accept=".png,.jpg,.jpeg"><br>
+					<label>추가 사진</label>
+					<input type="file" name="foody_picture3" accept=".png,.jpg,.jpeg"><br>
+					<label>추가 사진</label>
+					<input type="file" name="foody_picture4" accept=".png,.jpg,.jpeg"><br>
+					<label>추가 사진</label>
+					<input type="file" name="foody_picture5" accept=".png,.jpg,.jpeg"><br>
 					
 					
 				</form>
@@ -66,57 +75,53 @@
 				
 			} else if(!form.foody_name.value){
 				alert("가게이름을 입력하세요.");
-				form.foody_store.focus();
-				reture false;
+				form.foody_name.focus();
+				return false;
 			}else if(!form.foody_taste.value){
 				alert("맛 평점을 입력해주세요.")
 				form.foody_taste.focus();
-				reture false;
+				return false;
+			}else if(form.foody_taste.value > 5 && form.foody_taste.value < 0){
+				alert("맛 평점은 0 에서 5 사이 입력만 가능합니다.")
+				form.foody_taste.focus();
+				return false;
 			}else if(!form.foody_clean.value){
 				alert("청결 평점을 입력해주세요.")
 				form.foody_clean.focus();
-				reture false;
+				return false;
+			}else if(form.foody_clean.value > 5 && form.foody_clean.value < 0){
+				alert("청결 평점은 0 에서 5 사이 입력만 가능합니다.")
+				form.foody_clean.focus();
+				return false;
 			}else if(!form.foody_main.value){
 				alert("상세 내용을 입력해주세요");
-				form.foody_content.focus();
-				reture false;
+				form.foody_main.focus();
+				return false;
 			}else if(!form.foody_address.value){
 				alert("주소를 입력해주세요");
 				form.foody_address.focus();
-				reture false;
-			} else if (!form.foody_picture.value) {
-				alert('이미지 파일을 선택하세요.');
-				form.foody_picture.focus();
-				reture false;
+				return false;
+			}else if(!form.foody_picture1.value){
+				alert("대표 사진을 입력해주세요");
+				form.foody_address.focus();
+				return false;
 			}else {
-				const files = form.foody_picture.files;
-				if(files.length > 5) {
-					alert("사진은 최대 5개까지 첨부할 수 있습니다.");
-					form.foody_picture.value = ''; // 파일 입력 초기화
-				} else {
-					const validExtensions = ['jpg', 'jpeg', 'png'];
-					for (let i = 0; i < files.length; i++) {
-						const file = files[i];
+				const validExtensions = ['jpg', 'jpeg', 'png'];
+				for (let i = 1; i <= 5; i++) {
+					const fileInput = form['foody_picture' + i];
+					const file = fileInput.files[0];
+					if (file) {
 						const fileExtension = file.name.split('.').pop().toLowerCase();
 						if (!validExtensions.includes(fileExtension)) {
 							alert("이미지파일만 선택할 수 있습니다.");
-							form.foody_picture.value = ''; // 파일 입력 초기화
-							return;
+							fileInput.value = '';
+							return false;
 						}
 					}
 				}
 			}
-					form.submit();
+			form.submit();
 		}
-		
-		// 파일 입력 변경 이벤트 리스너 추가
-		document.getElementById('foody_picture').addEventListener('change', function() {
-			const files = this.files;
-			if(files.length > 5) {
-				alert("사진은 최대 5개까지 첨부할 수 있습니다.");
-				this.value = ''; // 파일 입력 초기화
-			}
-		});
 	</script>
 	<script src="js/theme.js"></script>
 </body>

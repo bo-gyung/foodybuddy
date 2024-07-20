@@ -45,6 +45,34 @@ public class FoodyDao {
       return result;
   }
   
+  public int findKey(Foody f , Connection conn) {
+	  PreparedStatement pstmt = null;
+	  ResultSet rs = null;
+      int key = 0;
+      try {
+          String sql = "SELECT foody_no FROM foody_create WHERE foody_title = ? AND foody_name = ? AND foody_taste = ? AND foody_clean = ? "
+                  + " AND user_no = ? ";
+          pstmt = conn.prepareStatement(sql);
+          pstmt.setString(1, f.getFoody_title());
+          pstmt.setString(2, f.getFoody_name());
+          pstmt.setInt(3, f.getFoody_taste());
+          pstmt.setInt(4, f.getFoody_clean());
+          pstmt.setInt(5 , f.getUser_no());
+          
+          rs = pstmt.executeQuery();
+          if(rs.next()) {
+        	  key = rs.getInt("foody_no");
+          }
+          
+      } catch (Exception e) {
+          e.printStackTrace();
+      } finally {
+          close(rs);
+    	  close(pstmt);
+      }
+      return key;
+  }
+  
   
   public int selectBoardCount(Foody option , Connection conn) {
 		int result = 0;
@@ -270,6 +298,26 @@ public class FoodyDao {
 		}
 		return list;
 	}	
+	
+	public int insertPic(int findKey, String picName, boolean mainPic, Connection conn) {
+        PreparedStatement pstmt = null;
+        int success = 0;
+        try {
+            String sql = "INSERT INTO foody_picture (foody_no, pic_sub, pic_main) VALUES (?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, findKey);
+            pstmt.setString(2, picName);
+            pstmt.setBoolean(3, mainPic);
+            success = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+        return success;
+    }
+
+	
 }
 
 

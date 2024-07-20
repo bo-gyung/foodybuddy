@@ -42,6 +42,10 @@ public class Foody extends Paging{
 		super();
 		
 	}
+	
+	public Foody(int foody_no) {
+		this.foody_no = foody_no;
+	}
 
 	public Foody(int foody_no, int user_no, int report_no, String foody_title, String foody_name, int foody_taste,
 			int foody_clean, String foody_parking, String foody_delivery, String foody_main, LocalDateTime reg_date,
