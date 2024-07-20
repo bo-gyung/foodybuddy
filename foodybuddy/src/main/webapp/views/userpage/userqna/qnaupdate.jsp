@@ -30,9 +30,7 @@
 					<label>제목</label> 
 						<input type= "text" name = "qna_title" maxlength="50" value="<%=resultM.get("title")%>" readonly> <br> 
 					<label>작성란</label>
-						<textarea name = "qna_content" maxlength="500" cols="40" rows="15" style="resize: none;">
-						<%=resultM.get("content")%>
-					</textarea>
+						<textarea name = "qna_content" maxlength="500" cols="40" rows="15" style="resize: none;"><%=resultM.get("content")%></textarea>
 					<input type = "button" onclick = "updateBtn();" value = "수정완료" >
 				</form>
 			<%

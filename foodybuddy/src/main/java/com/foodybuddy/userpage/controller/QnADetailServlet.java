@@ -34,10 +34,7 @@ public class QnADetailServlet extends HttpServlet {
 		
 		// 여기에 ansContent도 함께 포함되어 있음
 		request.setAttribute("detail" , resultM);
-		
-		// 수정해라
-//		String answer = request.setAttribute("ansContent", resultM);
-		
+			
 		
 		//연결
 		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnadetail.jsp");

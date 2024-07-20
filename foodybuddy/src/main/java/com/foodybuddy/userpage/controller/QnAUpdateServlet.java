@@ -24,53 +24,47 @@ public class QnAUpdateServlet extends HttpServlet {
        
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 글번호를 입력받아왔어.
-		 String qnaNoStr = request.getParameter("qna_no");
-		 int qnaNo;
-		 // 왜 아직도 null이지
-		 System.out.println("servlet (1): " + qnaNoStr);
-		 
-	        if (qnaNoStr == null || qnaNoStr.isEmpty()) {
-	            response.sendRedirect(request.getContextPath() + "/qna/updateFail");
-	            
-	            System.out.println("servlet (2): " + qnaNoStr);
-	            
-	            return;
-	            
-	        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 글번호를 입력받아옴
+        String qnaNoStr = request.getParameter("qna_no");
+        String qnaTitle = request.getParameter("qna_title");
+        String qnaContent = request.getParameter("qna_content");
+        int qnaNo;
 
-	        try {
-	            qnaNo = Integer.parseInt(qnaNoStr);
-	        } catch (NumberFormatException e) {
-	            response.sendRedirect(request.getContextPath() + "/qna/updateFail");
-	            
-	            System.out.println("servlet (3): " + qnaNoStr);
-	            
-	            return;
-	        }
+        try {
+            if (qnaNoStr != null && !qnaNoStr.isEmpty() && qnaTitle != null && !qnaTitle.isEmpty() && qnaContent != null && !qnaContent.isEmpty()) {
+                // 글번호와 수정된 내용을 가져와서 업데이트
+                qnaNo = Integer.parseInt(qnaNoStr);
+                QnAService qnaService = new QnAService();
+                int result = qnaService.updateQnA(qnaTitle, qnaContent, qnaNo);
 
-	        QnAService qnaService = new QnAService();
-	        Map<String, Object> resultM = qnaService.qnaDetail(qnaNo);
+                if (result > 0) {
+                    response.getWriter().write("수정 성공");
+                } else {
+                    response.getWriter().write("수정 실패");
+                }
+            } else if (qnaNoStr != null && !qnaNoStr.isEmpty()) {
+                // 글번호로 기존 데이터를 가져옴
+                qnaNo = Integer.parseInt(qnaNoStr);
+                QnAService qnaService = new QnAService();
+                Map<String, Object> resultM = qnaService.qnaDetail(qnaNo);
 
-	        if (resultM == null) {
-	            response.sendRedirect(request.getContextPath() + "/qna/updateFail");
-	            
-	            System.out.println("servlet (4): " + resultM);
-	            
-	            return;
-	        }
+                if (resultM == null) {
+                    response.sendRedirect(request.getContextPath() + "/qna/updateFail");
+                    return;
+                }
 
-	        request.setAttribute("detail", resultM);
-
-	        // 디버깅을 위해 콘솔에 출력
-	        System.out.println("resultM: (5)" + resultM);
-
-	        // 다시 돌려줘야지
-	        RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnaupdate.jsp");
-	        view.forward(request, response);
-	        response.sendRedirect("qna/list");
-	    }
+                request.setAttribute("detail", resultM);
+                RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnaupdate.jsp");
+                view.forward(request, response);
+                
+            } else {
+                response.sendRedirect(request.getContextPath() + "/qna/updateFail");
+            }
+        } catch (NumberFormatException e) {
+            response.sendRedirect(request.getContextPath() + "/qna/updateFail");
+        }
+    }
 		
 	
 	
@@ -81,6 +75,7 @@ public class QnAUpdateServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+		
 	}
 }
 
