@@ -2,6 +2,8 @@ package com.foodybuddy.foody.service;
 
 
 import static com.foodybuddy.common.sql.JDBCTemplate.close;
+import static com.foodybuddy.common.sql.JDBCTemplate.commit;
+import static com.foodybuddy.common.sql.JDBCTemplate.rollback;
 import static com.foodybuddy.common.sql.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -57,6 +59,20 @@ public class FoodyService {
 		close(conn);
 		return result ;
 	}
+	
+	public int findKey(Foody f) {
+		Connection conn = getConnection();
+		int key = new FoodyDao().findKey(f,conn);
+		close(conn);
+		return key;
+	}
+	
+	public int insertPic(int findKey, String picName, boolean mainPic) {
+        Connection conn = getConnection();
+        int upload = new FoodyDao().insertPic(findKey, picName, mainPic, conn);
+        close(conn);
+        return upload;
+    }
 	
 }
 
