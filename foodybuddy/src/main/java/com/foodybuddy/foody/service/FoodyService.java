@@ -74,5 +74,12 @@ public class FoodyService {
         return upload;
     }
 	
+	public int goodCount(int foody_no , int user_no) {
+		Connection conn = getConnection();
+		int good = new FoodyDao().goodCount(foody_no , user_no , conn);
+		close(conn);
+		return good;
+	}
+	
 }
 

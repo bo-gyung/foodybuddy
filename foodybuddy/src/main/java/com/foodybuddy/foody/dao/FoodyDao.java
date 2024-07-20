@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,7 +19,62 @@ import com.foodybuddy.common.sql.Paging;
 
 public class FoodyDao {
   
-  public int createBoard(Foody f, Connection conn) {
+	public int goodCount(int foody_no, int user_no, Connection conn) {
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    int result = 0;
+
+	    try {
+	        
+	        String check = "SELECT * FROM good_count WHERE foody_no = ? AND user_no = ?";
+	        pstmt = conn.prepareStatement(check);
+	        pstmt.setInt(1, foody_no);
+	        pstmt.setInt(2, user_no);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            String deleteGood = "DELETE FROM good_count WHERE foody_no = ? AND user_no = ?";
+	            pstmt = conn.prepareStatement(deleteGood);
+	            pstmt.setInt(1, foody_no);
+	            pstmt.setInt(2, user_no);
+	            int delCheck = pstmt.executeUpdate();
+	            
+	            if(delCheck > 0) {
+	            	String cancelCount = "UPDATE foody_create SET foody_good = CASE WHEN foody_good > 0 THEN foody_good - 1 ELSE 0 END WHERE foody_no = ?";
+	            	pstmt = conn.prepareStatement(cancelCount);
+	            	pstmt.setInt(1, foody_no);
+	            	pstmt.executeUpdate();
+	            	
+	            	result = 0;
+	            }
+	        } else {
+	            
+	            String insertGood = "INSERT INTO good_count (foody_no, user_no) VALUES (?, ?)";
+	            pstmt = conn.prepareStatement(insertGood);
+	            pstmt.setInt(1, foody_no);
+	            pstmt.setInt(2, user_no);
+	            int inCheck = pstmt.executeUpdate();
+
+	            if(inCheck > 0) {
+	            	
+	            	String plusCount = "UPDATE foody_create SET foody_good = foody_good + 1 WHERE foody_no = ?";
+	            	pstmt = conn.prepareStatement(plusCount);
+	            	pstmt.setInt(1, foody_no);
+	            	pstmt.executeUpdate();
+	            	
+	            	result = 1;
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(rs);
+	        close(pstmt);
+	    }
+	    return result;
+	}	
+	
+	public int createBoard(Foody f, Connection conn) {
       PreparedStatement pstmt = null;
       int result = 0;
       try {
@@ -143,7 +199,7 @@ public class FoodyDao {
 	    	        	sql += " ORDER BY c.reg_date DESC " ;
 	    	        }
 	            } else if (2==Integer.parseInt(option.getSearchOption()) && !option.getSearchBar().isEmpty() ) {
-	            	sql += " WHERE c.foody_name LIKE CONCAT('%','"+option.getSearchBar()+"','%')";
+	            	sql += " WHERE c.foody_title LIKE CONCAT('%','"+option.getSearchBar()+"','%')";
 	            	if("foody_good".equals(option.getSort())) {
 	    	        	sql += " WHERE u.user_name LIKE CONCAT('%','"+option.getSearchBar()+"','%') ORDER BY c.foody_good DESC ";
 	    	        }else {

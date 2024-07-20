@@ -29,13 +29,13 @@
 	<div>
 	<form action="/board/foody" method="get">
 	<select name="searchOption">
-		<option value="">선택하세요</option>
-		<option value="1">작성자</option>
-		<option value="2">제목</option>
-		<option value="3">위치</option>
+		
+		<option value="2" <%= "2".equals(request.getParameter("searchOption")) ? "selected" : "" %>>제목</option>
+		<option value="1" <%= "1".equals(request.getParameter("searchOption")) ? "selected" : "" %>>작성자</option>
+		<option value="3" <%= "3".equals(request.getParameter("searchOption")) ? "selected" : "" %>>위치</option>
 	</select>
 	
-	<input type="text" name="searchbar" placeholder="검색어 입력">
+	<input type="text" name="searchbar" placeholder="검색어 입력" value="<%= request.getParameter("searchbar") != null ? request.getParameter("searchbar") : "" %>">
 	<button type="submit">검색</button>
 	</form>
 	</div>
@@ -131,18 +131,18 @@
 			<div class="center">
 				<div class="pagination">
 					<% if(paging.isPrev()){ %>
-					<a href="/board/foody?nowPage=<%=(paging.getPageBarStart()-1)%>">
+					<a href="/board/foody?nowPage=<%=(paging.getPageBarStart()-1)%>&searchOption=<%= request.getParameter("searchOption") %>&searchbar=<%= request.getParameter("searchbar") %>&sort=<%= request.getParameter("sort") %>">
 					&laquo;
 					</a>
 					<%} %>
 					<% for(int i = paging.getPageBarStart() ; i <= paging.getPageBarEnd() ; i++){ %>
-					<a href="/board/foody?nowPage=<%=i%>"
+					<a href="/board/foody?nowPage=<%=i%>&searchOption=<%= request.getParameter("searchOption") %>&searchbar=<%= request.getParameter("searchbar") %>&sort=<%= request.getParameter("sort") %>"
 						<%=paging.getNowPage() == i ? "class='active'" : "" %>>
 						<%=i %>
 					</a>
 					<%} %>
 					<% if(paging.isNext()){ %>
-						<a href="/board/foody?nowPage=<%=(paging.getPageBarEnd()+1)%>">&raquo;</a>
+						<a href="/board/foody?nowPage=<%=(paging.getPageBarEnd()+1)%>&searchOption=<%= request.getParameter("searchOption") %>&searchbar=<%= request.getParameter("searchbar") %>&sort=<%= request.getParameter("sort") %>">&raquo;</a>
 					<%} %>
 				</div>
 			</div>
