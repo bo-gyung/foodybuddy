@@ -310,7 +310,6 @@ public class FoodyDao {
 	}
 
 
-
 	
 	public List<Foody> selectBoardTopList(Foody option, Connection conn) {
 	    List<Foody> list = new ArrayList<>();
