@@ -41,7 +41,7 @@
             <h1 class="display-3 text-white mb-3 animated slideInDown">MyPage</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center text-uppercase">
-                    <li class="breadcrumb-item"><a href="/user/pageList?menu=userpagemain">내 정보 조회/변경</a></li>
+                    <li class="breadcrumb-item"><a href="/userpage/userpagemain">내 정보 조회/변경</a></li>
                     <li class="breadcrumb-item"><a href="/user/pageList?menu=user_create_views">내 작성글 조회</a></li>
                     <li class="breadcrumb-item"><a href="/user/pageList?menu=user_like_views" style="color:white;">내 좋아요 조회</a></li>
                     <li class="breadcrumb-item"><a href="/user/pageList?menu=user_group_views">내 모임 조회</a></li>
@@ -51,23 +51,7 @@
         </div>
     </div>
 	<!-- Hero End -->
-        
-      <!--   
-	<label>아이디</label>
-	<input type = "text" disabled><br>
-	<label>등급</label>
-	<input type = "text" disabled><br>
-	<albel>경고</albel>
-	<input type = "text" disabled><br>
-	<label>닉네임</label>
-	<input type = "text"><br>
-	<label>주소</label>
-	<input type = "text"><br>
-	<label>전화번호</label>
-	<input type = "text"><br>
-	<label>이메일</label>
-	<input type = "text"><br>
- -->
+
         <!-- Menu Start -->
         <div class="container-xxl py-5">
             <div class="container">

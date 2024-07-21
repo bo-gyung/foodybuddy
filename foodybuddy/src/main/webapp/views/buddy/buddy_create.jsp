@@ -24,7 +24,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="../../resources/template/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../resources/template/lib/owlcarousel/assets/owl.cWarousel.min.css" rel="stylesheet">
+    <link href="../../resources/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="../../resources/template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -44,10 +44,10 @@
                     <h1 class="display-3 text-white mb-3 animated slideInDown">Buddy</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">foody로 돌아가기</a></li>
-                            <li class="breadcrumb-item"><a href="#">내가 보던 글로 돌아가기</a></li>
-                            <li class="breadcrumb-item"><a href="#">buddy 게시판 보기</a></li>
-                        </ol>
+			                <li class="breadcrumb-item"><a href="/">Home</a></li>
+			                <li class="breadcrumb-item"><a href="/board/foody">Foody</a></li>
+			                <li class="breadcrumb-item"><a href="/board/buddy" style="color:white;">Buddy</a></li>
+			            </ol>
                     </nav>
                 </div>
             </div>
@@ -68,15 +68,15 @@
                         <% %>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
-                                <p><i class="fa fa-store text-primary me-2"></i>book@example.com</p>
+                                <p><i class="fa fa-store text-primary me-2"></i>받아온 가게이름</p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
-                                <p><i class="fa fa-map-marked text-primary me-2"></i>info@example.com</p>
+                                <p><i class="fa fa-map-marked text-primary me-2"></i>받아온 가게주소</p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-car text-primary me-2"></i>tech@example.com</p>
+                                <p><i class="fa fa-car text-primary me-2"></i>받아온 주차여부</p>
                             </div>
                         </div>
                     </div>
@@ -85,52 +85,99 @@
 	                     
 	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
 	                        	<!-- 입력폼 시작 -->
-	                            <form action="/board/buddy/createEnd" name="buddy_write">
+	                                
+	                                <!-- Testimonial Start -->
+							        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+							            <div class="container">
+							                <div class="owl-carousel testimonial-carousel">
+							                    <div class="testimonial-item bg-transparent border rounded p-4">
+							                        <div class="d-flex align-items-center">
+							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
+						                            </div>
+							                    </div>
+							                    <div class="testimonial-item bg-transparent border rounded p-4">
+							                        <div class="d-flex align-items-center">
+							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
+						                            </div>
+							                    </div>
+							                    <div class="testimonial-item bg-transparent border rounded p-4">
+							                        <div class="d-flex align-items-center">
+							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
+						                            </div>
+							                    </div>
+							                    <div class="testimonial-item bg-transparent border rounded p-4">
+							                        <div class="d-flex align-items-center">
+							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
+						                            </div>
+							                    </div>
+							                    <div class="testimonial-item bg-transparent border rounded p-4">
+							                        <div class="d-flex align-items-center">
+							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
+						                            </div>
+							                    </div>
+							                </div>
+							            </div>
+							        </div>
+							    	<!-- Testimonial End -->
+	                            <form name="buddy_create_form" action="/board/buddy/createEnd" method="post">
 	                                <div class="row g-3">
 	                                	<div class="col-12">
 	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="title" name="buddy_title" placeholder="Subject">
-	                                            <label for="subject">제목</label>
+	                                            <input type="hidden" id="foody_no" name="foody_no" value="1" placeholder="받아온 정보로 원본글값 입력해줘야함">
+	                                        </div>
+	                                    </div>
+	                                	<div class="col-12">
+	                                        <div class="form-floating">
+	                                            <input type="text" class="form-control" id="title" name="buddy_title">
+	                                            <label for="subject">제목(최대 20글자)</label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-6">
-	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="photo" name="buddy_photo" placeholder="Subject" style="height: 370px">
-	                                            <label for="subject">사진</label>
+						    				<div class="form-floating pt-5">
+						        				<div id="map" class="form-control" style="height:380px;"></div>
+						        				<label for="subject">지도</label>
+						    				</div>
+						   				</div>
+	                                    <div class="col-6">
+										<div>
+											<%@page import="com.foodybuddy.user.vo.User, java.util.*" %>
+											<% User u = (User)session.getAttribute("user"); %>
+	                                        <div class="form-floating pt-5">
+	                                            <input type="text" class="form-control" id="user_name" name="user_name"
+	                                            disabled="disabled" style="background: white;" value="<%=u.getUser_name()%>">
+	                                            <label for="user_name">작성자</label>
 	                                        </div>
+	                                    </div>
+	                                    <div>
+	                                        <div class="form-floating pt-5">
+	                                            <input type="text" class="form-control" id="party_name" name="party_name">
+	                                            <label for="party_name">모임이름</label>
+	                                        </div>
+	                                    </div>
+	                                    <div>
+	                                        <div class="form-floating pt-5">
+	                                            <input type="datetime-local" class="form-control" id="meet_date" name="meet_date"
+	                                            onblur="dateCheck(this);">
+	                                            <label for="meet_date">모임날짜</label>
+	                                        </div>
+	                                    </div>
+	                                    <div>
+	                                        <div class="form-floating pt-5">
+	                                            <input type="number" class="form-control" id="party_number" name="party_number"
+	                                            min="2" max="10" onblur="numberCheck(this);">
+	                                            <label for="party_number">모임인원(작성자 포함 최소 2인 ~ 최대 10인까지 지정 가능)</label>
+	                                        </div>
+	                                    </div>
+	                            	</div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="buddy_main" name="buddy_main" style="height: 500px;"></textarea>
+                                            <label for="message">모집내용</label>
                                         </div>
-	                                    <div class="col-6">
-		                                    <div>
-		                                        <div class="form-floating pt-5 pb-3">
-		                                            <input type="email" class="form-control" id="party_name" name="party_name" placeholder="Your Email">
-		                                            <label for="email">모임이름</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pt-5 pb-3">
-		                                            <input type="text" class="form-control" id="meet_date" name="meet_date" placeholder="Your Name">
-		                                            <label for="name">모임날짜</label>
-		                                        </div>
-		                                    </div>
-		                                    <div>
-		                                        <div class="form-floating pt-5 pb-5">
-		                                            <input type="email" class="form-control" id="party_number" name="party_number" placeholder="Your Email">
-		                                            <label for="email">모임인원</label>
-		                                        </div>
-		                                    </div>
-	                                    </div>
+                                    </div>
+	                                    
 	                                    <div class="col-12">
-	                                        <div class="form-floating">
-	                                            <textarea class="form-control" placeholder="Leave a message here" id="main" name="buddy_main" style="height: 500px"></textarea>
-	                                            <label for="message">모집내용</label>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-9">
-	                                        <input type="file" id="buddy_photo" name="buddy_photo">
-	                                    </div>
-	                                    <div class="col-3"><button class="btn btn-primary w-100 py-3" type="button">첨부</button></div>
-	                                    <div class="col-12">
-	                                        <button class="btn btn-primary w-100 py-3" type="submit">검토 신청</button>
+	                                        <button class="btn btn-primary w-100 py-3" type="button" onclick="createBuddyForm();">검토 신청</button>
 	                                    </div>
 	                                </div>
 	                            </form>
@@ -139,6 +186,10 @@
 	                    </div>
 					</div>
                 </div>
+                
+	            <!-- 댓글창 시작 -->
+	            
+	            <!-- 댓글창 종료 -->
             </div>
         </div>  
         <!-- Contact End -->
@@ -213,6 +264,74 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
+    
+    <!-- 지도 API 스크립트 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae96fe5b21048be0c855431d0416eea1"></script>
+	<script>
+		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표. 지도를 생성하는데 반드시 필요
+			level: 3 //지도의 레벨(확대, 축소 정도)
+		};
+	
+		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		
+		// center 에 할당할 값은 LatLng 클래스를 사용하여 생성합니다. 
+		// 흔히 위경도 좌표라고 부르는 WGS84 좌표계의 좌표값을 넣어서 만드는데요, 
+		// 생성인자는 위도(latitude), 경도(longitude) 순으로 넣어주세요.
+	</script>
+	
+	<script type="text/javascript">
+	
+		/* 모임날짜 체크 */
+		function dateCheck(userDate){
+			let today = new Date();
+			let meetDate = new Date(userDate.value);
+				console.log(meetDate);
+			if(today >= meetDate){
+				alert("모임날짜는 현재보다 과거일 수 없습니다.")
+			}
+		}
+	
+		/* 모임인원 체크 */
+		function numberCheck(party_number){
+			let number = party_number.value;
+			if(2>number||number>10){
+				alert("모임인원은 최소 2인에서 최대 10인까지 지정할 수 있습니다.")
+				party_number.value="2";
+			}
+		}
+		
+		/* 제출 전 필수사항 체크 */
+		function createBuddyForm() {
+			let form = document.buddy_create_form ;	
+			if(!form.buddy_title.value){
+				alert("제목을 입력하세요.");
+				form.buddy_title.focus();
+			} else if(form.buddy_title.value.length>20){
+				alert("제목은 최대 20글자 이하로 작성해주세요.")
+			} else if(!form.party_name.value){
+				alert("모임이름을 입력하세요.");
+				form.party_name.focus();
+			} else if(!form.meet_date.value){
+				alert("모임날짜를 입력하세요.");
+				form.meet_date.focus();
+				console.log(form.meet_date.value);
+			} else if(!form.party_number.value){
+				alert("모임인원을 입력하세요.");
+				form.party_number.focus();
+			} else if(!form.buddy_main.value){
+				alert("내용을 입력하세요.");
+				form.buddy_main.focus();
+			} else if(form.buddy_main.value.length <= 20){
+				alert("본문의 내용을 최소 20자 이상 작성해주세요.");
+			} else {
+				console.log(form.meet_date.value);
+				form.submit();
+			}
+		}
+	</script>
+	
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

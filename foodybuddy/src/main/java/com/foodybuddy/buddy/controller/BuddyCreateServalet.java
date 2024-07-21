@@ -18,7 +18,10 @@ public class BuddyCreateServalet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// 여기서 모이기한 글정보 받아오기
+//		request.getAttribute("foody");
+		// 글정보 넘겨주기
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_create.jsp");
 		view.forward(request, response);
 	}

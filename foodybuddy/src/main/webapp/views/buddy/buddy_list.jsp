@@ -116,16 +116,16 @@
                             	for(int i = 0 ; i < list.size() ; i++){%>
                                 <div class="col-lg-6">
                                     <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-1.jpg" alt="" style="width: 80px;">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="" alt="" style="width: 80px;">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                 <span><a href="/board/buddy/post?buddy_no=<%=list.get(i).getBuddy_no()%>"><%=list.get(i).getBuddy_title() %></a></span>
-                                                <span class="text-primary">모집상태</span>
+                                                <span class="text-primary"><%=list.get(i).getParty_status() %></span>
                                             </h5>
                                             <small class="fst-italic">
-                                            <a href="">작성자 : <%=list.get(i).getUser_no() %></a> / 
+                                            <a style="color:black;" href="">작성자 : <%=list.get(i).getUser_name() %></a> / 
                                             모임일 : <%=list.get(i).getMeet_date() %> / 
-                                            댓글 : 댓글수 / 
+                                            댓글 : <%=list.get(i).getComment_cnt() %> / 
                                             조회수 : <%=list.get(i).getBuddy_view() %>
                                             </small>
                                         </div>
@@ -133,11 +133,33 @@
                                 </div>
                             	<%} %>
                             	
+	                        <!-- 페이징바 구성 -->
+							<% Buddy paging = (Buddy)request.getAttribute("paging"); %>
+							<% if(paging != null){ %>
+								<div class="center col-9 pt-5" style="margin:auto;">
+									<div class="pagination" style="display: flex; justify-content: center">
+										<%if(paging.isPrev()){%>
+											<a href="/board/buddy?nowPage=<%=(paging.getPageBarStart()-1)%>">&laquo;</a>
+										<%}%>
+										<%for(int i = paging.getPageBarStart() ; i <= paging.getPageBarEnd() ; i++){%>
+											<a href="/board/buddy?nowPage=<%=i%>" 
+											<%=paging.getNowPage() == i ? "class='active'" : ""%>>
+												<%=i%>
+											</a>
+										<%}%> 
+										<% if(paging.isNext()){%>
+											<a href="/board/buddy?nowPage=<%=(paging.getPageBarEnd()+1)%>">&raquo;</a>
+										<%}%>
+									</div>	
+								</div>
+							<%} %>
+                            	
                             </div>
                         </div>
+                        
 						<!-- 조회수순 -->
                         <div id="tab-2" class="tab-pane fade show p-0">
-                            
+                            <div class="row g-4">
                                 <div class="col-lg-6">
                                     <div class="d-flex align-items-center">
                                         <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-1.jpg" alt="" style="width: 80px;">
@@ -240,7 +262,21 @@
                         <!-- 마감일 임박순 -->
                         <div id="tab-3" class="tab-pane fade show p-0">
                             <div class="row g-4">
-                          		
+                            
+                          		<div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Chicken Burger</span>
+                                                <span class="text-primary">$115</span>
+                                            </h5>
+                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
                             </div>
                         </div>
                     </div>

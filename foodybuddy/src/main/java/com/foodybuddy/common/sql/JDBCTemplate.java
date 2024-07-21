@@ -1,6 +1,8 @@
 package com.foodybuddy.common.sql;
 
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -29,6 +31,9 @@ public class JDBCTemplate {
 		}
 		return conn;
 	}
+	
+
+	
 	
 	public static void commit(Connection conn) {
 		try {

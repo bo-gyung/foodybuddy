@@ -92,97 +92,97 @@
 						                    <div class="p-5 fade show p-1">
 						                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
 						                        <h3 class="mb-4">내 정보 조회</h3>
-						                        <%@page import="com.foodybuddy.user.vo.User, java.util.*" %>
+						                        <%@page import="java.util.*" %>
 												<%
-													User u = (User)session.getAttribute("user");
-													
+													Map<String,Object> info = (Map<String,Object>)request.getAttribute("userInfo");
 												%>
+												
 						                        <!-- 내 정보 폼 -->
 						                        <form action='/user/info' name="info_form" method="post">
 						                            <div class="row g-3" style="margin-left:20%">
 						                                <div class="col-md-9">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value=<%=u.getUser_id() %>>
-						                                        <label for="user_pw">아이디</label>
+						                                        <input type="text" class="form-control" id="user_id" name="user_id" 
+						                                        disabled="disabled" value="<%=info.get("아이디") %>">
+						                                        <label for="user_id">아이디</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-4">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value=<%=u.getGrade_no()==1?"준회원":u.getGrade_no()==2?"정회원":"모임장(임시)" %>>
-						                                        <label for="user_pw">회원등급</label>
+						                                        <input type="text" class="form-control" id="user_grade" name="user_grade" 
+						                                        disabled="disabled" value="<%=info.get("회원등급") %>">
+						                                        <label for="user_grade">회원등급</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-4">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_warn() %>">
-						                                        <label for="user_pw">경고횟수</label>
+						                                        <input type="text" class="form-control" id="user_warn" name="user_warn" 
+						                                        disabled="disabled" value="<%=info.get("경고횟수") %>">
+						                                        <label for="user_warn">경고횟수</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-9">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_name()%>">
-						                                        <label for="user_pw">닉네임</label>
+						                                        <input type="text" class="form-control" id="user_name" name="user_name" 
+						                                        disabled="disabled" value="<%=info.get("닉네임") %>">
+						                                        <label for="user_name">닉네임</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-9">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_phone()%>">
-						                                        <label for="user_pw">전화번호</label>
+						                                        <input type="text" class="form-control" id="user_phone" name="user_phone" 
+						                                        disabled="disabled" value="<%=info.get("전화번호") %>">
+						                                        <label for="user_phone">전화번호</label>
 						                                    </div>
 						                                </div>
 						                                
 						                                <div class="col-md-9">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_addr()%>">
-						                                        <label for="user_pw">주소</label>
+						                                        <input type="text" class="form-control" id="user_addr" name="user_addr" 
+						                                        disabled="disabled" value="<%=info.get("기본주소") %>">
+						                                        <label for="user_addr">주소</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-9">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled"  value="<%=u.getUser_detailAddr()%>">
-						                                        <label for="user_pw">상세 주소</label>
+						                                        <input type="text" class="form-control" id="user_d_addr" name="user_d_addr" 
+						                                        disabled="disabled"  value="<%=info.get("상세주소") %>">
+						                                        <label for="user_d_addr">상세 주소</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-4">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_extraAddr()%>">
-						                                        <label for="user_pw">참고항목</label>
+						                                        <input type="text" class="form-control" id="user_e_addr" name="user_e_addr" 
+						                                        disabled="disabled" value="<%=info.get("참고항목") %>">
+						                                        <label for="user_e_addr">참고항목</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-4">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_postcode()%>">
-						                                        <label for="user_pw">우편번호</label>
+						                                        <input type="text" class="form-control" id="user_postcode" name="user_postcode" 
+						                                        disabled="disabled" value="<%=info.get("우편번호") %>">
+						                                        <label for="user_postcode">우편번호</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-9">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_email()%>">
-						                                        <label for="user_pw">이메일</label>
+						                                        <input type="text" class="form-control" id="user_email" name="user_email" 
+						                                        disabled="disabled" value="<%=info.get("이메일") %>">
+						                                        <label for="user_email">이메일</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-9">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_question()%>">
-						                                        <label for="user_pw">아이디 찾기 질문</label>
+						                                        <input type="text" class="form-control" id="user_question" name="user_question" 
+						                                        disabled="disabled" value="<%=info.get("질문") %>">
+						                                        <label for="user_question">아이디 찾기 질문</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-md-9">
 						                                    <div class="form-floating">
-						                                        <input type="text" class="form-control" id="user_pw" name="user_pw" 
-						                                        disabled="disabled" value="<%=u.getUser_answer()%>">
-						                                        <label for="user_pw">답변</label>
+						                                        <input type="text" class="form-control" id="user_answer" name="user_answer" 
+						                                        disabled="disabled" value="<%=info.get("답변") %>">
+						                                        <label for="user_answer">답변</label>
 						                                    </div>
 						                                </div>
 						                                <div class="col-9">
