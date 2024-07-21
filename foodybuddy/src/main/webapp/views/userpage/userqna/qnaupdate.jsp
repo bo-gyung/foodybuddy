@@ -83,16 +83,12 @@
 						<label for="qna_title_update" class="form-label fw-medium">제목</label>
 						<input type="text" id="qna_title_update" name="qna_title"
 							class="form-control" maxlength="50" value="<%=title%>"
-							style="max-width: 80%; margin-left: auto; margin-right: auto;">
+							style="max-width: 80%; margin-left: 0%; margin-right: auto;">
 					</div>
 
 					<div class="mb-4">
 						<label for="qna_content_update" class="form-label fw-medium">작성란</label>
-						<textarea id="qna_content_update" name="qna_content"
-							class="form-control" maxlength="500" rows="10"
-							style="resize: none;">
-                        <%=content%>
-                    </textarea>
+						<textarea id="qna_content_update" name="qna_content"class="form-control" maxlength="500" rows="10"style="resize: none;"><%=content%></textarea>
 					</div>
 
 					<div class="d-flex justify-content-between">

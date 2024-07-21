@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,7 @@ public class UserPageDao {
 					+ ", qna_content "
 					+ ", qna_answer "
 					+ ", qna_no "
+					+ ", mod_date "
 					+ "FROM user_qna "
 					+ "WHERE qna_no = ?;";
 			
@@ -46,6 +48,7 @@ public class UserPageDao {
 				resultM.put("qnaNo", rs.getInt("qna_no"));
 				resultM.put("title", rs.getString("qna_title"));
 				resultM.put("content", rs.getString("qna_content"));
+				resultM.put("modDate", rs.getTimestamp("mod_date").toLocalDateTime());
 				// 관리자 응답추가야
 				resultM.put("ansContent", rs.getString("qna_answer")); 
 			}
@@ -82,7 +85,7 @@ public class UserPageDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
-			String sql = "UPDATE user_qna SET qna_title = ?, qna_content = ? WHERE qna_no = ?";
+			String sql = "UPDATE user_qna SET qna_title = ?, qna_content = ?, mod_date = NOW() WHERE qna_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
@@ -130,8 +133,7 @@ public class UserPageDao {
 	    return result;
 	}
 	
-	
-	
+
 	//qna게시글 검색
 	public List<QnA> selectQnAList(QnA option, Connection conn){
 		List<QnA> list = new ArrayList<QnA>();
@@ -146,7 +148,9 @@ public class UserPageDao {
 	        if(option.getQna_title() != null && !option.getQna_title().isEmpty()) {
 	            sql += "WHERE qna_title LIKE CONCAT('%', ?, '%') ";
 	        }
-
+	        // 오더바이 조건 추가
+	        sql += "GROUP BY qna_no ";
+	        sql += "ORDER BY reg_date DESC ";
 	        // 페이징 조건 추가
 	        sql += "LIMIT ?, ?";
 
@@ -165,7 +169,10 @@ public class UserPageDao {
 
 	        rs = pstmt.executeQuery();
 	        while(rs.next()) {
-	            QnA resultVo = new QnA(rs.getInt("qna_no"),
+	        	// 수정날짜 보일듯 안보일듯
+	        	LocalDateTime modDate = rs.getTimestamp("mod_date") != null ? rs.getTimestamp("mod_date").toLocalDateTime() : null;
+	           
+	        	QnA resultVo = new QnA(rs.getInt("qna_no"),
 	                                   rs.getInt("user_no"),
 	                                   rs.getString("qna_title"),
 	                                   rs.getString("qna_content"),

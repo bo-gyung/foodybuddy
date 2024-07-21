@@ -61,14 +61,12 @@
             <form action="/qna/createEnd" name="qnacreate_form" method="post">
                 <div class="mb-3">
                     <label for="qna_title" class="form-label fw-medium">제목</label>
-                    <input type="text" id="qna_title" name="qna_title"
-                     class="form-control" style="max-width: 80%; margin-left : 12%"
+                    <input type="text" id="qna_title" name="qna_title" class="form-control"border-primary w-100 py-3 ps-4 pe-5" style="max-width: 80%; margin-left : 0%"
                         placeholder="제목을 입력하세요." maxlength="50">
                 </div>
                 <div class="mb-3">
                     <label for="qna_content" class="form-label fw-medium">작성란</label>
-                    <textarea id="qna_content" name="qna_content" class="form-control"
-                        maxlength="500" placeholder="내용을 입력하세요." rows="10" style="resize: none;"></textarea>
+                    <textarea id="qna_content" name="qna_content" class="form-control"maxlength="500" placeholder="내용을 입력하세요." rows="10" style="resize: none;"></textarea>
                 </div>
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary fw-semi-bold">보내기</button>
@@ -78,23 +76,8 @@
         </div>
     </div>
 </section>
-	<script>
-		function qnacreateForm() {
-			let form = document.qnacreate_form;
-			if(!form.qna_title.value){
-				alert("제목을 입력하세요");
-				form.qna_title.focus();
-			}else if(!form.qna_content.value){
-				alert("내용을 입력하세요");
-				form.qna_content.focus();
-			} else {
-				document.qnacreate_form.submit();
-			}
-			
-			
-			
-		}
-        <!-- Footer Start -->
+	</body>
+	        <!-- Footer Start -->
         <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
@@ -162,8 +145,21 @@
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
+   
 		
+	<script>
+		function qnacreateForm() {
+			let form = document.qnacreate_form;
+			if(!form.qna_title.value){
+				alert("제목을 입력하세요");
+				form.qna_title.focus();
+			}else if(!form.qna_content.value){
+				alert("내용을 입력하세요");
+				form.qna_content.focus();
+			} else {
+				document.qnacreate_form.submit();
+			}		
+		}
 	</script>
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -184,5 +180,4 @@
 
 	<!-- Template Javascript -->
 	<script src="../../resources/template/js/main.js"></script>
-</body>
 </html>

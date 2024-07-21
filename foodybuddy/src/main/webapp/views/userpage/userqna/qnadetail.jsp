@@ -67,20 +67,17 @@
 			<!-- 제목 및 내용 -->
 			<div class="mb-4">
 				<label for="qna_title" class="form-label fw-medium">제목</label> <input
-					type="text" id="qna_title" class="form-control" maxlength="50"  style= " max-width: 80%; margin-left : 12%"
+					type="text" id="qna_title" class="form-control" maxlength="50"  style= " max-width: 80%; margin-left : 0%"
 					value="<%=resultM.get("title")%>" readonly>
 			</div>
 
 			<div class="mb-4">
 				<label for="qna_content" class="form-label fw-medium">작성란</label>
-				<textarea id="qna_content" class="form-control" maxlength="500"
-					cols="40" rows="15" style="resize: none;" readonly>
-                <%=resultM.get("content")%>
-            </textarea>
+				<textarea id= "qna_content" class="form-control" maxlength="500" cols="20" rows="15" style= "resize: none;" readonly><%=resultM.get("content")%></textarea>
 			</div>
 
 			<!-- 수정 및 삭제 버튼 -->
-			<div class="d-flex justify-content-between mb-4">
+			 <div class="d-flex justify-content-between mb-4">
 				<a href="/qna/update?qna_no=<%=resultM.get("qnaNo")%>"
 					class="btn btn-warning fw-semi-bold">수정</a>
 				<button type="button" class="btn btn-danger fw-semi-bold"

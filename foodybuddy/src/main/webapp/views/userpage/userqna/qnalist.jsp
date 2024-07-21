@@ -41,14 +41,13 @@
                     <h1 class="display-3 text-white mb-5 pb-5 animated slideInDown">
                      <a href="/qna/list" class="text-white">QnA게시판</a>
                     </h1>
-                       
-                       <!-- 검색창 -->
-                    <div class="input-group mt-5">
-						<button class="btn btn-outline-secondary dropdown-toggle py-2 position-absolute mt-2 me-2"style="min-width : 5%; background-color : Lightgray;" type="button" data-bs-toggle="dropdown" aria-expanded="false">제목</button>
+                      	 <!-- 검색창 -->
+                    	<div class="input-group mt-5">
+						<button class="btn btn-outline-secondary position-absolute mt-2 me-2 btn-lg" style= "min-width :12% ; background-color : Lightgray;" type="button" aria-expanded="false" >제목</button>
 						
-							<!-- 제목을 기준으로 검색 -->
-						<input type="text" class="form-control border-primary w-100 py-3 ps-4 pe-5" style="max-width: 70%; margin-left : 15%;" id = "qna_title" >
-						<button onclick="submitSearch()" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2 btn-lg" >검색</button>
+						<!-- 제목을 기준으로 검색 -->
+						<input type="text" class="form-control border-primary w-100 py-3 ps-3 pe-3" style= "max-width: 70%; margin-left : 15%;" id = "qna_title" >
+						<button onclick="submitSearch()" class= "btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2 btn-lg" style= "min-width :13%;">검색</button>
 						
 					</div>
                 </div>
@@ -132,7 +131,9 @@
                             <span><a href="/qna/detail?qna_no=<%= qna.getQna_no() %>"><%= qna.getQna_title() %></a></span>
                             <span class="text-primary">작성날짜 : <%= qna.getReg_date() %></span>
                         </h5>
-                        <small class="fst-italic">글번호 : <%= qna.getQna_no() %> / 처리상태 : <%= statusText %></small>
+                        <small class="fst-italic">글번호 : <%= qna.getQna_no() %> / 수정날짜 :  <% if (qna.getMod_date() != null) { %>
+                        <%= qna.getMod_date() %>
+                    <% } %> / 처리상태 : <%= statusText %></small>
                     </div>
                 </div>
             </div>
