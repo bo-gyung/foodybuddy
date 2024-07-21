@@ -307,7 +307,10 @@ public class UserPageDao {
 							rs.getTimestamp("mod_date").toLocalDateTime(),
 							rs.getString("foody_address"),
 							rs.getInt("foody_click"),
-							rs.getInt("foody_good")
+							rs.getInt("foody_good"),
+							rs.getString("ori_picture"),
+							rs.getString("new_picture"),
+							rs.getString("user_name")
 							);
 					list.add(rsFoody);
 				
