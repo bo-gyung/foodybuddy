@@ -9,7 +9,7 @@ public class Paging {
 		
 		// 페이징바 구성요소 --> 밑에오는 1, 2, 3, 4, 5 바꿀수있도록 설정해준다.
 
-		private int pageBarSize = 5; // 일단은 3로 고정해준다, 추후 수정가능
+		private int pageBarSize = 3; // 일단은 3로 고정해준다, 추후 수정가능
 
 		
 //github.com/bo-gyung/foodybuddy.git
@@ -22,7 +22,7 @@ public class Paging {
 		private int nowPage = 1; //목록 진입하면 무조건 1로 진입하기때문에
 		
 		//목록에 보여질 게시글 갯수를 설정 ex 1~10번페이지 --> 따로변수로 빼준다 일단은,추후 변경가능
-		private int numPerPage = 8;
+		private int numPerPage = 6;
 		
 		// 쿼리에 사용할 LIMIT 값 
 		private int limitPageNo;

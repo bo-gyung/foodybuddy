@@ -40,6 +40,8 @@ public class QnAUpdateServlet extends HttpServlet {
 
                 if (result > 0) {
                     response.getWriter().write("수정 성공");
+                    // 수정 성공하면 목록으로 이동
+                    response.sendRedirect("/qna/list");
                 } else {
                     response.getWriter().write("수정 실패");
                 }

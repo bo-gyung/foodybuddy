@@ -25,7 +25,7 @@ public class UserPageMain extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//세션
 		HttpSession session = request.getSession(false);
 		try {
 			if(session!=null) {
