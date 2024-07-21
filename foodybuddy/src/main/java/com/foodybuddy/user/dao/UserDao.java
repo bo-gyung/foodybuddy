@@ -27,7 +27,7 @@ public class UserDao {
 			pstmt.setString(7, u.getUser_addr());
 			pstmt.setString(8,u.getUser_detailAddr());
 			pstmt.setString(9, u.getUser_extraAddr());
-			pstmt.setString(10, u.getUser_question());
+			pstmt.setInt(10, u.getUser_question());
 			pstmt.setString(11, u.getUser_answer());
 			
 			
@@ -62,7 +62,7 @@ public class UserDao {
 							,rs.getString("user_detailAddr")
 							,rs.getString("user_extraAddr")
 							,rs.getString("user_email")
-							,rs.getString("user_question")
+							,rs.getInt("user_question")
 							,rs.getString("user_answer")
 							,rs.getTimestamp("reg_date").toLocalDateTime());
 							
@@ -98,7 +98,7 @@ public class UserDao {
 							,rs.getString("user_detailAddr")
 							,rs.getString("user_extraAddr")
 							,rs.getString("user_email")
-							,rs.getString("user_question")
+							,rs.getInt("user_question")
 							,rs.getString("user_answer")
 							,rs.getTimestamp("reg_date").toLocalDateTime());
 							
@@ -133,7 +133,7 @@ public class UserDao {
 							,rs.getString("user_detailAddr")
 							,rs.getString("user_extraAddr")
 							,rs.getString("user_email")
-							,rs.getString("user_question")
+							,rs.getInt("user_question")
 							,rs.getString("user_answer")
 							,rs.getTimestamp("reg_date").toLocalDateTime());
 							
@@ -168,7 +168,7 @@ public class UserDao {
 						,rs.getString("user_detailAddr")
 						,rs.getString("user_extraAddr")
 						,rs.getString("user_email")
-						,rs.getString("user_question")
+						,rs.getInt("user_question")
 						,rs.getString("user_answer")
 						,rs.getTimestamp("reg_date").toLocalDateTime());
 						
@@ -208,7 +208,7 @@ public class UserDao {
 						,rs.getString("user_detailAddr")
 						,rs.getString("user_extraAddr")
 						,rs.getString("user_email")
-						,rs.getString("user_question")
+						,rs.getInt("user_question")
 						,rs.getString("user_answer")
 						,rs.getTimestamp("reg_date").toLocalDateTime());
 					
@@ -226,7 +226,7 @@ public class UserDao {
 	// 회원정보 수정
 	public int editUser(User u, Connection conn) {
 		int result = 0;
-		PreparedStatement pstmt = null;
+		
 		
 
 		return result;

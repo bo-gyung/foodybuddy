@@ -36,7 +36,7 @@
 	            <div class="collapse navbar-collapse" id="navbarCollapse">
 	                <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="/" class="nav-item nav-link">HOME</a>
-                        <a href="/user/create" class="nav-item nav-link">SINGUP</a>
+                        <a href="/user/create" class="nav-item nav-link">SIGNUP</a>
                         <a href="/user/login" class="nav-item nav-link">LOGIN</a>
                         <a href="/user/userpage" class="nav-item nav-link">MY PAGE</a>
                         <a href="/views/admin/admin.jsp" class="nav-item nav-link">ADMIN PAGE</a>
@@ -97,5 +97,6 @@
             </nav>
         </div>
 	    <!-- Navbar End -->
+    </div>
 </body>
 </html>

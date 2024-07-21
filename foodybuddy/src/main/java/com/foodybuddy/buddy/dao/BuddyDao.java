@@ -35,7 +35,7 @@ public class BuddyDao {
 		 }
 		 
 		 // 조회수를 카운트하기 위한 구문 추가
-		 sql += " GROUP BY b.buddy_no";
+		 sql += " GROUP BY b.buddy_no ORDER BY b.reg_date DESC ";
 		 
 		 // 페이징 관련 구문 추가
 			sql += " LIMIT "+keyword.getLimitPageNo()+", "+keyword.getNumPerPage();
