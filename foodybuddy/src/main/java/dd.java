@@ -6,7 +6,7 @@ public class dd {
 
     public static void main(String[] args) {
         String jdbcURL = "jdbc:mariadb://127.0.0.1:3306/foody_buddy";
-        String jdbcUsername = "scott";
+        String jdbcUsername = "root";
         String jdbcPassword = "tiger";
 
         try {

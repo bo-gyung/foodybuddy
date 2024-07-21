@@ -1,5 +1,7 @@
 package com.foodybuddy.user_manage.vo;
 
+import java.sql.Timestamp;
+
 public class User {
     private int user_no;
     private int grade_no;
@@ -14,30 +16,8 @@ public class User {
     private String user_extraAddr;
     private String user_question;
     private String user_answer;
-    private int user_warn;
-    private String reg_date;
+    private Timestamp reg_date;  // Timestamp 타입 유지
     private String grade_name;
-
-    public User() {}
-
-    public User(int user_no, int grade_no, String user_id, String user_pw, String user_name, String user_phone, String user_email, String user_postcode, String user_addr, String user_detailAddr, String user_extraAddr, String user_question, String user_answer, int user_warn, String reg_date, String grade_name) {
-        this.user_no = user_no;
-        this.grade_no = grade_no;
-        this.user_id = user_id;
-        this.user_pw = user_pw;
-        this.user_name = user_name;
-        this.user_phone = user_phone;
-        this.user_email = user_email;
-        this.user_postcode = user_postcode;
-        this.user_addr = user_addr;
-        this.user_detailAddr = user_detailAddr;
-        this.user_extraAddr = user_extraAddr;
-        this.user_question = user_question;
-        this.user_answer = user_answer;
-        this.user_warn = user_warn;
-        this.reg_date = reg_date;
-        this.grade_name = grade_name;
-    }
 
     // Getter와 Setter 메서드들
     public int getUser_no() {
@@ -144,19 +124,12 @@ public class User {
         this.user_answer = user_answer;
     }
 
-    public int getUser_warn() {
-        return user_warn;
-    }
-
-    public void setUser_warn(int user_warn) {
-        this.user_warn = user_warn;
-    }
-
-    public String getReg_date() {
+  
+    public Timestamp getReg_date() {
         return reg_date;
     }
 
-    public void setReg_date(String reg_date) {
+    public void setReg_date(Timestamp reg_date) {
         this.reg_date = reg_date;
     }
 
@@ -170,6 +143,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [user_no=" + user_no + ", grade_no=" + grade_no + ", user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", user_phone=" + user_phone + ", user_email=" + user_email + ", user_postcode=" + user_postcode + ", user_addr=" + user_addr + ", user_detailAddr=" + user_detailAddr + ", user_extraAddr=" + user_extraAddr + ", user_question=" + user_question + ", user_answer=" + user_answer + ", user_warn=" + user_warn + ", reg_date=" + reg_date + ", grade_name=" + grade_name + "]";
+        return "User [user_no=" + user_no + ", grade_no=" + grade_no + ", user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", user_phone=" + user_phone + ", user_email=" + user_email + ", user_postcode=" + user_postcode + ", user_addr=" + user_addr + ", user_detailAddr=" + user_detailAddr + ", user_extraAddr=" + user_extraAddr + ", user_question=" + user_question + ", user_answer=" + user_answer +  ", reg_date=" + reg_date + ", grade_name=" + grade_name + "]";
     }
 }
