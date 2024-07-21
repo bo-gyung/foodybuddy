@@ -15,7 +15,7 @@ public class User {
     private String user_detailAddr;
     private String user_extraAddr;
     private String user_email; 
-    private String user_question;
+    private int user_question;
     private String user_answer;
     private LocalDateTime reg_date;
 
@@ -25,7 +25,7 @@ public class User {
 
 	public User(int user_no, int grade_no, String user_id, String user_pw, String user_name, String user_phone,
 			String user_postcode, String user_addr, String user_detailAddr, String user_extraAddr, String user_email,
-			String user_question, String user_answer, LocalDateTime reg_date) {
+			int user_question, String user_answer, LocalDateTime reg_date) {
 		super();
 		this.user_no = user_no;
 		this.grade_no = grade_no;
@@ -131,11 +131,11 @@ public class User {
 		this.user_email = user_email;
 	}
 
-	public String getUser_question() {
+	public int getUser_question() {
 		return user_question;
 	}
 
-	public void setUser_question(String user_question) {
+	public void setUser_question(int user_question) {
 		this.user_question = user_question;
 	}
 
@@ -165,4 +165,5 @@ public class User {
 	}
 	
 	
-	}
+
+}

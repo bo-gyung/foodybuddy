@@ -212,8 +212,69 @@
 	            </div>
 	            
 	            <!-- 댓글창 시작 -->
-	            
+				<div class=" mt-5 row d-flex justify-content-center">
+					<div class="col-md-8 col-lg-9">
+						<p>COMMENT</p>
+						<div class="card shadow-0 border" style="background-color: #f8f9fa;">
+							<div id="result_div" class="card-body p-4">
+								<!-- 댓글 출력 장소 -->
+								<div class="card mb-4">
+									<div class="card-body">
+										<p>본문내용</p>
+								
+										<div class="d-flex justify-content-between">
+											<div class="d-flex flex-row align-items-center">
+												<p class="small mb-0 ms-2">작성자</p>
+											</div>
+											<div class="d-flex flex-row align-items-center">
+												<p class="small text-muted mb-0">작성일</p>
+											</div>
+										</div>
+									</div>
+								</div>
+					        
+								<!-- 댓글 리스트 -->
+					            <div class="comment_list">
+					                <%
+					                    List<Comment> commentList = (List<Comment>) request.getAttribute("commentList");
+					                    if (commentList != null) {
+					                        for (Comment comment : commentList) {
+					                            String formattedCommentDate = comment.getReg_date().format(formatter);
+					                %>
+					                            <div class="card mb-4">
+													<div class="card-body">
+														<p><%= comment.getComment_text() %></p>
+												
+														<div class="d-flex justify-content-between">
+															<div class="d-flex flex-row align-items-center">
+																<p class="small mb-0 ms-2"><%= comment.getUser_name() %></p>
+															</div>
+															<div class="d-flex flex-row align-items-center">
+																<p class="small text-muted mb-0"><%= formattedCommentDate %></p>
+															</div>
+														</div>
+													</div>
+												</div>
+					                <%
+					                        }
+					                    }
+					                %>
+					            </div>
+					            
+								<div data-mdb-input-init class="form-outline mb-4">
+									<a><%= u.getUser_name() %></a>
+										<textarea id="add_text" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
+										<a class="form-label btn btn-primary m-2" href="#" id="add_btn">작성</a>
+								</div>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 	            <!-- 댓글창 종료 -->
+	            
+	            
+	            
+	            
 	       </div>
 	   </div>
 	   <!-- Contact End -->
@@ -329,6 +390,33 @@
 		function foodyPost(foody_no){
 			window.location.href = '/foody/view?foody_no='+foody_no;
         }
+		
+		// 댓글창
+		$(function(){
+			$('#add_btn').on('click',function(event){
+				event.preventDefault();
+				const text = $('#add_text').val();
+				const user = $('#add_user').val();
+				$.ajax({
+					type:'post',
+					url:'<%=request.getContextPath()%>/replyAjax',
+					contentType:'application/x-www-form-urlencoded; charset=utf-8',
+					// 보내는 데이터 타입
+					dataType:'JSON',
+					// 보내는 데이터 형식
+					data:{"text":text,"user":user},
+					success: function(data){
+						// 어레이 형식의 데이터가 어떻게 전달되나 살펴보기
+						// 대괄호 형태로 (배열) 들어가서 인덱스로 꺼내쓸 수 있다
+//						console.log(data);
+						
+						console.log(data.text);
+						console.log(data['name']);
+						// innerHTML하거나 append해서 댓글 추가시키기
+					}
+				});
+			});
+		});
     </script>
 	
     <!-- JavaScript Libraries -->
