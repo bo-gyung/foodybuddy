@@ -1,13 +1,13 @@
 package com.foodybuddy.foodycomment.service;
 
+import static com.foodybuddy.common.sql.JDBCTemplate.close;
+import static com.foodybuddy.common.sql.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 import java.util.List;
 
 import com.foodybuddy.foodycomment.dao.FcommentDao;
 import com.foodybuddy.foodycomment.vo.Comment;
-
-import static com.foodybuddy.common.sql.JDBCTemplate.close;
-import static com.foodybuddy.common.sql.JDBCTemplate.getConnection;
 
 public class FcommentService {
 	public void addComment(Comment comment) {

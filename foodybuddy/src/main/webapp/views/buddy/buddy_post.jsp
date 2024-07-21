@@ -211,46 +211,30 @@
 					</div>
 	            </div>
 	            
-	            <!-- 댓글창 시작 -->
+	            <!-- 댓글영역 시작 -->
 				<div class=" mt-5 row d-flex justify-content-center">
 					<div class="col-md-8 col-lg-9">
 						<p>COMMENT</p>
 						<div class="card shadow-0 border" style="background-color: #f8f9fa;">
 							<div id="result_div" class="card-body p-4">
-								<!-- 댓글 출력 장소 -->
-								<div class="card mb-4">
-									<div class="card-body">
-										<p>본문내용</p>
-								
-										<div class="d-flex justify-content-between">
-											<div class="d-flex flex-row align-items-center">
-												<p class="small mb-0 ms-2">작성자</p>
-											</div>
-											<div class="d-flex flex-row align-items-center">
-												<p class="small text-muted mb-0">작성일</p>
-											</div>
-										</div>
-									</div>
-								</div>
-					        
-								<!-- 댓글 리스트 -->
-					            <div class="comment_list">
+								<!-- 댓글 리스트 시작 -->
+					            <div class="comment_list" id="comment_place">
+					            	<%@page import="com.foodybuddy.buddy_comment.vo.BuddyComment, java.util.*" %>
 					                <%
-					                    List<Comment> commentList = (List<Comment>) request.getAttribute("commentList");
-					                    if (commentList != null) {
-					                        for (Comment comment : commentList) {
-					                            String formattedCommentDate = comment.getReg_date().format(formatter);
+					                List<BuddyComment> c_list = (List<BuddyComment>)request.getAttribute("c_list");
+             			                    if (c_list != null) {
+             			                        for (BuddyComment c : c_list) {
 					                %>
 					                            <div class="card mb-4">
 													<div class="card-body">
-														<p><%= comment.getComment_text() %></p>
+														<p><%= c.getComment_main() %></p>
 												
 														<div class="d-flex justify-content-between">
 															<div class="d-flex flex-row align-items-center">
-																<p class="small mb-0 ms-2"><%= comment.getUser_name() %></p>
+																<p class="small mb-0 ms-2"><%= c.getUser_name() %></p>
 															</div>
 															<div class="d-flex flex-row align-items-center">
-																<p class="small text-muted mb-0"><%= formattedCommentDate %></p>
+																<p class="small text-muted mb-0"><%= c.getReg_date() %></p>
 															</div>
 														</div>
 													</div>
@@ -260,17 +244,22 @@
 					                    }
 					                %>
 					            </div>
-					            
-								<div data-mdb-input-init class="form-outline mb-4">
-									<a><%= u.getUser_name() %></a>
-										<textarea id="add_text" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
-										<a class="form-label btn btn-primary m-2" href="#" id="add_btn">작성</a>
-								</div>
+					            <!-- 댓글 리스트 종료 -->
+					            <!-- 댓글 입력창 시작 -->
+					            <form action="/insertBuddyComment" method="post" id="insert_comment_form">
+									<div data-mdb-input-init class="form-outline mb-4">
+										<input type="hidden" id="buddy_no" name="buddy_no" value="<%=post.get("글번호")%>">
+										<a id="user_name" name="user_name"><%= u.getUser_name() %></a>
+										<textarea id="comment_main" name="comment_main" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
+										<a class="form-label btn btn-primary m-2" href="#" onclick="submit_btn();">작성</a>
+									</div>
+								</form>
+								<!-- 댓글 입력창 종료 -->
 					      </div>
 					    </div>
 					  </div>
 					</div>
-	            <!-- 댓글창 종료 -->
+	            <!-- 댓글영역 종료 -->
 	            
 	            
 	            
@@ -349,7 +338,23 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-	<!-- 지도 API 스크립트 -->
+	<!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../resources/template/lib/wow/wow.min.js"></script>
+    <script src="../../resources/template/lib/easing/easing.min.js"></script>
+    <script src="../../resources/template/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../resources/template/lib/counterup/counterup.min.js"></script>
+    <script src="../../resources/template/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../../resources/template/js/main.js"></script>
+    
+    
+  	<!-- 지도 API 스크립트 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae96fe5b21048be0c855431d0416eea1"></script>
 	<script>
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -391,48 +396,17 @@
 			window.location.href = '/foody/view?foody_no='+foody_no;
         }
 		
-		// 댓글창
-		$(function(){
-			$('#add_btn').on('click',function(event){
-				event.preventDefault();
-				const text = $('#add_text').val();
-				const user = $('#add_user').val();
-				$.ajax({
-					type:'post',
-					url:'<%=request.getContextPath()%>/replyAjax',
-					contentType:'application/x-www-form-urlencoded; charset=utf-8',
-					// 보내는 데이터 타입
-					dataType:'JSON',
-					// 보내는 데이터 형식
-					data:{"text":text,"user":user},
-					success: function(data){
-						// 어레이 형식의 데이터가 어떻게 전달되나 살펴보기
-						// 대괄호 형태로 (배열) 들어가서 인덱스로 꺼내쓸 수 있다
-//						console.log(data);
-						
-						console.log(data.text);
-						console.log(data['name']);
-						// innerHTML하거나 append해서 댓글 추가시키기
-					}
-				});
-			});
-		});
-    </script>
-	
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../resources/template/lib/wow/wow.min.js"></script>
-    <script src="../../resources/template/lib/easing/easing.min.js"></script>
-    <script src="../../resources/template/lib/waypoints/waypoints.min.js"></script>
-    <script src="../../resources/template/lib/counterup/counterup.min.js"></script>
-    <script src="../../resources/template/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../../resources/template/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="../../resources/template/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="../../resources/template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+		// 댓글 작성
 
-    <!-- Template Javascript -->
-    <script src="../../resources/template/js/main.js"></script>
+        function submit_btn(){
+        	 event.preventDefault();
+        	 const form = document.getElementById('insert_comment_form');
+        	 form.submit();
+		}
+
+		
+    </script>
+    
 </body>
 
 </html>
