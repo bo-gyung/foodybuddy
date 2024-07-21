@@ -11,13 +11,14 @@ public class Message {
 	private String message_text;
 	private LocalDateTime sent_at;
 	private boolean is_deleted;
+	private String status;
 	
 	public Message() {
 		super();
 	}
 
 	public Message(int message_id, String sender_id, String receiver_id, String message_title, String message_text,
-			LocalDateTime sent_at, boolean is_deleted) {
+			LocalDateTime sent_at, boolean is_deleted, String status) {
 		super();
 		this.message_id = message_id;
 		this.sender_id = sender_id;
@@ -26,6 +27,7 @@ public class Message {
 		this.message_text = message_text;
 		this.sent_at = sent_at;
 		this.is_deleted = is_deleted;
+		this.status = status;
 	}
 
 	public int getMessage_id() {
@@ -84,14 +86,20 @@ public class Message {
 		this.is_deleted = is_deleted;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Message [message_id=" + message_id + ", sender_id=" + sender_id + ", receiver_id=" + receiver_id
 				+ ", message_title=" + message_title + ", message_text=" + message_text + ", sent_at=" + sent_at
-				+ ", is_deleted=" + is_deleted + "]";
+				+ ", is_deleted=" + is_deleted + ", status=" + status + "]";
 	}
-
-	
 	
 	
 }

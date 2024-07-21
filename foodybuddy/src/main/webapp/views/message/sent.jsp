@@ -73,9 +73,10 @@
         <span>1건</span>
         <span style="color: blue;">(쪽지검색키워드)</span>
         <hr>
-        <button class="delete">삭제</button>
-        <button class="save">보관</button>
+        <button class="delete" >삭제</button>
         <button class="reply">답장</button>
+        <form action="/MoveServlet" method="post" onsubmit="return validateForm();">
+        <button class="save" type="submit" >보관</button>
         <hr>
         <table class="message-table">
             <tr>
@@ -93,7 +94,7 @@
                 <tr>
                   <td class="align-middle">
                     <label class="checkbox-container">
-                        <input type="checkbox" onchange="toggleRow(this)">
+                        <input type="checkbox" onchange="toggleRow(this)" name="messageIds" value="<%= message.get("message_id") %>" onclick="event.stopPropagation();">
                         <span class="checkbox"></span> 
                     </label>
                 </td>
@@ -107,12 +108,22 @@
                 <% index++; %>
             <% } %>
         </table>
+        </form>
         <hr>
         
     </div>
 </div>
     
     <script>
+    
+    function validateForm() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        if (checkboxes.length === 0) {
+            alert("쪽지를 선택해주세요.");
+            return false;
+        }
+        return true;
+    }
     
     function toggleRow(checkbox) {
         const row = checkbox.closest('tr'); // 체크박스가 포함된 행을 찾음

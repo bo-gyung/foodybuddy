@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import com.foodybuddy.message.service.MessageService;
 import com.foodybuddy.user.vo.User;
 
-
 @WebServlet("/msgReceive")
 public class ReceiveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,10 +22,10 @@ public class ReceiveServlet extends HttpServlet {
   
     public ReceiveServlet() {
         super();
-       
+     
     }
 
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
@@ -37,16 +36,16 @@ public class ReceiveServlet extends HttpServlet {
 		}
 		
 		int receiverId = u.getUser_no();
-		List<Map<String,Object>> messages = new MessageService().sentMessage(receiverId); 
+		List<Map<String,Object>> messages2 = new MessageService().receiveMessage(receiverId); 
 		
-		request.setAttribute("messages", messages);
+		request.setAttribute("messages2", messages2);
 		RequestDispatcher view = request.getRequestDispatcher("views/message/receive.jsp");
 		view.forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 		doGet(request, response);
 	}
 
