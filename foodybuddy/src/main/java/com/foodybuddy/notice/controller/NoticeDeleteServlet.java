@@ -23,7 +23,7 @@ public class NoticeDeleteServlet extends HttpServlet {
         if (success) {
             response.sendRedirect("/notices");
         } else {
-            // Handle case where deletion fails
+           
             response.sendRedirect("/notices/detail?id=" + noticeId);
         }
     }

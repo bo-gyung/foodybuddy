@@ -107,14 +107,14 @@ public class BuddyDao {
         boolean result = false;
 
         try {
-            // 먼저 관련된 댓글을 삭제합니다.
+            // 먼저 관련된 댓글을 삭제
             String deleteCommentsQuery = "DELETE FROM buddy_comment WHERE buddy_no = ?";
             pstmt = conn.prepareStatement(deleteCommentsQuery);
             pstmt.setInt(1, buddyNo);
             pstmt.executeUpdate();
             pstmt.close();
 
-            // 이제 모임 글을 삭제합니다.
+            // 이제 모임 글을 삭제
             String deletePostQuery = "DELETE FROM buddy_board WHERE buddy_no = ?";
             pstmt = conn.prepareStatement(deletePostQuery);
             pstmt.setInt(1, buddyNo);

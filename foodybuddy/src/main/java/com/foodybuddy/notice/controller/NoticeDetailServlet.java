@@ -14,6 +14,8 @@ public class NoticeDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int noticeId = Integer.parseInt(request.getParameter("id"));
+        noticeService.incrementViewCount(noticeId); // 조회수 증가
+        
         Notice notice = noticeService.getNoticeById(noticeId);
 
         if (notice != null) {
@@ -21,8 +23,7 @@ public class NoticeDetailServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/notice/noticeDetail.jsp");
             dispatcher.forward(request, response);
         } else {
-            // Handle case where notice with given id is not found
-            response.sendRedirect("/notices"); // Redirect to notice list page
+            response.sendRedirect("/notices"); 
         }
     }
 }

@@ -134,6 +134,15 @@ public class NoticeDao {
 
         return success;
     }
-
+    public boolean incrementViewCount(Connection conn, int noticeId) {
+        String query = "UPDATE notice_management SET notice_view_count = notice_view_count + 1 WHERE notice_no = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, noticeId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }

@@ -59,10 +59,10 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Date</th>
-                <th>View Count</th>
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>조회수</th>
             </tr>
         </thead>
         <tbody>

@@ -23,8 +23,7 @@ public class RejectBuddyServlet extends HttpServlet {
 
         if (result) {
             response.sendRedirect(request.getContextPath() + "/buddy_list");  // 반려 후 목록 페이지로 리다이렉트
-        } else {
-            response.getWriter().write("<html><body><h2>반려 실패</h2></body></html>");
+        
         }
     }
 }

@@ -54,6 +54,15 @@ public class NoticeService {
         close(conn);
         return success;
     }
-
+    public void incrementViewCount(int noticeId) {
+        Connection conn = getConnection();
+        boolean result = noticeDao.incrementViewCount(conn, noticeId);
+        if (result) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
+        close(conn);
+    }
 
 }

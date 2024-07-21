@@ -60,12 +60,8 @@ a:hover {
 				<th>닉네임</th>
 				<th>전화번호</th>
 				<th>이메일</th>
-				<th>우편번호</th> <!-- 우편번호 컬럼 추가 -->
 				<th>주소</th>
 				<th>상세주소</th>
-				<th>추가주소</th>
-				<th>질문</th>
-				<th>답변</th>
 				<th>가입일</th>
 			</tr>
 		</thead>
@@ -83,12 +79,8 @@ a:hover {
 					href="<%=request.getContextPath()%>/user/comments?user_no=<%=user.getUser_no()%>"><%=user.getUser_name()%></a></td>
 				<td><%=user.getUser_phone()%></td>
 				<td><%=user.getUser_email()%></td>
-				<td><%=user.getUser_postcode()%></td> <!-- 우편번호 추가 -->
 				<td><%=user.getUser_addr()%></td>
 				<td><%=user.getUser_detailAddr()%></td>
-				<td><%=user.getUser_extraAddr()%></td>
-				<td><%=user.getUser_question()%></td>
-				<td><%=user.getUser_answer()%></td>
 				<td><%=user.getReg_date()%></td>
 			</tr>
 			<%
