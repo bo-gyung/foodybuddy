@@ -17,7 +17,7 @@ public class QnaAnswerServlet extends HttpServlet {
         int qnaNo = Integer.parseInt(request.getParameter("qna_no"));
         String answer = request.getParameter("answer");
         qnaService.updateQnaAnswer(qnaNo, answer);
-        response.sendRedirect(request.getContextPath() + "/qna/detail?qna_no=" + qnaNo);
+        response.sendRedirect(request.getContextPath() + "/qna_manage/detail?qna_no=" + qnaNo);
     }
 
     @Override

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.foodybuddy.qna_manage.service.QnaService;
 import com.foodybuddy.qna_manage.vo.Qna;
 
-@WebServlet("/qna/list")
+@WebServlet("/admin/qna/list")
 public class AdminQnaListServlet extends HttpServlet {
     private QnaService qnaService = new QnaService();
 

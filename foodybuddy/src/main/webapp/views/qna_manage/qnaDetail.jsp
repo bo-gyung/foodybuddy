@@ -69,7 +69,7 @@
                 <textarea name="answer" placeholder="답변을 입력해주세요" required><%= qna.getQna_answer() == null ? "" : qna.getQna_answer() %></textarea>
                 <div class="action-buttons">
                     <button type="submit">저장</button>
-                    <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/qna/list'">이전</button>
+                    <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/admin/qna/list'">이전</button>
                 </div>
             </form>
         </div>

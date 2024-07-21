@@ -1,6 +1,7 @@
 package com.foodybuddy.user.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,8 +35,16 @@ public class UserLoginEndServlet extends HttpServlet {
 				session.setAttribute("user", u);
 				session.setMaxInactiveInterval(60*30);
 				System.out.println("로그인 성공");
+				
+				if(u.getGrade_no()==4) {
+					// 관리자 화면
+					RequestDispatcher view = request.getRequestDispatcher("/views//user/adminpage.jsp");
+					view.forward(request, response);
+				} else {
+					// 회원 화면
+					response.sendRedirect("/");
+				}
 			}
-			response.sendRedirect("/");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("/views/user/login_fail.jsp");
 			view.forward(request, response);

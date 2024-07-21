@@ -27,6 +27,12 @@
 	            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 	                <span class="fa fa-bars"></span>
 	            </button>
+	            <%@ page import="com.foodybuddy.user.vo.User" %>
+			    <%
+				    User user = (User)session.getAttribute("user");
+					if(user == null){    
+					// 비회원 메뉴바
+			    %>
 	            <div class="collapse navbar-collapse" id="navbarCollapse">
 	                <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="/" class="nav-item nav-link">HOME</a>
@@ -35,6 +41,9 @@
                         <a href="/user/userpage" class="nav-item nav-link">MY PAGE</a>
                         <a href="/views/admin/admin.jsp" class="nav-item nav-link">ADMIN PAGE</a>
                         <a href="/user/message" class="nav-item nav-link">MESSAGE</a>
+                        <a href="/user/adminpage" class="nav-item nav-link">ADMIN PAGE</a>
+                        <a href="/message/main" class="nav-item nav-link">MESSAGE</a>
+
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">MENU</a>
                             <div class="dropdown-menu m-0">
@@ -45,6 +54,46 @@
                         </div>
                     </div>
                 </div>
+                <%
+					}else if(user.getGrade_no()==4){
+					// 관리자 메뉴바
+                %>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+	                <div class="navbar-nav ms-auto py-0 pe-4">
+                        <a href="/" class="nav-item nav-link">HOME</a>
+                        <a href="/user/adminpage" class="nav-item nav-link">ADMIN PAGE</a>
+                        <a href="/user/logout" class="nav-item nav-link">LOGOUT</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">MENU</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="/board/notice" class="dropdown-item">NOTICE</a>
+                                <a href="/board/foody" class="dropdown-item">FOODY</a>
+                                <a href="/board/buddy" class="dropdown-item">BUDDY</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%
+					}else{
+					// 회원 메뉴바
+                %>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+	                <div class="navbar-nav ms-auto py-0 pe-4">
+                        <a href="/" class="nav-item nav-link">HOME</a>
+                        <a href="/userpage/userpagemain" class="nav-item nav-link">MY PAGE</a>
+                        <a href="/message/main" class="nav-item nav-link">MESSAGE</a>
+                        <a href="/user/logout" class="nav-item nav-link">LOGOUT</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">MENU</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="/board/notice" class="dropdown-item">NOTICE</a>
+                                <a href="/board/foody" class="dropdown-item">FOODY</a>
+                                <a href="/board/buddy" class="dropdown-item">BUDDY</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
             </nav>
         </div>
 	    <!-- Navbar End -->

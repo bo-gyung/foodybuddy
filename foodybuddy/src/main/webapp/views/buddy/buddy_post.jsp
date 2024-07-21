@@ -5,7 +5,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>BUDDY POST</title>
+    <title>BUDDY(같이가기)</title>
+    <!-- BUDDY(같이가기) 글 열람 -->
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -41,7 +42,7 @@
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Contact Us</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">글 보기</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -51,75 +52,113 @@
                     </nav>
                 </div>
             </div>
-        </div>
-        <!-- Hero End -->
+        	<!-- Hero End -->
 
 
-        <!-- Contact Start -->
+        <!-- Contact Start --> 
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">모집중</h5>
-                    <h1 class="mb-5">글제목</h1>
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Buddy</h5>
+                    <h1 class="mb-5">여기서 모이기</h1>
                 </div>
+                
+                <%@page import="com.foodybuddy.buddy.vo.Buddy, java.util.*" %>
+                <% Map<String,Object> post = (Map<String,Object>)request.getAttribute("post"); %>
+                
                 <div class="row g-4">
                     <div class="col-12">
-                        <div class="row gy-4">
+                        <div class="row gy-4" style="text-align : center">
                             <div class="col-md-4">
-                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">모집인원</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>book@example.com</p>
+                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
+                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게이름") %></p>
                             </div>
                             <div class="col-md-4">
-                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">모임날짜</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
+                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
+                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게주소") %></p>
                             </div>
                             <div class="col-md-4">
-                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">모임장이름</h5>
-                                <p><i class="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
+                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
+                                <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("작성자") %></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-                        <iframe class="position-relative rounded w-100 h-100"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                            frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
-                            tabindex="0"></iframe>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                            <label for="name">Your Name</label>
+					<div style="display:flex; justify-content:center;">
+	                    <div class="col-md-9">
+	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
+	                            <form action="#" name="buddy_write">
+	                                <div class="row g-3">
+	                                	
+	                                	<div class="col-12">
+	                                        <div class="form-floating">
+	                                            <input type="text" class="form-control" id="title" placeholder="Subject">
+	                                            <label for="subject"><%=post.get("글제목") %></label>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-6">
+	                                        <div class="form-floating">
+	                                            <input type="text" class="form-control" id="subject" placeholder="Subject" style="height: 370px">
+	                                            <label for="subject">사진</label>
+	                                        </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                            <label for="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                            <label for="subject">Subject</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
-                                            <label for="message">Message</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+	                                    <div class="col-6">
+		                                    <div>
+		                                        <div class="form-floating pb-1">
+		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+		                                            <label for="email"><%=post.get("모임이름") %></label>
+		                                        </div>
+		                                    </div>
+		                                    <div>
+		                                        <div class="form-floating pb-1">
+		                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+		                                            <label for="name"><%=post.get("모임날짜") %></label>
+		                                        </div>
+		                                    </div>
+		                                    <div>
+		                                        <div class="form-floating pb-1">
+		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+		                                            <label for="email"><%=post.get("모임인원") %></label>
+		                                        </div>
+		                                    </div>
+		                                    <div>
+		                                        <div class="form-floating pb-1">
+		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+		                                            <label for="email"><%=post.get("가게이름") %></label>
+		                                        </div>
+		                                    </div>
+		                                    <div>
+		                                        <div class="form-floating pb-1">
+		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+		                                            <label for="email"><%=post.get("가게주소") %></label>
+		                                        </div>
+		                                    </div>
+		                                    <div>
+		                                        <div class="form-floating pb-1">
+		                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+		                                            <label for="email"><%=post.get("주차여부") %></label>
+		                                        </div>
+		                                    </div>
+	                                    </div>
+	                                    
+	                                    
+	                                    <div class="col-12">
+	                                        <div class="form-floating">
+	                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 500px"></textarea>
+	                                            <label for="message"><%=post.get("글내용") %></label>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-9">
+	                                        <input type="file">
+	                                    </div>
+	                                    <div class="col-3"><button class="btn btn-primary w-100 py-3" type="button">첨부</button></div>
+	                                    <div class="col-12">
+	                                        <button class="btn btn-primary w-100 py-3" type="submit">검토 신청</button>
+	                                    </div>
+	                                </div>
+	                            </form>
+	                        </div>
+	                    </div>
+					</div>
                 </div>
             </div>
         </div>

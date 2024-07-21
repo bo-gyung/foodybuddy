@@ -50,7 +50,7 @@
             %>
                 <tr>
                     <td><%= qna.getQna_no() %></td>
-                    <td><a href="<%= request.getContextPath() %>/qna/detail?qna_no=<%= qna.getQna_no() %>"><%= qna.getQna_title() %></a></td>
+                    <td><a href="<%= request.getContextPath() %>/qna_manage/detail?qna_no=<%= qna.getQna_no() %>"><%= qna.getQna_title() %></a></td>
                     <td><%= qna.getQna_content() %></td>
                     <td><%= qna.getReg_date() %></td>
                     <td><%= qna.getQna_status() %></td>
@@ -82,7 +82,7 @@
             %>
                 <tr>
                     <td><%= qna.getQna_no() %></td>
-                    <td><a href="<%= request.getContextPath() %>/qna/detail?qna_no=<%= qna.getQna_no() %>"><%= qna.getQna_title() %></a></td>
+                    <td><a href="<%= request.getContextPath() %>/qna_manage/detail?qna_no=<%= qna.getQna_no() %>"><%= qna.getQna_title() %></a></td>
                     <td><%= qna.getQna_content() %></td>
                     <td><%= qna.getReg_date() %></td>
                     <td><%= qna.getQna_status() %></td>

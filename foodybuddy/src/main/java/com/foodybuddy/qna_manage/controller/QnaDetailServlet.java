@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.foodybuddy.qna_manage.service.QnaService;
 import com.foodybuddy.qna_manage.vo.Qna;
 
-@WebServlet("/qna/detail")
+@WebServlet("/qna_manage/detail")
 public class QnaDetailServlet extends HttpServlet {
     private QnaService qnaService = new QnaService();
 
@@ -26,6 +26,6 @@ public class QnaDetailServlet extends HttpServlet {
         int qnaNo = Integer.parseInt(request.getParameter("qna_no"));
         String answer = request.getParameter("answer");
         qnaService.updateQnaAnswer(qnaNo, answer);
-        response.sendRedirect(request.getContextPath() + "/qna/detail?qna_no=" + qnaNo);
+        response.sendRedirect(request.getContextPath() + "/qna_manage/detail?qna_no=" + qnaNo);
     }
 }
