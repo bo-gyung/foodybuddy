@@ -128,8 +128,8 @@
 	                                    </div>
 	                                	<div class="col-12">
 	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="title" name="buddy_title" placeholder="Subject">
-	                                            <label for="subject">제목</label>
+	                                            <input type="text" class="form-control" id="title" name="buddy_title">
+	                                            <label for="subject">제목(최대 20글자)</label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-6">
@@ -308,6 +308,8 @@
 			if(!form.buddy_title.value){
 				alert("제목을 입력하세요.");
 				form.buddy_title.focus();
+			} else if(form.buddy_title.value.length>20){
+				alert("제목은 최대 20글자 이하로 작성해주세요.")
 			} else if(!form.party_name.value){
 				alert("모임이름을 입력하세요.");
 				form.party_name.focus();

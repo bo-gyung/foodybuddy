@@ -320,6 +320,8 @@
 			if(!form.buddy_title.value){
 				alert("제목을 입력하세요.");
 				form.buddy_title.focus();
+			} else if(form.buddy_title.value.length>20){
+				alert("제목은 최대 20글자 이하로 작성해주세요.")
 			} else if(!form.party_name.value){
 				alert("모임이름을 입력하세요.");
 				form.party_name.focus();
