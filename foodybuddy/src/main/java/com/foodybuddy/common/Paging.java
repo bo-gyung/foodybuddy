@@ -8,7 +8,7 @@ public class Paging {
 		private int totalPage;
 		
 		// 페이징바 구성요소 --> 밑에오는 1, 2, 3, 4, 5 바꿀수있도록 설정해준다.
-		private int pageBarSize = 3; // 일단은 5로 고정해준다, 추후 수정가능
+		private int pageBarSize = 5; // 일단은 5로 고정해준다, 추후 수정가능
 		
 		// 페이징바 페이지 시작, 끝 담을수 잇는 필드 생성
 		private int pageBarStart;

@@ -56,6 +56,11 @@
 
 
         <!-- Contact Start -->
+        	<%@page import="com.foodybuddy.buddy.vo.Buddy, java.util.*" %>
+			<% 
+				Map<String,Object> post = (Map<String,Object>)request.getAttribute("post"); 
+			
+			%>
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -68,15 +73,15 @@
                         <% %>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
-                                <p><i class="fa fa-store text-primary me-2"></i>받아온 가게이름</p>
+                                <p><i class="fa fa-store text-primary me-2"></i><%=post.get("가게이름") %></p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
-                                <p><i class="fa fa-map-marked text-primary me-2"></i>받아온 가게주소</p>
+                                <p><i class="fa fa-map-marked text-primary me-2"></i><%=post.get("가게주소") %></p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-car text-primary me-2"></i>받아온 주차여부</p>
+                                <p><i class="fa fa-car text-primary me-2"></i><%=post.get("주차여부") %></p>
                             </div>
                         </div>
                     </div>
@@ -119,17 +124,23 @@
 							            </div>
 							        </div>
 							    	<!-- Testimonial End -->
-	                            <form name="buddy_create_form" action="/board/buddy/createEnd" method="post">
+	                            <form name="buddy_edit_form" action="/board/buddy/editEnd" method="post">
 	                                <div class="row g-3">
 	                                	<div class="col-12">
 	                                        <div class="form-floating">
-	                                            <input type="hidden" id="foody_no" name="foody_no" value="1" placeholder="받아온 정보로 원본글값 입력해줘야함">
+	                                            <input type="hidden" id="foody_no" name="foody_no" value="<%=post.get("원본글번호")%>">
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-12">
+	                                        <div class="form-floating">
+	                                            <input type="hidden" id="buddy_no" name="buddy_no" value="<%=post.get("글번호")%>">
 	                                        </div>
 	                                    </div>
 	                                	<div class="col-12">
 	                                        <div class="form-floating">
-	                                            <input type="text" class="form-control" id="title" name="buddy_title">
-	                                            <label for="subject">제목(최대 20글자)</label>
+	                                            <input type="text" class="form-control" id="title" name="buddy_title" 
+	                                            placeholder="Subject" value="<%=post.get("글제목") %>">
+	                                            <label for="subject">제목</label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-6">
@@ -150,34 +161,35 @@
 	                                    </div>
 	                                    <div>
 	                                        <div class="form-floating pt-5">
-	                                            <input type="text" class="form-control" id="party_name" name="party_name">
+	                                            <input type="text" class="form-control" id="party_name" name="party_name"
+	                                             value="<%=post.get("모임이름") %>">
 	                                            <label for="party_name">모임이름</label>
 	                                        </div>
 	                                    </div>
 	                                    <div>
 	                                        <div class="form-floating pt-5">
 	                                            <input type="datetime-local" class="form-control" id="meet_date" name="meet_date"
-	                                            onblur="dateCheck(this);">
+	                                            onblur="dateCheck(this);" value="<%=post.get("모임날짜") %>">
 	                                            <label for="meet_date">모임날짜</label>
 	                                        </div>
 	                                    </div>
 	                                    <div>
 	                                        <div class="form-floating pt-5">
 	                                            <input type="number" class="form-control" id="party_number" name="party_number"
-	                                            min="2" max="10" onblur="numberCheck(this);">
+	                                            min="2" max="10" onblur="numberCheck(this);" value="<%=post.get("모임인원") %>">
 	                                            <label for="party_number">모임인원(작성자 포함 최소 2인 ~ 최대 10인까지 지정 가능)</label>
 	                                        </div>
 	                                    </div>
 	                            	</div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control" id="buddy_main" name="buddy_main" style="height: 500px;"></textarea>
+                                            <textarea class="form-control" id="buddy_main" name="buddy_main" style="height: 500px;"><%=post.get("글내용")%></textarea>
                                             <label for="message">모집내용</label>
                                         </div>
                                     </div>
 	                                    
 	                                    <div class="col-12">
-	                                        <button class="btn btn-primary w-100 py-3" type="button" onclick="createBuddyForm();">검토 신청</button>
+	                                        <button class="btn btn-primary w-100 py-3" type="button" onclick="editBuddyForm();">수정하기</button>
 	                                    </div>
 	                                </div>
 	                            </form>
@@ -303,8 +315,8 @@
 		}
 		
 		/* 제출 전 필수사항 체크 */
-		function createBuddyForm() {
-			let form = document.buddy_create_form ;	
+		function editBuddyForm() {
+			let form = document.buddy_edit_form;	
 			if(!form.buddy_title.value){
 				alert("제목을 입력하세요.");
 				form.buddy_title.focus();

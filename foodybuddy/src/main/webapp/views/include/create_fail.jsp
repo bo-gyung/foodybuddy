@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Page-내 작성글 조회</title>
+<title>실패</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -32,117 +32,36 @@
     <!-- Template Stylesheet -->
     <link href="../../resources/template/css/style.css" rel="stylesheet">
 </head>
+
 <body>
 	<!-- Navbar Link -->
 	<%@ include file="../include/navbar.jsp" %>
-    <!-- Hero Start -->
-    <div class="container-xxl py-5 bg-dark hero-header mb-5">
-        <div class="container text-center my-5 pt-5 pb-4">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">MyPage</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center text-uppercase">
-                    <li class="breadcrumb-item"><a href="/userpage/userpagemain">내 정보 조회/변경</a></li>
-                    <li class="breadcrumb-item"><a href="/user/pageList?menu=user_create_views" style="color:white;">내 작성글 조회</a></li>
-                    <li class="breadcrumb-item"><a href="/user/pageList?menu=user_like_views">내 좋아요 조회</a></li>
-                    <li class="breadcrumb-item"><a href="/user/pageList?menu=user_group_views">내 모임 조회</a></li>
-                    <li class="breadcrumb-item"><a href="/qna/list">Q&A</a></li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-	<!-- Hero End -->
-
-        <!-- Menu Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">FoodyBuddy</h5>
-                    <h1 class="mb-5">내 작성글 조회</h1>
+	
+        <!-- Hero Start -->
+            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">작업 실패</h1>
                 </div>
-                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                                <i class="fa fa-coffee fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Foody</small>
-                                    <h6 class="mt-n1 mb-0">맛집정보</h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
-                                <i class="fa fa-hamburger fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Buddy</small>
-                                    <h6 class="mt-n1 mb-0">여기서 모이기</h6>
-                                </div>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                    
-                    <%@page import="com.foodybuddy.buddy.vo.Buddy, com.foodybuddy.foody.vo.Foody, java.util.*" %>
-                    <% 
-                    List<Foody> foody_list = (List<Foody>)request.getAttribute("foody_list"); 
-                    List<Buddy> buddy_list = (List<Buddy>)request.getAttribute("buddy_list");
-                    %>
-                    <div class="tab-content">
-                    
-                    	<!-- 맛집정보 게시판 -->
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row g-4">
-                             <%for(int i = 0 ; i < foody_list.size() ; i++){ %>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span><%=foody_list.get(i).getFoody_title() %></span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            <%} %> 
-                            </div>
-                        </div> 
-                        
-                        <!-- 모임게시판 -->
-                        
-                        <div id="tab-2" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                            
-                            <% for(int i = 0 ; i < buddy_list.size() ; i++){ %>
-	                                <div class="col-lg-6">
-	                                    <div class="d-flex align-items-center">
-	                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-	                                        <div class="w-100 d-flex flex-column text-start ps-4">
-	                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-	                                                <span><a href="/board/buddy/post?buddy_no=<%=buddy_list.get(i).getBuddy_no()%>"><%=buddy_list.get(i).getBuddy_title() %></a></span>
-	                                                <span class="text-primary">$115</span>
-	                                            </h5>
-	                                            <small class="fst-italic">
-	                                            <a href="">작성자 : <%=buddy_list.get(i).getUser_name() %></a> / 
-	                                            모임일 : <%=buddy_list.get(i).getMeet_date() %> / 
-	                                            댓글 : 댓글수 / 
-	                                            조회수 : <%=buddy_list.get(i).getBuddy_view() %>
-	                                            </small>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            <%} %>	
-                            </div>
-                        </div>
-                        
+            </div>
+        </div>
+        <!-- Hero End -->
+
+        <!-- login Start -->
+        <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="row g-0">
+                <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
+                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
+                        <h3 class="text-white mb-4">요청하신 작업 수행 중에 문제가 발생하였습니다.</h3>
+                        <%String url = (String)request.getAttribute("servletUrl"); %>
+						<a href=<%=url%>><button class="btn btn-primary w-100 py-3" type="button">돌아가기</button></a>
+
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Menu End -->
+        <!-- login End -->
         
-
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
@@ -212,7 +131,7 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-	
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
