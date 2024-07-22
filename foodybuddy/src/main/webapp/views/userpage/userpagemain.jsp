@@ -54,10 +54,9 @@
 			<h1 class="display-3 text-white mb-3 animated slideInDown">MyPage</h1>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb justify-content-center text-uppercase">
-					<li class="breadcrumb-item"><a href="/user/edit">내 정보 조회 /
-							변경</a></li>
+					<li class="breadcrumb-item"><a href="/user/edit">내 정보 조회 / 변경</a></li>
 					<li class="breadcrumb-item"><a href="#">내 작성글 조회</a></li>
-					<li class="breadcrumb-item"><a href="#">내 좋아요 조회</a></li>
+					<li class="breadcrumb-item"><a href="#"> 좋아요 조회</a></li>
 					<li class="breadcrumb-item"><a href="#">내 모임 조회</a></li>
 					<li class="breadcrumb-item"><a href="/qna/list">QnA</a></li>
 				</ol>
@@ -69,33 +68,30 @@
 	<div class="container-xxl py-5">
 		<div class="container">
 			<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-				<h5
-					class="section-title ff-secondary text-center text-primary fw-normal">FoodyBuddy</h5>
+				<h5 class="section-title ff-secondary text-center text-primary fw-normal">FoodyBuddy</h5>
 				<h1 class="mb-5">내 정보 조회 / 변경</h1>
 			</div>
 			<div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-				<ul
-					class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-					<li class="nav-item"><a
-						class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active"
-						data-bs-toggle="pill" href="#tab-1">
-							<div class="ps-3">
-								<h6 class="mt-n1 mb-0">내 정보 조회</h6>
-							</div>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex align-items-center text-start mx-3 me-0 pb-3"
-						data-bs-toggle="pill" href="#tab-3">
-							<div class="ps-3">
-								<h6 class="mt-n1 mb-0">비밀번호 변경</h6>
-							</div>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex align-items-center text-start mx-3 me-0 pb-3"
-						data-bs-toggle="pill" href="#tab-4">
-							<div class="ps-3">
-								<h6 class="mt-n1 mb-0">회원 탈퇴</h6>
-								<div class="tab-content">
+				<ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+					<li class="nav-item">
+					<a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+						<div class="ps-3">
+							<h6 class="mt-n1 mb-0">내 정보 조회</h6>
+						</div>
+					</a>
+					</li>
+					<li class="nav-item">
+					<a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+						<div class="ps-3">
+							<h6 class="mt-n1 mb-0">비밀번호 변경</h6>
+						</div>
+					</a>
+					</li>
+					<li class="nav-item">
+					<a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-4">
+						<div class="ps-3">
+							<h6 class="mt-n1 mb-0">회원 탈퇴</h6>
+						<div class="tab-content">
 									<!-- 내정보 조회 -->
 									<div id="tab-1" class="tab-pane fade show p-0 active">
 										<div class="row g-4">
@@ -104,28 +100,34 @@
 													<div class="col-md-6 d-flex align-items-center"
 														style="margin: auto;">
 														<div class="p-5 fade show p-1">
-															<h5
-																class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
+															<h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
 															<h3 class="mb-4">내 정보 조회</h3>
 															
-<%-- 															 <%@page import="java.util.*"%>
+															
+															
+						
+															 <%@page import="java.util.*"%>
 															<%
 															Map<String, Object> info = (Map<String, Object>) request.getAttribute("userInfo");
 															if (info == null) {
 																out.println("사용자 정보가없어요");
 																return;
-															}
+															} else {
+													            // 정보 출력
+													            String userId = (String) info.get("user_id");
+													            out.println("User ID: " + userId);
+													        }
 															
 															%>
-															 <!-- 내 정보 폼 -->
+															  <!-- 내 정보 폼 -->
 															<form action='/user/info' name="info_form" method="post">
 																<div class="row g-3" style="margin-left: 20%">
 																	<div class="col-md-9">
 																		<div class="form-floating">
 																			<input type="text" class="form-control" id="user_id"
 																				name="user_id" disabled="disabled"
-																				value="<%= info.get("user_id") %>"> <label
-																				for="user_id">아이디</label>
+																				value="<%= info.get("user_id") %>">
+																				 <label for="user_id">아이디</label>
 																		</div>
 																	</div>
 																	<div class="col-md-4">
@@ -228,7 +230,10 @@
 												</div>
 											</div>
 										</div>
-									</div> --%>
+									</div> 
+									
+									
+									
 									<!-- 내정보 변경 -->
 									<div id="tab-2" class="tab-pane fade show p-0">
 										<div class="row g-4">

@@ -24,11 +24,13 @@ public class UserPageDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		// 사용자 세션에서 사용자 ID 가져오기 (로그인된 사용자 ID)
+		String userId = (String) request.getSession().getAttribute("user_id");
+		System.out.println("아이디 잘가져오니"  + userId);
 		 // 입력된 비밀번호 가져오기
         String password = request.getParameter("user_pw");
+        System.out.println("비밀번호 잘가져오니"  + password);
         
-        // 사용자 세션에서 사용자 ID 가져오기 (로그인된 사용자 ID)
-        String userId = (String) request.getSession().getAttribute("user_id");
         
         if (userId == null) {
             // 사용자 ID가 세션에 없으면 로그인 페이지로 리다이렉트
