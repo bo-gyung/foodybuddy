@@ -51,7 +51,7 @@
                 <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
-                        <h3 class="text-white mb-4">게시글 등록 실패</h3>
+                        <h3 class="text-white mb-4">게시글 등록 완료</h3>
                         
 						<a href="/board/foody"><button class="btn btn-primary w-100 py-3" type="button">메뉴로 돌아가기</button></a>
 

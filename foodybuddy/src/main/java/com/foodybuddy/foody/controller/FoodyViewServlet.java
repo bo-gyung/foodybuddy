@@ -35,6 +35,9 @@ public class FoodyViewServlet extends HttpServlet {
         FcommentService commentService = new FcommentService();
         List<Comment> commentList = commentService.getCommentsByFoodyNo(Integer.parseInt(foody_no));
         
+        
+        
+        
         request.setAttribute("foodyList", foodyList);
         request.setAttribute("commentList", commentList);
         RequestDispatcher rd = request.getRequestDispatcher("/views/foody/view.jsp");

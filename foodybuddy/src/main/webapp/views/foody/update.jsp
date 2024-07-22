@@ -147,7 +147,7 @@
 	                                </div>
 	                            </form>
 	                            <br>
-	                            <button class="btn btn-primary w-100 py-3" onclick="location.href='/foody/view?foody_no=<%=foody.getFoody_no() %>>'">수정 취소</button>
+	                            <button class="btn btn-primary w-100 py-3" onclick="history.back()">수정 취소</button>
 	                        </div>
 	                    </div>
 					</div>
