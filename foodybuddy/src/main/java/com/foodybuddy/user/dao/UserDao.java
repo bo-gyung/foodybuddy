@@ -29,7 +29,6 @@ public class UserDao {
 			pstmt.setString(9, u.getUser_extraAddr());
 			pstmt.setInt(10, u.getUser_question());
 			pstmt.setString(11, u.getUser_answer());
-			pstmt.setInt(12, u.getUser_warn());
 			
 			
 			
@@ -67,7 +66,7 @@ public class UserDao {
 							,rs.getString("user_answer")
 							,rs.getInt("user_warn")
 							,rs.getTimestamp("reg_date").toLocalDateTime()
-						 	,rs.getTimestamp("warn_date").toLocalDateTime());
+							,rs.getTimestamp("warn_date").toLocalDateTime());
 							
 			}
 			
@@ -143,6 +142,7 @@ public class UserDao {
 							,rs.getInt("user_warn")
 							,rs.getTimestamp("reg_date").toLocalDateTime()
 							,rs.getTimestamp("warn_date").toLocalDateTime());
+							;
 							
 			}
 		}catch(Exception e) {
@@ -164,7 +164,7 @@ public class UserDao {
 			pstmt.setString(1, userEmail);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				u = new User(rs.getInt("user_no")
+				 u = new User(rs.getInt("user_no")
 						,rs.getInt("grade_no")
 						,rs.getString("user_id")
 						,rs.getString("user_pw")
@@ -180,6 +180,7 @@ public class UserDao {
 						,rs.getInt("user_warn")
 						,rs.getTimestamp("reg_date").toLocalDateTime()
 						,rs.getTimestamp("warn_date").toLocalDateTime());
+						;
 						
 			}
 		}catch(Exception e) {
@@ -206,7 +207,7 @@ public class UserDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				resultUser = new User(rs.getInt("user_no")
+				resultUser =  u = new User(rs.getInt("user_no")
 						,rs.getInt("grade_no")
 						,rs.getString("user_id")
 						,rs.getString("user_pw")
@@ -222,6 +223,7 @@ public class UserDao {
 						,rs.getInt("user_warn")
 						,rs.getTimestamp("reg_date").toLocalDateTime()
 						,rs.getTimestamp("warn_date").toLocalDateTime());
+						;
 					
 
 			}
@@ -237,7 +239,7 @@ public class UserDao {
 	// 회원정보 수정
 	public int editUser(User u, Connection conn) {
 		int result = 0;
-		PreparedStatement pstmt = null;
+		
 		
 
 		return result;

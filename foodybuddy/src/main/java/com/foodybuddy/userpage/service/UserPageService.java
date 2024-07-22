@@ -9,37 +9,31 @@ import java.util.Map;
 
 import com.foodybuddy.buddy.vo.Buddy;
 import com.foodybuddy.foody.vo.Foody;
-import com.foodybuddy.user.dao.UserDao;
 import com.foodybuddy.user.vo.User;
 import com.foodybuddy.userpage.dao.UserPageDao;
 
 public class UserPageService {
 	
 private UserPageDao userPageDao = new UserPageDao();
-    
-    	// 비밀번호 확인
-		public boolean checkPassword(String userId, String password) {
-			
-        Connection conn = getConnection();
-        boolean isPasswordCorrect = userPageDao.checkPassword(conn, userId, password);
-        close(conn);
-        return isPasswordCorrect;
-    }
-    
-    	// 사용자 삭제
-    	public boolean deleteUser(String userId) {
-        Connection conn = getConnection();
-        
-        // 사용자 번호 조회
-        int userNo = userPageDao.getUserNoById(conn, userId);
-        
-        // 사용자 삭제
-        boolean isDeleted = userPageDao.deleteUserByNo(conn, userNo);
-        
-        close(conn);
-        return isDeleted;
-    }
+	// 회원탈퇴
+	public void deleteUser(String userNo) {
+    // 사용자 삭제 로직 구현
+    // 예: 데이터베이스에서 사용자 정보 삭제
+}
 
+
+	// 비밀번호 변경
+
+	// 내정보 변경	
+
+
+
+    //비밀번호 확인
+	public boolean checkPassword(int userNo, String password) {
+    // 비밀번호 확인 로직 구현
+    // 예: 데이터베이스에서 사용자 비밀번호 확인
+    return true; // 예시로 항상 true 반환, 실제 구현 필요
+}
 
 	// 내 정보 조회
 	public Map<String,Object> selectMyInfo(User u) {

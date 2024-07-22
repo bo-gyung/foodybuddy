@@ -23,7 +23,6 @@ public class FoodyListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String title = request.getParameter("board_title");
 		
 		String searchOption = request.getParameter("searchOption");
 		String searchBar = request.getParameter("searchbar");
@@ -33,7 +32,7 @@ public class FoodyListServlet extends HttpServlet {
 		option.setSearchOption(searchOption);
 		option.setSearchBar(searchBar);
 		option.setSort(sort);
-//		option.setFoody_title(title);
+
 
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
@@ -44,8 +43,11 @@ public class FoodyListServlet extends HttpServlet {
 		List<Foody> list = new FoodyService().selectBoardList(option);
 		
 		request.setAttribute("paging", option);
-		request.setAttribute("resultList", list);
-		request.setAttribute("sort", sort);
+        request.setAttribute("resultList", list);
+        request.setAttribute("sort", sort);
+        request.setAttribute("searchOption", searchOption);
+        request.setAttribute("searchbar", searchBar);
+        
 		RequestDispatcher rd=request.getRequestDispatcher("/views/foody/foodlist.jsp");
 		rd.forward(request, response);
 		

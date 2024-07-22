@@ -28,6 +28,8 @@ public class FoodyViewServlet extends HttpServlet {
         
         
         FoodyService foodyService = new FoodyService();
+        
+        int click = foodyService.click(Integer.parseInt(foody_no));
         List<Foody> foodyList = foodyService.viewFoody(Integer.parseInt(foody_no));
         
         FcommentService commentService = new FcommentService();

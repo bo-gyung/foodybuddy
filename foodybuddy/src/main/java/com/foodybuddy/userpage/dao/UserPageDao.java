@@ -21,7 +21,7 @@ public class UserPageDao {
 	
 	//회원 삭제 
 	
-    public boolean deleteUserByNo(Connection conn, int userNo) {
+    public boolean deleteUser(Connection conn, int userNo) {
         PreparedStatement pstmt = null;
         boolean isDeleted = false;
         try {
@@ -335,10 +335,11 @@ public class UserPageDao {
 		ResultSet rs = null;
 		
 		String sql = "SELECT u.user_name, b.buddy_no, b.foody_no, b.user_no, b.report_no, "
-				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, b.buddy_view, "
+				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, b.buddy_view, IFNULL(COUNT(c.comment_no),0), "
 				+ "b.party_name, b.meet_date, b.party_number, b.formation_date FROM `buddy_board` b "
 				+ "JOIN `user` u ON b.user_no = u.user_no "
-				+ "WHERE b.user_no = ?";
+				+ "LEFT OUTER JOIN `buddy_comment` c ON c.buddy_no = b.buddy_no "
+				+ "WHERE b.user_no = ? GROUP BY b.buddy_no";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -359,7 +360,8 @@ public class UserPageDao {
 							 rs.getTimestamp("meet_date").toLocalDateTime(),
 							 rs.getInt("party_number"),
 							 rs.getTimestamp("formation_date").toLocalDateTime(),
-							 rs.getString("user_name")
+							 rs.getString("user_name"),
+							 rs.getInt("IFNULL(COUNT(c.comment_no),0)")
 							 );
 					 list.add(rsBuddy);
 			}

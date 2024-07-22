@@ -8,22 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/user/edit")
-public class UserPageEdit extends HttpServlet {
+@WebServlet("/user/updatePw")
+public class UserPageUpdatePwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-    public UserPageEdit() {
+  
+    public UserPageUpdatePwServlet() {
         super();
-     
+      
     }
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);

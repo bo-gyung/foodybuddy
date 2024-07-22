@@ -13,7 +13,7 @@
 			<div class="word">
 				<h3>맛집 등록</h3>
 			</div><br>
-			<div class="register_book_form">
+			<div class="create_foody_form">
 				<form action='/board/createEnd' name="create_foody_form" method="post" enctype="multipart/form-data" accept-charset="UTF-8" onsubmit="return createFoodyForm();">		
 					<!-- 필수 입력항목 -->
 					

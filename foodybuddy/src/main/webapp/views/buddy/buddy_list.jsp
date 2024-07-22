@@ -96,15 +96,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" href="/board/buddy/create">
-                                <i class="fa fa-star fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">임시	</small>
-                                    <h6 class="mt-n1 mb-0">글작성</h6>
-                                </div>
-                            </a>
-                        </li>
+                        
                     </ul>
                     <div class="tab-content">
                     	<!-- 기본, 최신순 -->
@@ -125,7 +117,7 @@
                                             <small class="fst-italic">
                                             <a style="color:black;" href="">작성자 : <%=list.get(i).getUser_name() %></a> / 
                                             모임일 : <%=list.get(i).getMeet_date() %> / 
-                                            댓글 : <%=list.get(i).getBuddy_view() %> / 
+                                            댓글 : <%=list.get(i).getComment_cnt() %> / 
                                             조회수 : <%=list.get(i).getBuddy_view() %>
                                             </small>
                                         </div>

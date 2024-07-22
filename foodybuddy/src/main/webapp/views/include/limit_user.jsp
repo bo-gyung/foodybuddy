@@ -49,7 +49,7 @@
         <!-- login Start -->
         <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
             <div class="row g-0">
-                <div class="col-md-6 bg-dark d-flex align-items-center">
+                <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
                         <h3 class="text-white mb-4">이 페이지는 로그인 한 회원만 접속 가능합니다.</h3>

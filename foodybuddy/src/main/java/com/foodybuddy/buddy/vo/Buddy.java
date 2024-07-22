@@ -13,14 +13,16 @@ public class Buddy extends Paging {
 	private LocalDateTime reg_date;
 	private String buddy_title;
 	private String buddy_main;
-	// 코멘트 조인해서 카운트
 	private int buddy_view;
 	private String party_name;
 	private LocalDateTime meet_date;
 	private int party_number;
 	private LocalDateTime formation_date;
+	
 	// 유저 조인해서 네임 받아오기
 	private String user_name;
+	// 코멘트 조인해서 카운트
+	private int comment_cnt;
 	// 모임상태
 	private String party_status;
 
@@ -30,7 +32,7 @@ public class Buddy extends Paging {
 
 	public Buddy(int buddy_no, int foody_no, int user_no, int report_no, String buddy_approve, LocalDateTime reg_date,
 			String buddy_title, String buddy_main, int buddy_view, String party_name, LocalDateTime meet_date,
-			int party_number, LocalDateTime formation_date, String user_name) {
+			int party_number, LocalDateTime formation_date, String user_name, int comment_cnt) {
 		super();
 		this.buddy_no = buddy_no;
 		this.foody_no = foody_no;
@@ -46,6 +48,7 @@ public class Buddy extends Paging {
 		this.party_number = party_number;
 		this.formation_date = formation_date;
 		this.user_name = user_name;
+		this.comment_cnt = comment_cnt;
 	}
 
 	public int getBuddy_no() {
@@ -159,6 +162,14 @@ public class Buddy extends Paging {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
+	
+	public int getComment_cnt() {
+		return comment_cnt;
+	}
+
+	public void setComment_cnt(int comment_cnt) {
+		this.comment_cnt = comment_cnt;
+	}
 
 	public String getParty_status() {
 		// 모집중 : (작성일 = 결성일) && 현재 < 모임일(현재보다 모임일이 미래일때)
@@ -189,7 +200,7 @@ public class Buddy extends Paging {
 				+ report_no + ", buddy_approve=" + buddy_approve + ", reg_date=" + reg_date + ", buddy_title="
 				+ buddy_title + ", buddy_main=" + buddy_main + ", buddy_view=" + buddy_view + ", party_name="
 				+ party_name + ", meet_date=" + meet_date + ", party_number=" + party_number + ", formation_date="
-				+ formation_date + ", user_name=" + user_name + ", party_status=" + party_status + "]";
+				+ formation_date + ", user_name=" + user_name + ", comment_cnt=" + comment_cnt + ", party_status=" + party_status + "]";
 	}
 	
 	
