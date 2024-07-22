@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FOODY</title>
+<title>500</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -35,12 +35,12 @@
 
 <body>
 	<!-- Navbar Link -->
-	<%@ include file="../include/navbar.jsp" %>
+	<%@ include file="include/navbar.jsp" %>
 	
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">FOODY</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">500 Error</h1>
                 </div>
             </div>
         <!-- Hero End -->
@@ -50,8 +50,8 @@
             <div class="row g-0">
                 <div class="col-md-6 bg-dark d-flex align-items-center" style="margin: auto;">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
-                        <h3 class="text-white mb-4">게시글 수정 실패</h3>
+                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">500 Error 발생</h5>
+                        <h3 class="text-white mb-4">빠른 시일 내에 조치 하겠습니다. </h3>
                         
 						<button class="btn btn-primary w-100 py-3" type="button" onclick="history.back();">뒤로가기</button>
 
