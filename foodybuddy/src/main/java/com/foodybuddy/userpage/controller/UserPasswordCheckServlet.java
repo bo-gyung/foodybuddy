@@ -20,6 +20,7 @@ public class UserPasswordCheckServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userPw = request.getParameter("user_pw");
 		
 	}
 

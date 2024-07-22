@@ -21,7 +21,7 @@ public class UserPageDao {
 	
 	//회원 삭제 
 	
-    public boolean deleteUserByNo(Connection conn, int userNo) {
+    public boolean deleteUser(Connection conn, int userNo) {
         PreparedStatement pstmt = null;
         boolean isDeleted = false;
         try {
