@@ -4,6 +4,7 @@ import  static com.foodybuddy.common.sql.JDBCTemplate.close;
 import static com.foodybuddy.common.sql.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -46,10 +47,38 @@ public class MessageService {
 	 
 	 public List<Map<String,Object>> receiveMessage(int receiverId){
 		 Connection conn = getConnection();
-		 List<Map<String,Object>> messages = new MessageDao().sentMessage(receiverId,conn);
+		 List<Map<String,Object>> messages2 = new MessageDao().sentMessage(receiverId,conn);
 		 close(conn);
-		 return messages;
+		 return messages2;
 	 }
 	 
+	 public Map<String, Object> getMessageById(int messageId) {
+	        Connection conn = null;
+	        try {
+	            conn = getConnection();
+	            
+				return (Map<String, Object>) new MessageDao().getMessageById(messageId, conn);
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return null;
+	        } finally {
+	            if (conn != null) {
+	                close(conn);
+	            }
+	       }
+	 }
+	 public void moveMessages(List<Map<String, Object>> messages) {
+	        Connection conn = null;
+	        try {
+	            conn = getConnection();
+	            new MessageDao().moveMessages(messages, conn);
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (conn != null) {
+	                close(conn);
+	            }
+	        }
+	    }
 
 }

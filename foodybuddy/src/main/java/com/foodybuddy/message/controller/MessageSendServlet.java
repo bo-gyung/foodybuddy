@@ -45,13 +45,8 @@ public class MessageSendServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
+	
 		
-		if(u == null) {
-			 out.println("<html><body>");
-	            out.println("<h1>로그인 후 이용해주세요.</h1>");
-	            out.println("</body></html>");
-	            return;
-		}
 		int senderNo = u.getUser_no();
 		String msgReceiver = request.getParameter("receiver");
 		String msgTitle = request.getParameter("subject");

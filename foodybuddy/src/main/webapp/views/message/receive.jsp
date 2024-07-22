@@ -46,12 +46,12 @@
     	<br><br>
         <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
         <br>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgReceive">받은쪽지</a></li>
         <li>
         	<div style="background-color: aliceblue ;">
-        		<a href="/msgReceive" style="color: #FEA116; font-weight : bold;">받은쪽지</a>
+        		<a href="/msgSent" style="color: #FEA116; font-weight : bold;">보낸쪽지</a>
         	</div>
         </li>
-        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
     </ul>
@@ -81,28 +81,28 @@
             <tr>
                 <th></th>
                 <th>글번호</th>
-                <th>보낸사람</th>
+                <th>받은사람</th>
                 <th>제목</th>
                 <th>날짜</th>
             </tr>
       <%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
 	  <%@ page import="com.foodybuddy.message.vo.Message" %>
- 	  <% List<Map<String, Object>> messages = (List<Map<String, Object>>) request.getAttribute("messages"); %>
+ 	  <% List<Map<String, Object>> messages2= (List<Map<String, Object>>) request.getAttribute("messages2"); %>
 		 <% int index = 1; %>
-            <% for (Map<String, Object> message : messages) { %>
+            <% for (Map<String, Object> message : messages2) { %>
                 <tr>
-                  <td>
+                  <td class="align-middle">
                     <label class="checkbox-container">
                         <input type="checkbox" onchange="toggleRow(this)">
                         <span class="checkbox"></span> 
                     </label>
                 </td>
-                	<td><%= index %></td>
-                    <td><%= message.get("senderName") %></td>
-                    <td onclick="showMessage('<%= message.get("senderName") %>', '<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
+                	<td class="align-middle"><%= index %></td>
+                    <td class="align-middle"><%= message.get("senderName") %></td>
+                    <td class="align-middle" onclick="showMessage( '<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
             			<%= message.get("message_title") %>
         			</td>
-                    <td><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
+                    <td class="align-middle"><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
                 </tr>
                 <% index++; %>
             <% } %>
@@ -138,7 +138,7 @@
     newWindow.document.write(temp);
 
 }
-    function showMessage(receiverName, messageTitle, messageText, sentAt) {
+    function showMessage(messageTitle, messageText, sentAt) {
         var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
 
         var styles = '<style>' +
@@ -180,7 +180,7 @@
         var temp = styles +
             '<h1>받은 쪽지</h1>' +
             '<div class="message-container">' +
-            '    <div class="message-info"><strong>보낸 사람:</strong> ' + receiverName + '</div>' +
+            '    <div class="message-info"><strong>보낸 사람: '+senderName+' </strong></div>' +
             '    <div class="message-title"><strong>제목:</strong> ' + messageTitle + '</div>' +
             '    <div class="message-content"><strong>내용:</strong> ' + messageText + '</div>' +
             '    <div class="message-info"><strong>보낸 시간:</strong> ' + sentAt + '</div>' +
