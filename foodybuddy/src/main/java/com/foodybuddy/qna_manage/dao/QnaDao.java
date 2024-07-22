@@ -15,7 +15,7 @@ import com.foodybuddy.qna_manage.vo.Qna;
 public class QnaDao {
 	public List<Qna> getAllQna(Connection conn) {
         List<Qna> qnaList = new ArrayList<>();
-        String query = "SELECT qna_no, user_no, qna_title, qna_content, reg_date, qna_status, qna_answer, mod_date, completed_date FROM user_QnA";
+        String query = "SELECT qna_no, user_no, qna_title, qna_content, reg_date, qna_status, qna_answer, mod_date, complete_date FROM user_QnA";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
@@ -33,11 +33,11 @@ public class QnaDao {
                 qna.setQna_status(rs.getString("qna_status"));
                 qna.setQna_answer(rs.getString("qna_answer"));
 
-                // mod_date와 completed_date가 null일 경우 처리
+                
                 Timestamp modTimestamp = rs.getTimestamp("mod_date");
                 qna.setMod_date(modTimestamp);
-                Timestamp completedTimestamp = rs.getTimestamp("completed_date");
-                qna.setCompleted_date(completedTimestamp);
+                Timestamp completeTimestamp = rs.getTimestamp("complete_date");
+                qna.setComplete_date(completeTimestamp);
 
                 qnaList.add(qna);
             }
@@ -53,7 +53,7 @@ public class QnaDao {
 
     public List<Qna> getQnaByStatus(Connection conn, String status) {
         List<Qna> qnaList = new ArrayList<>();
-        String query = "SELECT qna_no, user_no, qna_title, qna_content, reg_date, qna_status, qna_answer, mod_date, completed_date FROM user_QnA WHERE qna_status = ?";
+        String query = "SELECT qna_no, user_no, qna_title, qna_content, reg_date, qna_status, qna_answer, mod_date, complete_date FROM user_QnA WHERE qna_status = ?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
@@ -72,11 +72,11 @@ public class QnaDao {
                 qna.setQna_status(rs.getString("qna_status"));
                 qna.setQna_answer(rs.getString("qna_answer"));
 
-                // mod_date와 completed_date가 null일 경우 처리
+                
                 Timestamp modTimestamp = rs.getTimestamp("mod_date");
                 qna.setMod_date(modTimestamp);
-                Timestamp completedTimestamp = rs.getTimestamp("completed_date");
-                qna.setCompleted_date(completedTimestamp);
+                Timestamp completeTimestamp = rs.getTimestamp("complete_date");
+                qna.setComplete_date(completeTimestamp);
 
                 qnaList.add(qna);
             }
@@ -92,7 +92,7 @@ public class QnaDao {
 
     public Qna getQnaByNo(Connection conn, int qnaNo) {
         Qna qna = null;
-        String query = "SELECT qna_no, user_no, qna_title, qna_content, reg_date, qna_status, qna_answer, mod_date, completed_date FROM user_QnA WHERE qna_no = ?";
+        String query = "SELECT qna_no, user_no, qna_title, qna_content, reg_date, qna_status, qna_answer, mod_date, complete_date FROM user_QnA WHERE qna_no = ?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
@@ -111,11 +111,11 @@ public class QnaDao {
                 qna.setQna_status(rs.getString("qna_status"));
                 qna.setQna_answer(rs.getString("qna_answer"));
 
-                // mod_date와 completed_date가 null일 경우 처리
+               
                 Timestamp modTimestamp = rs.getTimestamp("mod_date");
                 qna.setMod_date(modTimestamp);
-                Timestamp completedTimestamp = rs.getTimestamp("completed_date");
-                qna.setCompleted_date(completedTimestamp);
+                Timestamp completeTimestamp = rs.getTimestamp("complete_date");
+                qna.setComplete_date(completeTimestamp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -128,7 +128,7 @@ public class QnaDao {
     }
 
     public int updateQnaAnswer(Connection conn, int qnaNo, String answer) {
-        String query = "UPDATE user_QnA SET qna_answer = ?, qna_status = '완료', mod_date = CURRENT_TIMESTAMP, completed_date = CURRENT_TIMESTAMP WHERE qna_no = ?";
+        String query = "UPDATE user_QnA SET qna_answer = ?, qna_status = '완료', mod_date = CURRENT_TIMESTAMP, complete_date = CURRENT_TIMESTAMP WHERE qna_no = ?";
         PreparedStatement pstmt = null;
         int result = 0;
 

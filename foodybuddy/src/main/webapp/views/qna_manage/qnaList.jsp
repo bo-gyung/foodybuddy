@@ -155,8 +155,8 @@
             </thead>
             <tbody>
                 <%
-                    List<Qna> completedQnaList = (List<Qna>) request.getAttribute("completedQnaList");
-                    for (Qna qna : completedQnaList) {
+                    List<Qna> completeQnaList = (List<Qna>) request.getAttribute("completeQnaList");
+                    for (Qna qna : completeQnaList) {
                 %>
                     <tr>
                         <td><%= qna.getQna_no() %></td>
@@ -165,7 +165,7 @@
                         <td><%= qna.getReg_date() %></td>
                         <td><%= qna.getQna_status() %></td>
                         <td><%= qna.getQna_answer() %></td>
-                        <td><%= qna.getCompleted_date() %></td>
+                        <td><%= qna.getComplete_date() %></td>
                     </tr>
                 <%
                     }
