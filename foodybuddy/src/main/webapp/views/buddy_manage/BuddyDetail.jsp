@@ -1,8 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.foodybuddy.buddy_manage.vo.BuddyPosts" %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../include/navbar.jsp" %>
     <title>모임 게시글 상세</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">

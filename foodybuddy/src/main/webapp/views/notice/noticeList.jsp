@@ -1,9 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.foodybuddy.notice.vo.Notice" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../include/navbar.jsp" %>
     <title>공지사항</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">

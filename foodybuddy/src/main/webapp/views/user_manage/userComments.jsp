@@ -1,9 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.foodybuddy.user_manage.vo.Comment" %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../include/navbar.jsp" %>
     <title>User Comments</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -89,6 +90,22 @@
         a:hover {
             text-decoration: underline;
         }
+        .button-container {
+            display: inline-block;
+            margin-left: 20px;
+            vertical-align: middle;
+        }
+        .button-container button {
+            background-color: #ccc;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .button-container button:hover {
+            background-color: #bbb;
+        }
     </style>
 </head>
 <body>
@@ -110,12 +127,15 @@
     </div>
 
     <div class="main">
-        <h2>댓글 목록</h2>
-        <form action="<%=request.getContextPath()%>/user/posts" method="get">
-            <input type="hidden" name="user_no" value="<%=request.getParameter("user_no")%>"/>
-            <button type="submit">게시글 목록</button>
-        </form>
-        <h2>Foody 댓글 목록</h2>
+        <div class="header">
+            <h2 style="display: inline-block;">Foody 댓글 목록</h2>
+            <div class="button-container">
+                <form action="<%=request.getContextPath()%>/user/posts" method="get">
+                    <input type="hidden" name="user_no" value="<%=request.getParameter("user_no")%>"/>
+                    <button type="submit">게시글 목록</button>
+                </form>
+            </div>
+        </div>
         <table>
             <thead>
                 <tr>
