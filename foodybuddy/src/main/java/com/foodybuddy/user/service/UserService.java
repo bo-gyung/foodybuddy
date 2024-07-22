@@ -68,7 +68,8 @@ public class UserService {
 		
 		Connection conn = getConnection();
 		int result = new UserDao().editUser(u, conn);
-		close(conn);return result;
+		close(conn);
+		return result;
 		
 	}
 }

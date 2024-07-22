@@ -46,6 +46,8 @@ public class QnAListServlet extends HttpServlet {
 		request.setAttribute("resultList", list);
 		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnalist.jsp");
 		view.forward(request, response);
+		
+		// 조건을 넣어 , 받은 날짜 
 	
 	
 	}

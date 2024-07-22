@@ -56,6 +56,7 @@ public class QnACreateEndServlet extends HttpServlet {
 	        
 	        
 	        int result = new QnAService().createQnA(q);
+	        // 결과 값에 따라 성공화면/ 실패화면 보내주기
 			RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnacreate_fail.jsp");
 			if(result > 0) {
 				

@@ -101,7 +101,7 @@
 	                                        </div>
 	                                    </div>
 									<!-- Testimonial Start -->
-							        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+							        <div class="container-xxl py-5">
 							            <div class="container">
 							                <div class="owl-carousel testimonial-carousel">
 							                    <div class="testimonial-item bg-transparent border rounded p-4">
@@ -194,7 +194,7 @@
 										</div>
 										<div class="col-3">
 											<button class="btn btn-primary w-100 py-3" type="button" 
-											onclick="createGroup(<%=post.get("글번호")%>);">모임 결성</button>
+											onclick="createGroup(<%=post.get("글번호")%>)">모임 결성</button>
 										</div>
 						            </div>
 						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 종료 -->
@@ -210,10 +210,29 @@
 		                </div>
 					</div>
 	            </div>
-	            
-	            <!-- 댓글창 시작 -->
-	            
-	            <!-- 댓글창 종료 -->
+	            <!-- 댓글영역 시작 -->
+				<div class=" mt-5 row d-flex justify-content-center">
+					<div class="col-md-8 col-lg-9">
+						<p>COMMENT</p>
+						<div class="card shadow-0 border" style="background-color: #f8f9fa;">
+							<div id="result_div" class="card-body p-4">
+					            <!-- 댓글창 링크 삽입 -->
+								<%@ include file="/views/buddy/buddy_comment.jsp" %>
+					            <!-- 댓글 입력창 시작 -->
+									<div data-mdb-input-init class="card-body">
+							            <form action="/insertBuddyComment" method="post" id="insert_comment_form">
+												<input type="hidden" id="buddy_no" name="buddy_no" value="<%=post.get("글번호")%>">
+												<a id="user_name" name="user_name"><%= u.getUser_name() %></a>
+												<textarea id="comment_main" name="comment_main" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
+												<a class="form-label btn btn-primary m-2" href="#" onclick="submit_btn();">작성</a>
+										</form>
+									</div>
+								<!-- 댓글 입력창 종료 -->
+					      </div>
+					    </div>
+					  </div>
+					</div>
+	            	<!-- 댓글영역 종료 -->
 	       </div>
 	   </div>
 	   <!-- Contact End -->
@@ -288,7 +307,23 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-	<!-- 지도 API 스크립트 -->
+	<!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../resources/template/lib/wow/wow.min.js"></script>
+    <script src="../../resources/template/lib/easing/easing.min.js"></script>
+    <script src="../../resources/template/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../resources/template/lib/counterup/counterup.min.js"></script>
+    <script src="../../resources/template/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../../resources/template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../../resources/template/js/main.js"></script>
+    
+    
+  	<!-- 지도 API 스크립트 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae96fe5b21048be0c855431d0416eea1"></script>
 	<script>
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -320,31 +355,32 @@
 			}
 		}
 		
-		// 그룹만들기
+		// 그룹만들기 창 띄우기
 		function createGroup(buddy_no){
-			window.location.href = '/create/group?buddy_no='+buddy_no;
+		    // 새창 띄우기
+		    let newWindow = window.open("/views/buddy/groupSelect.jsp", "_blank", "width=800,height=400");
+		    
+		    
+
+		    newWindow.document.close();
 		}
 		
 		// 원본글 보러가기
 		function foodyPost(foody_no){
 			window.location.href = '/foody/view?foody_no='+foody_no;
         }
-    </script>
-	
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../resources/template/lib/wow/wow.min.js"></script>
-    <script src="../../resources/template/lib/easing/easing.min.js"></script>
-    <script src="../../resources/template/lib/waypoints/waypoints.min.js"></script>
-    <script src="../../resources/template/lib/counterup/counterup.min.js"></script>
-    <script src="../../resources/template/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../../resources/template/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="../../resources/template/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="../../resources/template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+		
+		// 댓글 작성
+  
+        function submit_btn(){
+        	 event.preventDefault();
+        	 const form = document.getElementById('insert_comment_form');
+        	 form.submit();
+		}
 
-    <!-- Template Javascript -->
-    <script src="../../resources/template/js/main.js"></script>
+		
+    </script>
+    
 </body>
 
 </html>

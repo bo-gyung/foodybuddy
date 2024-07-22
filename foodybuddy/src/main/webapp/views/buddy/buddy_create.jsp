@@ -65,18 +65,22 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="row gy-4" style="text-align : center">
-                        <% %>
+                        <%@page import="com.foodybuddy.foody.vo.Foody, com.foodybuddy.foodyPic.vo.Foody_Pic, java.util.*"%>
+                        <%
+                        Foody f = (Foody)request.getAttribute("foody");
+                        List<Foody_Pic> f_photo = (List<Foody_Pic>)request.getAttribute("picPhoto");
+                        %>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
-                                <p><i class="fa fa-store text-primary me-2"></i>받아온 가게이름</p>
+                                <p><i class="fa fa-store text-primary me-2"></i><%=f.getFoody_name() %></p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
-                                <p><i class="fa fa-map-marked text-primary me-2"></i>받아온 가게주소</p>
+                                <p><i class="fa fa-map-marked text-primary me-2"></i><%=f.getFoody_address() %></p>
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-car text-primary me-2"></i>받아온 주차여부</p>
+                                <p><i class="fa fa-car text-primary me-2"></i><%=f.getFoody_parking() %></p>
                             </div>
                         </div>
                     </div>
@@ -90,31 +94,15 @@
 							        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
 							            <div class="container">
 							                <div class="owl-carousel testimonial-carousel">
+							                <%for(int i = 0 ; i < f_photo.size() ; i++) {%>
 							                    <div class="testimonial-item bg-transparent border rounded p-4">
 							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
+							                            <img class="img-fluid flex-shrink-0" src="<%=f_photo.get(i).getPic_sub()%>" style="width: 300px; height: 200px;">
 						                            </div>
 							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
+							                	
+							                <% } %>
+
 							                </div>
 							            </div>
 							        </div>
@@ -123,7 +111,7 @@
 	                                <div class="row g-3">
 	                                	<div class="col-12">
 	                                        <div class="form-floating">
-	                                            <input type="hidden" id="foody_no" name="foody_no" value="1" placeholder="받아온 정보로 원본글값 입력해줘야함">
+	                                            <input type="hidden" id="foody_no" name="foody_no" value="<%=f.getFoody_no()%>">
 	                                        </div>
 	                                    </div>
 	                                	<div class="col-12">
