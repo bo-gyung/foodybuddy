@@ -29,7 +29,7 @@
 
     <!-- Template Stylesheet -->
     <link href="${pageContext.request.contextPath}/resources/template/css/style.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/admin/main.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/admin/main.css" rel="stylesheet">s
 </head>
 <body style="background-color: white;">
 <%@ include file="../include/navbar.jsp" %>

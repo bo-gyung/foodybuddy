@@ -17,10 +17,10 @@ public class AdminQnaListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Qna> pendingQnaList = qnaService.getQnaByStatus("대기");
-        List<Qna> completedQnaList = qnaService.getQnaByStatus("완료");
+        List<Qna> completeQnaList = qnaService.getQnaByStatus("완료");
 
         request.setAttribute("pendingQnaList", pendingQnaList);
-        request.setAttribute("completedQnaList", completedQnaList);
+        request.setAttribute("completeQnaList", completeQnaList);
 
         request.getRequestDispatcher("/views/qna_manage/qnaList.jsp").forward(request, response);
     }

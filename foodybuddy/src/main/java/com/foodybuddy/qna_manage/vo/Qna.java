@@ -11,11 +11,11 @@ public class Qna {
     private String qna_status;
     private String qna_answer;
     private String mod_date;
-    private String completed_date;
+    private String complete_date;
 
     public Qna() {}
 
-    public Qna(int qna_no, int user_no, String qna_title, String qna_content, String reg_date, String qna_status, String qna_answer, String mod_date, String completed_date) {
+    public Qna(int qna_no, int user_no, String qna_title, String qna_content, String reg_date, String qna_status, String qna_answer, String mod_date, String complete_date) {
         this.qna_no = qna_no;
         this.user_no = user_no;
         this.qna_title = qna_title;
@@ -24,7 +24,7 @@ public class Qna {
         this.qna_status = qna_status;
         this.qna_answer = qna_answer;
         this.mod_date = mod_date;
-        this.completed_date = completed_date;
+        this.complete_date = complete_date;
     }
 
     // Getters and Setters
@@ -97,29 +97,29 @@ public class Qna {
         this.mod_date = mod_date;
     }
 
-    // Timestamp를 받아서 String으로 변환하여 설정하는 메서드
+    
     public void setMod_date(Timestamp mod_date) {
         if (mod_date != null) {
             this.mod_date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(mod_date);
         } else {
-            this.mod_date = "없음";  // 또는 원하는 기본값 설정
+            this.mod_date = "없음"; 
         }
     }
 
-    public String getCompleted_date() {
-        return completed_date;
+    public String getComplete_date() {
+        return complete_date;
     }
 
-    public void setCompleted_date(String completed_date) {
-        this.completed_date = completed_date;
+    public void setComplete_date(String complete_date) {
+        this.complete_date = complete_date;
     }
 
-    // Timestamp를 받아서 String으로 변환하여 설정하는 메서드
-    public void setCompleted_date(Timestamp completed_date) {
-        if (completed_date != null) {
-            this.completed_date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(completed_date);
+    
+    public void setComplete_date(Timestamp complete_date) {
+        if (complete_date != null) {
+            this.complete_date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(complete_date);
         } else {
-            this.completed_date = "없음";  // 또는 원하는 기본값 설정
+            this.complete_date = "없음";  
         }
     }
 }
