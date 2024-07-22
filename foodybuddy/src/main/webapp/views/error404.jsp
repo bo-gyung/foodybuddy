@@ -34,9 +34,9 @@
 </head>
 
 <body>
-   <!-- Navbar Link -->
-   <%@ include file="include/navbar.jsp" %>
-   
+	<!-- Navbar Link -->
+	<%@ include file="include/navbar.jsp" %>
+	
         <!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
@@ -53,7 +53,7 @@
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">404 Error 발생</h5>
                         <h3 class="text-white mb-4">요청하신 페이지를 찾을 수 없습니다. </h3>
                         
-                  <button class="btn btn-primary w-100 py-3" type="button" onclick="history.back();">뒤로가기</button>
+						<button class="btn btn-primary w-100 py-3" type="button" onclick="history.back();">뒤로가기</button>
 
 
                     </div>
@@ -108,9 +108,9 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-                     
-                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
+							
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
                             Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">

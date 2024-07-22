@@ -82,9 +82,9 @@ public class FoodyCreateEndServlet extends HttpServlet {
 
                 boolean mainPic = true;
                 for (int i = 1; i <= 5; i++) {
-                    String paramName = "foody_picture" + i;
-                    String oriName = mr.getOriginalFileName(paramName);
-                    String reName = mr.getFilesystemName(paramName);
+                    String pname = "foody_picture" + i;
+                    String oriName = mr.getOriginalFileName(pname);
+                    String reName = mr.getFilesystemName(pname);
                     if (reName != null) {
                         System.out.println("파일 이름: " + reName + ", 원본 이름: " + oriName);
                         int success = new FoodyService().insertPic(findKey, reName, mainPic);

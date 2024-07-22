@@ -41,22 +41,22 @@
 				<%
 			    String searchOption = request.getParameter("searchOption");
 			    if (searchOption == null) {
-			        searchOption = "2"; // 기본값으로 제목을 사용합니다.
+			        searchOption = "2"; 
 			    }
 			
 			    String searchbar = request.getParameter("searchbar");
 			    if (searchbar == null) {
-			        searchbar = ""; // 기본값으로 빈 문자열을 사용합니다.
+			        searchbar = ""; 
 			    }
 			
 			    String sort = request.getParameter("sort");
 			    if (sort == null) {
-			        sort = "reg_date"; // 기본값으로 등록일자를 사용합니다.
+			        sort = "reg_date"; 
 			    }
 			
 			    String nowPage = request.getParameter("nowPage");
 			    if (nowPage == null) {
-			        nowPage = "1"; // 기본값으로 첫 페이지를 사용합니다.
+			        nowPage = "1"; 
 			    }
 			%>
 	
@@ -190,7 +190,7 @@
 									            <a href="/board/foody?nowPage=<%=(paging.getPageBarStart()-1)%>&searchOption=<%= searchOption %>&searchbar=<%= searchbar %>&sort=<%= sort %>">&laquo;</a>
 									        <% } %>
 									        <% for(int i = paging.getPageBarStart(); i <= paging.getPageBarEnd(); i++) { %>
-									            <a href="/board/foody?nowPage=<%= i %>&searchOption=<%= searchOption %>&searchbar=<%= searchbar %>&sort=<%= sort %>" <%= paging.getNowPage() == i ? "class='active'" : "" %>><%= i %></a>
+									            <a href="/board/foody?nowPage=<%= i %>&searchOption=<%= searchOption %>&searchbar=<%= searchbar %>&sort=<%= sort %>" <%= paging.getNowPage() == i ? "class='active'" : "" %>><%= i %>&nbsp;&nbsp;&nbsp;</a>
 									        <% } %> 
 									        <% if(paging.isNext()) { %>
 									            <a href="/board/foody?nowPage=<%=(paging.getPageBarEnd()+1)%>&searchOption=<%= searchOption %>&searchbar=<%= searchbar %>&sort=<%= sort %>">&raquo;</a>
@@ -293,5 +293,4 @@
     <!-- Template Javascript -->
     <script src="../../resources/template/js/main.js"></script>
 </body>
-
 </html>
