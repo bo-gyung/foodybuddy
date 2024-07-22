@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.foodybuddy.notice.vo.Notice" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.foodybuddy.user.vo.User" %>
+<%@ include file="../include/navbar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../include/navbar.jsp" %>
     <title>공지사항</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -83,6 +84,7 @@
             text-decoration: none;
             color: #333;
             cursor: pointer;
+            margin-bottom: 10px;
         }
         .create-button:hover {
             background-color: #e0e0e0;
@@ -116,6 +118,10 @@
 <div class="container-xxl py-5 bg-dark hero-header" style="margin-bottom: 0%;">
 </div>
 <div class="content-container">
+    <% 
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser != null && currentUser.getGrade_no() == 4) { 
+    %>
     <div class="sideBar">
         <ul>
             <li><a href="${pageContext.request.contextPath}/user/list">회원 관리</a></li>
@@ -124,9 +130,14 @@
             <li><a href="${pageContext.request.contextPath}/admin/qna/list">QnA 관리</a></li>
         </ul>
     </div>
+    <% } %>
     <div class="main-content">
         <h1>NOTICE</h1>
+        <% if (currentUser != null && currentUser.getGrade_no() == 4) { %>
         <a href="notices/create" class="create-button">글쓰기</a>
+        <% } %>
+        
+        
         <table>
             <thead>
                 <tr>
