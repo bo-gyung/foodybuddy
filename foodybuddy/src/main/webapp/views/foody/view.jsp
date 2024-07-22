@@ -51,7 +51,7 @@
         Foody foody = foodyList.get(0); 
 
         User loginUser = (User)session.getAttribute("user");
-        int userGrade = loginUser.getGrade_no();
+        Integer userGrade = (loginUser != null) ? loginUser.getGrade_no() : null;
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedRegDate = foody.getReg_date().format(formatter);
@@ -91,26 +91,26 @@
 	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
 	                        	<!-- 입력폼 시작 -->
 	                        	
-	                                	<% if(loginUser.getUser_no() == foody.getUser_no()) { %>
-	                                	<div style="display: flex; justify-content: space-evenly; text-align : center;">
-							                <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="location.href='update?foody_no=<%= foody.getFoody_no() %>'">수정</button></div>
-							                <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="checkDel(<%= foody.getFoody_no() %>)">삭제</button></div>
-							            </div>
-							            <% } %>
-							            
-							            <div style="display: flex; justify-content: space-evenly; text-align : center;">
-							            <% if(loginUser != null) { %>
-							                
-							                <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="likeFoody(<%= foody_no %>, <%= loginUser.getUser_no() %>)">좋아요</button></div>
-							            <% }else { %>
-										    <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="alert('회원만 가능한 기능입니다.')">좋아요</button></div>        
-							            <% } %>
-							            
-							            <% if(userGrade >= 2) { %>
-							                <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="buddyCreate(<%= foody.getFoody_no() %>, <%= loginUser.getUser_no() %>)">모이기</button></div>
-							            <% } else { %>
-							                <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="alert('정회원 이상만 모이기 버튼을 사용할 수 있습니다.')">모이기</button></div>
-							            <% } %>
+	                                	<% if(loginUser != null && loginUser.getUser_no() == foody.getUser_no()) { %>
+                                        <div style="display: flex; justify-content: space-evenly; text-align : center;">
+                                            <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="location.href='update?foody_no=<%= foody.getFoody_no() %>'">수정</button></div>
+                                            <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="checkDel(<%= foody.getFoody_no() %>)">삭제</button></div>
+                                        </div>
+                                        <% } %>
+                                        
+                                        <div style="display: flex; justify-content: space-evenly; text-align : center;">
+                                        <% if(userGrade != null && userGrade >= 1) { %>
+                                            
+                                            <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="likeFoody(<%= foody_no %>, <%= loginUser.getUser_no() %>)">좋아요</button></div>
+                                        <% }else { %>
+                                            <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="alert('회원만 가능한 기능입니다.')">좋아요</button></div>        
+                                        <% } %>
+                                        
+                                        <% if(userGrade != null && userGrade >= 2) { %>
+                                            <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="buddyCreate(<%= foody.getFoody_no() %>, <%= loginUser.getUser_no() %>)">모이기</button></div>
+                                        <% } else { %>
+                                            <div class="col-5"><button class="btn btn-primary w-100 py-3" onclick="alert('정회원 이상만 모이기 버튼을 사용할 수 있습니다.')">모이기</button></div>
+                                        <% } %>
 							    		</div>
 							    		
 	                            <form action='/board/createEnd' name="create_foody_form" method="post" enctype="multipart/form-data" accept-charset="UTF-8" onsubmit="return createFoodyForm();">
