@@ -51,6 +51,10 @@ public class UserLoginEndServlet extends HttpServlet {
 						LocalDateTime base_date = LocalDateTime.now();
 						if(warn_date.isAfter(base_date)) {
 							// 현재보다 경고기간이 뒤일때 -> 로그인불가
+							
+							session.removeAttribute("user");
+							session.invalidate();
+							
 							RequestDispatcher view = request.getRequestDispatcher("/views/user/login_warn.jsp");
 							view.forward(request, response);
 						} else {

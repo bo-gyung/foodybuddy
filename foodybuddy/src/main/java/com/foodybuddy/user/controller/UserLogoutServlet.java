@@ -19,15 +19,19 @@ public class UserLogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 로그아웃 기능 구현
 		HttpSession session = request.getSession(false);
-		if(session != null && session.getAttribute("user") != null) {
-			session.removeAttribute("user");
-			session.invalidate();
-		}
-		if(session != null && session.getAttribute("c_list") != null) {
-			session.removeAttribute("c_list");
-			session.invalidate();
-		}
-		response.sendRedirect("/");
+		
+	    if (session != null) {
+	        if (session.getAttribute("user") != null) {
+	            session.removeAttribute("user");
+	        }
+	        if (session.getAttribute("c_list") != null) {
+	            session.removeAttribute("c_list");
+	        }
+	        session.invalidate();
+	    }
+
+	    response.sendRedirect("/");
+	    
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -101,7 +101,7 @@
 	                                        </div>
 	                                    </div>
 									<!-- Testimonial Start -->
-							        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+							        <div class="container-xxl py-5">
 							            <div class="container">
 							                <div class="owl-carousel testimonial-carousel">
 							                    <div class="testimonial-item bg-transparent border rounded p-4">
@@ -219,14 +219,14 @@
 					            <!-- 댓글창 링크 삽입 -->
 								<%@ include file="/views/buddy/buddy_comment.jsp" %>
 					            <!-- 댓글 입력창 시작 -->
-					            <form action="/insertBuddyComment" method="post" id="insert_comment_form">
-									<div data-mdb-input-init class="form-outline mb-4">
-										<input type="hidden" id="buddy_no" name="buddy_no" value="<%=post.get("글번호")%>">
-										<a id="user_name" name="user_name"><%= u.getUser_name() %></a>
-										<textarea id="comment_main" name="comment_main" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
-										<a class="form-label btn btn-primary m-2" href="#" onclick="submit_btn();">작성</a>
+									<div data-mdb-input-init class="card-body">
+							            <form action="/insertBuddyComment" method="post" id="insert_comment_form">
+												<input type="hidden" id="buddy_no" name="buddy_no" value="<%=post.get("글번호")%>">
+												<a id="user_name" name="user_name"><%= u.getUser_name() %></a>
+												<textarea id="comment_main" name="comment_main" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
+												<a class="form-label btn btn-primary m-2" href="#" onclick="submit_btn();">작성</a>
+										</form>
 									</div>
-								</form>
 								<!-- 댓글 입력창 종료 -->
 					      </div>
 					    </div>

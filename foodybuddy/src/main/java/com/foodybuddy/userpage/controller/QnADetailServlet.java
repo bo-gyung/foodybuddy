@@ -1,6 +1,7 @@
 package com.foodybuddy.userpage.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -11,14 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.foodybuddy.userpage.service.QnAService;
+import com.foodybuddy.userpage.vo.QnA;
 
 
 @WebServlet("/qna/detail")
-public class QnADetail extends HttpServlet {
+public class QnADetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public QnADetail() {
+    public QnADetailServlet() {
         super();
        
     }
@@ -29,11 +31,26 @@ public class QnADetail extends HttpServlet {
 		int qnaNo = Integer.parseInt(request.getParameter("qna_no"));
 		// 글 번호로 내용을 가져오기
 		Map<String,Object> resultM = new QnAService().qnaDetail(qnaNo);
-		request.setAttribute("detail",resultM);
 		
-				
-	        RequestDispatcher view = request.getRequestDispatcher("/views/qna/qnadetail.jsp");
-	        view.forward(request, response);
+		// 여기에 ansContent도 함께 포함되어 있음
+		request.setAttribute("detail" , resultM);
+			
+		
+		//연결
+		RequestDispatcher view = request.getRequestDispatcher("/views/userpage/userqna/qnadetail.jsp");
+	
+		view.forward(request, response);
+		//디테일을 출력
+		
+		// 목록 출력
+		// qna_no를 기준으로 답변을 받아온다.
+		// 1:1 관계니까, 상세페이지 답변 출력
+		// 답변 데이터를 추가로 넣어주면된다.
+		
+		// 관리자 답변
+		 request.setAttribute("ansContent" , resultM);
+		
+		
 	}
 
 	
