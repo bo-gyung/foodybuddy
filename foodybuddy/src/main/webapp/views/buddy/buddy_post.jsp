@@ -183,7 +183,7 @@
                                     String write_no = (String)post.get("작성자번호");
 									if(u.getUser_no() == Integer.parseInt(write_no)){%>
 						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 시작 -->
-						            <div div class="row g-3" style="margin-left:12%;">
+						            <div class="row g-3" style="margin-left:12%;">
 						            	<div class="col-3">
 											<button class="btn btn-primary w-100 py-3" type="button" 
 											onclick="editPost(<%=post.get("글번호")%>,<%=post.get("작성자번호")%>);">수정</button>
@@ -248,7 +248,7 @@
 	                <a class="btn btn-link" href="">Contact Us</a>
 	                <a class="btn btn-link" href="">Reservation</a>
 	                <a class="btn btn-link" href="">Privacy Policy</a>
-	                <a class="btn btn-link" href="">Terms & Condition</a>
+	                <a class="btn btn-link" href="">Terms  Condition</a>
 	            </div>
 	            <div class="col-lg-3 col-md-6">
 	                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
@@ -306,7 +306,6 @@
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
 	<!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -358,11 +357,9 @@
 		// 그룹만들기 창 띄우기
 		function createGroup(buddy_no){
 		    // 새창 띄우기
-		    let newWindow = window.open("/views/buddy/groupSelect.jsp", "_blank", "width=800,height=400");
-		    
-		    
-
-		    newWindow.document.close();
+			const partyNumber = document.getElementById('party_number').value;
+		    console.log(partyNumber);
+		    const newWindow = window.open("/views/buddy/groupSelect.jsp?party_number="+partyNumber+"", "_blank", "width=800,height=600");
 		}
 		
 		// 원본글 보러가기
