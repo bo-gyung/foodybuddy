@@ -102,11 +102,9 @@
 														<div class="p-5 fade show p-1">
 															<h5 class="section-title ff-secondary text-start text-primary fw-normal">FOODYBUDDY</h5>
 															<h3 class="mb-4">내 정보 조회</h3>
-															
-															
-															
+													
 						
-															 <%@page import="java.util.*"%>
+															 <%@ page import="java.util.*"%>
 															<%
 															Map<String, Object> info = (Map<String, Object>) request.getAttribute("userInfo");
 															if (info == null) {

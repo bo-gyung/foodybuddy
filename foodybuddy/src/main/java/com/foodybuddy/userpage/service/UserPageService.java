@@ -40,7 +40,6 @@ private UserPageDao userPageDao = new UserPageDao();
         return isDeleted;
     }
 
-	
 
 	// 내 정보 조회
 	public Map<String,Object> selectMyInfo(User u) {
