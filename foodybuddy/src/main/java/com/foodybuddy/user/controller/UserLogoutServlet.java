@@ -23,6 +23,10 @@ public class UserLogoutServlet extends HttpServlet {
 			session.removeAttribute("user");
 			session.invalidate();
 		}
+		if(session != null && session.getAttribute("c_list") != null) {
+			session.removeAttribute("c_list");
+			session.invalidate();
+		}
 		response.sendRedirect("/");
 	}
 

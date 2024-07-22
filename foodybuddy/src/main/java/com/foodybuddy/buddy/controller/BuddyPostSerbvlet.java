@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 
@@ -31,9 +32,13 @@ public class BuddyPostSerbvlet extends HttpServlet {
 		// 글번호에 해당하는 글내용 받아오기
 		Map<String,Object> resultMap = new BuddyService().buddyPost(buddy_no);
 		request.setAttribute("post", resultMap);
+		
+		HttpSession session = request.getSession(true);
 		// 글번호에 해당하는 댓글 목록 받아오기
 		List<BuddyComment> c_list = new BuddyCommentService().selectComment(buddy_no);
-		request.setAttribute("c_list", c_list);
+		session.setAttribute("c_list", c_list);
+		session.setMaxInactiveInterval(60*30);
+
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_post.jsp");
 		view.forward(request, response);

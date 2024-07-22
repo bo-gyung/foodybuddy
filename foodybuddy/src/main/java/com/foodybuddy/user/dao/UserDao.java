@@ -64,7 +64,9 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getInt("user_question")
 							,rs.getString("user_answer")
-							,rs.getTimestamp("reg_date").toLocalDateTime());
+							,rs.getInt("user_warn")
+							,rs.getTimestamp("reg_date").toLocalDateTime()
+							,rs.getTimestamp("warn_date").toLocalDateTime());
 							
 			}
 			
@@ -100,7 +102,9 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getInt("user_question")
 							,rs.getString("user_answer")
-							,rs.getTimestamp("reg_date").toLocalDateTime());
+							,rs.getInt("user_warn")
+							,rs.getTimestamp("reg_date").toLocalDateTime()
+							,rs.getTimestamp("warn_date").toLocalDateTime());
 							
 			}
 		}catch(Exception e) {
@@ -135,7 +139,10 @@ public class UserDao {
 							,rs.getString("user_email")
 							,rs.getInt("user_question")
 							,rs.getString("user_answer")
-							,rs.getTimestamp("reg_date").toLocalDateTime());
+							,rs.getInt("user_warn")
+							,rs.getTimestamp("reg_date").toLocalDateTime()
+							,rs.getTimestamp("warn_date").toLocalDateTime());
+							;
 							
 			}
 		}catch(Exception e) {
@@ -157,7 +164,7 @@ public class UserDao {
 			pstmt.setString(1, userEmail);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				u = new User(rs.getInt("user_no")
+				 u = new User(rs.getInt("user_no")
 						,rs.getInt("grade_no")
 						,rs.getString("user_id")
 						,rs.getString("user_pw")
@@ -170,7 +177,10 @@ public class UserDao {
 						,rs.getString("user_email")
 						,rs.getInt("user_question")
 						,rs.getString("user_answer")
-						,rs.getTimestamp("reg_date").toLocalDateTime());
+						,rs.getInt("user_warn")
+						,rs.getTimestamp("reg_date").toLocalDateTime()
+						,rs.getTimestamp("warn_date").toLocalDateTime());
+						;
 						
 			}
 		}catch(Exception e) {
@@ -197,7 +207,7 @@ public class UserDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				resultUser = new User(rs.getInt("user_no")
+				resultUser =  u = new User(rs.getInt("user_no")
 						,rs.getInt("grade_no")
 						,rs.getString("user_id")
 						,rs.getString("user_pw")
@@ -210,7 +220,10 @@ public class UserDao {
 						,rs.getString("user_email")
 						,rs.getInt("user_question")
 						,rs.getString("user_answer")
-						,rs.getTimestamp("reg_date").toLocalDateTime());
+						,rs.getInt("user_warn")
+						,rs.getTimestamp("reg_date").toLocalDateTime()
+						,rs.getTimestamp("warn_date").toLocalDateTime());
+						;
 					
 
 			}

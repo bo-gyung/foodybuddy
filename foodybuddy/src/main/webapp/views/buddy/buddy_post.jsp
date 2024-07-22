@@ -194,7 +194,7 @@
 										</div>
 										<div class="col-3">
 											<button class="btn btn-primary w-100 py-3" type="button" 
-											onclick="createGroup(<%=post.get("글번호")%>);">모임 결성</button>
+											onclick="createGroup(<%=post.get("글번호")%>)">모임 결성</button>
 										</div>
 						            </div>
 						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 종료 -->
@@ -210,41 +210,14 @@
 		                </div>
 					</div>
 	            </div>
-	            
 	            <!-- 댓글영역 시작 -->
 				<div class=" mt-5 row d-flex justify-content-center">
 					<div class="col-md-8 col-lg-9">
 						<p>COMMENT</p>
 						<div class="card shadow-0 border" style="background-color: #f8f9fa;">
 							<div id="result_div" class="card-body p-4">
-								<!-- 댓글 리스트 시작 -->
-					            <div class="comment_list" id="comment_place">
-					            	<%@page import="com.foodybuddy.buddy_comment.vo.BuddyComment, java.util.*" %>
-					                <%
-					                List<BuddyComment> c_list = (List<BuddyComment>)request.getAttribute("c_list");
-             			                    if (c_list != null) {
-             			                        for (BuddyComment c : c_list) {
-					                %>
-					                            <div class="card mb-4">
-													<div class="card-body">
-														<p><%= c.getComment_main() %></p>
-												
-														<div class="d-flex justify-content-between">
-															<div class="d-flex flex-row align-items-center">
-																<p class="small mb-0 ms-2"><%= c.getUser_name() %></p>
-															</div>
-															<div class="d-flex flex-row align-items-center">
-																<p class="small text-muted mb-0"><%= c.getReg_date() %></p>
-															</div>
-														</div>
-													</div>
-												</div>
-					                <%
-					                        }
-					                    }
-					                %>
-					            </div>
-					            <!-- 댓글 리스트 종료 -->
+					            <!-- 댓글창 링크 삽입 -->
+								<%@ include file="/views/buddy/buddy_comment.jsp" %>
 					            <!-- 댓글 입력창 시작 -->
 					            <form action="/insertBuddyComment" method="post" id="insert_comment_form">
 									<div data-mdb-input-init class="form-outline mb-4">
@@ -259,11 +232,7 @@
 					    </div>
 					  </div>
 					</div>
-	            <!-- 댓글영역 종료 -->
-	            
-	            
-	            
-	            
+	            	<!-- 댓글영역 종료 -->
 	       </div>
 	   </div>
 	   <!-- Contact End -->
@@ -386,9 +355,14 @@
 			}
 		}
 		
-		// 그룹만들기
+		// 그룹만들기 창 띄우기
 		function createGroup(buddy_no){
-			window.location.href = '/create/group?buddy_no='+buddy_no;
+		    // 새창 띄우기
+		    let newWindow = window.open("/views/buddy/groupSelect.jsp", "_blank", "width=800,height=400");
+		    
+		    
+
+		    newWindow.document.close();
 		}
 		
 		// 원본글 보러가기
@@ -397,7 +371,7 @@
         }
 		
 		// 댓글 작성
-
+  
         function submit_btn(){
         	 event.preventDefault();
         	 const form = document.getElementById('insert_comment_form');

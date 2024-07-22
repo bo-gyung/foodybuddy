@@ -8,11 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import com.foodybuddy.buddy_comment.vo.BuddyComment;
-import com.foodybuddy.foodycomment.vo.Comment;
 
 
 public class BuddyCommentDao {

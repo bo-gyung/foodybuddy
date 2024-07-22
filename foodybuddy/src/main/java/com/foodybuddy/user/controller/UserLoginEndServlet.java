@@ -1,6 +1,7 @@
 package com.foodybuddy.user.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,7 +42,22 @@ public class UserLoginEndServlet extends HttpServlet {
 					view.forward(request, response);
 				} else {
 					// 회원 화면
-					response.sendRedirect("/");
+					if(u.getUser_warn()==0) {
+						// 경고 0회
+						response.sendRedirect("/");
+					} else if(u.getUser_warn()>0) {
+						// 경고 1회 이상
+						LocalDateTime warn_date = u.getWarn_date();
+						LocalDateTime base_date = LocalDateTime.now();
+						if(warn_date.isAfter(base_date)) {
+							// 현재보다 경고기간이 뒤일때 -> 로그인불가
+							RequestDispatcher view = request.getRequestDispatcher("/views/user/login_warn.jsp");
+							view.forward(request, response);
+						} else {
+							// 현재보다 경고기간이 앞일 때 -> 로그인 가능
+							response.sendRedirect("/");
+						}
+					}
 				}
 			}
 		} else {
