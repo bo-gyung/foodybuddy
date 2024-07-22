@@ -222,4 +222,52 @@ public class UserDao {
 
         return buddyPostList;
     }
+    public int getTotalUserCount(Connection conn) {
+        String query = "SELECT COUNT(*) FROM user";
+        try (PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<User> getUsers(Connection conn, int startRow, int numPerPage) {
+        List<User> userList = new ArrayList<>();
+        String query = "SELECT u.user_no, u.grade_no, g.grade_name, u.user_id, u.user_pw, u.user_name, u.user_phone, u.user_email, u.user_postcode, u.user_addr, u.user_detailAddr, u.user_extraAddr, u.user_question, u.user_answer, u.reg_date " +
+                       "FROM user u " +
+                       "JOIN user_grade g ON u.grade_no = g.grade_no " +
+                       "LIMIT ?, ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, startRow);
+            pstmt.setInt(2, numPerPage);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User();
+                    user.setUser_no(rs.getInt("user_no"));
+                    user.setGrade_no(rs.getInt("grade_no"));
+                    user.setGrade_name(rs.getString("grade_name"));
+                    user.setUser_id(rs.getString("user_id"));
+                    user.setUser_pw(rs.getString("user_pw"));
+                    user.setUser_name(rs.getString("user_name"));
+                    user.setUser_phone(rs.getString("user_phone"));
+                    user.setUser_email(rs.getString("user_email"));
+                    user.setUser_postcode(rs.getString("user_postcode"));
+                    user.setUser_addr(rs.getString("user_addr"));
+                    user.setUser_detailAddr(rs.getString("user_detailAddr"));
+                    user.setUser_extraAddr(rs.getString("user_extraAddr"));
+                    user.setUser_question(rs.getString("user_question"));
+                    user.setUser_answer(rs.getString("user_answer"));
+                    user.setReg_date(rs.getTimestamp("reg_date"));
+                    userList.add(user);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
 }

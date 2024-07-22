@@ -91,7 +91,7 @@ public class Paging {
 		}
 		
 		// 전체 게시글 갯수를 set 해줬을때 동작할 메소드를 만들어준다.
-		private void calcPaging() {
+		public void calcPaging() {
 			// 내가 우리 쿼리에서 데이터를 조회할때 사용할 limit 페이지no를 설정해준다.
 			// 내가 만약 2번페이지를 보고싶으면 -> 10,10 (앞 10, 뒤10중 바뀌지않는건 뒤10)
 			// 3번페이지(21~30) -> 20,10

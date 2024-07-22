@@ -6,6 +6,7 @@ import static com.foodybuddy.common.sql.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.List;
 
+import com.foodybuddy.common.Paging;
 import com.foodybuddy.user_manage.dao.UserDao;
 import com.foodybuddy.user_manage.vo.BuddyPost;
 import com.foodybuddy.user_manage.vo.Comment;
@@ -53,5 +54,20 @@ public class UserService {
         close(conn);
         return buddyPostList;
     }
+    public List<User> getUsers(int currentPage, int numPerPage) {
+        Connection conn = getConnection();
+        int startRow = (currentPage - 1) * numPerPage;
+        List<User> userList = userDao.getUsers(conn, startRow, numPerPage);
+        close(conn);
+        return userList;
+    }
+
+    public int getTotalUserCount() {
+        Connection conn = getConnection();
+        int totalCount = userDao.getTotalUserCount(conn);
+        close(conn);
+        return totalCount;
+    }
+    
     
 }

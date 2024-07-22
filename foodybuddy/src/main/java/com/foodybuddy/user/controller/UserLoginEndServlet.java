@@ -37,7 +37,7 @@ public class UserLoginEndServlet extends HttpServlet {
 				
 				if(u.getGrade_no()==4) {
 					// 관리자 화면
-					RequestDispatcher view = request.getRequestDispatcher("/views//user/adminpage.jsp");
+					RequestDispatcher view = request.getRequestDispatcher("/views/admin/admin.jsp");
 					view.forward(request, response);
 				} else {
 					// 회원 화면
