@@ -34,7 +34,8 @@
 	<link href="../../resources/template/css/style.css" rel="stylesheet">
 </head>
 <body>
-
+	<!-- Navbar Link -->
+	<%@ include file="../../include/navbar.jsp" %>
 	<!-- Hero Start -->
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">

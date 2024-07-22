@@ -32,9 +32,10 @@ public class UserCreateEndServlet extends HttpServlet {
 		String detailAddr = request.getParameter("user_detailAddr");
 		String extraAddr = request.getParameter("user_extraAddr");   
 		String email = request.getParameter("user_email");
-		String question = request.getParameter("user_question");
+		String questionStr = request.getParameter("user_question");
 		String answer = request.getParameter("user_answer");
 		
+		int question = Integer.parseInt(questionStr);
 		User u = new User();
 		u.setUser_id(id);
 		u.setUser_pw(pw);

@@ -19,6 +19,72 @@ import com.foodybuddy.userpage.vo.QnA;
 
 public class UserPageDao {
 	
+	//회원 삭제 
+	
+    public boolean deleteUserByNo(Connection conn, int userNo) {
+        PreparedStatement pstmt = null;
+        boolean isDeleted = false;
+        try {
+            String sql = "DELETE FROM `user` WHERE user_no = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, userNo);
+            int rowsAffected = pstmt.executeUpdate();
+            isDeleted = (rowsAffected > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+        return isDeleted;
+    }
+
+	
+
+	//비밀번호 확인 메소드
+	public boolean checkPassword(Connection conn, String userId, String password) {
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    boolean isPasswordCorrect = false;
+    try {
+        String sql = "SELECT user_pw FROM `user` WHERE user_id = ?";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, userId);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            String dbPassword = rs.getString("user_pw");
+            isPasswordCorrect = dbPassword.equals(password);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        close(rs);
+        close(pstmt);
+    }
+    return isPasswordCorrect;
+}
+
+	// user_no 조회 메소드
+	public int getUserNoById(Connection conn, String userId) {
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    int userNo = -1;
+    try {
+        String sql = "SELECT user_no FROM `user` WHERE user_id = ?";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, userId);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            userNo = rs.getInt("user_no");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        close(rs);
+        close(pstmt);
+    }
+    return userNo;
+}
+	
 		
 	
 	//글 제목 클릭시 상세내용

@@ -33,6 +33,7 @@
 	<link href="../../resources/template/css/style.css" rel="stylesheet">
 </head>
 <body>
+<%@ include file="../../include/navbar.jsp" %>
 <script>
 	
 </script>

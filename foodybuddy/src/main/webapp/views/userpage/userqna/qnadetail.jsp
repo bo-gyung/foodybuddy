@@ -46,6 +46,7 @@
 
 </head>
 <body>
+<%@ include file="../../include/navbar.jsp" %>
 	<!-- Hero Start -->
 	<div class="container-xxl py-5 bg-dark hero-header mb-5">
 		<div class="container text-center my-5 pt-5 pb-4">
@@ -96,10 +97,7 @@
 					if (resultM != null && resultM.get("ansContent") != null) {
 						answerContent = (String) resultM.get("ansContent");
 					%>
-					<textarea id="qna_answer" class="form-control" maxlength="500"
-						cols="40" rows="15" style="resize: none;" readonly>
-                    <%=answerContent%>
-                </textarea>
+					<textarea id="qna_answer" class="form-control" maxlength="500" cols="40" rows="15" style="resize: none;" readonly><%=answerContent%></textarea>
 					<%
 					}
 					%>
