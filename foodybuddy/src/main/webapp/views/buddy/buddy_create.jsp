@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-car text-primary me-2"></i><%=f.getFoody_parking() %></p>
+                                <p><i class="fa fa-car text-primary me-2"></i><%=(f.getFoody_parking() ==null) ? "정보없음" : f.getFoody_parking() %></p>
                             </div>
                         </div>
                     </div>

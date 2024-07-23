@@ -81,7 +81,7 @@
                             </div>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
-                                <p><i class="fa fa-car text-primary me-2"></i><%=post.get("주차여부") %></p>
+                                <p><i class="fa fa-car text-primary me-2"></i><%=(post.get("주차여부") ==null) ? "정보없음" : post.get("주차여부") %></p>
                             </div>
                         </div>
                     </div>

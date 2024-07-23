@@ -201,11 +201,11 @@
                                     </div>
                                     
 	                                    
-	                                    <div class="col-12">
-	                                        <button class="btn btn-primary w-100 py-3" onclick="location.href='/board/foody'">메뉴로 돌아가기</button>
-	                                    </div>
 	                                </div>
 	                            </form>
+	                                    <div class="col-12 mt-5">
+	                                        <button class="btn btn-primary w-100 py-3" onclick="history.back();">메뉴로 돌아가기</button>
+	                                    </div>
 	                        </div>
 	                    </div>
 					</div>

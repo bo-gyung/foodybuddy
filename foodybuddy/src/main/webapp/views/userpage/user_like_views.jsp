@@ -41,10 +41,10 @@
             <h1 class="display-3 text-white mb-3 animated slideInDown">MyPage</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center text-uppercase">
-                    <li class="breadcrumb-item"><a href="/userpage/userpagemain">내 정보 조회/변경</a></li>
+                    <li class="breadcrumb-item" ><a href="/userpage/userpagemain"style="color:white;">내 정보 조회/변경</a></li>
                     <li class="breadcrumb-item"><a href="/user/pageList?menu=user_create_views">내 작성글 조회</a></li>
-                    <li class="breadcrumb-item"><a href="/user/pageList?menu=user_like_views" style="color:white;">내 좋아요 조회</a></li>
-                    <li class="breadcrumb-item"><a href="/user/pageList?menu=user_group_views">내 모임 조회</a></li>
+                    <li class="breadcrumb-item"><a href="../views/error404.jsp">내 좋아요 조회</a></li>
+                    <li class="breadcrumb-item"><a href="../views/error500.jsp">내 모임 조회</a></li>
                     <li class="breadcrumb-item"><a href="/qna/list">Q&A</a></li>
                 </ol>
             </nav>
