@@ -48,7 +48,7 @@
 	                        <!-- 검색창 설정 조정필요 -->
 	                        <p class="mt-5">
 		                        <div class="position-relative mx-auto" style="max-width: 400px;">
-		                            <form id="searchForm" action="http://localhost:8089/board/foody" method="GET">
+		                            <form id="searchForm" action="/board/foody" method="GET">
 		                                <input type="hidden" name="searchOption" value="2">
 		                                <input id="searchInput" name="searchbar" class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="맛집을 검색하세요">
         								<button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">검색</button>
