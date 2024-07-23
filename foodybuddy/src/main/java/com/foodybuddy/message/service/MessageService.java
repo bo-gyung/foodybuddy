@@ -17,7 +17,7 @@ public class MessageService {
 	Connection conn = getConnection(); 
 	try {
 		int receiver = selectByName(msgReceiver, conn);
-		if(receiver != 0 && senderNo != receiver) {
+		if(receiver != 0) {
 			return new MessageDao().sendMessage(senderNo,receiver,msgTitle,msgText,conn); 
 		}else {
 			return false;
@@ -31,10 +31,7 @@ public class MessageService {
 	}
 	 }
 	
-			
-	
-	 
-	 public int selectByName(String msgReceiver ,Connection conn) {
+	public int selectByName(String msgReceiver ,Connection conn) {
 		 return new MessageDao().selectByName(msgReceiver, conn);
 	 }
 	 
@@ -47,38 +44,56 @@ public class MessageService {
 	 
 	 public List<Map<String,Object>> receiveMessage(int receiverId){
 		 Connection conn = getConnection();
-		 List<Map<String,Object>> messages2 = new MessageDao().sentMessage(receiverId,conn);
+		 List<Map<String,Object>> messages2 = new MessageDao().receiveMessage(receiverId,conn);
 		 close(conn);
 		 return messages2;
 	 }
 	 
-	 public Map<String, Object> getMessageById(int messageId) {
-	        Connection conn = null;
+	 public boolean moveMessages(List<Integer> messageIds,int logId) {
+		 Connection conn = null;
 	        try {
 	            conn = getConnection();
-	            
-				return (Map<String, Object>) new MessageDao().getMessageById(messageId, conn);
+	            MessageDao messageDao = new MessageDao();
+	            messageDao.moveMessages(messageIds,logId, conn);
+	            conn.commit(); // 변경 사항 커밋
+	            return true;
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	            return null;
-	        } finally {
 	            if (conn != null) {
-	                close(conn);
+	                try {
+	                    conn.rollback(); // 에러 발생 시 롤백
+	                } catch (SQLException ex) {
+	                    ex.printStackTrace();
+	                }
 	            }
-	       }
-	 }
-	 public void moveMessages(List<Map<String, Object>> messages) {
-	        Connection conn = null;
-	        try {
-	            conn = getConnection();
-	            new MessageDao().moveMessages(messages, conn);
-	        } catch (SQLException e) {
-	            e.printStackTrace();
+	            return false;
 	        } finally {
 	            if (conn != null) {
 	                close(conn);
 	            }
 	        }
 	    }
+	 
+	 public List<Map<String,Object>> tempMessage(int logId){
+		 Connection conn = getConnection();
+		 List<Map<String,Object>> messages3 = new MessageDao().tempMessage(logId,conn);
+		 close(conn);
+		 return messages3;
+	 }
+	 
+	// 메시지를 휴지통으로 이동하는 메서드
+	    public boolean moveToTrash(List<Integer> messageIds, int userId) {
+	    	Connection conn = getConnection();
+	        boolean success = new MessageDao().moveToTrash(messageIds, userId,conn);
+	        close(conn);
+	        return success;
+	    }
 
+	    // 사용자 휴지통의 메시지 목록 가져오기 메서드
+	    public List<Map<String, Object>> getTrashedMessages(int userId) {
+	    	Connection conn = getConnection();
+	        List<Map<String,Object>> message = new MessageDao().getTrashedMessages(userId,conn);
+	        close(conn);
+	        return message;
+	    }
 }

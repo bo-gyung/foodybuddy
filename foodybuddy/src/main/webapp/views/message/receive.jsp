@@ -46,13 +46,13 @@
     	<br><br>
         <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
         <br>
-        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgReceive">받은쪽지</a></li>
         <li>
         	<div style="background-color: aliceblue ;">
-        		<a href="/msgSent" style="color: #FEA116; font-weight : bold;">보낸쪽지</a>
-        	</div>
+        		<a href="/msgReceive" style="color: #FEA116; font-weight : bold;">받은쪽지</a>
+        	</div>	
         </li>
-        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgTemp">임시쪽지</a></li>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
     </ul>
 
@@ -81,31 +81,39 @@
             <tr>
                 <th></th>
                 <th>글번호</th>
-                <th>받은사람</th>
+                <th>보낸사람</th>
                 <th>제목</th>
                 <th>날짜</th>
             </tr>
       <%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
-	  <%@ page import="com.foodybuddy.message.vo.Message" %>
- 	  <% List<Map<String, Object>> messages2= (List<Map<String, Object>>) request.getAttribute("messages2"); %>
-		 <% int index = 1; %>
-            <% for (Map<String, Object> message : messages2) { %>
-                <tr>
-                  <td class="align-middle">
+<%@ page import="com.foodybuddy.message.vo.Message" %>
+<%
+    List<Map<String, Object>> messages2 = (List<Map<String, Object>>) request.getAttribute("messages2");
+    if (messages2 != null && !messages2.isEmpty()) {
+        int index = 1;
+        for (Map<String, Object> message : messages2) {
+%>
+            <tr>
+                <td>
                     <label class="checkbox-container">
                         <input type="checkbox" onchange="toggleRow(this)">
-                        <span class="checkbox"></span> 
+                        <span class="checkbox"></span>
                     </label>
                 </td>
-                	<td class="align-middle"><%= index %></td>
-                    <td class="align-middle"><%= message.get("senderName") %></td>
-                    <td class="align-middle" onclick="showMessage( '<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
-            			<%= message.get("message_title") %>
-        			</td>
-                    <td class="align-middle"><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
-                </tr>
-                <% index++; %>
-            <% } %>
+                <td><%= index %></td>
+                <td><%= message.get("senderName") %></td>
+                <td onclick="showMessage('<%= message.get("senderName") %>','<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
+                    <%= message.get("message_title") %>
+                </td>
+                <td><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
+            </tr>
+            <% index++; %>
+        <% }
+    } else { %>
+        <tr>
+            <td colspan="5">메시지가 없습니다.</td>
+        </tr>
+    <% } %>
         </table>
         <hr>
         
@@ -125,20 +133,72 @@
     
     function openNewWindow() {
         // 새 창을 열기
-        var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
-        let temp = `<h1>쪽지 보내기</h1>
-            <form action="/message/send" method="post">
-           
-            받는 사람: <input type="text" name="receiver"><br>
-            제목: <input type="text" name="subject"><br>
-            내용: <textarea name="message" rows="5" cols="50"></textarea><br>
-            <input type="submit" value="쪽지 보내기">
-        </form>`
+        var newWindow = window.open("about:blank", "_blank", "width=600,height=500");
 
-    newWindow.document.write(temp);
+        // CSS 스타일
+        var styles = '<style>' +
+            'body {' +
+            '    font-family: Arial, sans-serif;' +
+            '    background-color: #f9f9f9;' +
+            '    margin: 0;' +
+            '    padding: 20px;' +
+            '}' +
+            'h1 {' +
+            '    text-align: center;' +
+            '    color: #333;' +
+            '}' +
+            'form {' +
+            '    max-width: 500px;' +
+            '    margin: auto;' +
+            '    background: #fff;' +
+            '    padding: 20px;' +
+            '    border-radius: 10px;' +
+            '    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);' +
+            '}' +
+            'label {' +
+            '    display: block;' +
+            '    margin-bottom: 10px;' +
+            '    color: #333;' +
+            '    font-weight: bold;' +
+            '}' +
+            'input[type="text"], textarea {' +
+            '    width: calc(100% - 20px);' +
+            '    padding: 10px;' +
+            '    margin-bottom: 10px;' +
+            '    border: 1px solid #ccc;' +
+            '    border-radius: 5px;' +
+            '    font-size: 16px;' +
+            '}' +
+            'input[type="submit"] {' +
+            '    background-color: #FEA116;' +
+            '    color: white;' +
+            '    padding: 10px 20px;' +
+            '    border: none;' +
+            '    border-radius: 5px;' +
+            '    cursor: pointer;' +
+            '    font-size: 16px;' +
+            '}' +
+            'input[type="submit"]:hover {' +
+            '    background-color:darkorange;' +
+            '}' +
+            '</style>';
 
-}
-    function showMessage(messageTitle, messageText, sentAt) {
+        // HTML 내용
+        var temp = styles +
+            '<h1>쪽지 보내기</h1>' +
+            '<form action="/message/send" method="post">' +
+            '    <label for="receiver">받는 사람:</label>' +
+            '    <input type="text" id="receiver" name="receiver" required><br>' +
+            '    <label for="subject">제목:</label>' +
+            '    <input type="text" id="subject" name="subject" required><br>' +
+            '    <label for="message">내용:</label>' +
+            '    <textarea id="message" name="message" rows="5" cols="50" required></textarea><br>' +
+            '    <input type="submit" value="쪽지 보내기">' +
+            '</form>';
+
+        newWindow.document.write(temp);
+    }
+    function showMessage(senderName,messageTitle, messageText, sentAt) {
         var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
 
         var styles = '<style>' +

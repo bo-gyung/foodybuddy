@@ -30,7 +30,7 @@
 
     <!-- Template Stylesheet -->
     <link href="../resources/template/css/style.css" rel="stylesheet">
-   	<link href="../resources/css/message/main.css" rel="stylesheet">
+   	<link  type="text/css" href="${pageContext.request.contextPath}/../resources/css/message/main.css" rel="stylesheet">
    	
     </head>
 <body style="background-color: white;">
@@ -52,7 +52,7 @@
         		<a href="/msgSent" style="color: #FEA116; font-weight : bold;">보낸쪽지</a>
         	</div>
         </li>
-        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgTemp">임시쪽지</a></li>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
     </ul>
 
@@ -73,10 +73,10 @@
         <span>1건</span>
         <span style="color: blue;">(쪽지검색키워드)</span>
         <hr>
+       	<form id="moveForm" action="${pageContext.request.contextPath}/MoveToTemporaryServlet" method="post">
         <button class="delete" >삭제</button>
-        <button class="reply">답장</button>
-        <form action="/MoveServlet" method="post" onsubmit="return validateForm();">
-        <button class="save" type="submit" >보관</button>
+        <button class="save" type="submit" name="action" value="moveToTemporary">보관</button>
+       
         <hr>
         <table class="message-table">
             <tr>
@@ -89,24 +89,28 @@
       <%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
 	  <%@ page import="com.foodybuddy.message.vo.Message" %>
  	  <% List<Map<String, Object>> messages = (List<Map<String, Object>>) request.getAttribute("messages"); %>
+ 	  <% if (messages != null) { %>
 		 <% int index = 1; %>
             <% for (Map<String, Object> message : messages) { %>
                 <tr>
                   <td class="align-middle">
                     <label class="checkbox-container">
-                        <input type="checkbox" onchange="toggleRow(this)" name="messageIds" value="<%= message.get("message_id") %>" onclick="event.stopPropagation();">
+                        <input type="checkbox" onchange="toggleRow(this)" name="messageIds" value="<%= message.get("message_id") %>">
                         <span class="checkbox"></span> 
                     </label>
                 </td>
                 	<td class="align-middle"><%= index %></td>
                     <td class="align-middle"><%= message.get("receiverName") %></td>
-                    <td class="align-middle" onclick="showMessage( '<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
+                    <td class="align-middle" onclick="showMessage('<%= message.get("receiverName") %>','<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
             			<%= message.get("message_title") %>
         			</td>
                     <td class="align-middle"><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
                 </tr>
                 <% index++; %>
             <% } %>
+            <% } else { %>
+    <p>No messages found.</p>
+<% } %>
         </table>
         </form>
         <hr>
@@ -116,14 +120,32 @@
     
     <script>
     
-    function validateForm() {
-        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-        if (checkboxes.length === 0) {
-            alert("쪽지를 선택해주세요.");
-            return false;
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('moveForm');
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+                if (checkboxes.length === 0) {
+                    alert("쪽지를 선택해주세요.");
+                    event.preventDefault(); // 폼 제출 방지
+                }
+            });
+
+            // 체크박스 상태에 따라 행 스타일을 변경
+            document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    const row = this.closest('tr');
+                    if (this.checked) {
+                        row.classList.add('selected');
+                    } else {
+                        row.classList.remove('selected');
+                    }
+                });
+            });
+        } else {
+            console.error('Form with id "moveForm" not found.');
         }
-        return true;
-    }
+    });
     
     function toggleRow(checkbox) {
         const row = checkbox.closest('tr'); // 체크박스가 포함된 행을 찾음
@@ -136,20 +158,72 @@
     
     function openNewWindow() {
         // 새 창을 열기
-        var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
-        let temp = `<h1>쪽지 보내기</h1>
-            <form action="/message/send" method="post">
-           
-            받는 사람: <input type="text" name="receiver"><br>
-            제목: <input type="text" name="subject"><br>
-            내용: <textarea name="message" rows="5" cols="50"></textarea><br>
-            <input type="submit" value="쪽지 보내기">
-        </form>`
+        var newWindow = window.open("about:blank", "_blank", "width=600,height=500");
 
-    newWindow.document.write(temp);
+        // CSS 스타일
+        var styles = '<style>' +
+            'body {' +
+            '    font-family: Arial, sans-serif;' +
+            '    background-color: #f9f9f9;' +
+            '    margin: 0;' +
+            '    padding: 20px;' +
+            '}' +
+            'h1 {' +
+            '    text-align: center;' +
+            '    color: #333;' +
+            '}' +
+            'form {' +
+            '    max-width: 500px;' +
+            '    margin: auto;' +
+            '    background: #fff;' +
+            '    padding: 20px;' +
+            '    border-radius: 10px;' +
+            '    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);' +
+            '}' +
+            'label {' +
+            '    display: block;' +
+            '    margin-bottom: 10px;' +
+            '    color: #333;' +
+            '    font-weight: bold;' +
+            '}' +
+            'input[type="text"], textarea {' +
+            '    width: calc(100% - 20px);' +
+            '    padding: 10px;' +
+            '    margin-bottom: 10px;' +
+            '    border: 1px solid #ccc;' +
+            '    border-radius: 5px;' +
+            '    font-size: 16px;' +
+            '}' +
+            'input[type="submit"] {' +
+            '    background-color: #FEA116;' +
+            '    color: white;' +
+            '    padding: 10px 20px;' +
+            '    border: none;' +
+            '    border-radius: 5px;' +
+            '    cursor: pointer;' +
+            '    font-size: 16px;' +
+            '}' +
+            'input[type="submit"]:hover {' +
+            '    background-color:darkorange;' +
+            '}' +
+            '</style>';
 
-}
-    function showMessage(messageTitle, messageText, sentAt) {
+        // HTML 내용
+        var temp = styles +
+            '<h1>쪽지 보내기</h1>' +
+            '<form action="/message/send" method="post">' +
+            '    <label for="receiver">받는 사람:</label>' +
+            '    <input type="text" id="receiver" name="receiver" required><br>' +
+            '    <label for="subject">제목:</label>' +
+            '    <input type="text" id="subject" name="subject" required><br>' +
+            '    <label for="message">내용:</label>' +
+            '    <textarea id="message" name="message" rows="5" cols="50" required></textarea><br>' +
+            '    <input type="submit" value="쪽지 보내기">' +
+            '</form>';
+
+        newWindow.document.write(temp);
+    }
+    function showMessage(receiverName,messageTitle, messageText, sentAt) {
         var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
 
         var styles = '<style>' +
@@ -191,7 +265,7 @@
         var temp = styles +
             '<h1>보낸 쪽지</h1>' +
             '<div class="message-container">' +
-            '    <div class="message-info"><strong>보낸 사람: 나 </strong></div>' +
+            '    <div class="message-info"><strong>받은 사람: '+receiverName+' </strong></div>' +
             '    <div class="message-title"><strong>제목:</strong> ' + messageTitle + '</div>' +
             '    <div class="message-content"><strong>내용:</strong> ' + messageText + '</div>' +
             '    <div class="message-info"><strong>보낸 시간:</strong> ' + sentAt + '</div>' +
