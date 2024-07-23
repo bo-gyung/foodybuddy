@@ -41,7 +41,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">MENU</a>
                             <div class="dropdown-menu m-0">
-                                <a href="/board/notice" class="dropdown-item">NOTICE</a>
+                                <a href="/views/notice/noticeList.jsp" class="dropdown-item">NOTICE</a>
                                 <a href="/board/foody" class="dropdown-item">FOODY</a>
                                 <a href="/board/buddy" class="dropdown-item">BUDDY</a>
                             </div>
@@ -80,7 +80,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">MENU</a>
                             <div class="dropdown-menu m-0">
-                                <a href="/board/notice" class="dropdown-item">NOTICE</a>
+                                <a href="/views/notice/noticeList.jsp" class="dropdown-item">NOTICE</a>
                                 <a href="/board/foody" class="dropdown-item">FOODY</a>
                                 <a href="/board/buddy" class="dropdown-item">BUDDY</a>
                             </div>

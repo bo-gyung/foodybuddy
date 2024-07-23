@@ -111,6 +111,9 @@
         a:hover {
             text-decoration: underline;
         }
+         .table{
+        	width: 79%;
+        } 
     </style>
 </head>
 <body>
@@ -138,7 +141,7 @@
         <% } %>
         
         
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>글번호</th>
