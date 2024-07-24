@@ -80,7 +80,7 @@
 <div class="content-container">
     <ul class="sideBar">
     	<br><br>
-        <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
+        <li><button class="btn-primary text-white" onclick="openNewWindow();">쪽지쓰기</button></li>
         <br>
         <li>
         	<div style="background-color: aliceblue ;">
@@ -168,7 +168,7 @@
                 <input type="text" id="replyMessageTitle" name="subject"><br>
                 <label>내용:</label>
                 <textarea name="message" rows="10" cols="30"></textarea><br>
-                <button type="button" onclick="sendReply()">보내기</button>
+                <button class="btn-primary text-white" type="button" onclick="sendReply()">보내기</button>
             </form>
         </div>
     </div>

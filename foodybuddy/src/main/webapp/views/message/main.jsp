@@ -44,7 +44,7 @@
 <div class="content-container">
     <ul class="sideBar">
     	<br><br>
-        <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
+        <li><button class="btn-primary text-white" onclick="openNewWindow();">쪽지쓰기</button></li>
         <br>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgReceive">받은쪽지</a></li>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
