@@ -34,7 +34,43 @@
    	
     </head>
 <body style="background-color: white;">
- 
+ <style>
+        /* 모달 스타일 */
+        .modal {
+            display: none; /* 초기에는 보이지 않도록 설정 */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 <%@ include file="../include/navbar.jsp" %>
 <!-- Hero Start -->
 <div class="container-xxl py-5 bg-dark hero-header" style="margin-bottom: 0%;">
@@ -75,7 +111,7 @@
         <hr>
         <button class="delete">삭제</button>
         <button class="save">보관</button>
-        <button class="reply">답장</button>
+        <button class="reply"  onclick="openReplyModal()">답장</button>
         <hr>
         <table class="message-table">
             <tr>
@@ -96,7 +132,7 @@
             <tr>
                 <td>
                     <label class="checkbox-container">
-                        <input type="checkbox" onchange="toggleRow(this)">
+                        <input type="checkbox" name="messageCheckbox" data-sendername="<%= message.get("senderName") %>" data-messagetitle="<%= message.get("message_title") %>" onchange="toggleRow(this)">
                         <span class="checkbox"></span>
                     </label>
                 </td>
@@ -119,6 +155,23 @@
         
     </div>
 </div>
+ <!-- The Modal -->
+    <div id="replyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeReplyModal()">&times;</span>
+            <h2>쪽지 답장</h2>
+            <form id="replyForm" action="/message/send" method="POST">
+                
+                <label>받는 사람:</label>
+                <input type="text" id="replyReceiverName" name="receiver" readonly><br>
+                <label>제목:</label>
+                <input type="text" id="replyMessageTitle" name="subject"><br>
+                <label>내용:</label>
+                <textarea name="message" rows="10" cols="30"></textarea><br>
+                <button type="button" onclick="sendReply()">보내기</button>
+            </form>
+        </div>
+    </div>
     
     <script>
     
@@ -260,6 +313,36 @@
         li.style.backgroundColor = '#f8f9fa';
         li.querySelector('a').style.color = 'black';
         li.querySelector('a').style.fontWeight = 'normal';
+    }
+    
+    function openReplyModal() {
+        const modal = document.getElementById("replyModal");
+        modal.style.display = "block";
+
+        const selectedCheckbox = document.querySelector('input[name="messageCheckbox"]:checked');
+        if (selectedCheckbox) {
+            const receiverName = selectedCheckbox.dataset.sendername;
+            const messageTitle = selectedCheckbox.dataset.messagetitle;
+            document.getElementById('replyReceiverName').value = receiverName;
+            document.getElementById('replyMessageTitle').value = "Re: " + messageTitle;
+        }
+    }
+
+    function closeReplyModal() {
+        const modal = document.getElementById("replyModal");
+        modal.style.display = "none";
+    }
+
+    function sendReply() {
+        document.getElementById('replyForm').submit();
+    }
+
+    // 모달 창 외부 클릭 시 닫기
+    window.onclick = function(event) {
+        const modal = document.getElementById("replyModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
     </script>
          <!-- JavaScript Libraries -->
