@@ -379,33 +379,33 @@ public class UserPageDao {
 		List<Foody> list = new ArrayList<Foody>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM `foody_create` WHERE user_no = ?";
+		String sql = "SELECT * FROM foody_create c LEFT JOIN user u ON u.user_no = c.user_no  WHERE c.user_no = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_no);	
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-					Foody rsFoody = new Foody(
-							rs.getInt("foody_no"),
-							rs.getInt("user_no"),
-							rs.getInt("report_no"),
-							rs.getString("foody_title"),
-							rs.getString("foody_name"),
-							rs.getInt("foody_taste"),
-							rs.getInt("foody_clean"),
-							rs.getString("foody_parking"),
-							rs.getString("foody_delivery"),
-							rs.getString("foody_main"), 
-							rs.getTimestamp("reg_date").toLocalDateTime(),
-							rs.getTimestamp("mod_date").toLocalDateTime(),
-							rs.getString("foody_address"),
-							rs.getInt("foody_click"),
-							rs.getInt("foody_good"),
-							rs.getString("ori_picture"),
-							rs.getString("new_picture"),
-							rs.getString("user_name")
-							);
+				Foody rsFoody = new Foody(
+		                rs.getInt("foody_no"),
+		                rs.getInt("user_no"),
+		                rs.getInt("report_no"),
+		                rs.getString("foody_title"),
+		                rs.getString("foody_name"),
+		                rs.getInt("foody_taste"),
+		                rs.getInt("foody_clean"),
+		                rs.getString("foody_parking"),
+		                rs.getString("foody_delivery"),
+		                rs.getString("foody_main"),
+		                rs.getTimestamp("reg_date").toLocalDateTime(),
+		                rs.getTimestamp("mod_date").toLocalDateTime(),
+		                rs.getString("foody_address"),
+		                rs.getInt("foody_click"),
+		                rs.getInt("foody_good"),
+		                rs.getString("ori_picture"),
+		                rs.getString("new_picture"),
+		                rs.getString("user_name")
+		            );
 					list.add(rsFoody);
 				
 			}

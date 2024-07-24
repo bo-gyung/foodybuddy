@@ -296,7 +296,7 @@
 		function createGroup(buddy_no){
 		    // 새창 띄우기
 			const partyNumber = document.getElementById('party_number').value;
-		    console.log(partyNumber);
+		    // console.log(partyNumber);
 		    const newWindow = window.open("/views/buddy/groupSelect.jsp?party_number="+partyNumber+"", "_blank", "width=800,height=600");
 		}
 		

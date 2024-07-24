@@ -34,9 +34,10 @@
 </head>
 <body>
 	           	<%@page import="com.foodybuddy.buddy_comment.vo.BuddyComment, java.util.*" %>
+	            <%@ page import="com.foodybuddy.user.vo.User" %>
 	            <%
 	            List<BuddyComment> c_list = (List<BuddyComment>)session.getAttribute("c_list");
-	           
+	           	User u = (User)session.getAttribute("user"); 
 	            %>
 	            
 	            
@@ -46,7 +47,7 @@
 							<h3 class="text-center text-primary">모임 결성하기</h3>
 							<h6 id="printPlace" class="text-center text-secondary"></h6>
 							<h6 class="text-center text-secondary">(모임장 포함)</h6>
-							<input type="hidden" id="party_number" name="party_number" value="">
+							<input type="hidden" id="user_no" name="user_no" value="<%=u.getUser_no()%>">
 						</p>
 						<div class="card shadow-0 border" style="background-color: #f8f9fa;">
 							<div id="result_div" class="card-body p-4">
@@ -188,7 +189,7 @@
 		
 		if((checkedBoxes.length)+1 == partyNumber){
 			// 체크인원+1(작성자) 가 설정한 모임인원과 일치
-			if (duplicates.length > partyNumber) {
+			if (duplicates.length > 0) {
 				// 중복값 존재 o
 				alert("동일한 회원을 중복 선택 하였습니다.");
 			} else {

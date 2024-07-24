@@ -83,6 +83,7 @@
                     </ul>
                     
                     <%@page import="com.foodybuddy.buddy.vo.Buddy, com.foodybuddy.foody.vo.Foody, java.util.*" %>
+                    <%@ page import="java.time.LocalDateTime, java.time.format.DateTimeFormatter" %>
                     <% 
                     List<Foody> foody_list = (List<Foody>)request.getAttribute("foody_list"); 
                     List<Buddy> buddy_list = (List<Buddy>)request.getAttribute("buddy_list");
@@ -93,15 +94,24 @@
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
                              <%for(int i = 0 ; i < foody_list.size() ; i++){ %>
+			                    <%
+							    LocalDateTime regDateTime = foody_list.get(i).getReg_date();
+							    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분");
+							    String formattedDate = regDateTime.format(formatter);
+								%>
                                 <div class="col-lg-6">
                                     <div class="d-flex align-items-center">
                                         <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span><%=foody_list.get(i).getFoody_title() %></span>
-                                                <span class="text-primary">$115</span>
+                                                <span><a href="/foody/view?foody_no=<%=foody_list.get(i).getFoody_no()%>"><%=foody_list.get(i).getFoody_title() %></a></span>
+                                                <span class="text-primary">좋아요 : <%= foody_list.get(i).getFoody_good() %></span>
                                             </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                            <small class="fst-italic">
+                                            작성자 : <%= foody_list.get(i).getUser_name() %> / 
+                                            작성 시간 :<%= formattedDate %> / 
+                                            조회수 : <%= foody_list.get(i).getFoody_click() %>
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +134,7 @@
 	                                                <span class="text-primary">$115</span>
 	                                            </h5>
 	                                            <small class="fst-italic">
-	                                            <a href="">작성자 : <%=buddy_list.get(i).getUser_name() %></a> / 
+	                                            작성자 : <%=buddy_list.get(i).getUser_name() %> / 
 	                                            모임일 : <%=buddy_list.get(i).getMeet_date() %> / 
 	                                            댓글 : 댓글수 / 
 	                                            조회수 : <%=buddy_list.get(i).getBuddy_view() %>
