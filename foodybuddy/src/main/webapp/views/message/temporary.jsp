@@ -30,7 +30,7 @@
 
     <!-- Template Stylesheet -->
     <link href="../resources/template/css/style.css" rel="stylesheet">
-   	<link href="../resources/css/message/main.css" rel="stylesheet">
+   	<link  type="text/css" href="${pageContext.request.contextPath}/../resources/css/message/main.css" rel="stylesheet">
    	
     </head>
 <body style="background-color: white;">
@@ -48,8 +48,12 @@
         <br>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgReceive">받은쪽지</a></li>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
-        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgTemp">임시쪽지</a></li>
-        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
+        <li>
+        	<div style="background-color: aliceblue ;">
+        		<a href="/msgTemp" style="color: #FEA116; font-weight : bold;">임시쪽지</a>
+        	</div>	
+        </li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft" >휴지통</a></li>
     </ul>
 
     <div class="main">
@@ -69,30 +73,89 @@
         <span>1건</span>
         <span style="color: blue;">(쪽지검색키워드)</span>
         <hr>
-        <button class="delete">삭제</button>
-        <button class="save">보관</button>
-        <button class="reply">답장</button>
+       <form id="deleteForm" action="/MoveToTemporaryServlet" method="post">
+        <button class="delete" type="submit" name="action" value="moveToDelete">삭제</button>
+        
+<button class="reply">답장</button>
         <hr>
         <table class="message-table">
             <tr>
-                <th>
-                    <label class="checkbox-container">
-                        <input type="checkbox">
-                        <span class="checkbox"></span>
-                    </label>
-                </th>
+                <th></th>
                 <th>글번호</th>
-                <th>보낸사람/받는사람</th>
+                <th>받은사람/보낸사람</th>
                 <th>제목</th>
                 <th>날짜</th>
             </tr>
+      <%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
+	  <%@ page import="com.foodybuddy.message.vo.Message" %>
+ 	  <% List<Map<String, Object>> messages = (List<Map<String, Object>>) request.getAttribute("messages"); %>
+ 	  <% if (messages != null) { %>
+		 <% int index = 1; %>
+            <% for (Map<String, Object> message : messages) { %>
+                <tr>
+                  <td class="align-middle">
+                    <label class="checkbox-container">
+                        <input type="checkbox" onchange="toggleRow(this)" name="messageIds" value="<%= message.get("message_id") %>">
+                        <span class="checkbox"></span> 
+                    </label>
+                </td>
+                	<td class="align-middle"><%= index %></td>
+                    <td class="align-middle"><%= message.get("senderName") %></td>
+                    <td class="align-middle" onclick="showMessage('<%= message.get("senderName") %>','<%= message.get("receiverName") %>','<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
+            			<%= message.get("message_title") %>
+        			</td>
+                    <td class="align-middle"><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
+                </tr>
+                <% index++; %>
+            <% } %>
+            <% } else { %>
+    <p>No messages found.</p>
+<% } %>
         </table>
+        </form>
         <hr>
         
     </div>
 </div>
     
     <script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('deleteForm');
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+                if (checkboxes.length === 0) {
+                    alert("쪽지를 선택해주세요.");
+                    event.preventDefault(); // 폼 제출 방지
+                }
+            });
+
+            // 체크박스 상태에 따라 행 스타일을 변경
+            document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    const row = this.closest('tr');
+                    if (this.checked) {
+                        row.classList.add('selected');
+                    } else {
+                        row.classList.remove('selected');
+                    }
+                });
+            });
+        } else {
+            console.error('Form with id "moveForm" not found.');
+        }
+    });
+    
+    function toggleRow(checkbox) {
+        const row = checkbox.closest('tr'); // 체크박스가 포함된 행을 찾음
+        if (checkbox.checked) {
+            row.classList.add('selected'); // 선택된 경우 배경색 추가
+        } else {
+            row.classList.remove('selected'); // 선택 해제된 경우 배경색 제거
+        }
+    }
+    
     function openNewWindow() {
         // 새 창을 열기
         var newWindow = window.open("about:blank", "_blank", "width=600,height=500");
@@ -160,6 +223,58 @@
 
         newWindow.document.write(temp);
     }
+    function showMessage(senderName,receiverName,messageTitle, messageText, sentAt) {
+        var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
+
+        var styles = '<style>' +
+            'body {' +
+            '    font-family: Arial, sans-serif;' +
+            '    line-height: 1.6;' +
+            '    padding: 20px;' +
+            '    background-color: #f4f4f4;' +
+            '}' +
+            'h1 {' +
+            '    color: #333;' +
+            '    border-bottom: 2px solid #FEA116;' +
+            '    padding-bottom: 10px;' +
+            '}' +
+            '.message-container {' +
+            '    background: #fff;' +
+            '    padding: 20px;' +
+            '    border-radius: 8px;' +
+            '    box-shadow: 0 0 10px rgba(0,0,0,0.1);' +
+            '    margin-top: 20px;' +
+            '}' +
+            '.message-container div {' +
+            '    margin-bottom: 10px;' +
+            '}' +
+            '.message-title {' +
+            '    font-weight: bold;' +
+            '    font-size: 1.2em;' +
+            '    color: #007bff;' +
+            '}' +
+            '.message-content {' +
+            '    font-size: 1em;' +
+            '    color: #555;' +
+            '}' +
+            '.message-info {' +
+            '    color: #777;' +
+            '}' +
+            '</style>';
+
+        var temp = styles +
+            '<h1>보관 쪽지</h1>' +
+            '<div class="message-container">' +
+            '    <div class="message-info"><strong>보낸 사람: </strong> '+senderName+'</div>'+
+            '    <div class="message-info"><strong>받은 사람: </strong> '+receiverName+'</div>'+
+            '    <div class="message-title"><strong>제목:</strong> ' + messageTitle + '</div>' +
+            '    <div class="message-content"><strong>내용:</strong> ' + messageText + '</div>' +
+            '    <div class="message-info"><strong>보낸 시간:</strong> ' + sentAt + '</div>' +
+            '</div>';
+
+        newWindow.document.write(temp);
+    }
+
     
     function handleMouseOver(li) {
         li.style.backgroundColor = 'aliceblue';
@@ -180,22 +295,3 @@
     <script src="../resources/template/js/main.js"></script>
 </body>
 </html>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
-    
-    
-    
-    
-   
-    
-    

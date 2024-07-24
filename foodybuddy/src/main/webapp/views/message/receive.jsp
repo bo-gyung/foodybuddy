@@ -34,7 +34,43 @@
    	
     </head>
 <body style="background-color: white;">
- 
+ <style>
+        /* 모달 스타일 */
+        .modal {
+            display: none; /* 초기에는 보이지 않도록 설정 */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 <%@ include file="../include/navbar.jsp" %>
 <!-- Hero Start -->
 <div class="container-xxl py-5 bg-dark hero-header" style="margin-bottom: 0%;">
@@ -46,13 +82,13 @@
     	<br><br>
         <li><button onclick="openNewWindow();">쪽지쓰기</button></li>
         <br>
-        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgReceive">받은쪽지</a></li>
         <li>
         	<div style="background-color: aliceblue ;">
-        		<a href="/msgSent" style="color: #FEA116; font-weight : bold;">보낸쪽지</a>
-        	</div>
+        		<a href="/msgReceive" style="color: #FEA116; font-weight : bold;">받은쪽지</a>
+        	</div>	
         </li>
-        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">임시쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgSent">보낸쪽지</a></li>
+        <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="/msgTemp">임시쪽지</a></li>
         <li onmouseover="handleMouseOver(this);" onmouseout="handleMouseOut(this);"><a href="#draft">휴지통</a></li>
     </ul>
 
@@ -75,42 +111,67 @@
         <hr>
         <button class="delete">삭제</button>
         <button class="save">보관</button>
-        <button class="reply">답장</button>
+        <button class="reply"  onclick="openReplyModal()">답장</button>
         <hr>
         <table class="message-table">
             <tr>
                 <th></th>
                 <th>글번호</th>
-                <th>받은사람</th>
+                <th>보낸사람</th>
                 <th>제목</th>
                 <th>날짜</th>
             </tr>
       <%@ page import="java.util.List, java.util.Map, java.time.LocalDateTime" %>
-	  <%@ page import="com.foodybuddy.message.vo.Message" %>
- 	  <% List<Map<String, Object>> messages2= (List<Map<String, Object>>) request.getAttribute("messages2"); %>
-		 <% int index = 1; %>
-            <% for (Map<String, Object> message : messages2) { %>
-                <tr>
-                  <td class="align-middle">
+<%@ page import="com.foodybuddy.message.vo.Message" %>
+<%
+    List<Map<String, Object>> messages2 = (List<Map<String, Object>>) request.getAttribute("messages2");
+    if (messages2 != null && !messages2.isEmpty()) {
+        int index = 1;
+        for (Map<String, Object> message : messages2) {
+%>
+            <tr>
+                <td>
                     <label class="checkbox-container">
-                        <input type="checkbox" onchange="toggleRow(this)">
-                        <span class="checkbox"></span> 
+                        <input type="checkbox" name="messageCheckbox" data-sendername="<%= message.get("senderName") %>" data-messagetitle="<%= message.get("message_title") %>" onchange="toggleRow(this)">
+                        <span class="checkbox"></span>
                     </label>
                 </td>
-                	<td class="align-middle"><%= index %></td>
-                    <td class="align-middle"><%= message.get("senderName") %></td>
-                    <td class="align-middle" onclick="showMessage( '<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
-            			<%= message.get("message_title") %>
-        			</td>
-                    <td class="align-middle"><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
-                </tr>
-                <% index++; %>
-            <% } %>
+                <td><%= index %></td>
+                <td><%= message.get("senderName") %></td>
+                <td onclick="showMessage('<%= message.get("senderName") %>','<%= message.get("message_title") %>', '<%= message.get("message_text") %>', '<%= ((LocalDateTime) message.get("sent_at")).toString() %>');" style="cursor: pointer;">
+                    <%= message.get("message_title") %>
+                </td>
+                <td><%= ((LocalDateTime) message.get("sent_at")).toString() %></td>
+            </tr>
+            <% index++; %>
+        <% }
+    } else { %>
+        <tr>
+            <td colspan="5">메시지가 없습니다.</td>
+        </tr>
+    <% } %>
         </table>
         <hr>
         
     </div>
 </div>
+ <!-- The Modal -->
+    <div id="replyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeReplyModal()">&times;</span>
+            <h2>쪽지 답장</h2>
+            <form id="replyForm" action="/message/send" method="POST">
+                
+                <label>받는 사람:</label>
+                <input type="text" id="replyReceiverName" name="receiver" readonly><br>
+                <label>제목:</label>
+                <input type="text" id="replyMessageTitle" name="subject"><br>
+                <label>내용:</label>
+                <textarea name="message" rows="10" cols="30"></textarea><br>
+                <button type="button" onclick="sendReply()">보내기</button>
+            </form>
+        </div>
+    </div>
     
     <script>
     
@@ -125,20 +186,72 @@
     
     function openNewWindow() {
         // 새 창을 열기
-        var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
-        let temp = `<h1>쪽지 보내기</h1>
-            <form action="/message/send" method="post">
-           
-            받는 사람: <input type="text" name="receiver"><br>
-            제목: <input type="text" name="subject"><br>
-            내용: <textarea name="message" rows="5" cols="50"></textarea><br>
-            <input type="submit" value="쪽지 보내기">
-        </form>`
+        var newWindow = window.open("about:blank", "_blank", "width=600,height=500");
 
-    newWindow.document.write(temp);
+        // CSS 스타일
+        var styles = '<style>' +
+            'body {' +
+            '    font-family: Arial, sans-serif;' +
+            '    background-color: #f9f9f9;' +
+            '    margin: 0;' +
+            '    padding: 20px;' +
+            '}' +
+            'h1 {' +
+            '    text-align: center;' +
+            '    color: #333;' +
+            '}' +
+            'form {' +
+            '    max-width: 500px;' +
+            '    margin: auto;' +
+            '    background: #fff;' +
+            '    padding: 20px;' +
+            '    border-radius: 10px;' +
+            '    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);' +
+            '}' +
+            'label {' +
+            '    display: block;' +
+            '    margin-bottom: 10px;' +
+            '    color: #333;' +
+            '    font-weight: bold;' +
+            '}' +
+            'input[type="text"], textarea {' +
+            '    width: calc(100% - 20px);' +
+            '    padding: 10px;' +
+            '    margin-bottom: 10px;' +
+            '    border: 1px solid #ccc;' +
+            '    border-radius: 5px;' +
+            '    font-size: 16px;' +
+            '}' +
+            'input[type="submit"] {' +
+            '    background-color: #FEA116;' +
+            '    color: white;' +
+            '    padding: 10px 20px;' +
+            '    border: none;' +
+            '    border-radius: 5px;' +
+            '    cursor: pointer;' +
+            '    font-size: 16px;' +
+            '}' +
+            'input[type="submit"]:hover {' +
+            '    background-color:darkorange;' +
+            '}' +
+            '</style>';
 
-}
-    function showMessage(messageTitle, messageText, sentAt) {
+        // HTML 내용
+        var temp = styles +
+            '<h1>쪽지 보내기</h1>' +
+            '<form action="/message/send" method="post">' +
+            '    <label for="receiver">받는 사람:</label>' +
+            '    <input type="text" id="receiver" name="receiver" required><br>' +
+            '    <label for="subject">제목:</label>' +
+            '    <input type="text" id="subject" name="subject" required><br>' +
+            '    <label for="message">내용:</label>' +
+            '    <textarea id="message" name="message" rows="5" cols="50" required></textarea><br>' +
+            '    <input type="submit" value="쪽지 보내기">' +
+            '</form>';
+
+        newWindow.document.write(temp);
+    }
+    function showMessage(senderName,messageTitle, messageText, sentAt) {
         var newWindow = window.open("about:blank", "_blank", "width=600,height=400");
 
         var styles = '<style>' +
@@ -200,6 +313,36 @@
         li.style.backgroundColor = '#f8f9fa';
         li.querySelector('a').style.color = 'black';
         li.querySelector('a').style.fontWeight = 'normal';
+    }
+    
+    function openReplyModal() {
+        const modal = document.getElementById("replyModal");
+        modal.style.display = "block";
+
+        const selectedCheckbox = document.querySelector('input[name="messageCheckbox"]:checked');
+        if (selectedCheckbox) {
+            const receiverName = selectedCheckbox.dataset.sendername;
+            const messageTitle = selectedCheckbox.dataset.messagetitle;
+            document.getElementById('replyReceiverName').value = receiverName;
+            document.getElementById('replyMessageTitle').value = "Re: " + messageTitle;
+        }
+    }
+
+    function closeReplyModal() {
+        const modal = document.getElementById("replyModal");
+        modal.style.display = "none";
+    }
+
+    function sendReply() {
+        document.getElementById('replyForm').submit();
+    }
+
+    // 모달 창 외부 클릭 시 닫기
+    window.onclick = function(event) {
+        const modal = document.getElementById("replyModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
     </script>
          <!-- JavaScript Libraries -->
