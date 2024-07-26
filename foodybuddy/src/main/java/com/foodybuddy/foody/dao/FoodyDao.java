@@ -229,6 +229,7 @@ public class FoodyDao {
 		
 	}
   
+  
   public List<Foody> selectBoardList(Foody option, Connection conn) {
 	    List<Foody> list = new ArrayList<Foody>();
 	    PreparedStatement pstmt = null;
