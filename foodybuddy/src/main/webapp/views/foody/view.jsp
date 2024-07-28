@@ -7,6 +7,7 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="com.foodybuddy.common.sql.JDBCTemplate" %>
 <%@ page import="com.foodybuddy.user.vo.User" %>
+<%@ page import="com.foodybuddy.foodyPic.vo.Foody_Pic" %>
 <%@page import="com.foodybuddy.foodycomment.vo.Comment, java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -124,31 +125,22 @@
 							        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
 							            <div class="container">
 							                <div class="owl-carousel testimonial-carousel">
+							                    <%
+									                    List<Foody_Pic> fPic = (List<Foody_Pic>) request.getAttribute("fp");
+									                    if (fPic != null) {
+									                        for (Foody_Pic fp : fPic) {
+									                %>
+							                    
 							                    <div class="testimonial-item bg-transparent border rounded p-4">
 							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
+							                            <img class="img-fluid flex-shrink-0" src="../upload/<%= fp.getPic_sub() %>" style="width: 300px; height: 200px;">
 						                            </div>
 							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
+							                    <%
+									                        }
+									                    }
+									                %>
+							                    
 							                </div>
 							            </div>
 							        </div>
@@ -207,6 +199,9 @@
 	                                        <button class="btn btn-primary w-100 py-3" onclick="history.back();">메뉴로 돌아가기</button>
 	                                    </div>
 	                        </div>
+	                                    <div class="col-12">
+	                                        <button class="btn btn-primary w-100 py-3" onclick="history.back();">메뉴로 돌아가기</button>
+	                                    </div>
 	                    </div>
 					</div>
             <form action="/comment" method="post">
@@ -225,6 +220,7 @@
                 
             </div>
         </div> 
+        
         
             <!-- 댓글 리스트 -->
             <div class="comment_list">

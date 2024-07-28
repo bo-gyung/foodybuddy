@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.foodybuddy.foody.service.FoodyService;
 import com.foodybuddy.foody.vo.Foody;
+import com.foodybuddy.foodyPic.vo.Foody_Pic;
 import com.foodybuddy.foodycomment.service.FcommentService;
 import com.foodybuddy.foodycomment.vo.Comment;
+
 
 @WebServlet("/foody/view")
 public class FoodyViewServlet extends HttpServlet {
@@ -29,15 +31,18 @@ public class FoodyViewServlet extends HttpServlet {
         
         FoodyService foodyService = new FoodyService();
         
+        List<Foody_Pic> fp = foodyService.pick_Pic(Integer.parseInt(foody_no));
+        
+        
         int click = foodyService.click(Integer.parseInt(foody_no));
         List<Foody> foodyList = foodyService.viewFoody(Integer.parseInt(foody_no));
         
         FcommentService commentService = new FcommentService();
         List<Comment> commentList = commentService.getCommentsByFoodyNo(Integer.parseInt(foody_no));
         
+        System.out.println(fp);
         
-        
-        
+        request.setAttribute("fp", fp);
         request.setAttribute("foodyList", foodyList);
         request.setAttribute("commentList", commentList);
         RequestDispatcher rd = request.getRequestDispatcher("/views/foody/view.jsp");

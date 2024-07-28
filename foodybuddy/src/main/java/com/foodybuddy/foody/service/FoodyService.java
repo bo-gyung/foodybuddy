@@ -15,6 +15,9 @@ import com.foodybuddy.foodyPic.vo.Foody_Pic;
 
 public class FoodyService {
 	
+	
+	
+		
 	public List<Foody_Pic> pick_Pic(int foody_no){
 		Connection conn = getConnection();
 		List<Foody_Pic> piclist = new FoodyDao().pick_Pic(foody_no ,conn);
