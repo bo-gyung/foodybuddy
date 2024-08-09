@@ -115,9 +115,8 @@
 							            </div>
 							        </div>
 							    	<!-- Testimonial End -->
-							    	
-							    	<!-- 글번호 히든으로 남겨두기 시작 -->
-							    	<div class="col-12">
+						    	
+				            		<div class="col-12">
                                         <div class="form-floating">
                                             <input type="hidden" id="foody_no" name="foody_no" value="<%=post.get("원본글번호")%>">
                                         </div>
@@ -127,101 +126,116 @@
                                             <input type="hidden" id="buddy_no" name="buddy_no" value="<%=post.get("글번호")%>">
                                         </div>
                                     </div>
-                                    <!-- 글번호 히든으로 남겨두기 끝 -->
-                                    
-                                    <!-- 필수 입력 정보 시작 -->
-                                    <div class="col-6">
-					    				<div class="form-floating pt-5">
-					        				<div id="map" class="form-control" style="height:380px;"></div>
-					        				<label for="subject">지도</label>
-					    				</div>
-					   				</div>
-									<div class="col-6">
-										<div>
-	                                        <div class="form-floating pt-5">
-	                                            <input type="text" class="form-control" id="user_name" name="user_name" 
-	                                            disabled="disabled" style="background: white;" value="<%=post.get("작성자") %>">
-	                                            <label for="user_name">작성자</label>
-	                                        </div>
-	                                    </div>
-	                                    <div>
-	                                        <div class="form-floating pt-5">
-	                                            <input type="text" class="form-control" id="party_name" name="party_name" 
-	                                            disabled="disabled" style="background: white;" value="<%=post.get("모임이름") %>">
-	                                            <label for="party_name">모임이름</label>
-	                                        </div>
-	                                    </div>
-	                                    <div>
-	                                        <div class="form-floating pt-5">
-	                                            <input type="text" class="form-control" id="meet_date" name="meet_date" 
-	                                            disabled="disabled" style="background: white;" value="<%=post.get("모임날짜") %>">
-	                                            <label for="meet_date">모임날짜</label>
-	                                        </div>
-	                                    </div>
-	                                    <div>
-	                                        <div class="form-floating pt-5">
-	                                            <input type="text" class="form-control" id="party_number" name="party_number" 
-	                                            disabled="disabled" style="background: white;" value="<%=post.get("모임인원") %>">
-	                                            <label for="party_number">모임인원</label>
-	                                        </div>
-	                                    </div>
-	                            	</div>
-                                    <!-- 필수 입력 정보 끝 -->
-                                    
-                                    <!-- 본문 입력 시작 -->
-                                    <div class="col-12">
+								<div class="col-6">
+				    				<div class="form-floating pt-5">
+				        				<div id="map" class="form-control" style="height:380px;"></div>
+				        				<label for="subject">지도</label>
+				    				</div>
+				   				</div>
+								<div class="col-6">
+									<div>
+                                        <div class="form-floating pt-5">
+                                            <input type="text" class="form-control" id="user_name" name="user_name" 
+                                            disabled="disabled" style="background: white;" value="<%=post.get("작성자") %>">
+                                            <label for="user_name">작성자</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-floating pt-5">
+                                            <input type="text" class="form-control" id="party_name" name="party_name" 
+                                            disabled="disabled" style="background: white;" value="<%=post.get("모임이름") %>">
+                                            <label for="party_name">모임이름</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-floating pt-5">
+                                            <input type="text" class="form-control" id="meet_date" name="meet_date" 
+                                            disabled="disabled" style="background: white;" value="<%=post.get("모임날짜") %>">
+                                            <label for="meet_date">모임날짜</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-floating pt-5">
+                                            <input type="text" class="form-control" id="party_number" name="party_number" 
+                                            disabled="disabled" style="background: white;" value="<%=post.get("모임인원") %>">
+                                            <label for="party_number">모임인원</label>
+                                        </div>
+                                    </div>
+                            	</div>
+                                   <div class="col-12">
                                        <div class="form-floating">
                                            <textarea class="form-control" id="buddy_main" name="buddy_main" disabled="disabled" 
                                            style="height: 500px; background: white;"><%=post.get("글내용") %></textarea>
                                            <label for="message">모집내용</label>
                                        </div>
-                                    </div>
-                                    <!-- 본문 입력 끝 -->
-                                    
-						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 시작 -->
-                                    <%@ page import="com.foodybuddy.user.vo.User" %>
-								    <%
-								    User u = (User)session.getAttribute("user");
-	                                   String write_no = (String)post.get("작성자번호");
-									if(u.getUser_no() == Integer.parseInt(write_no)){%>
-						            <div class="row g-3" style="margin-left:12%;">
-						            	<div class="col-3">
-											<button class="btn btn-primary w-100 py-3" type="button" 
-											onclick="editPost(<%=post.get("글번호")%>,<%=post.get("작성자번호")%>);">수정</button>
-										</div>
-										<div class="col-3">
-											<button class="btn btn-primary w-100 py-3" type="button" 
-											onclick="deletePost(<%=post.get("글번호")%>);">삭제</button>
-										</div>
-										<div class="col-3">
-											<button class="btn btn-primary w-100 py-3" type="button" 
-											onclick="createGroup(<%=post.get("글번호")%>)">모임 결성</button>
-										</div>
-						            </div>
-						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 종료 -->
-									<%} else {%>
-									<div class="col-12">
+                                   </div>
+                                   <%@ page import="com.foodybuddy.user.vo.User" %>
+							    <%
+							    User u = (User)session.getAttribute("user");
+                                   String write_no = (String)post.get("작성자번호");
+								if(u.getUser_no() == Integer.parseInt(write_no)){%>
+					            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 시작 -->
+					            <div class="row g-3" style="margin-left:12%;">
+					            	<div class="col-3">
+										<button class="btn btn-primary w-100 py-3" type="button" 
+										onclick="editPost(<%=post.get("글번호")%>,<%=post.get("작성자번호")%>);">수정</button>
+									</div>
+									<div class="col-3">
+										<button class="btn btn-primary w-100 py-3" type="button" 
+										onclick="deletePost(<%=post.get("글번호")%>);">삭제</button>
+									</div>
+									<div class="col-3">
+										<button class="btn btn-primary w-100 py-3" type="button" 
+										onclick="createGroup(<%=post.get("글번호")%>)">모임 결성</button>
+									</div>
+					            </div>
+					            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 종료 -->
+								<%} else {%>
+								<div class="col-12">
                                         <button class="btn btn-primary w-100 py-3" type="button" 
                                         onclick="foodyPost(<%=post.get("원본글번호")%>);">원본 글 보러가기</button>
                                     </div>
-									<%} %>
-						    	</div>
-					    	</form>
-				    	</div>
-			    	</div>
-		    	</div>
-			</div>
-		</div>
-	</div>
-	<!-- Contact End -->
-		    	
-		
+								<%} %>
+								</div>
+	                        </form>
+	                    </div>
+	                </div>
+				</div>
+	            </div>
+	            <!-- 댓글영역 시작 -->
+				<div class=" mt-5 row d-flex justify-content-center">
+					<div class="col-md-8 col-lg-9">
+						<p>COMMENT</p>
+						<div class="card shadow-0 border" style="background-color: #f8f9fa;">
+							<div id="result_div" class="card-body p-4">
+					            <!-- 댓글창 링크 삽입 -->
+								<%@ include file="/views/buddy/buddy_comment.jsp" %>
+					            <!-- 댓글 입력창 시작 -->
+									<div data-mdb-input-init class="card-body">
+							            <form action="/insertBuddyComment" method="post" id="insert_comment_form">
+												<input type="hidden" id="buddy_no" name="buddy_no" value="<%=post.get("글번호")%>">
+												<a id="user_name" name="user_name"><%= u.getUser_name() %></a>
+												<textarea id="comment_main" name="comment_main" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
+												<a class="form-label btn btn-primary m-2" href="#" onclick="submit_btn();">작성</a>
+										</form>
+									</div>
+								<!-- 댓글 입력창 종료 -->
+					      </div>
+					    </div>
+					  </div>
+					</div>
+	            	<!-- 댓글영역 종료 -->
+	       </div>
+	   </div>
+	   <!-- Contact End -->
+	
+	
 	<!-- 푸터 외부링크 -->
 	<%@ include file="../include/footer.jsp" %>
 
 
-	<!-- Back to Top -->
-	<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 	<!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

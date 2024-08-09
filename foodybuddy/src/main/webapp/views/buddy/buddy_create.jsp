@@ -65,10 +65,10 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="row gy-4" style="text-align : center">
-                        <%@page import="com.foodybuddy.foody.vo.Foody, com.foodybuddy.foodyPic.vo.Foody_Pic, java.util.*"%>
+                        <%@page import="com.foodybuddy.foody.vo.Foody, java.util.*"%>
                         <%
                         Foody f = (Foody)request.getAttribute("foody");
-                        List<Foody_Pic> f_photo = (List<Foody_Pic>)request.getAttribute("picPhoto");
+                        
                         %>
                             <div class="col-md-4">
                                 <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
@@ -90,23 +90,7 @@
 	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
 	                        	<!-- 입력폼 시작 -->
 	                                
-	                                <!-- Testimonial Start -->
-							        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-							            <div class="container">
-							                <div class="owl-carousel testimonial-carousel">
-							                <%for(int i = 0 ; i < f_photo.size() ; i++) {%>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="<%=f_photo.get(i).getPic_sub()%>" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                	
-							                <% } %>
 
-							                </div>
-							            </div>
-							        </div>
-							    	<!-- Testimonial End -->
 	                            <form name="buddy_create_form" action="/board/buddy/createEnd" method="post">
 	                                <div class="row g-3">
 	                                	<div class="col-12">

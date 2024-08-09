@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-
 import com.foodybuddy.buddy.service.BuddyService;
 import com.foodybuddy.buddy_comment.service.BuddyCommentService;
 import com.foodybuddy.buddy_comment.vo.BuddyComment;
+import com.foodybuddy.foody.service.FoodyService;
+import com.foodybuddy.foodyPic.vo.Foody_Pic;
 
 @WebServlet("/board/buddy/post")
 public class BuddyPostSerbvlet extends HttpServlet {
@@ -32,6 +32,14 @@ public class BuddyPostSerbvlet extends HttpServlet {
 		// 글번호에 해당하는 글내용 받아오기
 		Map<String,Object> resultMap = new BuddyService().buddyPost(buddy_no);
 		request.setAttribute("post", resultMap);
+		// 글번호에 해당하는 사진 목록 받아오기
+		try {
+			String foody_no = (String)resultMap.get("원본글번호");
+			List<Foody_Pic> fp = new FoodyService().pick_Pic(Integer.parseInt(foody_no));
+			request.setAttribute("fp", fp);			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		HttpSession session = request.getSession(true);
 		// 글번호에 해당하는 댓글 목록 받아오기
