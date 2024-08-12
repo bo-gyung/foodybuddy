@@ -91,39 +91,7 @@
 	                        <div class="wow fadeInUp" data-wow-delay="0.2s">
 	                        	<!-- 입력폼 시작 -->
 	                                
-	                                <!-- Testimonial Start -->
-							        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-							            <div class="container">
-							                <div class="owl-carousel testimonial-carousel">
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                    <div class="testimonial-item bg-transparent border rounded p-4">
-							                        <div class="d-flex align-items-center">
-							                            <img class="img-fluid flex-shrink-0" src="../../resources/template/img/testimonial-1.jpg" style="width: 300px; height: 200px;">
-						                            </div>
-							                    </div>
-							                </div>
-							            </div>
-							        </div>
-							    	<!-- Testimonial End -->
+	                                
 	                            <form name="buddy_edit_form" action="/board/buddy/editEnd" method="post">
 	                                <div class="row g-3">
 	                                	<div class="col-12">

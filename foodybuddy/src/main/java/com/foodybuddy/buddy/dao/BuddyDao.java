@@ -30,9 +30,13 @@ public class BuddyDao {
 				+ "LEFT OUTER JOIN `buddy_comment` c ON c.buddy_no = b.buddy_no "
 				+ "WHERE b.buddy_approve = 'Y'";
 		// 검색 조건에 따른 sql문 추가
-		 if(keyword.getBuddy_title() != null) {
-			 sql += "AND `buddy_title` LIKE CONCAT('%','"+keyword.getBuddy_title()+"','%')";
-		 }
+		if(keyword.getSearch_keyword() != null) {
+			if(2 == Integer.parseInt(keyword.getSearch_option())) {
+				sql += "AND `user_name` LIKE CONCAT('%','"+keyword.getSearch_keyword()+"','%')";				
+			}else {
+				sql += "AND `buddy_title` LIKE CONCAT('%','"+keyword.getSearch_keyword()+"','%')";
+			}
+		}
 		 
 		 // 조회수를 카운트하기 위한 구문 추가
 		 sql += " GROUP BY b.buddy_no ORDER BY b.reg_date DESC ";

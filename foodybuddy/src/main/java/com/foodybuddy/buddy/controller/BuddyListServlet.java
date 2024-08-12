@@ -26,23 +26,25 @@ public class BuddyListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 검색 및 목록출력
-		String title = request.getParameter("buddy_title");
+		String search_option = request.getParameter("searchOption");
+		String search_keyword = request.getParameter("searchKeyword");
 		Buddy keyword = new Buddy();
-		keyword.setBuddy_title(title);
+		keyword.setSearch_option(search_option);
+		keyword.setSearch_keyword(search_keyword);
 		
 		// 페이징 관련
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage!=null) {
 			keyword.setNowPage(Integer.parseInt(nowPage));
 		}
+		
 		// 전체 목록 개수를 조회 -> 페이징 바 구성
-		// 버디가 페이징을 상속받았기 때문에 setTotalData를 쓸 수 있다!
 		keyword.setTotalData(new BuddyService().selectBuddyCount(keyword));
 		
 		// 목록 구성(서비스 호출)
 		List<Buddy> list = new BuddyService().selectBuddyList(keyword);
 		
-		//페이징 값 추가
+		// 페이징 정보와 게시글 리스트를 setAttribute
 		request.setAttribute("paging", keyword);
 		request.setAttribute("resultList", list);
 		
