@@ -23,50 +23,68 @@ public class BuddyDao {
 		
 		try {
 			
-		String sql = "SELECT u.user_name, b.buddy_no, b.foody_no, b.user_no, b.report_no, "
-				+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, b.buddy_view, IFNULL(COUNT(c.comment_no),0), "
-				+ "b.party_name, b.meet_date, b.party_number, b.formation_date FROM `buddy_board` b "
-				+ "JOIN `user` u ON b.user_no = u.user_no "
-				+ "LEFT OUTER JOIN `buddy_comment` c ON c.buddy_no = b.buddy_no "
-				+ "WHERE b.buddy_approve = 'Y'";
-		// 검색 조건에 따른 sql문 추가
-		if(keyword.getSearch_keyword() != null) {
-			if(2 == Integer.parseInt(keyword.getSearch_option())) {
-				sql += "AND `user_name` LIKE CONCAT('%','"+keyword.getSearch_keyword()+"','%')";				
-			}else {
-				sql += "AND `buddy_title` LIKE CONCAT('%','"+keyword.getSearch_keyword()+"','%')";
+			String sql = "SELECT u.user_name, b.buddy_no, b.foody_no, b.user_no, b.report_no, "
+					+ "b.buddy_approve, b.reg_date, b.buddy_title, b.buddy_main, b.buddy_view, IFNULL(COUNT(c.comment_no),0), "
+					+ "b.party_name, b.meet_date, b.party_number, b.formation_date FROM `buddy_board` b "
+					+ "JOIN `user` u ON b.user_no = u.user_no "
+					+ "LEFT OUTER JOIN `buddy_comment` c ON c.buddy_no = b.buddy_no "
+					+ "WHERE b.buddy_approve = 'Y'";
+			
+			// 정렬에 따른 where절 구문 추가(마감일자 임박순 관련 옵션)
+			if(keyword.getSort()==3) {
+				sql += " AND b.meet_date > NOW()";
 			}
-		}
-		 
-		 // 조회수를 카운트하기 위한 구문 추가
-		 sql += " GROUP BY b.buddy_no ORDER BY b.reg_date DESC ";
-		 
-		 // 페이징 관련 구문 추가
-			sql += " LIMIT "+keyword.getLimitPageNo()+", "+keyword.getNumPerPage();
-		
-		 pstmt = conn.prepareStatement(sql);
-		 rs = pstmt.executeQuery();
-		 
-		 while(rs.next()) {
-			 Buddy rsBuddy = new Buddy(
-					 rs.getInt("buddy_no"),
-					 rs.getInt("foody_no"),
-					 rs.getInt("user_no"),
-					 rs.getInt("report_no"),
-					 rs.getString("buddy_approve"),
-					 rs.getTimestamp("reg_date").toLocalDateTime(),
-					 rs.getString("buddy_title"),
-					 rs.getString("buddy_main"),
-					 rs.getInt("buddy_view"),
-					 rs.getString("party_name"),
-					 rs.getTimestamp("meet_date").toLocalDateTime(),
-					 rs.getInt("party_number"),
-					 rs.getTimestamp("formation_date").toLocalDateTime(),
-					 rs.getString("user_name"),
-					 rs.getInt("IFNULL(COUNT(c.comment_no),0)")
-					 );
-			 list.add(rsBuddy);
-		 	 }
+			
+			// 검색 조건에 따른 sql문 추가
+			if(keyword.getSearch_keyword() != null) {
+				if(2 == Integer.parseInt(keyword.getSearch_option())) {
+					sql += "AND `user_name` LIKE CONCAT('%','"+keyword.getSearch_keyword()+"','%')";				
+				}else {
+					sql += "AND `buddy_title` LIKE CONCAT('%','"+keyword.getSearch_keyword()+"','%')";
+				}
+			}
+			 
+			 // 댓글수를 카운트하기 위한 구문 추가
+			 sql += " GROUP BY b.buddy_no";
+			 
+			 // 정렬에 대한 구문 추가
+			 if(keyword.getSort()==1) {
+				 // 최신순
+				 sql += " ORDER BY b.reg_date DESC";
+			 } else if(keyword.getSort()==2) {
+				 // 조회수순
+				 sql += " ORDER BY b.buddy_view DESC";
+			 } else if(keyword.getSort()==3) {
+				 // 마감일자 임박순
+				 sql += " ORDER BY b.meet_date ASC, b.reg_date ASC";
+			 }
+			 
+			 // 페이징 관련 구문 추가
+				sql += " LIMIT "+keyword.getLimitPageNo()+", "+keyword.getNumPerPage();
+			
+			 pstmt = conn.prepareStatement(sql);
+			 rs = pstmt.executeQuery();
+			 
+			 while(rs.next()) {
+				 Buddy rsBuddy = new Buddy(
+						 rs.getInt("buddy_no"),
+						 rs.getInt("foody_no"),
+						 rs.getInt("user_no"),
+						 rs.getInt("report_no"),
+						 rs.getString("buddy_approve"),
+						 rs.getTimestamp("reg_date").toLocalDateTime(),
+						 rs.getString("buddy_title"),
+						 rs.getString("buddy_main"),
+						 rs.getInt("buddy_view"),
+						 rs.getString("party_name"),
+						 rs.getTimestamp("meet_date").toLocalDateTime(),
+						 rs.getInt("party_number"),
+						 rs.getTimestamp("formation_date").toLocalDateTime(),
+						 rs.getString("user_name"),
+						 rs.getInt("IFNULL(COUNT(c.comment_no),0)")
+						 );
+				 list.add(rsBuddy);
+			 	 }
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -83,11 +101,38 @@ public class BuddyDao {
 		ResultSet rs = null;
 		try {
 			// 검색조건이 없는 경우
-			// cnt 별칭을 붙이는 이유? 여러개의 카운트가 생길 수 있다? 잘모르겟음
-			String sql = "SELECT COUNT(*) AS cnt FROM `buddy_board` b";
-			if(keyword.getBuddy_title()!=null) {
-				sql += " WHERE Buddy_title LIKE CONCAT('%','"+keyword.getBuddy_title()+"','%')";
+			String sql = "SELECT COUNT(*) AS cnt FROM `buddy_board` b "
+					+ "WHERE b.buddy_approve = 'Y'";
+			
+			// 정렬에 따른 where절 구문 추가(마감일자 임박순 관련 옵션)
+			if(keyword.getSort()==3) {
+				sql += " AND b.meet_date > NOW()";
 			}
+			
+			// 검색 조건에 따른 sql문 추가
+			if(keyword.getSearch_keyword() != null) {
+				if(2 == Integer.parseInt(keyword.getSearch_option())) {
+					sql += "AND `user_name` LIKE CONCAT('%','"+keyword.getSearch_keyword()+"','%')";				
+				}else {
+					sql += "AND `buddy_title` LIKE CONCAT('%','"+keyword.getSearch_keyword()+"','%')";
+				}
+			}
+			 
+			 // 댓글수를 카운트하기 위한 구문 추가
+			 sql += " GROUP BY b.buddy_no";
+			 
+			 // 정렬에 대한 구문 추가
+			 if(keyword.getSort()==1) {
+				 // 최신순
+				 sql += " ORDER BY b.reg_date DESC";
+			 } else if(keyword.getSort()==2) {
+				 // 조회수순
+				 sql += " ORDER BY b.buddy_view DESC";
+			 } else if(keyword.getSort()==3) {
+				 // 마감일자 임박순
+				 // sql += " b.meet_date ASC";
+			 }
+						 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

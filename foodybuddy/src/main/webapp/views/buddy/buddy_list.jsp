@@ -71,7 +71,7 @@
             <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
                 <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                     <li class="nav-item">
-                        <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+                        <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3" href="/board/buddy?sort=1">
                             <i class="fa fa-coffee fa-2x text-primary"></i>
                             <div class="ps-3">
                                 <small class="text-body">등록일자</small>
@@ -80,7 +80,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+                        <a class="d-flex align-items-center text-start mx-3 pb-3" href="/board/buddy?sort=2">
                             <i class="fa fa-hamburger fa-2x text-primary"></i>
                             <div class="ps-3">
                                 <small class="text-body">많이본</small>
@@ -89,7 +89,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+                        <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" href="/board/buddy?sort=3">
                             <i class="fa fa-utensils fa-2x text-primary"></i>
                             <div class="ps-3">
                                 <small class="text-body">마감일</small>
@@ -144,146 +144,23 @@
 	                 	<!-- 리스트 끝 -->
 	                 	
 	                 	<!-- 페이징바 시작 -->
-	                 	<!-- 페이징 없을땐 걍 없으면 되니까! if 써도 괜찮다 -->
 						<c:if test="${not empty paging }">
 							<div>
 								<div>
 									<c:if test="${paging.prev }">
-										<a href="<c:url value='/board/buddy?nowPage=${paging.pageBarStart-1 }'/>">&laquo;</a>
+										<a href="<c:url value='/board/buddy?nowPage=${paging.pageBarStart-1 }&sort=${paging.sort }'/>">&laquo;</a>
 									</c:if>
 									<c:forEach begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" var="idx">
-										<a href="<c:url value='/board/buddy?nowPage=${idx }'/>">${idx }</a>
+										<a href="<c:url value='/board/buddy?nowPage=${idx }&sort=${paging.sort }'/>">${idx }</a>
 									</c:forEach>
 									<c:if test="${paging.next }">
-										<a href="<c:url value='/board/buddy?nowPage=${paging.pageBarEnd+1 }'/>">&raquo;</a>
+										<a href="<c:url value='/board/buddy?nowPage=${paging.pageBarEnd+1 }&sort=${paging.sort }'/>">&raquo;</a>
 									</c:if>
 								</div>
 							</div>
 						</c:if>
 	                 	<!-- 페이징바 끝 -->
 	               	</div>
-	               	
-               		<!-- 조회수순 -->
-                    <div id="tab-2" class="tab-pane fade show p-0">
-                    
-                        <div class="row g-4">
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-1.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>글제목</span>
-                                            <span class="text-primary">모임일 : 24-07-24</span>
-                                        </h5>
-                                        <small class="fst-italic">글쓴이 : 고보경 / 등록일 : 24-07-14 / 댓글 : 1 / 조회수 : 3</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-2.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>글제목2</span>
-                                            <span class="text-primary">모집중</span>
-                                        </h5>
-                                        <small class="fst-italic">글쓴이 : 류지현 / 모임일 : 24-07-24 / 댓글 : 0 / 조회수 : 8</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-3.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>글제목3</span>
-                                            <span class="text-primary">[모집중] 24-07-24</span>
-                                        </h5>
-                                        <small class="fst-italic">글쓴이 : 임민지 / 등록일 : 24-07-14 / 조회수 : 24</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-4.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>글제목이 얼마나 길어질 수 있을까요? 가나다라마바사아자차카타파하</span>
-                                            <span class="text-primary">좋아요 수</span>
-                                        </h5>
-                                        <small class="fst-italic">글쓴이 : 박병준 / 등록일 : 24-07-14 / 조회수 : 50</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-5.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>글제목4</span>
-                                            <span class="text-primary">24-07-24 [모집중]</span>
-                                        </h5>
-                                        <small class="fst-italic">글쓴이 : 최종우 / 등록일 : 24-07-14 / 조회수 : 198</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-6.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>제목 글자수 제한을 걸 필요가 있음.</span>
-                                            <span class="text-primary">모집종료</span>
-                                        </h5>
-                                        <small class="fst-italic">글쓴이 : 푸디버디 / 페이지 양식 테스트</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-7.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>Chicken Burger</span>
-                                            <span class="text-primary">$115</span>
-                                        </h5>
-                                        <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="../../resources/template/img/menu-8.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>Chicken Burger</span>
-                                            <span class="text-primary">$115</span>
-                                        </h5>
-                                        <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <!-- 마감일 임박순 -->
-                    <div id="tab-3" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                        
-                      		<div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span>Chicken Burger</span>
-                                            <span class="text-primary">$115</span>
-                                        </h5>
-                                        <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

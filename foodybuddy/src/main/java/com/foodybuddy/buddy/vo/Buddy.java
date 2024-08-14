@@ -27,7 +27,14 @@ public class Buddy extends Paging {
 	private String party_status;
 	// 검색 타입과 검색 키워드
 	private String search_option;
+	private String search_keyword;
+	// 정렬방식
+	private int sort = 1;
 	
+	
+	public Buddy() {
+		super();
+	}
 
 	public Buddy(int buddy_no, int foody_no, int user_no, int report_no, String buddy_approve, LocalDateTime reg_date,
 			String buddy_title, String buddy_main, int buddy_view, String party_name, LocalDateTime meet_date,
@@ -50,6 +57,7 @@ public class Buddy extends Paging {
 		this.comment_cnt = comment_cnt;
 	}
 
+	
 	public int getBuddy_no() {
 		return buddy_no;
 	}
@@ -209,11 +217,16 @@ public class Buddy extends Paging {
 		this.search_keyword = search_keyword;
 	}
 	
-	private String search_keyword;
-	
-	public Buddy() {
-		super();
+	public int getSort() {
+		return sort;
 	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
+	
+
 	
 	
 	@Override

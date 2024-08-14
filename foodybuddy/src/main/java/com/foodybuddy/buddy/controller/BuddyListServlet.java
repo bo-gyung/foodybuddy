@@ -24,13 +24,28 @@ public class BuddyListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		Buddy keyword = new Buddy();
+		
 		// 검색 및 목록출력
 		String search_option = request.getParameter("searchOption");
 		String search_keyword = request.getParameter("searchKeyword");
-		Buddy keyword = new Buddy();
+		System.out.println(search_keyword);
 		keyword.setSearch_option(search_option);
 		keyword.setSearch_keyword(search_keyword);
+		
+		// 정렬옵션
+		String sortValue = request.getParameter("sort");
+		System.out.println(sortValue);
+		if(sortValue=="" || sortValue==null || "1".equals(sortValue)) {
+			keyword.setSort(1);
+		} else {
+			if("2".equals(sortValue)) {
+				keyword.setSort(2);
+			} else if("3".equals(sortValue)) {
+				keyword.setSort(3);
+			}
+		}
 		
 		// 페이징 관련
 		String nowPage = request.getParameter("nowPage");
