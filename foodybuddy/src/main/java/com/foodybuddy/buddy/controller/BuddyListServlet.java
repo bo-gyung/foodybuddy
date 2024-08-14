@@ -30,13 +30,11 @@ public class BuddyListServlet extends HttpServlet {
 		// 검색 및 목록출력
 		String search_option = request.getParameter("searchOption");
 		String search_keyword = request.getParameter("searchKeyword");
-		System.out.println(search_keyword);
 		keyword.setSearch_option(search_option);
 		keyword.setSearch_keyword(search_keyword);
 		
 		// 정렬옵션
 		String sortValue = request.getParameter("sort");
-		System.out.println(sortValue);
 		if(sortValue=="" || sortValue==null || "1".equals(sortValue)) {
 			keyword.setSort(1);
 		} else {

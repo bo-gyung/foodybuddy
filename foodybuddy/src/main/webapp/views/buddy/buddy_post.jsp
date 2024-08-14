@@ -72,11 +72,11 @@
 	                <div class="row gy-4" style="text-align : center">
 		                <div class="col-md-4">
 		                    <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게이름</h5>
-		                    <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게이름") %></p>
+		                    <p id="foody_name"><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게이름") %></p>
 		                </div>
 		                <div class="col-md-4">
 		                    <h5 class="section-title ff-secondary fw-normal text-start text-primary">가게주소</h5>
-		                    <p><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게주소") %></p>
+		                    <p id="foody_address"><i class="fa fa-envelope-open text-primary me-2"></i><%=post.get("가게주소") %></p>
 		                </div>
 		                <div class="col-md-4">
 		                    <h5 class="section-title ff-secondary fw-normal text-start text-primary">주차여부</h5>
@@ -178,7 +178,7 @@
                                     </div>
                                     <!-- 본문 입력 끝 -->
                                     
-						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 시작 -->
+						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) / 원본글 보러가기 버튼 시작 -->
                                     <%@ page import="com.foodybuddy.user.vo.User" %>
 								    <%
 								    User u = (User)session.getAttribute("user");
@@ -198,13 +198,15 @@
 											onclick="createGroup(<%=post.get("글번호")%>)">모임 결성</button>
 										</div>
 						            </div>
-						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) 종료 -->
 									<%} else {%>
 									<div class="col-12">
                                         <button class="btn btn-primary w-100 py-3" type="button" 
                                         onclick="foodyPost(<%=post.get("원본글번호")%>);">원본 글 보러가기</button>
                                     </div>
 									<%} %>
+						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) / 원본글 보러가기 버튼 종료 -->
+						            <!-- 댓글창 시작 -->
+						            <!-- 댓글창 종료 -->
 						    	</div>
 					    	</form>
 				    	</div>
@@ -240,11 +242,14 @@
     
   	<!-- 지도 API 스크립트 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae96fe5b21048be0c855431d0416eea1"></script>
+	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+	
 	<script>
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
 			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표. 지도를 생성하는데 반드시 필요
-			level: 3 //지도의 레벨(확대, 축소 정도)
+			level: 1 //지도의 레벨(확대, 축소 정도)
 		};
 	
 		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
@@ -252,8 +257,43 @@
 		// center 에 할당할 값은 LatLng 클래스를 사용하여 생성합니다. 
 		// 흔히 위경도 좌표라고 부르는 WGS84 좌표계의 좌표값을 넣어서 만드는데요, 
 		// 생성인자는 위도(latitude), 경도(longitude) 순으로 넣어주세요.
+		
+		const fName = document.getElementById("foody_name").innerText;
+		const fAddr = document.getElementById("foody_address").innerText;
+		console.log(fName+" : "+fAddr);
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch(fAddr, function(result, status) {
+
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+fName+'</div>'
+		        });
+		        infowindow.open(map, marker);
+
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
 
 	</script>
+	
+	
+	
 
 	<script type="text/javascript">
 		
