@@ -44,10 +44,8 @@ public class BuddyPostSerbvlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		// 글번호에 해당하는 댓글 목록 받아오기
 		List<BuddyComment> c_list = new BuddyCommentService().selectComment(buddy_no);
-		session.setAttribute("c_list", c_list);
-		session.setMaxInactiveInterval(60*30);
+		request.setAttribute("c_list", c_list);
 
-		
 		RequestDispatcher view = request.getRequestDispatcher("/views/buddy/buddy_post.jsp");
 		view.forward(request, response);
 	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -206,7 +207,43 @@
 									<%} %>
 						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) / 원본글 보러가기 버튼 종료 -->
 						            <!-- 댓글창 시작 -->
+									<div class="comment_list" id="comment_place">
+										<c:choose>
+											<c:when test="${empty c_list }">
+												<div class="card mb-4">
+														<div class="card-body">
+															<p>작성된 댓글이 없습니다.</p>
+														</div>
+													</div>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${c_list }" var="c" varStatus="status">
+													<div class="card mb-4">
+														<div class="card-body">
+															<p>${c.comment_main }</p>
+															<div class="d-flex justify-content-between">
+																<div class="d-flex flex-row align-items-center">
+																	<p class="small mb-0 ms-2">${c.user_name }</p>
+																</div>
+																<div class="d-flex flex-row align-items-center">
+																	<p class="small text-muted mb-0">${c.reg_date }</p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
+									</div>
 						            <!-- 댓글창 종료 -->
+						            <!-- 댓글 입력창 시작 -->
+									<div data-mdb-input-init class="card-body">
+										<a id="user_name" name="user_name"><%= u.getUser_name() %></a>
+										<input type="hidden" id="user_no" name="user_no" value="<%= u.getUser_no() %>">
+										<textarea id="comment_main" name="comment_main" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
+										<button class="btn btn-primary m-2" type="button" onclick="addComment();">댓글 작성</button>
+									</div>
+									<!-- 댓글 입력창 종료 -->
 						    	</div>
 					    	</form>
 				    	</div>
@@ -324,11 +361,119 @@
         }
 		
 		// 댓글 작성
-  
-        function submit_btn(){
-        	 event.preventDefault();
-        	 const form = document.getElementById('insert_comment_form');
-        	 form.submit();
+        const addComment = function(){
+			const buddyNo = document.getElementById('buddy_no').value;
+			const userNo = document.getElementById('user_no').value;
+			const commentMain = document.getElementById('comment_main').value;
+			// console.log(buddyNo+" : "+userNo+" : "+commentMain);
+			
+			const xhr = new XMLHttpRequest();
+			xhr.open("post","/insertBuddyComment",true);
+			
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					// 제이슨 데이터 성공적으로 받아 왔을 시 수행할 동작
+					const jsonList = JSON.parse(xhr.responseText);
+					const commentPlace = document.getElementById('comment_place');
+					commentPlace.innerHTML = ''; // 기존 댓글 리스트를 비움
+					document.getElementById('comment_main').value = ''; // 댓글창 비움
+					
+					if(jsonList == null || jsonList.length === 0){
+						// 댓글 없는 상태
+						
+						// 1. p태그 : 요소 노드 생성
+			            const pTag = document.createElement('p');
+			         	// 1. p태그 : 텍스트 노드 생성
+			            const pText = document.createTextNode('작성된 댓글이 없습니다.');
+			            // 1. p태그 : 요소 노드에 텍스 노드 자손으로 추가
+			            pTag.appendChild(pText);
+						
+						// 2. div태그 card-body : 요소 노드 생성
+			            const bodyDivTag = document.createElement('div');
+						// 2. div태그 card-body : 요소에 클래스 부여
+						bodyDivTag.setAttribute('class','card-body');
+					
+						// 2에 1추가
+						bodyDivTag.appendChild(pTag);
+			            
+						// 3. div태그 card : 요소 노드 생성
+			            const cardDivTag = document.createElement('div');
+						// 3. div태그 card : 요소에 클래스 부여
+						cardDivTag.setAttribute('class','card mb-4');
+						
+						// 3에 2추가
+						cardDivTag.appendChild(bodyDivTag);
+			            
+			            // 4. 부모 객체에 완성된 요소 노드 추가
+			            document.getElementById('comment_place').appendChild(cardDivTag);
+			            
+					} else{
+						// 댓글 있는 상태
+						jsonList.forEach(function(jl){
+							// 1-1. p태그 : 요소 노드 생성 (댓글 내용)
+				            const mainPTag = document.createElement('p');
+				         	// 1-1. p태그 : 텍스트 노드 생성
+				            const mainPText = document.createTextNode(jl.comment_main);
+				            // 1-1. p태그 : 요소 노드에 텍스 노드 자손으로 추가
+				            mainPTag.appendChild(mainPText);
+						
+							// 1-2작성자와 작성일 요소 노드
+							// 1-2-(1) p태그 : 작성자
+							const namePTag = document.createElement('p');
+							namePTag.setAttribute('class','small mb-0 ms-2');
+				            const namePText = document.createTextNode(jl.user_name);
+				            namePTag.appendChild(namePText);
+							// 1-2-(1). div : 작성자 부모 div 
+							const nameDivTag = document.createElement('div');
+							nameDivTag.setAttribute('class','d-flex flex-row align-items-center');
+							nameDivTag.appendChild(namePTag);
+							
+							// 1-2-(2) : 작성일
+							const datePTag = document.createElement('p');
+							datePTag.setAttribute('class','small text-muted mb-0');
+				            const datePText = document.createTextNode(jl.reg_date);
+				            datePTag.appendChild(datePText);
+							// 1-2-(2). div : 작성일의 부모 div 
+							const dateDivTag = document.createElement('div');
+							dateDivTag.setAttribute('class','d-flex flex-row align-items-center');
+							dateDivTag.appendChild(datePTag);
+							
+							// 1-2-(3)에 (2),(3) 자손 추가 div 
+							const cardPartDivTag = document.createElement('div');
+							cardPartDivTag.setAttribute('class','d-flex justify-content-between');
+							cardPartDivTag.appendChild(nameDivTag);
+							cardPartDivTag.appendChild(dateDivTag);
+							
+							// 2. div태그 card-body : 요소 노드 생성
+				            const bodyDivTag = document.createElement('div');
+							// 2. div태그 card-body : 요소에 클래스 부여
+							bodyDivTag.setAttribute('class','card-body');
+						
+							// 2에 1추가
+							bodyDivTag.appendChild(mainPTag);
+							bodyDivTag.appendChild(cardPartDivTag);
+				            
+							// 3. div태그 card : 요소 노드 생성
+				            const cardDivTag = document.createElement('div');
+							// 3. div태그 card : 요소에 클래스 부여
+							cardDivTag.setAttribute('class','card mb-4');
+							
+							// 3에 2추가
+							cardDivTag.appendChild(bodyDivTag);
+				            
+				            // 4. 부모 객체에 완성된 요소 노드 추가
+				            document.getElementById('comment_place').appendChild(cardDivTag);
+						});
+					}
+				}
+			}
+			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+			xhr.send(
+				"buddy_no="+buddyNo+
+				"&user_no="+userNo+
+				"&comment_main="+commentMain
+			);
+			
 		}
 
 		
