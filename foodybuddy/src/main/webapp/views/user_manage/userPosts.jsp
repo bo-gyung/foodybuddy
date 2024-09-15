@@ -137,7 +137,7 @@
                     <td><%= post.getFoody_no() %></td>
                     <td><%= post.getFoody_title() %></td>
                     <td class="post-content"><%= post.getFoody_main() %></td>
-                    <td><%= post.getReg_date() %></td>
+                    <td><%= post.getreg_date() %></td>
                     <td><%= post.getFoody_click() %></td>
                     <td><%= post.getFoody_good() %></td>
                 </tr>
@@ -169,7 +169,7 @@
                     <td><%= post.getBuddy_no() %></td>
                     <td><%= post.getBuddy_title() %></td>
                     <td class="post-content"><%= post.getBuddy_main() %></td>
-                    <td><%= post.getReg_date() %></td>
+                    <td><%= post.getreg_date() %></td>
                     <td><%= post.getBuddy_view() %></td>
                 </tr>
                 <%

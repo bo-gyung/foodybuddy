@@ -235,7 +235,7 @@
 	/**
 	 * Enumeration for width.
 	 * @public
-	 * @readonly
+	 * @disabled
 	 * @enum {String}
 	 */
 	Owl.Width = {
@@ -247,7 +247,7 @@
 	/**
 	 * Enumeration for types.
 	 * @public
-	 * @readonly
+	 * @disabled
 	 * @enum {String}
 	 */
 	Owl.Type = {
@@ -2331,7 +2331,7 @@
 
 	/**
 	 * Checks whether an video is currently in full screen mode or not.
-	 * @todo Bad style because looks like a readonly method but changes members.
+	 * @todo Bad style because looks like a disabled method but changes members.
 	 * @protected
 	 * @returns {Boolean}
 	 */

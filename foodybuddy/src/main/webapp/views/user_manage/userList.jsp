@@ -188,7 +188,7 @@
                     <td><%=currentUser.getUser_email()%></td>
                     <td><%=currentUser.getUser_addr()%></td>
                     <td><%=currentUser.getUser_detailAddr()%></td>
-                    <td><%=currentUser.getReg_date()%></td>
+                    <td><%=currentUser.getreg_date()%></td>
                 </tr>
                 <%
                 }

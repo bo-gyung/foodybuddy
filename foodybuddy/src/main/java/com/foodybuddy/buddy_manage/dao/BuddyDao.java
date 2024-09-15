@@ -33,7 +33,7 @@ public class BuddyDao {
                 post.setUser_name(rs.getString("user_name"));
                 post.setBuddy_title(rs.getString("buddy_title"));
                 post.setBuddy_view(rs.getInt("buddy_view"));
-                post.setReg_date(rs.getTimestamp("reg_date"));
+                post.setreg_date(rs.getTimestamp("reg_date"));
                 post.setBuddy_approve(rs.getString("buddy_approve"));
                 buddyPosts.add(post);
             }
@@ -69,7 +69,7 @@ public class BuddyDao {
                 post.setBuddy_title(rs.getString("buddy_title"));
                 post.setBuddy_main(rs.getString("buddy_main"));
                 post.setBuddy_view(rs.getInt("buddy_view"));
-                post.setReg_date(rs.getTimestamp("reg_date"));
+                post.setreg_date(rs.getTimestamp("reg_date"));
                 post.setBuddy_approve(rs.getString("buddy_approve"));
             }
         } catch (SQLException e) {

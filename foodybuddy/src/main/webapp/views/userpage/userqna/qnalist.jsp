@@ -130,10 +130,10 @@
                     <div class="w-100 d-flex flex-column text-start ps-4">
                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                             <span><a href="/qna/detail?qna_no=<%= qna.getQna_no() %>"><%= qna.getQna_title() %></a></span>
-                            <span class="text-primary">작성날짜 : <%= qna.getReg_date() %></span>
+                            <span class="text-primary">작성날짜 : <%= qna.getreg_date() %></span>
                         </h5>
-                        <small class="fst-italic">글번호 : <%= qna.getQna_no() %> / 수정날짜 :  <% if (qna.getMod_date() != null) { %>
-                        <%= qna.getMod_date() %>
+                        <small class="fst-italic">글번호 : <%= qna.getQna_no() %> / 수정날짜 :  <% if (qna.getMod_time() != null) { %>
+                        <%= qna.getMod_time() %>
                     <% } %> / 처리상태 : <%= statusText %></small>
                     </div>
                 </div>

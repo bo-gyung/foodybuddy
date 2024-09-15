@@ -69,11 +69,11 @@ public class BuddyComment {
 		this.comment_main = comment_main;
 	}
 
-	public LocalDateTime getReg_date() {
+	public LocalDateTime getreg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(LocalDateTime reg_date) {
+	public void setreg_date(LocalDateTime reg_date) {
 		this.reg_date = reg_date;
 	}
 

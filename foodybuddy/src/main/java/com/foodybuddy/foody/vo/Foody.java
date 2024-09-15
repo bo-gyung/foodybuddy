@@ -16,7 +16,7 @@ public class Foody extends Paging{
 	private String foody_delivery;
 	private String foody_main;
 	private LocalDateTime reg_date;
-	private LocalDateTime mod_date;
+	private LocalDateTime mod_time;
 	private String foody_address;
 	private int foody_click;
 	private int foody_good;
@@ -49,7 +49,7 @@ public class Foody extends Paging{
 
 	public Foody(int foody_no, int user_no, int report_no, String foody_title, String foody_name, int foody_taste,
 			int foody_clean, String foody_parking, String foody_delivery, String foody_main, LocalDateTime reg_date,
-			LocalDateTime mod_date, String foody_address, int foody_click, int foody_good, String ori_picture,
+			LocalDateTime mod_time, String foody_address, int foody_click, int foody_good, String ori_picture,
 			String new_picture, String user_name) {
 		super();
 		this.foody_no = foody_no;
@@ -63,7 +63,7 @@ public class Foody extends Paging{
 		this.foody_delivery = foody_delivery;
 		this.foody_main = foody_main;
 		this.reg_date = reg_date;
-		this.mod_date = mod_date;
+		this.mod_time = mod_time;
 		this.foody_address = foody_address;
 		this.foody_click = foody_click;
 		this.foody_good = foody_good;
@@ -152,20 +152,20 @@ public class Foody extends Paging{
 		this.foody_main = foody_main;
 	}
 
-	public LocalDateTime getReg_date() {
+	public LocalDateTime getreg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(LocalDateTime reg_date) {
+	public void setreg_date(LocalDateTime reg_date) {
 		this.reg_date = reg_date;
 	}
 
-	public LocalDateTime getMod_date() {
-		return mod_date;
+	public LocalDateTime getMod_time() {
+		return mod_time;
 	}
 
-	public void setMod_date(LocalDateTime mod_date) {
-		this.mod_date = mod_date;
+	public void setmod_time(LocalDateTime mod_time) {
+		this.mod_time = mod_time;
 	}
 
 	public String getFoody_address() {
@@ -237,7 +237,7 @@ public class Foody extends Paging{
 		return "Foody [foody_no=" + foody_no + ", user_no=" + user_no + ", report_no=" + report_no + ", foody_title="
 				+ foody_title + ", foody_name=" + foody_name + ", foody_taste=" + foody_taste + ", foody_clean="
 				+ foody_clean + ", foody_parking=" + foody_parking + ", foody_delivery=" + foody_delivery
-				+ ", foody_main=" + foody_main + ", reg_date=" + reg_date + ", mod_date=" + mod_date
+				+ ", foody_main=" + foody_main + ", reg_date=" + reg_date + ", mod_time=" + mod_time
 				+ ", foody_address=" + foody_address + ", foody_click=" + foody_click + ", foody_good=" + foody_good
 				+ ", ori_picture=" + ori_picture + ", new_picture=" + new_picture + ", user_name=" + user_name
 				+ ", searchOption=" + searchOption + ", searchBar=" + searchBar + "]";

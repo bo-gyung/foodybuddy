@@ -10,7 +10,7 @@ public class Comment {
 	private String user_name;
 	private String comment_text;
 	private LocalDateTime reg_date;
-	private LocalDateTime mod_date;
+	private LocalDateTime mod_time;
 	
 	public Comment() {
 		super();
@@ -18,7 +18,7 @@ public class Comment {
 	}
 
 	public Comment(int comment_num, int foody_no, int user_no, int report_no, String user_name, String comment_text,
-			LocalDateTime reg_date, LocalDateTime mod_date) {
+			LocalDateTime reg_date, LocalDateTime mod_time) {
 		super();
 		this.comment_num = comment_num;
 		this.foody_no = foody_no;
@@ -27,7 +27,7 @@ public class Comment {
 		this.user_name = user_name;
 		this.comment_text = comment_text;
 		this.reg_date = reg_date;
-		this.mod_date = mod_date;
+		this.mod_time = mod_time;
 	}
 
 	public int getComment_num() {
@@ -78,27 +78,27 @@ public class Comment {
 		this.comment_text = comment_text;
 	}
 
-	public LocalDateTime getReg_date() {
+	public LocalDateTime getreg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(LocalDateTime reg_date) {
+	public void setreg_date(LocalDateTime reg_date) {
 		this.reg_date = reg_date;
 	}
 
-	public LocalDateTime getMod_date() {
-		return mod_date;
+	public LocalDateTime getMod_time() {
+		return mod_time;
 	}
 
-	public void setMod_date(LocalDateTime mod_date) {
-		this.mod_date = mod_date;
+	public void setmod_time(LocalDateTime mod_time) {
+		this.mod_time = mod_time;
 	}
 
 	@Override
 	public String toString() {
 		return "Comment [comment_num=" + comment_num + ", foody_no=" + foody_no + ", user_no=" + user_no
 				+ ", report_no=" + report_no + ", user_name=" + user_name + ", comment_text=" + comment_text
-				+ ", reg_date=" + reg_date + ", mod_date=" + mod_date + "]";
+				+ ", reg_date=" + reg_date + ", mod_time=" + mod_time + "]";
 	}
 	
 	

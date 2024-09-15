@@ -43,7 +43,7 @@ public class FcommentDao {
                 comment.setFoody_no(rs.getInt("foody_no"));
                 comment.setUser_name(rs.getString("user_name"));
                 comment.setComment_text(rs.getString("comment_text"));
-                comment.setReg_date(rs.getTimestamp("reg_date").toLocalDateTime());
+                comment.setreg_date(rs.getTimestamp("reg_date").toLocalDateTime());
                 comments.add(comment);
             }
         } catch (Exception e) {

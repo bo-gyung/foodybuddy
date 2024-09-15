@@ -54,9 +54,10 @@ public class BuddyCommentDao {
                 BuddyComment c = new BuddyComment();
                 c.setComment_no(rs.getInt("comment_no"));
                 c.setBuddy_no(rs.getInt("buddy_no"));
+                c.setUser_no(rs.getInt("user_no"));
                 c.setUser_name(rs.getString("user_name"));
                 c.setComment_main(rs.getString("comment_main"));
-                c.setReg_date(rs.getTimestamp("reg_date").toLocalDateTime());
+                c.setreg_date(rs.getTimestamp("reg_date").toLocalDateTime());
                 c_list.add(c);
             }
 

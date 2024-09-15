@@ -163,7 +163,7 @@
             <form id="replyForm" action="/message/send" method="POST">
                 
                 <label>받는 사람:</label>
-                <input type="text" id="replyReceiverName" name="receiver" readonly><br>
+                <input type="text" id="replyReceiverName" name="receiver" disabled><br>
                 <label>제목:</label>
                 <input type="text" id="replyMessageTitle" name="subject"><br>
                 <label>내용:</label>

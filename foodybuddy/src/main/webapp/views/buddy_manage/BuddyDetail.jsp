@@ -131,7 +131,7 @@
         
         <div id="buddyContent">
             <h2>제목: <%= ((BuddyPosts)request.getAttribute("buddyPost")).getBuddy_title() %></h2>
-            <p>작성일: <%= new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(((BuddyPosts)request.getAttribute("buddyPost")).getReg_date()) %></p>
+            <p>작성일: <%= new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(((BuddyPosts)request.getAttribute("buddyPost")).getreg_date()) %></p>
             <p>내용: <%= ((BuddyPosts)request.getAttribute("buddyPost")).getBuddy_main() %></p>
         </div>
         

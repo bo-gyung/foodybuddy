@@ -130,7 +130,7 @@
                         <td><%= post.getBuddy_no() %></td>
                         <td><%= post.getUser_name() %></td>
                         <td><a href="<%=request.getContextPath()%>/buddy_detail?buddy_no=<%= post.getBuddy_no() %>"><%= post.getBuddy_title() %></a></td>
-                        <td><%= post.getReg_date() %></td>
+                        <td><%= post.getreg_date() %></td>
                         <td><%= post.getBuddy_approve() %></td>
                     </tr>
                 <%
@@ -159,7 +159,7 @@
                         <td><%= post.getBuddy_no() %></td>
                         <td><%= post.getUser_name() %></td>
                         <td><a href="<%=request.getContextPath()%>/buddy_detail?buddy_no=<%= post.getBuddy_no() %>"><%= post.getBuddy_title() %></a></td>
-                        <td><%= post.getReg_date() %></td>
+                        <td><%= post.getreg_date() %></td>
                         <td><%= post.getBuddy_approve() %></td>
                     </tr>
                 <%

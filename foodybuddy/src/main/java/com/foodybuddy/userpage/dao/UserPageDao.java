@@ -100,7 +100,7 @@ public class UserPageDao {
 					+ ", qna_content "
 					+ ", qna_answer "
 					+ ", qna_no "
-					+ ", mod_date "
+					+ ", mod_time "
 					+ "FROM user_qna "
 					+ "WHERE qna_no = ?;";
 			
@@ -114,7 +114,7 @@ public class UserPageDao {
 				resultM.put("qnaNo", rs.getInt("qna_no"));
 				resultM.put("title", rs.getString("qna_title"));
 				resultM.put("content", rs.getString("qna_content"));
-				resultM.put("modDate", rs.getTimestamp("mod_date").toLocalDateTime());
+				resultM.put("modTime", rs.getTimestamp("mod_time").toLocalDateTime());
 				// 관리자 응답추가야
 				resultM.put("ansContent", rs.getString("qna_answer")); 
 			}
@@ -151,7 +151,7 @@ public class UserPageDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
-			String sql = "UPDATE user_qna SET qna_title = ?, qna_content = ?, mod_date = NOW() WHERE qna_no = ?";
+			String sql = "UPDATE user_qna SET qna_title = ?, qna_content = ?, mod_time = NOW() WHERE qna_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
@@ -236,7 +236,7 @@ public class UserPageDao {
 	        rs = pstmt.executeQuery();
 	        while(rs.next()) {
 	        	// 수정날짜 보일듯 안보일듯
-	        	LocalDateTime modDate = rs.getTimestamp("mod_date") != null ? rs.getTimestamp("mod_date").toLocalDateTime() : null;
+	        	LocalDateTime modTime = rs.getTimestamp("mod_time") != null ? rs.getTimestamp("mod_time").toLocalDateTime() : null;
 	           
 	        	QnA resultVo = new QnA(rs.getInt("qna_no"),
 	                                   rs.getInt("user_no"),
@@ -245,7 +245,7 @@ public class UserPageDao {
 	                                   rs.getTimestamp("reg_date").toLocalDateTime(),
 	                                   rs.getString("qna_status"),
 	                                   rs.getString("qna_answer"),
-	                                   rs.getTimestamp("mod_date").toLocalDateTime(),
+	                                   rs.getTimestamp("mod_time").toLocalDateTime(),
 	                                   rs.getTimestamp("complete_date").toLocalDateTime());
 	            list.add(resultVo);
 	        }
@@ -398,7 +398,7 @@ public class UserPageDao {
 							rs.getString("foody_delivery"),
 							rs.getString("foody_main"), 
 							rs.getTimestamp("reg_date").toLocalDateTime(),
-							rs.getTimestamp("mod_date").toLocalDateTime(),
+							rs.getTimestamp("mod_time").toLocalDateTime(),
 							rs.getString("foody_address"),
 							rs.getInt("foody_click"),
 							rs.getInt("foody_good"),

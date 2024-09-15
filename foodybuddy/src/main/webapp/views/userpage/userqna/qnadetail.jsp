@@ -69,12 +69,12 @@
 			<div class="mb-4">
 				<label for="qna_title" class="form-label fw-medium">제목</label> <input
 					type="text" id="qna_title" class="form-control" maxlength="50"  style= " max-width: 80%; margin-left : 0%"
-					value="<%=resultM.get("title")%>" readonly>
+					value="<%=resultM.get("title")%>" disabled>
 			</div>
 
 			<div class="mb-4">
 				<label for="qna_content" class="form-label fw-medium">작성란</label>
-				<textarea id= "qna_content" class="form-control" maxlength="500" cols="20" rows="15" style= "resize: none;" readonly><%=resultM.get("content")%></textarea>
+				<textarea id= "qna_content" class="form-control" maxlength="500" cols="20" rows="15" style= "resize: none;" disabled><%=resultM.get("content")%></textarea>
 			</div>
 
 			<!-- 수정 및 삭제 버튼 -->
@@ -97,7 +97,7 @@
 					if (resultM != null && resultM.get("ansContent") != null) {
 						answerContent = (String) resultM.get("ansContent");
 					%>
-					<textarea id="qna_answer" class="form-control" maxlength="500" cols="40" rows="15" style="resize: none;" readonly><%=answerContent%></textarea>
+					<textarea id="qna_answer" class="form-control" maxlength="500" cols="40" rows="15" style="resize: none;" disabled><%=answerContent%></textarea>
 					<%
 					}
 					%>

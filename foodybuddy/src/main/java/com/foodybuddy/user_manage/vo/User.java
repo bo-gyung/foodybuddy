@@ -125,11 +125,11 @@ public class User {
     }
 
   
-    public Timestamp getReg_date() {
+    public Timestamp getreg_date() {
         return reg_date;
     }
 
-    public void setReg_date(Timestamp reg_date) {
+    public void setreg_date(Timestamp reg_date) {
         this.reg_date = reg_date;
     }
 

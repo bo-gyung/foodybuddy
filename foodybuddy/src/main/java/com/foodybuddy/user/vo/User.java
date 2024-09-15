@@ -159,11 +159,11 @@ public class User {
 		this.user_warn = user_warn;
 	}
 
-	public LocalDateTime getReg_date() {
+	public LocalDateTime getreg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(LocalDateTime reg_date) {
+	public void setreg_date(LocalDateTime reg_date) {
 		this.reg_date = reg_date;
 	}
 

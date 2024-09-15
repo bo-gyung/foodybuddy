@@ -10,12 +10,12 @@ public class Qna {
     private String reg_date;
     private String qna_status;
     private String qna_answer;
-    private String mod_date;
+    private String mod_time;
     private String complete_date;
 
     public Qna() {}
 
-    public Qna(int qna_no, int user_no, String qna_title, String qna_content, String reg_date, String qna_status, String qna_answer, String mod_date, String complete_date) {
+    public Qna(int qna_no, int user_no, String qna_title, String qna_content, String reg_date, String qna_status, String qna_answer, String mod_time, String complete_date) {
         this.qna_no = qna_no;
         this.user_no = user_no;
         this.qna_title = qna_title;
@@ -23,7 +23,7 @@ public class Qna {
         this.reg_date = reg_date;
         this.qna_status = qna_status;
         this.qna_answer = qna_answer;
-        this.mod_date = mod_date;
+        this.mod_time = mod_time;
         this.complete_date = complete_date;
     }
 
@@ -60,16 +60,16 @@ public class Qna {
         this.qna_content = qna_content;
     }
 
-    public String getReg_date() {
+    public String getreg_date() {
         return reg_date;
     }
 
-    public void setReg_date(String reg_date) {
+    public void setreg_date(String reg_date) {
         this.reg_date = reg_date;
     }
 
     // Timestamp를 받아서 String으로 변환하여 설정하는 메서드
-    public void setReg_date(Timestamp reg_date) {
+    public void setreg_date(Timestamp reg_date) {
         this.reg_date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(reg_date);
     }
 
@@ -89,20 +89,20 @@ public class Qna {
         this.qna_answer = qna_answer;
     }
 
-    public String getMod_date() {
-        return mod_date;
+    public String getMod_time() {
+        return mod_time;
     }
 
-    public void setMod_date(String mod_date) {
-        this.mod_date = mod_date;
+    public void setmod_time(String mod_time) {
+        this.mod_time = mod_time;
     }
 
     
-    public void setMod_date(Timestamp mod_date) {
-        if (mod_date != null) {
-            this.mod_date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(mod_date);
+    public void setmod_time(Timestamp mod_time) {
+        if (mod_time != null) {
+            this.mod_time = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(mod_time);
         } else {
-            this.mod_date = "없음"; 
+            this.mod_time = "없음"; 
         }
     }
 

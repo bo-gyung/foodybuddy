@@ -196,7 +196,9 @@
 										</div>
 										<div class="col-3">
 											<button class="btn btn-primary w-100 py-3" type="button" 
-											onclick="createGroup(<%=post.get("글번호")%>)">모임 결성</button>
+											data-bs-toggle="modal" data-bs-target="#createParty">
+												모임 결성
+											</button>
 										</div>
 						            </div>
 									<%} else {%>
@@ -206,6 +208,59 @@
                                     </div>
 									<%} %>
 						            <!-- 작성자 메뉴(수정, 삭제, 모임결성) / 원본글 보러가기 버튼 종료 -->
+						            <!-- 모임결성 모달창 시작 -->
+						            <!-- Modal -->
+									<div class="modal fade" id="createParty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">모임 결성하기</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<!-- 모달바디 시작 -->
+												<div class="modal-body">
+												    <div class="text-center text-secondary">
+												        <h6 id="printPlace">
+												            모일 인원을 선택하세요 ( 1 / <%=post.get("모임인원") %> )
+												        </h6>
+												        <h6>(모임장 포함)</h6>
+												    </div>
+												     <div style="display: none;">
+										                <input type="checkbox" name="member_no" value="<%=u.getUser_no() %>" checked>
+										            </div>
+												    <c:choose>
+									                	<c:when test="${empty c_list }">
+										                    <div class="card mb-4">
+										                        <div class="card-body">
+										                            <p>아직 선택할 인원이 없습니다.</p>
+										                        </div>
+										                    </div>
+										                </c:when>
+										                <c:otherwise>
+										                    <c:forEach items="${c_list }" var="c" varStatus="status">
+										                        <div class="card mb-4">
+										                            <div class="card-body">
+										                                <input type="checkbox" name="member_no" value="${c.user_no }" onclick="partyCnt()">
+										                                <label>${c.user_name }</label>
+										                                <div class="d-flex flex-row align-items-center">
+										                                    <p>${c.comment_main }</p>
+										                                </div>
+										                            </div>
+										                        </div>
+										                    </c:forEach>
+										                </c:otherwise>
+										            </c:choose>
+												    
+												</div>
+												<!-- 모달바디 끝 -->
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+													<button type="button" class="btn btn-primary" onclick="createGroup()">결성하기</button>
+									      		</div>
+											</div>
+										</div>
+									</div>
+						            <!-- 모임결성 모달창 종료 -->
 						            <!-- 댓글창 시작 -->
 									<div class="comment_list" id="comment_place">
 										<c:choose>
@@ -241,7 +296,7 @@
 										<a id="user_name" name="user_name"><%= u.getUser_name() %></a>
 										<input type="hidden" id="user_no" name="user_no" value="<%= u.getUser_no() %>">
 										<textarea id="comment_main" name="comment_main" class="form-control" placeholder="댓글을 입력하세요." ></textarea>
-										<button class="btn btn-primary m-2" type="button" onclick="addComment();">댓글 작성</button>
+										<button class="btn btn-primary m-2" type="button" onclick="addComment()">댓글 작성</button>
 									</div>
 									<!-- 댓글 입력창 종료 -->
 						    	</div>
@@ -297,7 +352,6 @@
 		
 		const fName = document.getElementById("foody_name").innerText;
 		const fAddr = document.getElementById("foody_address").innerText;
-		console.log(fName+" : "+fAddr);
 		
 		// 주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
@@ -329,7 +383,92 @@
 
 	</script>
 	
-	
+	<!-- 모임결성 모달창 관련 -->
+	<script>
+		// 모임 인원
+		const partyNumber = document.getElementById('party_number').value;
+		
+		// 체크할 때마다 모집인원 cnt
+		function partyCnt(){
+			
+			// 폼에서 체크된 체크박스의 개수
+		    const selectNumber = document.querySelectorAll('input[name="member_no"]:checked').length;
+		    
+		    // 모일 인원을 선택하세요 (선택인원/모임인원) 출력
+		    const printPlace = document.getElementById('printPlace'); // 출력장소 <h6>
+		    if (partyNumber) {
+		        printPlace.innerText = "모일 인원을 선택하세요 ( " + selectNumber + " / " + partyNumber + " )";
+		    }
+		}
+		
+		const createGroup = function(){
+			// 유효성 검사
+			// 체크된 체크박스를 모두 선택
+		    const checkedBoxes = document.querySelectorAll('input[name="member_no"]:checked');
+			
+			// 중복되지 않은 체크값을 담을 set(중복 허용 x)
+			const valueSet = new Set();
+			// 중복된 값들을 저장할 배열
+			const duplicates = [];
+			
+			for(let i = 0 ; i < checkedBoxes.length ; i++){
+				const  value = checkedBoxes[i].value
+				// 중복값 확인
+				if(valueSet.has(value)){
+					// 중복된 값이 발견되면 duplicates 배열에 추가
+			        duplicates.push(value);
+				} else{
+					// 중복 x 셋에 추가
+					valueSet.add(value);
+				}
+			}
+					
+			if(checkedBoxes.length == partyNumber){
+				// 체크인원이 설정한 모임인원과 일치
+				if (duplicates.length > 0) {
+					// 중복값 존재 o
+					alert("동일한 회원을 중복 선택 하였습니다.");
+				} else {
+					// 중복값 존재 x
+					
+					const buddyNo = document.getElementById('buddy_no').value;
+					const meetDate = document.getElementById('meet_date').value;
+					const checkedBoxes = document.querySelectorAll('input[name="member_no"]:checked');
+					const memberArr = [];
+
+					for (let i = 0; i < checkedBoxes.length; i++) {
+					    if (checkedBoxes[i].checked) {
+					    	memberArr.push(checkedBoxes[i].value);  // 체크된 체크박스의 값을 배열에 추가
+					    }
+					}
+					
+					const xhr = new XMLHttpRequest();
+					xhr.open("post","/group/createEnd",true);
+					xhr.onreadystatechange = function(){
+						if(xhr.readyState == 4 && xhr.status == 200){
+							// 제이슨 데이터 성공적으로 받아 왔을 시 수행할 동작
+							alert("모임이 결성되었습니다.");
+						}
+					}
+					xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+					xhr.send(
+						"buddy_no="+buddyNo+
+						"&meet_date="+meetDate+
+						"&member_arr="+memberArr
+					);
+				}
+			} else if(checkedBoxes.length > partyNumber) {
+				// 체크인원이 설정한 모임인원보다 클 경우
+				alert("모임인원의 정원을 초과하였습니다.");
+			} else{
+				// 체크인원이 설정한 모임인원보다 작을 경우
+				alert("모임인원의 정원을 확인해주세요.");
+			}
+
+		}
+			
+
+	</script>
 	
 
 	<script type="text/javascript">
@@ -346,15 +485,7 @@
 			window.location.href = '/board/buddy/delete?buddy_no='+buddy_no;
 			}
 		}
-		
-		// 그룹만들기 창 띄우기
-		function createGroup(buddy_no){
-		    // 새창 띄우기
-			const partyNumber = document.getElementById('party_number').value;
-		    console.log(partyNumber);
-		    const newWindow = window.open("/views/buddy/groupSelect.jsp?party_number="+partyNumber+"", "_blank", "width=800,height=600");
-		}
-		
+			
 		// 원본글 보러가기
 		function foodyPost(foody_no){
 			window.location.href = '/foody/view?foody_no='+foody_no;

@@ -61,9 +61,9 @@
             <% List<Foody> list = (List<Foody>) request.getAttribute("resultList");
                 for(int i = 0 ; i < 3 ; i++){ %>
             <%
-                LocalDateTime regDateTime = list.get(i).getReg_date();
+                LocalDateTime regTimeTime = list.get(i).getreg_date();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분");
-                String formattedDate = regDateTime.format(formatter);
+                String formattedDate = regTimeTime.format(formatter);
             %>
             <div class="col-lg-6 mx-auto">
                 <div class="d-flex align-items-center">

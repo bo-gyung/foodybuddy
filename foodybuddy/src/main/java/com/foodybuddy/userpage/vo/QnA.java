@@ -12,14 +12,14 @@ public class QnA extends Paging{
 	private LocalDateTime reg_date;
 	private String qna_status;
 	private String qna_answer;
-	private LocalDateTime mod_date;
+	private LocalDateTime mod_time;
 	private LocalDateTime complete_date;
 	public QnA() {
 		super();
 		
 	}
 	public QnA(int qna_no, int user_no, String qna_title, String qna_content, LocalDateTime reg_date, String qna_status,
-			String qna_answer, LocalDateTime mod_date, LocalDateTime complete_date) {
+			String qna_answer, LocalDateTime mod_time, LocalDateTime complete_date) {
 		super();
 		this.qna_no = qna_no;
 		this.user_no = user_no;
@@ -28,7 +28,7 @@ public class QnA extends Paging{
 		this.reg_date = reg_date;
 		this.qna_status = qna_status;
 		this.qna_answer = qna_answer;
-		this.mod_date = mod_date;
+		this.mod_time = mod_time;
 		this.complete_date = complete_date;
 		
 	}
@@ -56,10 +56,10 @@ public class QnA extends Paging{
 	public void setQna_content(String qna_content) {
 		this.qna_content = qna_content;
 	}
-	public LocalDateTime getReg_date() {
+	public LocalDateTime getreg_date() {
 		return reg_date;
 	}
-	public void setReg_date(LocalDateTime reg_date) {
+	public void setreg_date(LocalDateTime reg_date) {
 		this.reg_date = reg_date;
 	}
 	public String getQna_status() {
@@ -74,11 +74,11 @@ public class QnA extends Paging{
 	public void setQna_answer(String qna_answer) {
 		this.qna_answer = qna_answer;
 	}
-	public LocalDateTime getMod_date() {
-		return mod_date;
+	public LocalDateTime getMod_time() {
+		return mod_time;
 	}
-	public void setMod_date(LocalDateTime mod_date) {
-		this.mod_date = mod_date;
+	public void setmod_time(LocalDateTime mod_time) {
+		this.mod_time = mod_time;
 	}
 	public LocalDateTime getComplete_date() {
 		return complete_date;

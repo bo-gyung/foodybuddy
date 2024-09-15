@@ -57,7 +57,7 @@
         Integer userGrade = (loginUser != null) ? loginUser.getGrade_no() : null;
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String formattedRegDate = foody.getReg_date().format(formatter);
+        String formattedregTime = foody.getreg_date().format(formatter);
     %>
 
 	<!-- Navbar Link -->
@@ -187,7 +187,7 @@
 	                            	</div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control" name="foody_main" style="height : 500px; resize: none;" readonly></textarea>
+                                            <textarea class="form-control" name="foody_main" style="height : 500px; resize: none;" disabled></textarea>
                                             <label><%= foody.getFoody_main() %></label>
                                         </div>
                                     </div>
@@ -228,7 +228,7 @@
                     List<Comment> commentList = (List<Comment>) request.getAttribute("commentList");
                     if (commentList != null) {
                         for (Comment comment : commentList) {
-                            String CommentDate = comment.getReg_date().format(formatter);
+                            String CommentDate = comment.getreg_date().format(formatter);
                 %>
 		            <div class="col-lg-6 mx-auto">
 		                <div class="d-flex align-items-center">

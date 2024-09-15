@@ -70,7 +70,7 @@ public class BuddyCommentServlet extends HttpServlet {
 			                .append("\"user_no\":").append(comment.getUser_no()).append(",")
 			                .append("\"report_no\":").append(comment.getReport_no()).append(",")
 			                .append("\"comment_main\":\"").append(comment.getComment_main()).append("\",")
-			                .append("\"reg_date\":\"").append(comment.getReg_date()).append("\",")
+			                .append("\"reg_date\":\"").append(comment.getreg_date()).append("\",")
 			                .append("\"user_name\":\"").append(comment.getUser_name()).append("\"")
 			                .append("}");
 

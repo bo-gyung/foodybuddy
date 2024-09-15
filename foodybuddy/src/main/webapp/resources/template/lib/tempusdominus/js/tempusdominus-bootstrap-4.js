@@ -183,7 +183,7 @@ var DateTimePicker = function ($, moment) {
             vertical: 'auto'
         },
         widgetParent: null,
-        ignoreReadonly: false,
+        ignoredisabled: false,
         keepOpen: false,
         focusOnShow: true,
         inline: false,
@@ -810,14 +810,14 @@ var DateTimePicker = function ($, moment) {
             return this.widget ? this.hide() : this.show();
         };
 
-        DateTimePicker.prototype.ignoreReadonly = function ignoreReadonly(_ignoreReadonly) {
+        DateTimePicker.prototype.ignoredisabled = function ignoredisabled(_ignoredisabled) {
             if (arguments.length === 0) {
-                return this._options.ignoreReadonly;
+                return this._options.ignoredisabled;
             }
-            if (typeof _ignoreReadonly !== 'boolean') {
-                throw new TypeError('ignoreReadonly () expects a boolean parameter');
+            if (typeof _ignoredisabled !== 'boolean') {
+                throw new TypeError('ignoredisabled () expects a boolean parameter');
             }
-            this._options.ignoreReadonly = _ignoreReadonly;
+            this._options.ignoredisabled = _ignoredisabled;
         };
 
         DateTimePicker.prototype.options = function options(newOptions) {
@@ -2529,7 +2529,7 @@ var TempusDominusBootstrap4 = function ($) {
             };
 
             if (this.input !== undefined) {
-                if (this.input.prop('disabled') || !this._options.ignoreReadonly && this.input.prop('readonly') || this.widget) {
+                if (this.input.prop('disabled') || !this._options.ignoredisabled && this.input.prop('disabled') || this.widget) {
                     return;
                 }
                 if (this.input.val() !== undefined && this.input.val().trim().length !== 0) {

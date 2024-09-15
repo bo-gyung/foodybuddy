@@ -98,11 +98,11 @@ public class Buddy extends Paging {
 		this.buddy_approve = buddy_approve;
 	}
 
-	public LocalDateTime getReg_date() {
+	public LocalDateTime getreg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(LocalDateTime reg_date) {
+	public void setreg_date(LocalDateTime reg_date) {
 		this.reg_date = reg_date;
 	}
 
@@ -182,7 +182,7 @@ public class Buddy extends Paging {
 		// 모집중 : (작성일 = 결성일) && 현재 < 모임일(현재보다 모임일이 미래일때)
 		// 모집완료 : (작성일 != 결성일) && 결성일 < 모임일(결성일보다 모임일이 미래일떄)
 		// 모집실패 : (작성일 = 결성일) && 현재 > 모임일(모임일이 과거일때)
-		if(getReg_date().isEqual(formation_date)) {
+		if(getreg_date().isEqual(formation_date)) {
 			if(meet_date.isAfter(LocalDateTime.now())) {
 				party_status ="모집중";
 			} else {

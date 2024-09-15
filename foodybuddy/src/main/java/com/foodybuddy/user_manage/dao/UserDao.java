@@ -43,7 +43,7 @@ public class UserDao {
                 user.setUser_extraAddr(rs.getString("user_extraAddr"));
                 user.setUser_question(rs.getString("user_question"));
                 user.setUser_answer(rs.getString("user_answer"));
-                user.setReg_date(rs.getTimestamp("reg_date"));  // Timestamp 그대로 설정
+                user.setreg_date(rs.getTimestamp("reg_date"));  // Timestamp 그대로 설정
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -86,7 +86,7 @@ public class UserDao {
                 user.setUser_extraAddr(rs.getString("user_extraAddr"));
                 user.setUser_question(rs.getString("user_question"));
                 user.setUser_answer(rs.getString("user_answer"));
-                user.setReg_date(rs.getTimestamp("reg_date"));  // Timestamp 그대로 설정
+                user.setreg_date(rs.getTimestamp("reg_date"));  // Timestamp 그대로 설정
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -118,7 +118,7 @@ public class UserDao {
                 comment.setFoody_no(rs.getInt("foody_no"));
                 comment.setFoody_title(rs.getString("foody_title"));
                 comment.setComment_main(rs.getString("comment_main"));
-                comment.setReg_date(rs.getTimestamp("reg_date"));  // Timestamp 그대로 설정
+                comment.setreg_date(rs.getTimestamp("reg_date"));  // Timestamp 그대로 설정
                 commentList.add(comment);
             }
         } catch (SQLException e) {
@@ -150,7 +150,7 @@ public class UserDao {
                 comment.setFoody_no(rs.getInt("buddy_no"));
                 comment.setFoody_title(rs.getString("buddy_title"));
                 comment.setComment_main(rs.getString("comment_main"));
-                comment.setReg_date(rs.getTimestamp("reg_date"));
+                comment.setreg_date(rs.getTimestamp("reg_date"));
                 commentList.add(comment);
             }
         } catch (SQLException e) {
@@ -178,7 +178,7 @@ public class UserDao {
                 post.setFoody_no(rs.getInt("foody_no"));
                 post.setFoody_title(rs.getString("foody_title"));
                 post.setFoody_main(rs.getString("foody_main"));
-                post.setReg_date(rs.getTimestamp("reg_date"));
+                post.setreg_date(rs.getTimestamp("reg_date"));
                 post.setFoody_click(rs.getInt("foody_click"));
                 post.setFoody_good(rs.getInt("foody_good"));
                 foodyPostList.add(post);
@@ -209,7 +209,7 @@ public class UserDao {
                 post.setBuddy_no(rs.getInt("buddy_no"));
                 post.setBuddy_title(rs.getString("buddy_title"));
                 post.setBuddy_main(rs.getString("buddy_main"));
-                post.setReg_date(rs.getTimestamp("reg_date"));
+                post.setreg_date(rs.getTimestamp("reg_date"));
                 post.setBuddy_view(rs.getInt("buddy_view"));
                 buddyPostList.add(post);
             }
@@ -261,7 +261,7 @@ public class UserDao {
                     user.setUser_extraAddr(rs.getString("user_extraAddr"));
                     user.setUser_question(rs.getString("user_question"));
                     user.setUser_answer(rs.getString("user_answer"));
-                    user.setReg_date(rs.getTimestamp("reg_date"));
+                    user.setreg_date(rs.getTimestamp("reg_date"));
                     userList.add(user);
                 }
             }

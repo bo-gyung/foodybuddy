@@ -157,9 +157,9 @@
 							User user11 = (User) session.getAttribute("loginUser");
             			for(int i = 0 ; i < list.size(); i++){ %>
             			<%
-						    LocalDateTime regDateTime = list.get(i).getReg_date();
+						    LocalDateTime regTimeTime = list.get(i).getreg_date();
 						    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분");
-						    String formattedDate = regDateTime.format(formatter);
+						    String formattedDate = regTimeTime.format(formatter);
 						%>
                                 <div class="col-lg-6">
                                     <div class="d-flex align-items-center">

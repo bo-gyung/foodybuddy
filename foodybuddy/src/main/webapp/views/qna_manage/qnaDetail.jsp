@@ -140,7 +140,7 @@
             <p><%= qna.getQna_title() %></p>
             <p class="label">내용:</p>
             <p><%= qna.getQna_content() %></p>
-            <p class="date">작성일: <%= qna.getReg_date() %></p>
+            <p class="date">작성일: <%= qna.getreg_date() %></p>
             
             <div class="answer-form">
                 <form action="<%= request.getContextPath() %>/qna/answer" method="post">

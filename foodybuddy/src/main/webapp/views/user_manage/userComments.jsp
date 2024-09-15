@@ -155,7 +155,7 @@
                         <td><%= comment.getFoody_no() %></td>
                         <td><%= comment.getFoody_title() %></td>
                         <td><%= comment.getComment_main() %></td>
-                        <td><%= comment.getReg_date() %></td>
+                        <td><%= comment.getreg_date() %></td>
                     </tr>
                 <%
                         }
@@ -184,7 +184,7 @@
                         <td><%= comment.getFoody_no() %></td>
                         <td><%= comment.getFoody_title() %></td>
                         <td><%= comment.getComment_main() %></td>
-                        <td><%= comment.getReg_date() %></td>
+                        <td><%= comment.getreg_date() %></td>
                     </tr>
                 <%
                         }
